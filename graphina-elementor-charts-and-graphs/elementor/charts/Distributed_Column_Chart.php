@@ -526,6 +526,7 @@ class Distributed_Column_Chart extends Widget_Base {
 								borderRadius: parseInt('<?php echo esc_js( $settings[ 'iq_' . $type . '_chart_plot_border_radius' ] ); ?>') || 0,
 								dataLabels: {
 									position: '<?php echo esc_js( $settings[ 'iq_' . $type . '_chart_datalabel_position_show' ] ); ?>',
+									orientation: '<?php echo esc_js( $settings[ 'iq_' . $type . '_chart_datalabel_orientation' ] ); ?>',
 								},
 								distributed:true
 							},
@@ -721,32 +722,7 @@ class Distributed_Column_Chart extends Widget_Base {
 						]
 					};
 
-					if ("<?php echo esc_js( $settings[ 'iq_' . $type . '_chart_yaxis_number_format' ] ) === 'yes'; ?>") {
-						columnOptions.tooltip.y.formatter = function (val) {
-							const enableNumberFormatting = '<?php echo esc_js( $enable_number_formatting ); ?>';
-							const locale = '<?php echo esc_js( $locale ); ?>';
-
-							const dataLabelShow = '<?php echo esc_js( ! empty( $settings[ 'iq_' . $type . '_chart_datalabels_format' ] ) && $settings[ 'iq_' . $type . '_chart_datalabels_format' ] === 'yes' ); ?>';
-							const prefix = '<?php echo esc_js( ! empty( $settings[ 'iq_' . $type . '_chart_datalabel_format_prefix' ] ) ? $settings[ 'iq_' . $type . '_chart_datalabel_format_prefix' ] : '' ); ?>'
-							const postfix = '<?php echo esc_js( ! empty( $settings[ 'iq_' . $type . '_chart_datalabel_format_postfix' ] ) ? $settings[ 'iq_' . $type . '_chart_datalabel_format_postfix' ] : '' ); ?>'
-
-							if (enableNumberFormatting) {
-								const numberFormatter = new Intl.NumberFormat(locale, {
-									style: 'decimal',
-									minimumFractionDigits: 0,
-									maximumFractionDigits: 2,
-									useGrouping: true,
-								});
-								val = numberFormatter.format(val);
-							}
-
-							if (dataLabelShow) {
-								val = prefix + val + postfix;
-							}
-
-							return val;
-						};
-					}
+				
 					if('<?php echo esc_js( ! empty( $settings[ 'iq_' . $type . '_is_chart_horizontal' ] ) && $settings[ 'iq_' . $type . '_is_chart_horizontal' ] === 'yes' ); ?>'){
 						columnOptions.tooltip.y.formatter = function(val){
 							if('<?php echo esc_js( ! empty( $settings[ 'iq_' . $type . '_chart_xaxis_label_show' ] ) && $settings[ 'iq_' . $type . '_chart_xaxis_label_show' ] === 'yes' ); ?>'){
@@ -765,7 +741,7 @@ class Distributed_Column_Chart extends Widget_Base {
 							return val;
 						}
 					}
-					if ("<?php echo esc_js( $settings[ 'iq_' . $type . '_chart_yaxis_label_show' ] ) === 'yes'; ?>" ) {
+					if ("<?php echo esc_js( $settings[ 'iq_' . $type . '_chart_yaxis_label_show' ] ) === 'yes'; ?>" || "<?php echo esc_js( $settings[ 'iq_' . $type . '_chart_yaxis_format_number' ] ) === 'yes'; ?>"  ) {
 						columnOptions.yaxis.labels.formatter = function (val) {
 							if('<?php echo esc_js( ! empty( $settings[ 'iq_' . $type . '_is_chart_horizontal' ] ) && $settings[ 'iq_' . $type . '_is_chart_horizontal' ] === 'yes' ); ?>'){
 								val = '<?php echo esc_js( $y_label_prefix ); ?>' + val + '<?php echo esc_js( $y_label_postfix ); ?>';

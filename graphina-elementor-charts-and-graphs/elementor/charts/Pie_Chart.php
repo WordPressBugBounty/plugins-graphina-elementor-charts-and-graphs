@@ -251,8 +251,6 @@ class Pie_Chart extends Widget_Base {
 		$type          = $this->get_chart_type();
 		$ajax_settings = graphina_ajax_settings( $settings, $type );
 
-		$enable_number_formatting = $settings[ 'iq_' . $type . '_chart_number_format_locale' ] === 'yes';
-		$locale                   = $settings[ 'iq_' . $type . '_chart_tooltip_locale' ];
 		$main_id                  = graphina_widget_id( $this );
 		$value_list               = $settings[ 'iq_' . $type . '_chart_data_series_count' ];
 		$gradient                 = array();
@@ -521,32 +519,7 @@ class Pie_Chart extends Widget_Base {
 						]
 					};
 
-					if ("<?php echo esc_js( $settings[ 'iq_' . $type . '_chart_number_format_locale' ] ) === 'yes'; ?>") {
-						pieOptions.tooltip.y.formatter = function (val) {
-							const enableNumberFormatting = '<?php echo esc_js( $enable_number_formatting ); ?>';
-							const locale = '<?php echo esc_js( $locale ); ?>';
-
-							const dataLabelShow = '<?php echo esc_js( ! empty( $settings[ 'iq_' . $type . '_chart_datalabels_format' ] ) && $settings[ 'iq_' . $type . '_chart_datalabels_format' ] === 'yes' ); ?>';
-							const prefix = '<?php echo esc_js( ! empty( $settings[ 'iq_' . $type . '_chart_datalabel_format_prefix' ] ) ? $settings[ 'iq_' . $type . '_chart_datalabel_format_prefix' ] : '' ); ?>'
-							const postfix = '<?php echo esc_js( ! empty( $settings[ 'iq_' . $type . '_chart_datalabel_format_postfix' ] ) ? $settings[ 'iq_' . $type . '_chart_datalabel_format_postfix' ] : '' ); ?>'
-
-							if (enableNumberFormatting) {
-								const numberFormatter = new Intl.NumberFormat(locale, {
-									style: 'decimal',
-									minimumFractionDigits: 0,
-									maximumFractionDigits: 2,
-									useGrouping: true,
-								});
-								val = numberFormatter.format(val);
-							}
-
-							if (dataLabelShow) {
-								val = prefix + val + postfix;
-							}
-
-							return val;
-						};
-					}
+					
 
 
 					if("<?php echo esc_js( $settings[ 'iq_' . $type . '_chart_datalabels_format' ] === 'yes' ); ?>"){

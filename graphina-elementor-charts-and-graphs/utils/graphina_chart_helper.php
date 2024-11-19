@@ -161,6 +161,12 @@ function graphina_position_type( string $type = 'vertical', bool $first = false 
 					'labeled' => esc_html__( 'Labeled', 'graphina-charts-for-elementor' ),
 				);
 			break;
+		case 'orientation':
+			$result = array(
+				'horizontal'	=> esc_html__('Horizontal','graphina-charts-for-elementor' ),
+				'vertical'		=> esc_html__('Vertical', 'graphina-charts-for-elementor' ),
+			);
+			break;
 	}
 	// Return the first key if $first is true, otherwise return the options array.
 	return $first ? array_key_first( $result ) : $result;
@@ -1044,7 +1050,7 @@ function graphina_common_chart_setting( Element_Base $this_ele, string $type = '
 			$this_ele->add_control(
 				'iq_' . $type . '_chart_datalabel_orientation',
 				array(
-					'label'      => esc_html__( 'Position', 'graphina-charts-for-elementor' ),
+					'label'      => esc_html__( 'Orientation Position', 'graphina-charts-for-elementor' ),
 					'type'       => Controls_Manager::SELECT,
 					'default'    => graphina_position_type( 'orientation', true ),
 					'options'    => graphina_position_type( 'orientation' ),
@@ -1801,7 +1807,6 @@ function graphina_advance_x_axis_setting( Element_Base $this_ele, string $type =
 					'iq_' . $type . '_chart_yaxis_datalabel_show' => 'yes',
 					'iq_' . $type . '_is_chart_horizontal' => 'yes',
 					'iq_' . $type . '_chart_yaxis_label_pointer!' => 'yes',
-					'iq_' . $type . '_chart_yaxis_number_format!' => 'yes',
 				),
 			)
 		);
@@ -2031,7 +2036,7 @@ function graphina_advance_y_axis_setting( Element_Base $this_ele, string $type =
 	$this_ele->add_control(
 		'iq_' . $type . '_chart_yaxis_datalabel_offset_y',
 		array(
-			'label'     => esc_html__( 'Offset-Ydk', 'graphina-charts-for-elementor' ),
+			'label'     => esc_html__( 'Offset-Y', 'graphina-charts-for-elementor' ),
 			'type'      => Controls_Manager::NUMBER,
 			'default'   => 0,
 			'condition' => array(
@@ -2181,7 +2186,6 @@ function graphina_advance_y_axis_setting( Element_Base $this_ele, string $type =
 				'condition'   => array(
 					'iq_' . $type . '_chart_yaxis_datalabel_show' => 'yes',
 					'iq_' . $type . '_chart_yaxis_label_show' => 'yes',
-					'iq_' . $type . '_chart_yaxis_number_format!' => 'yes',
 					'iq_' . $type . '_chart_yaxis_format_number!' => 'yes',
 				),
 				'label_on'    => esc_html__( 'Hide', 'graphina-charts-for-elementor' ),
@@ -2207,34 +2211,34 @@ function graphina_advance_y_axis_setting( Element_Base $this_ele, string $type =
 			)
 		);
 		if ( in_array( $type, array( 'column', 'line', 'area', 'bubble', 'heatmap', 'distributed_column', 'scatter', 'brush' ), true ) ) {
-			$this_ele->add_control(
-				'iq_' . $type . '_chart_yaxis_number_format',
-				array(
-					'label'     => esc_html__( 'Enable Number Formatting', 'graphina-charts-for-elementor' ),
-					'type'      => Controls_Manager::SWITCHER,
-					'condition' => array(
-						'iq_' . $type . '_chart_yaxis_datalabel_show' => 'yes',
+			// $this_ele->add_control(
+			// 	'iq_' . $type . '_chart_yaxis_number_format',
+			// 	array(
+			// 		'label'     => esc_html__( 'Enable Number Formatting', 'graphina-charts-for-elementor' ),
+			// 		'type'      => Controls_Manager::SWITCHER,
+			// 		'condition' => array(
+			// 			'iq_' . $type . '_chart_yaxis_datalabel_show' => 'yes',
 
-					),
-					'label_on'  => esc_html__( 'Yes', 'graphina-charts-for-elementor' ),
-					'label_off' => esc_html__( 'No', 'graphina-charts-for-elementor' ),
-					'default'   => false,
-				)
-			);
+			// 		),
+			// 		'label_on'  => esc_html__( 'Yes', 'graphina-charts-for-elementor' ),
+			// 		'label_off' => esc_html__( 'No', 'graphina-charts-for-elementor' ),
+			// 		'default'   => false,
+			// 	)
+			// );
 
-			$this_ele->add_control(
-				'iq_' . $type . '_chart_yaxis_locale',
-				array(
-					'label'       => esc_html__( 'Locale for Number Formatting', 'graphina-charts-for-elementor' ),
-					'type'        => Controls_Manager::TEXT,
-					'default'     => 'ja-JP',
-					'condition'   => array(
-						'iq_' . $type . '_chart_yaxis_number_format' => 'yes',
+			// $this_ele->add_control(
+			// 	'iq_' . $type . '_chart_yaxis_locale',
+			// 	array(
+			// 		'label'       => esc_html__( 'Locale for Number Formatting', 'graphina-charts-for-elementor' ),
+			// 		'type'        => Controls_Manager::TEXT,
+			// 		'default'     => 'ja-JP',
+			// 		'condition'   => array(
+			// 			'iq_' . $type . '_chart_yaxis_number_format' => 'yes',
 
-					),
-					'description' => esc_html__( 'Specify the locale (e.g., en-US, ja-JP) for number formatting.', 'graphina-charts-for-elementor' ),
-				)
-			);
+			// 		),
+			// 		'description' => esc_html__( 'Specify the locale (e.g., en-US, ja-JP) for number formatting.', 'graphina-charts-for-elementor' ),
+			// 	)
+			// );
 		}
 	}
 
@@ -2249,9 +2253,7 @@ function graphina_advance_y_axis_setting( Element_Base $this_ele, string $type =
 				'default'     => 'no',
 				'condition'   => array(
 					'iq_' . $type . '_chart_yaxis_datalabel_show' => 'yes',
-					'iq_' . $type . '_chart_yaxis_number_format!' => 'yes',
 				),
-				'description' => esc_html__( 'Enabled Labels Prefix/Postfix ', 'graphina-charts-for-elementor' ),
 			)
 		);
 	}
@@ -3450,7 +3452,7 @@ function graphina_marker_setting( Element_Base $this_ele, string $type = 'chart_
 		array(
 			'label'       => esc_html__( 'Size', 'graphina-charts-for-elementor' ),
 			'type'        => Controls_Manager::NUMBER,
-			'default'     => in_array( $type, array( 'radar', 'mixed', 'brush' ), true ) ? 3 : 0,
+			'default'     => in_array( $type, array( 'radar', 'mixed', 'brush' ), true ) ? 3 : 1,
 			'min'         => 0,
 			'condition'   => $condition,
 			'description' => $type === 'brush' ? esc_html__( 'Note : Marker are only show in Chart 1 ', 'graphina-charts-for-elementor' ) : '',
@@ -3472,7 +3474,7 @@ function graphina_marker_setting( Element_Base $this_ele, string $type = 'chart_
 		array(
 			'label'     => esc_html__( 'Stroke Width', 'graphina-charts-for-elementor' ),
 			'type'      => Controls_Manager::NUMBER,
-			'default'   => in_array( $type, array( 'mixed', 'brush' ), true ) ? 1 : 0,
+			'default'   => in_array( $type, array( 'mixed', 'brush' ), true ) ? 1 : 5,
 			'min'       => 0,
 			'condition' => $condition,
 		)
@@ -4105,40 +4107,39 @@ function graphina_tooltip( Element_Base $this_ele, string $type = 'chart_id', bo
 					'default'   => 'no',
 					'condition' => array(
 						'iq_' . $type . '_chart_tooltip' => 'yes',
-						'iq_' . $type . '_chart_number_format_locale!' => 'yes',
 					),
 				)
 			);
 
-			$this_ele->add_control(
-				'iq_' . $type . '_chart_number_format_locale',
-				array(
-					'label'     => esc_html__( 'Format Number(Locale)', 'graphina-charts-for-elementor' ),
-					'type'      => Controls_Manager::SWITCHER,
-					'condition' => array(
-						'iq_' . $type . '_chart_tooltip' => 'yes',
+		// 	$this_ele->add_control(
+		// 		'iq_' . $type . '_chart_number_format_locale',
+		// 		array(
+		// 			'label'     => esc_html__( 'Format Number(Locale)', 'graphina-charts-for-elementor' ),
+		// 			'type'      => Controls_Manager::SWITCHER,
+		// 			'condition' => array(
+		// 				'iq_' . $type . '_chart_tooltip' => 'yes',
 
-					),
-					'label_on'  => esc_html__( 'Yes', 'graphina-charts-for-elementor' ),
-					'label_off' => esc_html__( 'No', 'graphina-charts-for-elementor' ),
-					'default'   => false,
-				)
-			);
+		// 			),
+		// 			'label_on'  => esc_html__( 'Yes', 'graphina-charts-for-elementor' ),
+		// 			'label_off' => esc_html__( 'No', 'graphina-charts-for-elementor' ),
+		// 			'default'   => false,
+		// 		)
+		// 	);
 
-			$this_ele->add_control(
-				'iq_' . $type . '_chart_tooltip_locale',
-				array(
-					'label'       => esc_html__( 'Locale for Number Formatting', 'graphina-charts-for-elementor' ),
-					'type'        => Controls_Manager::TEXT,
-					'default'     => 'ja-JP',
-					'condition'   => array(
-						'iq_' . $type . '_chart_tooltip' => 'yes',
-						'iq_' . $type . '_chart_number_format_locale' => 'yes',
+		// 	$this_ele->add_control(
+		// 		'iq_' . $type . '_chart_tooltip_locale',
+		// 		array(
+		// 			'label'       => esc_html__( 'Locale for Number Formatting', 'graphina-charts-for-elementor' ),
+		// 			'type'        => Controls_Manager::TEXT,
+		// 			'default'     => 'ja-JP',
+		// 			'condition'   => array(
+		// 				'iq_' . $type . '_chart_tooltip' => 'yes',
+		// 				'iq_' . $type . '_chart_number_format_locale' => 'yes',
 
-					),
-					'description' => esc_html__( 'Specify the locale (e.g., en-US, ja-JP) for number formatting.', 'graphina-charts-for-elementor' ),
-				)
-			);
+		// 			),
+		// 			'description' => esc_html__( 'Specify the locale (e.g., en-US, ja-JP) for number formatting.', 'graphina-charts-for-elementor' ),
+		// 		)
+		// 	);
 		}
 
 		if ( $shared && $type !== 'candle' ) {

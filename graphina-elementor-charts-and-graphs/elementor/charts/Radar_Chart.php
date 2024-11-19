@@ -303,35 +303,7 @@ class Radar_Chart extends Widget_Base {
 				'description' => esc_html__( 'Note: Convert 1,000  => 1k and 1,000,000 => 1m', 'graphina-charts-for-elementor' ),
 			)
 		);
-		$this->add_control(
-			'iq_' . $type . '_chart_yaxis_number_format',
-			array(
-				'label'     => esc_html__( 'Format Number(Locale)', 'graphina-charts-for-elementor' ),
-				'type'      => Controls_Manager::SWITCHER,
-				'condition' => array(
-					'iq_' . $type . '_chart_yaxis_datalabel_show' => 'yes',
-
-				),
-				'label_on'  => esc_html__( 'Yes', 'graphina-charts-for-elementor' ),
-				'label_off' => esc_html__( 'No', 'graphina-charts-for-elementor' ),
-				'default'   => false,
-			)
-		);
-
-		$this->add_control(
-			'iq_' . $type . '_chart_yaxis_locale',
-			array(
-				'label'       => esc_html__( 'Locale for Number Formatting', 'graphina-charts-for-elementor' ),
-				'type'        => Controls_Manager::TEXT,
-				'default'     => 'ja-JP',
-				'condition'   => array(
-					'iq_' . $type . '_chart_yaxis_number_format' => 'yes',
-
-				),
-				'description' => esc_html__( 'Specify the locale (e.g., en-US, ja-JP) for number formatting.', 'graphina-charts-for-elementor' ),
-			)
-		);
-
+	
 		$this->add_control(
 			'iq_' . $type . '_chart_yaxis_label_pointer_number',
 			array(
@@ -447,6 +419,93 @@ class Radar_Chart extends Widget_Base {
 
 		graphina_chart_style( $this, $type );
 
+		$this->start_controls_section(
+            'iq_' . $type . '_chart_font_style_section',
+            [
+                'label'=>esc_html__('Chart Font Size','graphina-charts-for-elementor'),
+                'tab'=>Controls_Manager::TAB_STYLE,
+            ]
+        );
+        $this->add_responsive_control(
+            'iq_' . $type . '_chart_font_size_responsive',
+            [
+                'label' => esc_html__('Font Size', 'graphina-charts-for-elementor'),
+                'type' => Controls_Manager::SLIDER,
+                'size_units' => ['px', 'em', 'rem', 'vw'],
+                'range' => [
+                    'px' => [
+                        'min' => 1,
+                        'max' => 200,
+                    ],
+                    'em' => [
+                        'min' => 1,
+                        'max' => 200,
+                    ],
+                    'rem' => [
+                        'min' => 1,
+                        'max' => 200,
+                    ],
+                    'vw' => [
+                        'min' => 0.1,
+                        'max' => 10,
+                        'step' => 0.1,
+                    ],
+                ],
+                'default' => [
+                    'unit' => 'px',
+                    'size' => 12,
+                ],
+                'tablet_default' => [
+                    'unit' => 'px',
+                    'size' => 14,
+                ],
+                'mobile_default' => [
+                    'unit' => 'px',
+                    'size' => 12,
+                ],
+            ]
+        );
+        $this->add_responsive_control(
+            'iq_' . $type . '_chart_legend_font_size_responsive',
+            [
+                'label' => esc_html__('Legend font size', 'graphina-charts-for-elementor'),
+                'type' => Controls_Manager::SLIDER,
+                'size_units' => ['px', 'em', 'rem', 'vw'],
+                'range' => [
+                    'px' => [
+                        'min' => 1,
+                        'max' => 200,
+                    ],
+                    'em' => [
+                        'min' => 1,
+                        'max' => 200,
+                    ],
+                    'rem' => [
+                        'min' => 1,
+                        'max' => 200,
+                    ],
+                    'vw' => [
+                        'min' => 0.1,
+                        'max' => 10,
+                        'step' => 0.1,
+                    ],
+                ],
+                'default' => [
+                    'unit' => 'px',
+                    'size' => 12,
+                ],
+                'tablet_default' => [
+                    'unit' => 'px',
+                    'size' => 14,
+                ],
+                'mobile_default' => [
+                    'unit' => 'px',
+                    'size' => 12,
+                ],
+            ]
+        );
+        $this->end_controls_section();
+
 		graphina_chart_filter_style( $this, $type );
 
 		if ( function_exists( 'graphina_pro_password_style_section' ) ) {
@@ -483,7 +542,6 @@ class Radar_Chart extends Widget_Base {
 		$loading_text        = esc_html( isset( $settings[ 'iq_' . $type . '_chart_no_data_text' ] ) ? $settings[ 'iq_' . $type . '_chart_no_data_text' ] : '' );
 		$data_label_prefix   = '';
 		$data_label_postfix  = '';
-
 		$export_file_name = (
 			! empty( $settings[ 'iq_' . $type . '_can_chart_show_toolbar' ] ) && $settings[ 'iq_' . $type . '_can_chart_show_toolbar' ] === 'yes'
 			&& ! empty( $settings[ 'iq_' . $type . '_export_filename' ] )
@@ -581,8 +639,6 @@ class Radar_Chart extends Widget_Base {
 		$xaxis_font_color    = implode( '_,_', $xaxis_font_color );
 		$category            = implode( '_,_', $data['category'] );
 
-		$enable_number_formatting = $settings[ 'iq_' . $type . '_chart_yaxis_number_format' ] === 'yes';
-		$locale                   = $settings[ 'iq_' . $type . '_chart_yaxis_locale' ];
 		$local_string_type        = graphina_common_setting_get( 'thousand_seperator' );
 		graphina_chart_widget_content( $this, $main_id, $settings );
 		if ( graphina_restricted_access( 'radar', $main_id, $settings, false ) === false ) {
@@ -751,19 +807,74 @@ class Radar_Chart extends Widget_Base {
 								colors: '<?php echo esc_js( $settings[ 'iq_' . $type . '_chart_font_color' ] ); ?>'
 							}
 						},
-						responsive: [{
-							breakpoint: 1024,
-							options: {
-								chart: {
-									height: parseInt('<?php echo esc_js( ! empty( $settings[ 'iq_' . $type . '_chart_height_tablet' ] ) ? $settings[ 'iq_' . $type . '_chart_height_tablet' ] : $settings[ 'iq_' . $type . '_chart_height' ] ); ?>')
+						responsive: [
+							{
+								breakpoint: 1024,
+								options: {
+									chart: {
+										height: parseInt('<?php echo !empty($settings['iq_' . $type . '_chart_height_tablet']) ? $settings['iq_' . $type . '_chart_height_tablet'] : $settings['iq_' . $type . '_chart_height'] ; ?>')
+									},
+									xaxis: {
+											labels: {
+												style: {
+													colors: '<?php echo $xaxisFontColor; ?>'.split('_,_'),
+													fontSize: '<?php echo $settings['iq_' . $type . '_chart_font_size_responsive_tablet']['size'] . $settings['iq_' . $type . '_chart_font_size_responsive_tablet']['unit']; ?>',
+												}
+											}
+										},
+										yaxis: {
+											labels: {
+												style: {
+													colors: '<?php echo strval($settings['iq_' . $type . '_chart_font_color']); ?>',
+													fontSize: '<?php echo $settings['iq_' . $type . '_chart_font_size_responsive_tablet']['size'] . $settings['iq_' . $type . '_chart_font_size_responsive_tablet']['unit']; ?>',
+												}
+											}
+										},
+										tooltip: {
+											style: {
+												fontSize: '<?php echo $settings['iq_' . $type . '_chart_tooltip_font_size_responsive_tablet']['size'] . $settings['iq_' . $type . '_chart_tooltip_font_size_responsive_tablet']['unit']; ?>',
+											}
+										},
+										legend: {
+											fontSize: '<?php echo $settings['iq_' . $type . '_chart_legend_font_size_responsive_tablet']['size'] . $settings['iq_' . $type . '_chart_legend_font_size_responsive_tablet']['unit']; ?>',
+											labels: {
+												colors: '<?php echo strval($settings['iq_' . $type . '_chart_font_color']); ?>'
+											}
+										}
 								}
-							}
-						},
+							},
 							{
 								breakpoint: 674,
 								options: {
 									chart: {
-										height: parseInt('<?php echo esc_js( ! empty( $settings[ 'iq_' . $type . '_chart_height_mobile' ] ) ? $settings[ 'iq_' . $type . '_chart_height_mobile' ] : $settings[ 'iq_' . $type . '_chart_height' ] ); ?>')
+										height: parseInt('<?php echo !empty($settings['iq_' . $type . '_chart_height_mobile']) ? $settings['iq_' . $type . '_chart_height_mobile'] : $settings['iq_' . $type . '_chart_height'] ;  ?>')
+									},
+									xaxis: {
+										labels: {
+											style: {
+												colors: '<?php echo $xaxisFontColor; ?>'.split('_,_'),
+												fontSize: '<?php echo $settings['iq_' . $type . '_chart_font_size_responsive_mobile']['size'] . $settings['iq_' . $type . '_chart_font_size_responsive_mobile']['unit']; ?>',
+											}
+										}
+									},
+									yaxis: {
+										labels: {
+											style: {
+												colors: '<?php echo strval($settings['iq_' . $type . '_chart_font_color']); ?>',
+												fontSize: '<?php echo $settings['iq_' . $type . '_chart_font_size_responsive_mobile']['size'] . $settings['iq_' . $type . '_chart_font_size_responsive_mobile']['unit']; ?>',
+											}
+										}
+									},
+									tooltip: {
+										style: {
+											fontSize: '<?php echo $settings['iq_' . $type . '_chart_tooltip_font_size_responsive_mobile']['size'] . $settings['iq_' . $type . '_chart_tooltip_font_size_responsive_mobile']['unit']; ?>',
+										}
+									},
+									legend: {
+										fontSize: '<?php echo $settings['iq_' . $type . '_chart_legend_font_size_responsive_mobile']['size'] . $settings['iq_' . $type . '_chart_legend_font_size_responsive_mobile']['unit']; ?>',
+										labels: {
+											colors: '<?php echo strval($settings['iq_' . $type . '_chart_font_color']); ?>'
+										}
 									}
 								}
 							}
@@ -781,33 +892,6 @@ class Radar_Chart extends Widget_Base {
 							sizeOffset: 1
 						}
 					};
-					if ("<?php echo esc_js( $settings[ 'iq_' . $type . '_chart_yaxis_number_format' ] ) === 'yes'; ?>") {
-						radarOptions.yaxis.labels.formatter = function (val) {
-							const enableNumberFormatting = '<?php echo esc_js( $enable_number_formatting ); ?>';
-							const locale = '<?php echo esc_js( $locale ); ?>';
-
-							const yLabelShow = '<?php echo esc_js( ! empty( $settings[ 'iq_' . $type . '_chart_yaxis_label_show' ] ) && $settings[ 'iq_' . $type . '_chart_yaxis_label_show' ] === 'yes' ); ?>';
-							const yLabelPrefix = '<?php echo esc_js( $settings[ 'iq_' . $type . '_chart_yaxis_format_prefix' ] ); ?>';
-							const yLabelPostfix = '<?php echo esc_js( $settings[ 'iq_' . $type . '_chart_yaxis_format_postfix' ] ); ?>';
-
-							if (enableNumberFormatting) {
-								const numberFormatter = new Intl.NumberFormat(locale, {
-									style: 'decimal',
-									minimumFractionDigits: 0,
-									maximumFractionDigits: 2,
-									useGrouping: true,
-								});
-								val = numberFormatter.format(val);
-							}
-
-							if (yLabelShow) {
-								val = yLabelPrefix + val + yLabelPostfix;
-							}
-
-							return val;
-						};
-					}
-
 
 					if("<?php echo esc_js( $settings[ 'iq_' . $type . '_chart_yaxis_datalabel_format' ] === 'yes' ); ?>"){
 						radarOptions.yaxis.labels.formatter = function (val){

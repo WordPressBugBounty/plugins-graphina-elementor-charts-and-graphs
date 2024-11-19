@@ -326,8 +326,6 @@ class Area_Chart extends Widget_Base {
 		$settings                 = $this->get_settings_for_display();
 		$ajax_settings            = graphina_ajax_settings( $settings, $type );
 		$main_id                  = graphina_widget_id( $this );
-		$enable_number_formatting = $settings[ 'iq_' . $type . '_chart_yaxis_number_format' ] !== 'yes';
-		$locale                   = $settings[ 'iq_' . $type . '_chart_yaxis_locale' ];
 
 		$second_gradient     = array();
 		$fill_pattern        = array();
@@ -691,34 +689,8 @@ class Area_Chart extends Widget_Base {
 							}
 						]
 					};
-					if ("<?php echo esc_js( $settings[ 'iq_' . $type . '_chart_yaxis_number_format' ] ) === 'yes'; ?>") {
-						areaOptions.yaxis.labels.formatter = function (val) {
-							const enableNumberFormatting = '<?php echo esc_js( $enable_number_formatting ); ?>';
-							const locale = '<?php echo esc_js( $locale ); ?>';
 
-							const yLabelShow = '<?php echo esc_js( ! empty( $settings[ 'iq_' . $type . '_chart_yaxis_label_show' ] ) && $settings[ 'iq_' . $type . '_chart_yaxis_label_show' ] === 'yes' ); ?>';
-							const yLabelPrefix = '<?php echo esc_js( $y_label_prefix ); ?>';
-							const yLabelPostfix = '<?php echo esc_js( $y_label_postfix ); ?>';
-
-							if (enableNumberFormatting) {
-								const numberFormatter = new Intl.NumberFormat(locale, {
-									style: 'decimal',
-									minimumFractionDigits: 0,
-									maximumFractionDigits: 2,
-									useGrouping: true,
-								});
-								val = numberFormatter.format(val);
-							}
-
-							if (yLabelShow) {
-								val = yLabelPrefix + val + yLabelPostfix;
-							}
-
-							return val;
-						};
-					}
-
-					if ("<?php echo esc_js( $settings[ 'iq_' . $type . '_chart_yaxis_label_show' ] ) === 'yes'; ?>" ) {
+					if ("<?php echo esc_js( $settings[ 'iq_' . $type . '_chart_yaxis_label_show' ] ) === 'yes'; ?>" || "<?php echo esc_js( $settings[ 'iq_' . $type . '_chart_yaxis_format_number' ] ) === 'yes'; ?>" ) {
 						areaOptions.yaxis.labels.formatter = function (val) {
 							let decimal = parseInt('<?php echo esc_js( ! empty( $settings[ 'iq_' . $type . '_chart_yaxis_prefix_postfix_decimal_point' ] ) ? $settings[ 'iq_' . $type . '_chart_yaxis_prefix_postfix_decimal_point' ] : 0 ); ?>') || 0;
 							if("<?php echo esc_js( $settings[ 'iq_' . $type . '_chart_yaxis_format_number' ] ) === 'yes'; ?>" ){

@@ -951,7 +951,7 @@ class Data_Table extends Widget_Base {
 						pagingType: '<?php echo esc_js( $settings[ 'iq_' . $type . 'pagination_type' ] ); ?>',
 						scrollX: '<?php echo esc_js( $settings[ 'iq_' . $type . 'table_scroll' ] ); ?>',
 						pageLength: parseInt('<?php echo esc_js( $settings[ 'iq_' . $type . '_pagelength' ] ); ?>') || 10,
-						responsive: true,
+						responsive: '<?php echo esc_js($settings['iq_' . $type . 'table_scroll'] === 'yes' ? false : true) ?>',
 						<?php if ( wp_is_mobile() ) { ?>
 						rowReorder: {
 							selector: 'td:nth-child(2)'

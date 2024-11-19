@@ -615,9 +615,7 @@ class Bubble_Chart extends Widget_Base {
 		);
 		$call_ajax                = false;
 		$loading_text             = isset( $settings[ 'iq_' . $type . '_chart_no_data_text' ] ) ? esc_html( $settings[ 'iq_' . $type . '_chart_no_data_text' ] ) : '';
-		$enable_number_formatting = $settings[ 'iq_' . $type . '_chart_yaxis_number_format' ] === 'yes';
-		$locale                   = $settings[ 'iq_' . $type . '_chart_yaxis_locale' ];
-
+	
 		$export_file_name = (
 			! empty( $settings[ 'iq_' . $type . '_can_chart_show_toolbar' ] ) && $settings[ 'iq_' . $type . '_can_chart_show_toolbar' ] === 'yes'
 			&& ! empty( $settings[ 'iq_' . $type . '_export_filename' ] )
@@ -864,32 +862,7 @@ class Bubble_Chart extends Widget_Base {
 						]
 					};
 
-					if ("<?php echo esc_js( $settings[ 'iq_' . $type . '_chart_yaxis_number_format' ] ) === 'yes'; ?>") {
-						bubbleOptions.yaxis.labels.formatter = function (val) {
-							const enableNumberFormatting = '<?php echo esc_js( $enable_number_formatting ); ?>';
-							const locale = '<?php echo esc_js( $locale ); ?>';
-
-							const yLabelShow = '<?php echo esc_js( ! empty( $settings[ 'iq_' . $type . '_chart_yaxis_label_show' ] ) && $settings[ 'iq_' . $type . '_chart_yaxis_label_show' ] === 'yes' ); ?>';
-							const yLabelPrefix = '<?php echo esc_js( $y_label_prefix ); ?>';
-							const yLabelPostfix = '<?php echo esc_js( $y_label_postfix ); ?>';
-							if (enableNumberFormatting) {
-								const numberFormatter = new Intl.NumberFormat(locale, {
-									style: 'decimal',
-									minimumFractionDigits: 0,
-									maximumFractionDigits: 2,
-									useGrouping: true,
-								});
-								val = numberFormatter.format(val);
-							}
-
-							if (yLabelShow) {
-								val = yLabelPrefix + val + yLabelPostfix;
-							}
-
-							return val;
-						};
-					}
-					if ("<?php echo esc_js( $settings[ 'iq_' . $type . '_chart_yaxis_label_show' ] ) === 'yes'; ?>" ) {
+					if ("<?php echo esc_js( $settings[ 'iq_' . $type . '_chart_yaxis_label_show' ] ) === 'yes'; ?>" || "<?php echo esc_js( $settings[ 'iq_' . $type . '_chart_yaxis_format_number' ] ) === 'yes'; ?>"  ) {
 						bubbleOptions.yaxis.labels.formatter = function (val) {
 							if("<?php echo esc_js( $settings[ 'iq_' . $type . '_chart_yaxis_format_number' ] ) === 'yes'; ?>" ){
 								val = graphinNumberWithCommas(val,'<?php echo esc_js( $local_string_type ); ?>')

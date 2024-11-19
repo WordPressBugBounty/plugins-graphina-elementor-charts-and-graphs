@@ -140,6 +140,55 @@ class Heatmap_Chart extends Widget_Base {
 		graphina_tooltip( $this, $type, true, false );
 
 		$this->add_control(
+			'iq_' . $type . '_chart_tooltip_number_formatter',
+			array(
+				'label'     => esc_html__( 'Number Formatter', 'graphina-charts-for-elementor' ),
+				'type'      => Controls_Manager::SWITCHER,
+				'label_on'  => esc_html__( 'Hide', 'graphina-charts-for-elementor' ),
+				'label_off' => esc_html__( 'Show', 'graphina-charts-for-elementor' ),
+				'default'   => 'yes',
+			)
+		);
+		
+		$this->add_control(
+			'iq_' . $type . '_chart_tooltip_prefix_postfix',
+			array(
+				'label'     => esc_html__( 'Tooltip Prefix/Postfix', 'graphina-charts-for-elementor' ),
+				'type'      => Controls_Manager::SWITCHER,
+				'true'      => esc_html__( 'Yes', 'graphina-charts-for-elementor' ),
+				'false'     => esc_html__( 'No', 'graphina-charts-for-elementor' ),
+				'default'   => '',
+				'condition' => array(
+					'iq_' . $type . '_chart_tooltip_number_formatter' => 'yes',
+				),
+			)
+		);
+		$this->add_control(
+			'iq_' . $type . '_chart_tooltip_prefix_val',
+			array(
+				'label'     => esc_html__( 'Prefix', 'graphina-charts-for-elementor' ),
+				'type'      => Controls_Manager::TEXT,
+				'default'   => '',
+				'condition' => array(
+					'iq_' . $type . '_chart_tooltip_number_formatter' => 'yes',
+					'iq_' . $type . '_chart_tooltip_prefix_postfix' => 'yes',
+				),
+			)
+		);
+		$this->add_control(
+			'iq_' . $type . '_chart_tooltip_postfix_val',
+			array(
+				'label'     => esc_html__( 'Postfix', 'graphina-charts-for-elementor' ),
+				'type'      => Controls_Manager::TEXT,
+				'default'   => '',
+				'condition' => array(
+					'iq_' . $type . '_chart_tooltip_number_formatter' => 'yes',
+					'iq_' . $type . '_chart_tooltip_prefix_postfix' => 'yes',
+				),
+			)
+		);
+
+		$this->add_control(
 			'iq_' . $type . '_chart_hr_plot_setting',
 			array(
 				'type' => Controls_Manager::DIVIDER,
@@ -391,9 +440,9 @@ class Heatmap_Chart extends Widget_Base {
 			$x_label_postfix = $settings[ 'iq_' . $type . '_chart_xaxis_label_postfix' ];
 		}
 
-		if ( $settings[ 'iq_' . $type . '_chart_yaxis_label_show' ] === 'yes' ) {
-			$y_label_prefix  = $settings[ 'iq_' . $type . '_chart_yaxis_label_prefix' ];
-			$y_label_postfix = $settings[ 'iq_' . $type . '_chart_yaxis_label_postfix' ];
+		if ( $settings[ 'iq_' . $type . '_chart_tooltip_prefix_postfix' ] === 'yes' ) {
+			$yt_label_prefix  = $settings[ 'iq_' . $type . '_chart_tooltip_prefix_val' ];
+			$yt_label_postfix = $settings[ 'iq_' . $type . '_chart_tooltip_postfix_val' ];
 		}
 
 		$series_count = isset( $settings[ 'iq_' . $type . '_chart_data_series_count' ] ) ? $settings[ 'iq_' . $type . '_chart_data_series_count' ] : 0;
@@ -449,8 +498,6 @@ class Heatmap_Chart extends Widget_Base {
 		$color                    = implode( '_,_', $gradient );
 		$category                 = implode( '_,_', $data['category'] );
 		$local_string_type        = graphina_common_setting_get( 'thousand_seperator' );
-		$enable_number_formatting = $settings[ 'iq_' . $type . '_chart_yaxis_number_format' ] === 'yes';
-		$locale                   = $settings[ 'iq_' . $type . '_chart_yaxis_locale' ];
 		graphina_chart_widget_content( $this, $main_id, $settings );
 		if ( graphina_restricted_access( 'heatmap', $main_id, $settings, false ) === false ) {
 			?>
@@ -634,31 +681,13 @@ class Heatmap_Chart extends Widget_Base {
 					};
 
 
-					if ("<?php echo esc_js( $settings[ 'iq_' . $type . '_chart_yaxis_number_format' ] ) === 'yes'; ?>") {
+					if ("<?php echo esc_js( $settings[ 'iq_' . $type . '_chart_tooltip_number_formatter' ] ) === 'yes'; ?>") {
 						heatmapOptions.tooltip.y.formatter = function (val) {
-
-							const enableNumberFormatting = '<?php echo esc_js( $enable_number_formatting ); ?>';
-							const locale = '<?php echo esc_js( $locale ); ?>';
-
-							const yLabelShow = '<?php echo esc_js( ! empty( $settings[ 'iq_' . $type . '_chart_yaxis_label_show' ] ) && $settings[ 'iq_' . $type . '_chart_yaxis_label_show' ] === 'yes' ); ?>';
-							const yLabelPrefix = '<?php echo esc_js( $y_label_prefix ); ?>';
-							const yLabelPostfix = '<?php echo esc_js( $y_label_postfix ); ?>';
-
-							if (enableNumberFormatting) {
-								const numberFormatter = new Intl.NumberFormat(locale, {
-									style: 'decimal',
-									minimumFractionDigits: 0,
-									maximumFractionDigits: 2,
-									useGrouping: true,
-								});
-								val = numberFormatter.format(val);
+							let decimal = 0;
+							if("<?php echo esc_js( $settings[ 'iq_' . $type . '_chart_tooltip_number_formatter' ] ) === 'yes'; ?>" ){
+								val = graphinNumberWithCommas(val,'<?php echo esc_js( $local_string_type ); ?>',decimal)
 							}
-
-							if (yLabelShow) {
-								val = yLabelPrefix + val + yLabelPostfix;
-							}
-
-							return val;
+							return '<?php echo esc_js( $yt_label_prefix ); ?>' + val + '<?php echo esc_js( $yt_label_postfix ); ?>';
 						};
 					}
 

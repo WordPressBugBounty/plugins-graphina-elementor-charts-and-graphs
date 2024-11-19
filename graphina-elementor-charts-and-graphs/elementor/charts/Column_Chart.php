@@ -792,33 +792,7 @@ class Column_Chart extends Widget_Base {
 							}
 						]
 					};
-					if ("<?php echo esc_html( $settings[ 'iq_' . $type . '_chart_yaxis_number_format' ] ) === 'yes'; ?>") {
-						columnOptions.yaxis.labels.formatter = function (val) {
-							const enableNumberFormatting = '<?php echo esc_js( $enable_number_formatting ); ?>';
-							const locale = '<?php echo esc_js( $locale ); ?>';
-
-							const yLabelShow = '<?php echo esc_js( ! empty( $settings[ 'iq_' . $type . '_chart_yaxis_label_show' ] ) && $settings[ 'iq_' . $type . '_chart_yaxis_label_show' ] === 'yes' ); ?>';
-							const yLabelPrefix = '<?php echo esc_html( $y_label_prefix ); ?>';
-							const yLabelPostfix = '<?php echo esc_html( $y_label_postfix ); ?>';
-
-							if (enableNumberFormatting) {
-								const numberFormatter = new Intl.NumberFormat(locale, {
-									style: 'decimal',
-									minimumFractionDigits: 0,
-									maximumFractionDigits: 2,
-									useGrouping: true,
-								});
-								val = numberFormatter.format(val);
-							}
-
-							if (yLabelShow) {
-								val = yLabelPrefix + val + yLabelPostfix;
-							}
-
-							return val;
-						};
-					}
-
+					
 					if('<?php echo esc_js( ! empty( $settings[ 'iq_' . $type . '_is_chart_horizontal' ] ) && $settings[ 'iq_' . $type . '_is_chart_horizontal' ] === 'yes' ); ?>'){
 						columnOptions.tooltip.y.formatter = function(val){
 							if('<?php echo esc_js( ! empty( $settings[ 'iq_' . $type . '_chart_xaxis_label_show' ] ) && $settings[ 'iq_' . $type . '_chart_xaxis_label_show' ] === 'yes' ); ?>'){
@@ -838,13 +812,15 @@ class Column_Chart extends Widget_Base {
 						}
 					}
 
-					if ("<?php echo esc_js( $settings[ 'iq_' . $type . '_chart_yaxis_label_show' ] ); ?>" === "yes") {
+					if ("<?php echo esc_js( $settings[ 'iq_' . $type . '_chart_yaxis_label_show' ] ); ?>" === "yes" || "<?php echo esc_js( $settings[ 'iq_' . $type . '_chart_yaxis_format_number' ] ); ?>" === "yes") {
 						columnOptions.yaxis.labels.formatter = function (val) {
+							let decimal = parseInt('<?php echo esc_js( ! empty( $settings[ 'iq_' . $type . '_chart_yaxis_prefix_postfix_decimal_point' ] ) ? $settings[ 'iq_' . $type . '_chart_yaxis_prefix_postfix_decimal_point' ] : 0 ); ?>') || 0;
+							
 							if('<?php echo esc_js( ! empty( $settings[ 'iq_' . $type . '_is_chart_horizontal' ] ) && $settings[ 'iq_' . $type . '_is_chart_horizontal' ] === 'yes' ); ?>'){
-								val = '<?php echo esc_js( $y_label_prefix ); ?>' + val + '<?php echo esc_js( $y_label_postfix ); ?>';
-								if(val){
-									val = val.split(',')
+								if("<?php echo esc_js( $settings[ 'iq_' . $type . '_chart_yaxis_format_number' ] ) === 'yes'; ?>" ){
+									val = graphinNumberWithCommas(val,'<?php echo esc_js( $local_string_type ); ?>',decimal)
 								}
+								val = '<?php echo esc_js( $y_label_prefix ); ?>' + val + '<?php echo esc_js( $y_label_postfix ); ?>';
 								return val;
 							}
 							let stackCondition = !('<?php echo esc_js( $settings[ 'iq_' . $type . '_chart_stacked' ] === 'yes' && $settings[ 'iq_' . $type . '_chart_stack_type' ] === '100%' ); ?>')
