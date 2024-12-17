@@ -107,7 +107,6 @@ class AdminController {
 			unset( $post_data['type'] );
 
 			if ( in_array( $action_type, array( 'save', 'edit', 'con_test' ), true ) ) {
-
 				$connection_detail = $this->check_db_connection( $post_data );
 				$status            = $connection_detail['status'];
 				$message           = $connection_detail['message'];
@@ -230,7 +229,7 @@ class AdminController {
 			'message' => esc_html__( 'Connection detail not found', 'graphina-charts-for-elementor' ),
 		);
 
-		if ( empty( $data['host'] ) || ! empty( $data['user_name'] ) || empty( $data['pass'] )
+		if ( empty( $data['host'] ) || empty( $data['user_name'] ) || empty( $data['pass'] )
 			|| empty( $data['db_name'] ) || empty( $data['con_name'] ) ) {
 			return $response;
 		}

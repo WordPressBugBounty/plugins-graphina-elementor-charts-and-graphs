@@ -481,7 +481,7 @@ class FrontendController extends Frontend {
 
 			$request_data['page_id'] = ! empty( $request_data['page_id'] ) ? $request_data['page_id'] : $page_id;
 
-			$get_settings = new ElementorWidgetSettings( $request_data['page_id'], $element_id, $settings );
+			$get_settings = new ElementorWidgetSettings( $request_data['page_id'], $element_id, $settings,$page_id );
 
 			$settings = $get_settings->get_settings();
 		}

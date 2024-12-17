@@ -434,8 +434,6 @@ class Column_Chart extends Widget_Base {
 		$x_label_postfix          = '';
 		$call_ajax                = false;
 		$loading_text             = esc_html( isset( $settings[ 'iq_' . $type . '_chart_no_data_text' ] ) ? $settings[ 'iq_' . $type . '_chart_no_data_text' ] : '' );
-		$enable_number_formatting = $settings[ 'iq_' . $type . '_chart_yaxis_number_format' ] === 'yes';
-		$locale                   = $settings[ 'iq_' . $type . '_chart_yaxis_locale' ];
 		$export_file_name         = (
 			! empty( $settings[ 'iq_' . $type . '_can_chart_show_toolbar' ] ) && $settings[ 'iq_' . $type . '_can_chart_show_toolbar' ] === 'yes'
 			&& ! empty( $settings[ 'iq_' . $type . '_export_filename' ] )

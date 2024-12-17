@@ -2,14 +2,14 @@
 # This file is distributed under the GPL-2.0+.
 msgid ""
 msgstr ""
-"Project-Id-Version: Graphina - Elementor Charts and Graphs 2.0.4\n"
+"Project-Id-Version: Graphina - Elementor Charts and Graphs 2.0.5\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/graphina-elementor-charts-and-graphs\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2024-11-19T10:36:51+00:00\n"
+"POT-Creation-Date: 2024-12-17T12:23:45+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: WP-CLI 2.7.1\n"
 "X-Domain: graphina-charts-for-elementor\n"
@@ -21,7 +21,7 @@ msgid "Graphina - Elementor Charts and Graphs"
 msgstr ""
 
 #. Plugin URI of the plugin
-msgid "https://iqonicthemes.com"
+msgid "https://graphina.iqonic.design/"
 msgstr ""
 
 #. Description of the plugin
@@ -147,7 +147,7 @@ msgstr ""
 
 #: admin/pages/general-setting/index.php:45
 #: app/BaseClasses/AdminSettingPanel.php:115
-#: utils/graphina_general_helper.php:341
+#: utils/graphina_general_helper.php:340
 msgid "Settings"
 msgstr ""
 
@@ -195,7 +195,7 @@ msgstr ""
 
 #: admin/pages/general-setting/setting.php:48
 #: elementor/charts/Data_Table.php:196
-#: utils/graphina_chart_helper.php:4966
+#: utils/graphina_chart_helper.php:4982
 msgid "Disable"
 msgstr ""
 
@@ -372,7 +372,7 @@ msgid "Setting saved"
 msgstr ""
 
 #: app/Controllers/AdminController.php:65
-#: app/Controllers/AdminController.php:187
+#: app/Controllers/AdminController.php:186
 msgid "Your setting has been saved!"
 msgstr ""
 
@@ -384,28 +384,28 @@ msgstr ""
 msgid "not saved"
 msgstr ""
 
-#: app/Controllers/AdminController.php:146
+#: app/Controllers/AdminController.php:145
 msgid "Connection name delete"
 msgstr ""
 
-#: app/Controllers/AdminController.php:148
+#: app/Controllers/AdminController.php:147
 msgid "Connection Name not found"
 msgstr ""
 
-#: app/Controllers/AdminController.php:159
+#: app/Controllers/AdminController.php:158
 msgid "Connection detail Updated"
 msgstr ""
 
-#: app/Controllers/AdminController.php:170
-#: app/Controllers/AdminController.php:176
+#: app/Controllers/AdminController.php:169
+#: app/Controllers/AdminController.php:175
 msgid "Connection Details Saved"
 msgstr ""
 
-#: app/Controllers/AdminController.php:230
+#: app/Controllers/AdminController.php:229
 msgid "Connection detail not found"
 msgstr ""
 
-#: app/Controllers/AdminController.php:245
+#: app/Controllers/AdminController.php:244
 msgid "Successfully connected"
 msgstr ""
 
@@ -582,8 +582,8 @@ msgstr ""
 #: elementor/charts/Bubble_Chart.php:638
 #: elementor/charts/Candle_Chart.php:209
 #: elementor/charts/Candle_Chart.php:471
-#: elementor/charts/Column_Chart.php:484
-#: elementor/charts/Distributed_Column_Chart.php:422
+#: elementor/charts/Column_Chart.php:482
+#: elementor/charts/Distributed_Column_Chart.php:420
 #: elementor/charts/Donut_Chart.php:293
 #: elementor/charts/Heatmap_Chart.php:455
 #: elementor/charts/Line_Chart.php:430
@@ -593,7 +593,7 @@ msgstr ""
 #: elementor/charts/Radial_Chart.php:396
 #: elementor/charts/Scatter_Chart.php:373
 #: elementor/charts/Timeline_Chart.php:433
-#: utils/graphina_chart_helper.php:718
+#: utils/graphina_chart_helper.php:734
 msgid "Loading..."
 msgstr ""
 
@@ -602,7 +602,7 @@ msgstr ""
 #: elementor/charts/Distributed_Column_Chart.php:154
 #: elementor/charts/Heatmap_Chart.php:201
 #: elementor/charts/Radial_Chart.php:123
-#: utils/graphina_chart_helper.php:3374
+#: utils/graphina_chart_helper.php:3390
 msgid "Plot Settings"
 msgstr ""
 
@@ -627,38 +627,38 @@ msgstr ""
 #: utils/graphina_chart_helper.php:348
 #: utils/graphina_chart_helper.php:378
 #: utils/graphina_chart_helper.php:476
-#: utils/graphina_chart_helper.php:735
-#: utils/graphina_chart_helper.php:1341
-#: utils/graphina_chart_helper.php:3230
-#: utils/graphina_chart_helper.php:3283
-#: utils/graphina_chart_helper.php:3323
-#: utils/graphina_chart_helper.php:3603
-#: utils/graphina_chart_helper.php:3633
-#: utils/graphina_chart_helper.php:3698
-#: utils/graphina_chart_helper.php:3715
-#: utils/graphina_chart_helper.php:3773
-#: utils/graphina_chart_helper.php:3937
-#: utils/graphina_chart_helper.php:3982
-#: utils/graphina_chart_helper.php:4049
-#: utils/graphina_chart_helper.php:4093
-#: utils/graphina_chart_helper.php:4158
-#: utils/graphina_chart_helper.php:4225
-#: utils/graphina_chart_helper.php:4411
-#: utils/graphina_chart_helper.php:4705
-#: utils/graphina_chart_helper.php:5822
-#: utils/graphina_chart_helper.php:5845
-#: utils/graphina_chart_helper.php:5907
-#: utils/graphina_chart_helper.php:5935
-#: utils/graphina_chart_helper.php:5963
-#: utils/graphina_chart_helper.php:6033
-#: utils/graphina_chart_helper.php:6079
-#: utils/graphina_chart_helper.php:6103
-#: utils/graphina_chart_helper.php:6170
-#: utils/graphina_chart_helper.php:6183
-#: utils/graphina_chart_helper.php:6197
-#: utils/graphina_chart_helper.php:6251
-#: utils/graphina_chart_helper.php:6315
-#: utils/graphina_chart_helper.php:6368
+#: utils/graphina_chart_helper.php:751
+#: utils/graphina_chart_helper.php:1357
+#: utils/graphina_chart_helper.php:3246
+#: utils/graphina_chart_helper.php:3299
+#: utils/graphina_chart_helper.php:3339
+#: utils/graphina_chart_helper.php:3619
+#: utils/graphina_chart_helper.php:3649
+#: utils/graphina_chart_helper.php:3714
+#: utils/graphina_chart_helper.php:3731
+#: utils/graphina_chart_helper.php:3789
+#: utils/graphina_chart_helper.php:3953
+#: utils/graphina_chart_helper.php:3998
+#: utils/graphina_chart_helper.php:4065
+#: utils/graphina_chart_helper.php:4109
+#: utils/graphina_chart_helper.php:4174
+#: utils/graphina_chart_helper.php:4241
+#: utils/graphina_chart_helper.php:4427
+#: utils/graphina_chart_helper.php:4721
+#: utils/graphina_chart_helper.php:5838
+#: utils/graphina_chart_helper.php:5861
+#: utils/graphina_chart_helper.php:5923
+#: utils/graphina_chart_helper.php:5951
+#: utils/graphina_chart_helper.php:5979
+#: utils/graphina_chart_helper.php:6049
+#: utils/graphina_chart_helper.php:6095
+#: utils/graphina_chart_helper.php:6119
+#: utils/graphina_chart_helper.php:6186
+#: utils/graphina_chart_helper.php:6199
+#: utils/graphina_chart_helper.php:6213
+#: utils/graphina_chart_helper.php:6267
+#: utils/graphina_chart_helper.php:6331
+#: utils/graphina_chart_helper.php:6384
 msgid "Yes"
 msgstr ""
 
@@ -675,35 +675,35 @@ msgstr ""
 #: utils/graphina_chart_helper.php:349
 #: utils/graphina_chart_helper.php:379
 #: utils/graphina_chart_helper.php:477
-#: utils/graphina_chart_helper.php:736
-#: utils/graphina_chart_helper.php:1342
-#: utils/graphina_chart_helper.php:3231
-#: utils/graphina_chart_helper.php:3284
-#: utils/graphina_chart_helper.php:3324
-#: utils/graphina_chart_helper.php:3634
-#: utils/graphina_chart_helper.php:3774
-#: utils/graphina_chart_helper.php:3938
-#: utils/graphina_chart_helper.php:3983
-#: utils/graphina_chart_helper.php:4050
-#: utils/graphina_chart_helper.php:4094
-#: utils/graphina_chart_helper.php:4159
-#: utils/graphina_chart_helper.php:4226
-#: utils/graphina_chart_helper.php:4412
-#: utils/graphina_chart_helper.php:4706
-#: utils/graphina_chart_helper.php:5823
-#: utils/graphina_chart_helper.php:5846
-#: utils/graphina_chart_helper.php:5908
-#: utils/graphina_chart_helper.php:5936
-#: utils/graphina_chart_helper.php:5964
-#: utils/graphina_chart_helper.php:6034
-#: utils/graphina_chart_helper.php:6080
-#: utils/graphina_chart_helper.php:6104
-#: utils/graphina_chart_helper.php:6171
-#: utils/graphina_chart_helper.php:6184
-#: utils/graphina_chart_helper.php:6198
-#: utils/graphina_chart_helper.php:6252
-#: utils/graphina_chart_helper.php:6316
-#: utils/graphina_chart_helper.php:6369
+#: utils/graphina_chart_helper.php:752
+#: utils/graphina_chart_helper.php:1358
+#: utils/graphina_chart_helper.php:3247
+#: utils/graphina_chart_helper.php:3300
+#: utils/graphina_chart_helper.php:3340
+#: utils/graphina_chart_helper.php:3650
+#: utils/graphina_chart_helper.php:3790
+#: utils/graphina_chart_helper.php:3954
+#: utils/graphina_chart_helper.php:3999
+#: utils/graphina_chart_helper.php:4066
+#: utils/graphina_chart_helper.php:4110
+#: utils/graphina_chart_helper.php:4175
+#: utils/graphina_chart_helper.php:4242
+#: utils/graphina_chart_helper.php:4428
+#: utils/graphina_chart_helper.php:4722
+#: utils/graphina_chart_helper.php:5839
+#: utils/graphina_chart_helper.php:5862
+#: utils/graphina_chart_helper.php:5924
+#: utils/graphina_chart_helper.php:5952
+#: utils/graphina_chart_helper.php:5980
+#: utils/graphina_chart_helper.php:6050
+#: utils/graphina_chart_helper.php:6096
+#: utils/graphina_chart_helper.php:6120
+#: utils/graphina_chart_helper.php:6187
+#: utils/graphina_chart_helper.php:6200
+#: utils/graphina_chart_helper.php:6214
+#: utils/graphina_chart_helper.php:6268
+#: utils/graphina_chart_helper.php:6332
+#: utils/graphina_chart_helper.php:6385
 msgid "No"
 msgstr ""
 
@@ -720,8 +720,8 @@ msgid "Maximum Bubble Radius"
 msgstr ""
 
 #: elementor/charts/Bubble_Chart.php:283
-#: utils/graphina_chart_helper.php:1507
-#: utils/graphina_chart_helper.php:5806
+#: utils/graphina_chart_helper.php:1523
+#: utils/graphina_chart_helper.php:5822
 msgid "X-Axis Setting"
 msgstr ""
 
@@ -729,8 +729,8 @@ msgstr ""
 #: elementor/charts/Polar_Chart.php:131
 #: elementor/charts/Radar_Chart.php:178
 #: elementor/charts/Radar_Chart.php:200
-#: utils/graphina_chart_helper.php:1589
-#: utils/graphina_chart_helper.php:2003
+#: utils/graphina_chart_helper.php:1605
+#: utils/graphina_chart_helper.php:2019
 msgid "Labels"
 msgstr ""
 
@@ -764,52 +764,53 @@ msgstr ""
 #: utils/graphina_chart_helper.php:337
 #: utils/graphina_chart_helper.php:649
 #: utils/graphina_chart_helper.php:664
-#: utils/graphina_chart_helper.php:764
-#: utils/graphina_chart_helper.php:776
-#: utils/graphina_chart_helper.php:791
-#: utils/graphina_chart_helper.php:806
+#: utils/graphina_chart_helper.php:677
+#: utils/graphina_chart_helper.php:780
+#: utils/graphina_chart_helper.php:792
+#: utils/graphina_chart_helper.php:807
 #: utils/graphina_chart_helper.php:822
-#: utils/graphina_chart_helper.php:841
-#: utils/graphina_chart_helper.php:866
-#: utils/graphina_chart_helper.php:927
-#: utils/graphina_chart_helper.php:938
-#: utils/graphina_chart_helper.php:952
-#: utils/graphina_chart_helper.php:970
-#: utils/graphina_chart_helper.php:1097
-#: utils/graphina_chart_helper.php:1376
-#: utils/graphina_chart_helper.php:1450
-#: utils/graphina_chart_helper.php:1465
-#: utils/graphina_chart_helper.php:1479
-#: utils/graphina_chart_helper.php:1517
-#: utils/graphina_chart_helper.php:1565
-#: utils/graphina_chart_helper.php:1576
-#: utils/graphina_chart_helper.php:1591
-#: utils/graphina_chart_helper.php:1725
-#: utils/graphina_chart_helper.php:1739
+#: utils/graphina_chart_helper.php:838
+#: utils/graphina_chart_helper.php:857
+#: utils/graphina_chart_helper.php:882
+#: utils/graphina_chart_helper.php:943
+#: utils/graphina_chart_helper.php:954
+#: utils/graphina_chart_helper.php:968
+#: utils/graphina_chart_helper.php:986
+#: utils/graphina_chart_helper.php:1113
+#: utils/graphina_chart_helper.php:1392
+#: utils/graphina_chart_helper.php:1466
+#: utils/graphina_chart_helper.php:1481
+#: utils/graphina_chart_helper.php:1495
+#: utils/graphina_chart_helper.php:1533
+#: utils/graphina_chart_helper.php:1581
+#: utils/graphina_chart_helper.php:1592
+#: utils/graphina_chart_helper.php:1607
+#: utils/graphina_chart_helper.php:1741
 #: utils/graphina_chart_helper.php:1755
-#: utils/graphina_chart_helper.php:1823
-#: utils/graphina_chart_helper.php:1850
+#: utils/graphina_chart_helper.php:1771
+#: utils/graphina_chart_helper.php:1839
 #: utils/graphina_chart_helper.php:1866
-#: utils/graphina_chart_helper.php:1916
-#: utils/graphina_chart_helper.php:1941
-#: utils/graphina_chart_helper.php:1979
-#: utils/graphina_chart_helper.php:1990
-#: utils/graphina_chart_helper.php:2005
-#: utils/graphina_chart_helper.php:2124
-#: utils/graphina_chart_helper.php:2191
-#: utils/graphina_chart_helper.php:2251
-#: utils/graphina_chart_helper.php:2266
-#: utils/graphina_chart_helper.php:2679
-#: utils/graphina_chart_helper.php:3384
-#: utils/graphina_chart_helper.php:3528
-#: utils/graphina_chart_helper.php:3815
-#: utils/graphina_chart_helper.php:4105
-#: utils/graphina_chart_helper.php:4817
-#: utils/graphina_chart_helper.php:4846
-#: utils/graphina_chart_helper.php:4892
-#: utils/graphina_chart_helper.php:5242
-#: utils/graphina_chart_helper.php:5607
-#: utils/graphina_chart_helper.php:6419
+#: utils/graphina_chart_helper.php:1882
+#: utils/graphina_chart_helper.php:1932
+#: utils/graphina_chart_helper.php:1957
+#: utils/graphina_chart_helper.php:1995
+#: utils/graphina_chart_helper.php:2006
+#: utils/graphina_chart_helper.php:2021
+#: utils/graphina_chart_helper.php:2140
+#: utils/graphina_chart_helper.php:2207
+#: utils/graphina_chart_helper.php:2267
+#: utils/graphina_chart_helper.php:2282
+#: utils/graphina_chart_helper.php:2695
+#: utils/graphina_chart_helper.php:3400
+#: utils/graphina_chart_helper.php:3544
+#: utils/graphina_chart_helper.php:3831
+#: utils/graphina_chart_helper.php:4121
+#: utils/graphina_chart_helper.php:4833
+#: utils/graphina_chart_helper.php:4862
+#: utils/graphina_chart_helper.php:4908
+#: utils/graphina_chart_helper.php:5258
+#: utils/graphina_chart_helper.php:5623
+#: utils/graphina_chart_helper.php:6435
 msgid "Hide"
 msgstr ""
 
@@ -843,58 +844,59 @@ msgstr ""
 #: utils/graphina_chart_helper.php:338
 #: utils/graphina_chart_helper.php:650
 #: utils/graphina_chart_helper.php:665
-#: utils/graphina_chart_helper.php:762
-#: utils/graphina_chart_helper.php:765
-#: utils/graphina_chart_helper.php:777
-#: utils/graphina_chart_helper.php:792
-#: utils/graphina_chart_helper.php:807
+#: utils/graphina_chart_helper.php:678
+#: utils/graphina_chart_helper.php:778
+#: utils/graphina_chart_helper.php:781
+#: utils/graphina_chart_helper.php:793
+#: utils/graphina_chart_helper.php:808
 #: utils/graphina_chart_helper.php:823
-#: utils/graphina_chart_helper.php:842
-#: utils/graphina_chart_helper.php:867
-#: utils/graphina_chart_helper.php:928
-#: utils/graphina_chart_helper.php:939
-#: utils/graphina_chart_helper.php:953
-#: utils/graphina_chart_helper.php:971
-#: utils/graphina_chart_helper.php:1098
-#: utils/graphina_chart_helper.php:1377
-#: utils/graphina_chart_helper.php:1451
-#: utils/graphina_chart_helper.php:1466
-#: utils/graphina_chart_helper.php:1480
-#: utils/graphina_chart_helper.php:1518
-#: utils/graphina_chart_helper.php:1566
-#: utils/graphina_chart_helper.php:1577
-#: utils/graphina_chart_helper.php:1592
-#: utils/graphina_chart_helper.php:1726
-#: utils/graphina_chart_helper.php:1740
+#: utils/graphina_chart_helper.php:839
+#: utils/graphina_chart_helper.php:858
+#: utils/graphina_chart_helper.php:883
+#: utils/graphina_chart_helper.php:944
+#: utils/graphina_chart_helper.php:955
+#: utils/graphina_chart_helper.php:969
+#: utils/graphina_chart_helper.php:987
+#: utils/graphina_chart_helper.php:1114
+#: utils/graphina_chart_helper.php:1393
+#: utils/graphina_chart_helper.php:1467
+#: utils/graphina_chart_helper.php:1482
+#: utils/graphina_chart_helper.php:1496
+#: utils/graphina_chart_helper.php:1534
+#: utils/graphina_chart_helper.php:1582
+#: utils/graphina_chart_helper.php:1593
+#: utils/graphina_chart_helper.php:1608
+#: utils/graphina_chart_helper.php:1742
 #: utils/graphina_chart_helper.php:1756
-#: utils/graphina_chart_helper.php:1824
-#: utils/graphina_chart_helper.php:1851
+#: utils/graphina_chart_helper.php:1772
+#: utils/graphina_chart_helper.php:1840
 #: utils/graphina_chart_helper.php:1867
-#: utils/graphina_chart_helper.php:1917
-#: utils/graphina_chart_helper.php:1942
-#: utils/graphina_chart_helper.php:1980
-#: utils/graphina_chart_helper.php:1991
-#: utils/graphina_chart_helper.php:2006
-#: utils/graphina_chart_helper.php:2125
-#: utils/graphina_chart_helper.php:2192
-#: utils/graphina_chart_helper.php:2252
-#: utils/graphina_chart_helper.php:2267
-#: utils/graphina_chart_helper.php:2680
-#: utils/graphina_chart_helper.php:3228
-#: utils/graphina_chart_helper.php:3385
-#: utils/graphina_chart_helper.php:3526
-#: utils/graphina_chart_helper.php:3529
-#: utils/graphina_chart_helper.php:3816
-#: utils/graphina_chart_helper.php:4091
-#: utils/graphina_chart_helper.php:4106
-#: utils/graphina_chart_helper.php:4223
-#: utils/graphina_chart_helper.php:4818
-#: utils/graphina_chart_helper.php:4847
-#: utils/graphina_chart_helper.php:4893
-#: utils/graphina_chart_helper.php:5243
-#: utils/graphina_chart_helper.php:5608
-#: utils/graphina_chart_helper.php:6366
-#: utils/graphina_chart_helper.php:6420
+#: utils/graphina_chart_helper.php:1883
+#: utils/graphina_chart_helper.php:1933
+#: utils/graphina_chart_helper.php:1958
+#: utils/graphina_chart_helper.php:1996
+#: utils/graphina_chart_helper.php:2007
+#: utils/graphina_chart_helper.php:2022
+#: utils/graphina_chart_helper.php:2141
+#: utils/graphina_chart_helper.php:2208
+#: utils/graphina_chart_helper.php:2268
+#: utils/graphina_chart_helper.php:2283
+#: utils/graphina_chart_helper.php:2696
+#: utils/graphina_chart_helper.php:3244
+#: utils/graphina_chart_helper.php:3401
+#: utils/graphina_chart_helper.php:3542
+#: utils/graphina_chart_helper.php:3545
+#: utils/graphina_chart_helper.php:3832
+#: utils/graphina_chart_helper.php:4107
+#: utils/graphina_chart_helper.php:4122
+#: utils/graphina_chart_helper.php:4239
+#: utils/graphina_chart_helper.php:4834
+#: utils/graphina_chart_helper.php:4863
+#: utils/graphina_chart_helper.php:4909
+#: utils/graphina_chart_helper.php:5259
+#: utils/graphina_chart_helper.php:5624
+#: utils/graphina_chart_helper.php:6382
+#: utils/graphina_chart_helper.php:6436
 msgid "Show"
 msgstr ""
 
@@ -903,10 +905,10 @@ msgstr ""
 #: elementor/google_charts/Bar_Google_Chart.php:175
 #: elementor/google_charts/Column_Google_Chart.php:175
 #: elementor/google_charts/Line_Google_Chart.php:171
-#: utils/graphina_chart_helper.php:1042
-#: utils/graphina_chart_helper.php:1385
-#: utils/graphina_chart_helper.php:1600
-#: utils/graphina_chart_helper.php:2014
+#: utils/graphina_chart_helper.php:1058
+#: utils/graphina_chart_helper.php:1401
+#: utils/graphina_chart_helper.php:1616
+#: utils/graphina_chart_helper.php:2030
 msgid "Position"
 msgstr ""
 
@@ -914,8 +916,8 @@ msgstr ""
 #: utils/graphina_chart_helper.php:116
 #: utils/graphina_chart_helper.php:148
 #: utils/graphina_chart_helper.php:157
-#: utils/graphina_chart_helper.php:1390
-#: utils/graphina_chart_helper.php:1605
+#: utils/graphina_chart_helper.php:1406
+#: utils/graphina_chart_helper.php:1621
 msgid "Top"
 msgstr ""
 
@@ -923,72 +925,72 @@ msgstr ""
 #: utils/graphina_chart_helper.php:118
 #: utils/graphina_chart_helper.php:149
 #: utils/graphina_chart_helper.php:158
-#: utils/graphina_chart_helper.php:1398
-#: utils/graphina_chart_helper.php:1609
+#: utils/graphina_chart_helper.php:1414
+#: utils/graphina_chart_helper.php:1625
 msgid "Bottom"
 msgstr ""
 
 #: elementor/charts/Bubble_Chart.php:353
-#: utils/graphina_chart_helper.php:1622
+#: utils/graphina_chart_helper.php:1638
 msgid "Labels Auto Rotate"
 msgstr ""
 
 #: elementor/charts/Bubble_Chart.php:355
 #: utils/graphina_chart_helper.php:494
-#: utils/graphina_chart_helper.php:1624
-#: utils/graphina_chart_helper.php:1678
+#: utils/graphina_chart_helper.php:1640
+#: utils/graphina_chart_helper.php:1694
 msgid "False"
 msgstr ""
 
 #: elementor/charts/Bubble_Chart.php:356
 #: utils/graphina_chart_helper.php:493
-#: utils/graphina_chart_helper.php:1625
-#: utils/graphina_chart_helper.php:1679
+#: utils/graphina_chart_helper.php:1641
+#: utils/graphina_chart_helper.php:1695
 msgid "True"
 msgstr ""
 
 #: elementor/charts/Bubble_Chart.php:367
-#: utils/graphina_chart_helper.php:1636
-#: utils/graphina_chart_helper.php:2051
+#: utils/graphina_chart_helper.php:1652
+#: utils/graphina_chart_helper.php:2067
 msgid "Rotate"
 msgstr ""
 
 #: elementor/charts/Bubble_Chart.php:381
-#: utils/graphina_chart_helper.php:687
-#: utils/graphina_chart_helper.php:910
-#: utils/graphina_chart_helper.php:1651
-#: utils/graphina_chart_helper.php:2027
+#: utils/graphina_chart_helper.php:703
+#: utils/graphina_chart_helper.php:926
+#: utils/graphina_chart_helper.php:1667
+#: utils/graphina_chart_helper.php:2043
 msgid "Offset-X"
 msgstr ""
 
 #: elementor/charts/Bubble_Chart.php:393
-#: utils/graphina_chart_helper.php:674
-#: utils/graphina_chart_helper.php:897
-#: utils/graphina_chart_helper.php:1663
-#: utils/graphina_chart_helper.php:2039
+#: utils/graphina_chart_helper.php:690
+#: utils/graphina_chart_helper.php:913
+#: utils/graphina_chart_helper.php:1679
+#: utils/graphina_chart_helper.php:2055
 msgid "Offset-Y"
 msgstr ""
 
 #: elementor/charts/Bubble_Chart.php:405
 #: elementor/charts/Polar_Chart.php:142
-#: utils/graphina_chart_helper.php:1692
-#: utils/graphina_chart_helper.php:4829
+#: utils/graphina_chart_helper.php:1708
+#: utils/graphina_chart_helper.php:4845
 msgid "Tick Amount"
 msgstr ""
 
 #: elementor/charts/Bubble_Chart.php:419
-#: utils/graphina_chart_helper.php:1707
+#: utils/graphina_chart_helper.php:1723
 msgid "Tick Placement"
 msgstr ""
 
 #: elementor/charts/Bubble_Chart.php:432
-#: utils/graphina_chart_helper.php:1864
-#: utils/graphina_chart_helper.php:2264
+#: utils/graphina_chart_helper.php:1880
+#: utils/graphina_chart_helper.php:2280
 msgid "Enable Title"
 msgstr ""
 
 #: elementor/charts/Bubble_Chart.php:443
-#: utils/graphina_chart_helper.php:1875
+#: utils/graphina_chart_helper.php:1891
 msgid "Xaxis Title"
 msgstr ""
 
@@ -1036,12 +1038,12 @@ msgid "Toolbar"
 msgstr ""
 
 #: elementor/charts/Candle_Chart.php:207
-#: utils/graphina_chart_helper.php:716
+#: utils/graphina_chart_helper.php:732
 msgid "No Data Text"
 msgstr ""
 
 #: elementor/charts/Candle_Chart.php:226
-#: utils/graphina_chart_helper.php:1215
+#: utils/graphina_chart_helper.php:1231
 msgid "Fill Settings"
 msgstr ""
 
@@ -1050,10 +1052,10 @@ msgid "Color Show"
 msgstr ""
 
 #: elementor/charts/Candle_Chart.php:245
-#: utils/graphina_chart_helper.php:1239
-#: utils/graphina_chart_helper.php:4035
-#: utils/graphina_chart_helper.php:5019
-#: utils/graphina_chart_helper.php:5070
+#: utils/graphina_chart_helper.php:1255
+#: utils/graphina_chart_helper.php:4051
+#: utils/graphina_chart_helper.php:5035
+#: utils/graphina_chart_helper.php:5086
 msgid "Opacity"
 msgstr ""
 
@@ -1066,9 +1068,9 @@ msgid "Downward Color"
 msgstr ""
 
 #: elementor/charts/Candle_Chart.php:330
-#: utils/graphina_chart_helper.php:2330
-#: utils/graphina_chart_helper.php:5971
-#: utils/graphina_chart_helper.php:6259
+#: utils/graphina_chart_helper.php:2346
+#: utils/graphina_chart_helper.php:5987
+#: utils/graphina_chart_helper.php:6275
 msgid "Title"
 msgstr ""
 
@@ -1100,14 +1102,14 @@ msgstr ""
 
 #: elementor/charts/Column_Chart.php:118
 #: elementor/charts/Distributed_Column_Chart.php:118
-#: utils/graphina_chart_helper.php:3926
+#: utils/graphina_chart_helper.php:3942
 msgid "Column Width"
 msgstr ""
 
 #: elementor/charts/Column_Chart.php:130
 #: elementor/charts/Distributed_Column_Chart.php:130
 #: utils/graphina_chart_helper.php:166
-#: utils/graphina_chart_helper.php:1300
+#: utils/graphina_chart_helper.php:1316
 msgid "Horizontal"
 msgstr ""
 
@@ -1116,7 +1118,7 @@ msgid "Stacked Columns"
 msgstr ""
 
 #: elementor/charts/Column_Chart.php:154
-#: utils/graphina_chart_helper.php:3945
+#: utils/graphina_chart_helper.php:3961
 msgid "Stack Type"
 msgstr ""
 
@@ -1125,26 +1127,26 @@ msgid "Normal"
 msgstr ""
 
 #: elementor/charts/Column_Chart.php:159
-#: utils/graphina_chart_helper.php:3618
-#: utils/graphina_chart_helper.php:3896
+#: utils/graphina_chart_helper.php:3634
+#: utils/graphina_chart_helper.php:3912
 msgid "Percentage"
 msgstr ""
 
 #: elementor/charts/Column_Chart.php:170
-#: utils/graphina_chart_helper.php:6210
+#: utils/graphina_chart_helper.php:6226
 msgid "Decimal"
 msgstr ""
 
 #: elementor/charts/Column_Chart.php:203
-#: elementor/charts/Data_Table.php:561
-#: elementor/charts/Data_Table.php:680
-#: elementor/charts/Data_Table.php:798
+#: elementor/charts/Data_Table.php:563
+#: elementor/charts/Data_Table.php:682
+#: elementor/charts/Data_Table.php:800
 #: elementor/charts/Distributed_Column_Chart.php:162
-#: utils/graphina_chart_helper.php:2571
-#: utils/graphina_chart_helper.php:2721
-#: utils/graphina_chart_helper.php:2969
-#: utils/graphina_chart_helper.php:3079
-#: utils/graphina_chart_helper.php:3189
+#: utils/graphina_chart_helper.php:2587
+#: utils/graphina_chart_helper.php:2737
+#: utils/graphina_chart_helper.php:2985
+#: utils/graphina_chart_helper.php:3095
+#: utils/graphina_chart_helper.php:3205
 msgid "Border Radius"
 msgstr ""
 
@@ -1166,7 +1168,7 @@ msgid "Direct Data Input Enabled"
 msgstr ""
 
 #: elementor/charts/Data_Table.php:195
-#: utils/graphina_chart_helper.php:4965
+#: utils/graphina_chart_helper.php:4981
 msgid "Enable"
 msgstr ""
 
@@ -1239,22 +1241,22 @@ msgid "Column Visibilty"
 msgstr ""
 
 #: elementor/charts/Data_Table.php:303
-#: elementor/charts/Data_Table.php:980
+#: elementor/charts/Data_Table.php:982
 msgid "Copy"
 msgstr ""
 
 #: elementor/charts/Data_Table.php:304
-#: elementor/charts/Data_Table.php:984
+#: elementor/charts/Data_Table.php:986
 msgid "Excel"
 msgstr ""
 
 #: elementor/charts/Data_Table.php:305
-#: elementor/charts/Data_Table.php:982
+#: elementor/charts/Data_Table.php:984
 msgid "PDF"
 msgstr ""
 
 #: elementor/charts/Data_Table.php:306
-#: elementor/charts/Data_Table.php:983
+#: elementor/charts/Data_Table.php:985
 msgid "Print"
 msgstr ""
 
@@ -1339,180 +1341,180 @@ msgid "Footer Row Text Color"
 msgstr ""
 
 #: elementor/charts/Data_Table.php:543
-#: utils/graphina_chart_helper.php:2340
-#: utils/graphina_chart_helper.php:2433
+#: utils/graphina_chart_helper.php:2356
+#: utils/graphina_chart_helper.php:2449
 msgid "Typography"
 msgstr ""
 
-#: elementor/charts/Data_Table.php:553
-#: elementor/charts/Data_Table.php:611
-#: elementor/charts/Data_Table.php:727
-#: utils/graphina_chart_helper.php:2562
-#: utils/graphina_chart_helper.php:2712
-#: utils/graphina_chart_helper.php:2961
-#: utils/graphina_chart_helper.php:3071
-#: utils/graphina_chart_helper.php:3181
+#: elementor/charts/Data_Table.php:555
+#: elementor/charts/Data_Table.php:613
+#: elementor/charts/Data_Table.php:729
+#: utils/graphina_chart_helper.php:2578
+#: utils/graphina_chart_helper.php:2728
+#: utils/graphina_chart_helper.php:2977
+#: utils/graphina_chart_helper.php:3087
+#: utils/graphina_chart_helper.php:3197
 msgid "Border"
 msgstr ""
 
-#: elementor/charts/Data_Table.php:573
-#: elementor/charts/Data_Table.php:692
-#: elementor/charts/Data_Table.php:817
-#: utils/graphina_chart_helper.php:2393
-#: utils/graphina_chart_helper.php:2486
-#: utils/graphina_chart_helper.php:2847
-#: utils/graphina_chart_helper.php:2936
-#: utils/graphina_chart_helper.php:3046
-#: utils/graphina_chart_helper.php:3156
-#: utils/graphina_chart_helper.php:5548
+#: elementor/charts/Data_Table.php:575
+#: elementor/charts/Data_Table.php:694
+#: elementor/charts/Data_Table.php:819
+#: utils/graphina_chart_helper.php:2409
+#: utils/graphina_chart_helper.php:2502
+#: utils/graphina_chart_helper.php:2863
+#: utils/graphina_chart_helper.php:2952
+#: utils/graphina_chart_helper.php:3062
+#: utils/graphina_chart_helper.php:3172
+#: utils/graphina_chart_helper.php:5564
 msgid "Margin"
 msgstr ""
 
-#: elementor/charts/Data_Table.php:585
-#: elementor/charts/Data_Table.php:704
-#: elementor/charts/Data_Table.php:836
-#: utils/graphina_chart_helper.php:2408
-#: utils/graphina_chart_helper.php:2501
-#: utils/graphina_chart_helper.php:2859
-#: utils/graphina_chart_helper.php:2948
-#: utils/graphina_chart_helper.php:3058
-#: utils/graphina_chart_helper.php:3168
-#: utils/graphina_chart_helper.php:5560
+#: elementor/charts/Data_Table.php:587
+#: elementor/charts/Data_Table.php:706
+#: elementor/charts/Data_Table.php:838
+#: utils/graphina_chart_helper.php:2424
+#: utils/graphina_chart_helper.php:2517
+#: utils/graphina_chart_helper.php:2875
+#: utils/graphina_chart_helper.php:2964
+#: utils/graphina_chart_helper.php:3074
+#: utils/graphina_chart_helper.php:3184
+#: utils/graphina_chart_helper.php:5576
 msgid "Padding"
 msgstr ""
 
-#: elementor/charts/Data_Table.php:599
+#: elementor/charts/Data_Table.php:601
 msgid "Search Style"
 msgstr ""
 
-#: elementor/charts/Data_Table.php:619
-#: utils/graphina_chart_helper.php:4370
-#: utils/graphina_chart_helper.php:5039
-#: utils/graphina_chart_helper.php:5501
+#: elementor/charts/Data_Table.php:621
+#: utils/graphina_chart_helper.php:4386
+#: utils/graphina_chart_helper.php:5055
+#: utils/graphina_chart_helper.php:5517
 msgid "Width"
 msgstr ""
 
-#: elementor/charts/Data_Table.php:632
+#: elementor/charts/Data_Table.php:634
 msgid "height"
 msgstr ""
 
-#: elementor/charts/Data_Table.php:645
+#: elementor/charts/Data_Table.php:647
 #: elementor/google_charts/Donut_Google_Chart.php:330
 #: elementor/google_charts/Pie_Google_Chart.php:328
-#: utils/graphina_chart_helper.php:3840
-#: utils/graphina_chart_helper.php:4427
-#: utils/graphina_chart_helper.php:5010
-#: utils/graphina_chart_helper.php:5061
-#: utils/graphina_chart_helper.php:5148
-#: utils/graphina_chart_helper.php:6663
-#: utils/graphina_chart_helper.php:6817
+#: utils/graphina_chart_helper.php:3856
+#: utils/graphina_chart_helper.php:4443
+#: utils/graphina_chart_helper.php:5026
+#: utils/graphina_chart_helper.php:5077
+#: utils/graphina_chart_helper.php:5164
+#: utils/graphina_chart_helper.php:6679
+#: utils/graphina_chart_helper.php:6833
 msgid "Color"
 msgstr ""
 
-#: elementor/charts/Data_Table.php:656
-#: elementor/charts/Data_Table.php:760
+#: elementor/charts/Data_Table.php:658
+#: elementor/charts/Data_Table.php:762
 #: elementor/charts/Radar_Chart.php:432
-#: utils/graphina_chart_helper.php:2617
-#: utils/graphina_chart_helper.php:2816
-#: utils/graphina_chart_helper.php:2905
-#: utils/graphina_chart_helper.php:3015
-#: utils/graphina_chart_helper.php:3125
-#: utils/graphina_chart_helper.php:3853
+#: utils/graphina_chart_helper.php:2633
+#: utils/graphina_chart_helper.php:2832
+#: utils/graphina_chart_helper.php:2921
+#: utils/graphina_chart_helper.php:3031
+#: utils/graphina_chart_helper.php:3141
+#: utils/graphina_chart_helper.php:3869
 msgid "Font Size"
 msgstr ""
 
-#: elementor/charts/Data_Table.php:669
-#: elementor/charts/Data_Table.php:780
-#: utils/graphina_chart_helper.php:1081
-#: utils/graphina_chart_helper.php:1118
-#: utils/graphina_chart_helper.php:2289
-#: utils/graphina_chart_helper.php:2381
-#: utils/graphina_chart_helper.php:2474
-#: utils/graphina_chart_helper.php:2667
-#: utils/graphina_chart_helper.php:2807
-#: utils/graphina_chart_helper.php:2896
-#: utils/graphina_chart_helper.php:3006
-#: utils/graphina_chart_helper.php:3116
-#: utils/graphina_chart_helper.php:3991
-#: utils/graphina_chart_helper.php:4932
-#: utils/graphina_chart_helper.php:5447
+#: elementor/charts/Data_Table.php:671
+#: elementor/charts/Data_Table.php:782
+#: utils/graphina_chart_helper.php:1097
+#: utils/graphina_chart_helper.php:1134
+#: utils/graphina_chart_helper.php:2305
+#: utils/graphina_chart_helper.php:2397
+#: utils/graphina_chart_helper.php:2490
+#: utils/graphina_chart_helper.php:2683
+#: utils/graphina_chart_helper.php:2823
+#: utils/graphina_chart_helper.php:2912
+#: utils/graphina_chart_helper.php:3022
+#: utils/graphina_chart_helper.php:3132
+#: utils/graphina_chart_helper.php:4007
+#: utils/graphina_chart_helper.php:4948
+#: utils/graphina_chart_helper.php:5463
 msgid "Font Color"
 msgstr ""
 
-#: elementor/charts/Data_Table.php:718
+#: elementor/charts/Data_Table.php:720
 msgid "Button Style"
 msgstr ""
 
-#: elementor/charts/Data_Table.php:742
-#: utils/graphina_chart_helper.php:1128
+#: elementor/charts/Data_Table.php:744
+#: utils/graphina_chart_helper.php:1144
 msgid "Background Color"
 msgstr ""
 
-#: elementor/charts/Data_Table.php:930
+#: elementor/charts/Data_Table.php:932
 msgid "Loading.........."
 msgstr ""
 
-#: elementor/charts/Data_Table.php:933
+#: elementor/charts/Data_Table.php:935
 msgid "The Data is Not Available"
 msgstr ""
 
-#: elementor/charts/Data_Table.php:966
+#: elementor/charts/Data_Table.php:968
 msgid "Showing "
 msgstr ""
 
-#: elementor/charts/Data_Table.php:967
+#: elementor/charts/Data_Table.php:969
 msgid " to "
 msgstr ""
 
-#: elementor/charts/Data_Table.php:968
+#: elementor/charts/Data_Table.php:970
 msgid " of "
 msgstr ""
 
-#: elementor/charts/Data_Table.php:969
+#: elementor/charts/Data_Table.php:971
 msgid " entries"
 msgstr ""
 
-#: elementor/charts/Data_Table.php:970
+#: elementor/charts/Data_Table.php:972
 msgid "Search...."
 msgstr ""
 
-#: elementor/charts/Data_Table.php:971
+#: elementor/charts/Data_Table.php:973
 msgid "No data available in table"
 msgstr ""
 
-#: elementor/charts/Data_Table.php:972
+#: elementor/charts/Data_Table.php:974
 msgid "No matching records found"
 msgstr ""
 
-#: elementor/charts/Data_Table.php:974
+#: elementor/charts/Data_Table.php:976
 msgid "First"
 msgstr ""
 
-#: elementor/charts/Data_Table.php:975
+#: elementor/charts/Data_Table.php:977
 msgid "Last"
 msgstr ""
 
-#: elementor/charts/Data_Table.php:976
+#: elementor/charts/Data_Table.php:978
 msgid "Next"
 msgstr ""
 
-#: elementor/charts/Data_Table.php:977
+#: elementor/charts/Data_Table.php:979
 msgid "Previous"
 msgstr ""
 
-#: elementor/charts/Data_Table.php:981
+#: elementor/charts/Data_Table.php:983
 msgid "Column Visibility"
 msgstr ""
 
-#: elementor/charts/Data_Table.php:986
+#: elementor/charts/Data_Table.php:988
 msgid "Show all rows"
 msgstr ""
 
-#: elementor/charts/Data_Table.php:987
+#: elementor/charts/Data_Table.php:989
 msgid "Show "
 msgstr ""
 
-#: elementor/charts/Data_Table.php:988
+#: elementor/charts/Data_Table.php:990
 msgid " rows"
 msgstr ""
 
@@ -1544,7 +1546,7 @@ msgid "Add Label"
 msgstr ""
 
 #: elementor/charts/Donut_Chart.php:399
-#: utils/graphina_chart_helper.php:853
+#: utils/graphina_chart_helper.php:869
 msgid "Total"
 msgstr ""
 
@@ -1557,18 +1559,18 @@ msgid "Tooltip Prefix/Postfix"
 msgstr ""
 
 #: elementor/charts/Heatmap_Chart.php:169
-#: utils/graphina_chart_helper.php:3645
-#: utils/graphina_chart_helper.php:4060
-#: utils/graphina_chart_helper.php:5856
-#: utils/graphina_chart_helper.php:6114
+#: utils/graphina_chart_helper.php:3661
+#: utils/graphina_chart_helper.php:4076
+#: utils/graphina_chart_helper.php:5872
+#: utils/graphina_chart_helper.php:6130
 msgid "Prefix"
 msgstr ""
 
 #: elementor/charts/Heatmap_Chart.php:181
-#: utils/graphina_chart_helper.php:3657
-#: utils/graphina_chart_helper.php:4072
-#: utils/graphina_chart_helper.php:5868
-#: utils/graphina_chart_helper.php:6126
+#: utils/graphina_chart_helper.php:3673
+#: utils/graphina_chart_helper.php:4088
+#: utils/graphina_chart_helper.php:5884
+#: utils/graphina_chart_helper.php:6142
 msgid "Postfix"
 msgstr ""
 
@@ -1601,36 +1603,36 @@ msgstr ""
 
 #: elementor/charts/Polar_Chart.php:170
 #: elementor/charts/Radar_Chart.php:237
-#: utils/graphina_chart_helper.php:4103
+#: utils/graphina_chart_helper.php:4119
 msgid "Format Number(Commas)"
 msgstr ""
 
 #: elementor/charts/Polar_Chart.php:185
 #: elementor/charts/Radar_Chart.php:251
-#: utils/graphina_chart_helper.php:995
-#: utils/graphina_chart_helper.php:1172
+#: utils/graphina_chart_helper.php:1011
+#: utils/graphina_chart_helper.php:1188
 msgid "Label Prefix"
 msgstr ""
 
 #: elementor/charts/Polar_Chart.php:200
 #: elementor/charts/Radar_Chart.php:265
-#: utils/graphina_chart_helper.php:1009
-#: utils/graphina_chart_helper.php:1184
+#: utils/graphina_chart_helper.php:1025
+#: utils/graphina_chart_helper.php:1200
 msgid "Label Postfix"
 msgstr ""
 
 #: elementor/charts/Polar_Chart.php:215
 #: elementor/charts/Radar_Chart.php:279
-#: utils/graphina_chart_helper.php:1800
-#: utils/graphina_chart_helper.php:2108
-#: utils/graphina_chart_helper.php:2167
+#: utils/graphina_chart_helper.php:1816
+#: utils/graphina_chart_helper.php:2124
+#: utils/graphina_chart_helper.php:2183
 msgid "Decimals In Float"
 msgstr ""
 
 #: elementor/charts/Polar_Chart.php:231
-#: utils/graphina_chart_helper.php:864
-#: utils/graphina_chart_helper.php:964
-#: utils/graphina_chart_helper.php:1816
+#: utils/graphina_chart_helper.php:880
+#: utils/graphina_chart_helper.php:980
+#: utils/graphina_chart_helper.php:1832
 msgid "Format Number to String"
 msgstr ""
 
@@ -1641,10 +1643,10 @@ msgstr ""
 
 #: elementor/charts/Polar_Chart.php:247
 #: elementor/charts/Radar_Chart.php:310
-#: utils/graphina_chart_helper.php:879
-#: utils/graphina_chart_helper.php:980
-#: utils/graphina_chart_helper.php:1833
-#: utils/graphina_chart_helper.php:2201
+#: utils/graphina_chart_helper.php:895
+#: utils/graphina_chart_helper.php:996
+#: utils/graphina_chart_helper.php:1849
+#: utils/graphina_chart_helper.php:2217
 msgid "Number of Decimal Want"
 msgstr ""
 
@@ -1661,7 +1663,7 @@ msgid "Advance X-Axis Setting"
 msgstr ""
 
 #: elementor/charts/Radar_Chart.php:211
-#: utils/graphina_chart_helper.php:2067
+#: utils/graphina_chart_helper.php:2083
 msgid " Tick Amount"
 msgstr ""
 
@@ -1694,8 +1696,8 @@ msgid "Radial Shape"
 msgstr ""
 
 #: elementor/charts/Radial_Chart.php:204
-#: utils/graphina_chart_helper.php:3490
-#: utils/graphina_chart_helper.php:3542
+#: utils/graphina_chart_helper.php:3506
+#: utils/graphina_chart_helper.php:3558
 msgid "Circle"
 msgstr ""
 
@@ -1704,17 +1706,17 @@ msgid "Semi Circle"
 msgstr ""
 
 #: elementor/charts/Radial_Chart.php:206
-#: utils/graphina_chart_helper.php:3321
+#: utils/graphina_chart_helper.php:3337
 msgid "Custom"
 msgstr ""
 
 #: elementor/charts/Timeline_Chart.php:196
-#: utils/graphina_chart_helper.php:3220
+#: utils/graphina_chart_helper.php:3236
 msgid "Stroke Settings"
 msgstr ""
 
 #: elementor/charts/Timeline_Chart.php:204
-#: utils/graphina_chart_helper.php:3382
+#: utils/graphina_chart_helper.php:3398
 msgid "Show Options"
 msgstr ""
 
@@ -1768,7 +1770,7 @@ msgstr ""
 #: elementor/google_charts/Column_Google_Chart.php:178
 #: elementor/google_charts/Line_Google_Chart.php:174
 #: utils/graphina_chart_helper.php:142
-#: utils/graphina_chart_helper.php:3307
+#: utils/graphina_chart_helper.php:3323
 msgid "In"
 msgstr ""
 
@@ -1777,7 +1779,7 @@ msgstr ""
 #: elementor/google_charts/Column_Google_Chart.php:179
 #: elementor/google_charts/Line_Google_Chart.php:175
 #: utils/graphina_chart_helper.php:143
-#: utils/graphina_chart_helper.php:3308
+#: utils/graphina_chart_helper.php:3324
 msgid "Out"
 msgstr ""
 
@@ -1852,36 +1854,36 @@ msgid "Stepline"
 msgstr ""
 
 #: utils/graphina_chart_helper.php:117
-#: utils/graphina_chart_helper.php:1424
-#: utils/graphina_chart_helper.php:2361
-#: utils/graphina_chart_helper.php:2454
-#: utils/graphina_chart_helper.php:2775
-#: utils/graphina_chart_helper.php:5430
-#: utils/graphina_chart_helper.php:6480
+#: utils/graphina_chart_helper.php:1440
+#: utils/graphina_chart_helper.php:2377
+#: utils/graphina_chart_helper.php:2470
+#: utils/graphina_chart_helper.php:2791
+#: utils/graphina_chart_helper.php:5446
+#: utils/graphina_chart_helper.php:6496
 msgid "Center"
 msgstr ""
 
 #: utils/graphina_chart_helper.php:124
 #: utils/graphina_chart_helper.php:150
 #: utils/graphina_chart_helper.php:159
-#: utils/graphina_chart_helper.php:1402
-#: utils/graphina_chart_helper.php:1420
-#: utils/graphina_chart_helper.php:2357
-#: utils/graphina_chart_helper.php:2450
-#: utils/graphina_chart_helper.php:2771
-#: utils/graphina_chart_helper.php:5426
+#: utils/graphina_chart_helper.php:1418
+#: utils/graphina_chart_helper.php:1436
+#: utils/graphina_chart_helper.php:2373
+#: utils/graphina_chart_helper.php:2466
+#: utils/graphina_chart_helper.php:2787
+#: utils/graphina_chart_helper.php:5442
 msgid "Left"
 msgstr ""
 
 #: utils/graphina_chart_helper.php:128
 #: utils/graphina_chart_helper.php:151
 #: utils/graphina_chart_helper.php:160
-#: utils/graphina_chart_helper.php:1394
-#: utils/graphina_chart_helper.php:1428
-#: utils/graphina_chart_helper.php:2365
-#: utils/graphina_chart_helper.php:2458
-#: utils/graphina_chart_helper.php:2779
-#: utils/graphina_chart_helper.php:5434
+#: utils/graphina_chart_helper.php:1410
+#: utils/graphina_chart_helper.php:1444
+#: utils/graphina_chart_helper.php:2381
+#: utils/graphina_chart_helper.php:2474
+#: utils/graphina_chart_helper.php:2795
+#: utils/graphina_chart_helper.php:5450
 msgid "Right"
 msgstr ""
 
@@ -1902,7 +1904,7 @@ msgid "Labeled"
 msgstr ""
 
 #: utils/graphina_chart_helper.php:167
-#: utils/graphina_chart_helper.php:1299
+#: utils/graphina_chart_helper.php:1315
 msgid "Vertical"
 msgstr ""
 
@@ -1995,7 +1997,7 @@ msgid "Card Heading"
 msgstr ""
 
 #: utils/graphina_chart_helper.php:376
-#: utils/graphina_chart_helper.php:2423
+#: utils/graphina_chart_helper.php:2439
 msgid "Description"
 msgstr ""
 
@@ -2004,16 +2006,16 @@ msgid "Chart Data Options"
 msgstr ""
 
 #: utils/graphina_chart_helper.php:430
-#: utils/graphina_chart_helper.php:5295
+#: utils/graphina_chart_helper.php:5311
 msgid "Is Pro"
 msgstr ""
 
 #: utils/graphina_chart_helper.php:440
 #: utils/graphina_chart_helper.php:449
 #: utils/graphina_chart_helper.php:566
-#: utils/graphina_chart_helper.php:1295
-#: utils/graphina_chart_helper.php:5304
-#: utils/graphina_chart_helper.php:5354
+#: utils/graphina_chart_helper.php:1311
+#: utils/graphina_chart_helper.php:5320
+#: utils/graphina_chart_helper.php:5370
 msgid "Type"
 msgstr ""
 
@@ -2038,12 +2040,12 @@ msgid "Set Interval(sec)"
 msgstr ""
 
 #: utils/graphina_chart_helper.php:556
-#: utils/graphina_chart_helper.php:5344
+#: utils/graphina_chart_helper.php:5360
 msgid "Dynamic Data Options"
 msgstr ""
 
 #: utils/graphina_chart_helper.php:585
-#: utils/graphina_chart_helper.php:5370
+#: utils/graphina_chart_helper.php:5386
 msgid "Get New Exciting Features"
 msgstr ""
 
@@ -2051,1132 +2053,1136 @@ msgstr ""
 msgid "Change Chart Type "
 msgstr ""
 
-#: utils/graphina_chart_helper.php:699
+#: utils/graphina_chart_helper.php:675
+msgid "Download Option"
+msgstr ""
+
+#: utils/graphina_chart_helper.php:715
 msgid "Export Filename"
 msgstr ""
 
-#: utils/graphina_chart_helper.php:720
+#: utils/graphina_chart_helper.php:736
 msgid "When chart is empty, this text appears"
 msgstr ""
 
-#: utils/graphina_chart_helper.php:733
+#: utils/graphina_chart_helper.php:749
 msgid "Stacked "
 msgstr ""
 
-#: utils/graphina_chart_helper.php:754
-#: utils/graphina_chart_helper.php:3592
+#: utils/graphina_chart_helper.php:770
+#: utils/graphina_chart_helper.php:3608
 msgid "Label Settings"
 msgstr ""
 
-#: utils/graphina_chart_helper.php:774
+#: utils/graphina_chart_helper.php:790
 msgid "Show Text"
 msgstr ""
 
-#: utils/graphina_chart_helper.php:789
+#: utils/graphina_chart_helper.php:805
 msgid "Show Center Label"
 msgstr ""
 
-#: utils/graphina_chart_helper.php:804
+#: utils/graphina_chart_helper.php:820
 msgid "Show Total Label"
 msgstr ""
 
-#: utils/graphina_chart_helper.php:820
+#: utils/graphina_chart_helper.php:836
 msgid "Show Total Value"
 msgstr ""
 
-#: utils/graphina_chart_helper.php:839
+#: utils/graphina_chart_helper.php:855
 msgid "Show Always Total"
 msgstr ""
 
-#: utils/graphina_chart_helper.php:844
+#: utils/graphina_chart_helper.php:860
 msgid "Note: Always show the total label and do not remove it even when  clicks/hovers over the slices."
 msgstr ""
 
-#: utils/graphina_chart_helper.php:851
+#: utils/graphina_chart_helper.php:867
 msgid "Total Text"
 msgstr ""
 
-#: utils/graphina_chart_helper.php:872
-#: utils/graphina_chart_helper.php:973
-#: utils/graphina_chart_helper.php:1826
-#: utils/graphina_chart_helper.php:2194
+#: utils/graphina_chart_helper.php:888
+#: utils/graphina_chart_helper.php:989
+#: utils/graphina_chart_helper.php:1842
+#: utils/graphina_chart_helper.php:2210
 msgid "Note: Convert 1,000  => 1k and 1,000,000 => 1m and if Format Number(Commas) is enable this will not work"
 msgstr ""
 
-#: utils/graphina_chart_helper.php:925
+#: utils/graphina_chart_helper.php:941
 msgid "Format(tooltip/label)"
 msgstr ""
 
-#: utils/graphina_chart_helper.php:936
+#: utils/graphina_chart_helper.php:952
 msgid "Show label"
 msgstr ""
 
-#: utils/graphina_chart_helper.php:950
+#: utils/graphina_chart_helper.php:966
 msgid "Show Value"
 msgstr ""
 
-#: utils/graphina_chart_helper.php:1053
+#: utils/graphina_chart_helper.php:1069
 msgid "Orientation Position"
 msgstr ""
 
-#: utils/graphina_chart_helper.php:1095
+#: utils/graphina_chart_helper.php:1111
 msgid "Show Background"
 msgstr ""
 
-#: utils/graphina_chart_helper.php:1138
+#: utils/graphina_chart_helper.php:1154
 msgid "Border Width"
 msgstr ""
 
-#: utils/graphina_chart_helper.php:1150
+#: utils/graphina_chart_helper.php:1166
 msgid "Border radius"
 msgstr ""
 
-#: utils/graphina_chart_helper.php:1160
+#: utils/graphina_chart_helper.php:1176
 msgid "Border Color"
 msgstr ""
 
-#: utils/graphina_chart_helper.php:1221
+#: utils/graphina_chart_helper.php:1237
 msgid "Pattern will not eligible for the line chart. So if you select it, it will consider as Classic"
 msgstr ""
 
-#: utils/graphina_chart_helper.php:1226
+#: utils/graphina_chart_helper.php:1242
 msgid "Style"
 msgstr ""
 
-#: utils/graphina_chart_helper.php:1268
+#: utils/graphina_chart_helper.php:1284
 msgid "Gradient Setting"
 msgstr ""
 
-#: utils/graphina_chart_helper.php:1284
+#: utils/graphina_chart_helper.php:1300
 msgid "Gradient Settings"
 msgstr ""
 
-#: utils/graphina_chart_helper.php:1313
+#: utils/graphina_chart_helper.php:1329
 msgid "From Opacity"
 msgstr ""
 
-#: utils/graphina_chart_helper.php:1326
+#: utils/graphina_chart_helper.php:1342
 msgid "To Opacity"
 msgstr ""
 
-#: utils/graphina_chart_helper.php:1339
+#: utils/graphina_chart_helper.php:1355
 msgid "Inverse Color"
 msgstr ""
 
-#: utils/graphina_chart_helper.php:1366
-#: utils/graphina_chart_helper.php:6410
+#: utils/graphina_chart_helper.php:1382
+#: utils/graphina_chart_helper.php:6426
 msgid "Legend Setting"
 msgstr ""
 
-#: utils/graphina_chart_helper.php:1374
+#: utils/graphina_chart_helper.php:1390
 msgid "Legend"
 msgstr ""
 
-#: utils/graphina_chart_helper.php:1415
-#: utils/graphina_chart_helper.php:6471
+#: utils/graphina_chart_helper.php:1431
+#: utils/graphina_chart_helper.php:6487
 msgid "Horizontal Align"
 msgstr ""
 
-#: utils/graphina_chart_helper.php:1441
+#: utils/graphina_chart_helper.php:1457
 msgid "Note: Only work if tooltip enable"
 msgstr ""
 
-#: utils/graphina_chart_helper.php:1448
+#: utils/graphina_chart_helper.php:1464
 msgid "Show Series Value"
 msgstr ""
 
-#: utils/graphina_chart_helper.php:1463
+#: utils/graphina_chart_helper.php:1479
 msgid "Show Series PostFix"
 msgstr ""
 
-#: utils/graphina_chart_helper.php:1477
+#: utils/graphina_chart_helper.php:1493
 msgid "Show Series PreFix"
 msgstr ""
 
-#: utils/graphina_chart_helper.php:1515
-#: utils/graphina_chart_helper.php:5240
-#: utils/graphina_chart_helper.php:6031
+#: utils/graphina_chart_helper.php:1531
+#: utils/graphina_chart_helper.php:5256
+#: utils/graphina_chart_helper.php:6047
 msgid "Enable Min/Max"
 msgstr ""
 
-#: utils/graphina_chart_helper.php:1524
+#: utils/graphina_chart_helper.php:1540
 msgid "Note: If chart having multi series, Enable Min/Max value will be applicable to all series and xaxis Tickamount must be according to min - max value"
 msgstr ""
 
-#: utils/graphina_chart_helper.php:1531
-#: utils/graphina_chart_helper.php:5252
+#: utils/graphina_chart_helper.php:1547
+#: utils/graphina_chart_helper.php:5268
 msgid "Min Value"
 msgstr ""
 
-#: utils/graphina_chart_helper.php:1539
+#: utils/graphina_chart_helper.php:1555
 msgid "Note: Lowest number to be set for the x-axis. The graph drawing beyond this number will be clipped off"
 msgstr ""
 
-#: utils/graphina_chart_helper.php:1546
-#: utils/graphina_chart_helper.php:5265
+#: utils/graphina_chart_helper.php:1562
+#: utils/graphina_chart_helper.php:5281
 msgid "Max Value"
 msgstr ""
 
-#: utils/graphina_chart_helper.php:1554
+#: utils/graphina_chart_helper.php:1570
 msgid "Note: Highest number to be set for the x-axis. The graph drawing beyond this number will be clipped off."
 msgstr ""
 
-#: utils/graphina_chart_helper.php:1563
-#: utils/graphina_chart_helper.php:1977
+#: utils/graphina_chart_helper.php:1579
+#: utils/graphina_chart_helper.php:1993
 msgid "Tooltip"
 msgstr ""
 
-#: utils/graphina_chart_helper.php:1574
-#: utils/graphina_chart_helper.php:1988
+#: utils/graphina_chart_helper.php:1590
+#: utils/graphina_chart_helper.php:2004
 msgid "Pointer Line"
 msgstr ""
 
-#: utils/graphina_chart_helper.php:1676
+#: utils/graphina_chart_helper.php:1692
 msgid "Tick Amount(dataPoints)"
 msgstr ""
 
-#: utils/graphina_chart_helper.php:1723
+#: utils/graphina_chart_helper.php:1739
 msgid "Show Time In xaxis"
 msgstr ""
 
-#: utils/graphina_chart_helper.php:1737
+#: utils/graphina_chart_helper.php:1753
 msgid "Show Date In xaxis"
 msgstr ""
 
-#: utils/graphina_chart_helper.php:1753
-#: utils/graphina_chart_helper.php:2122
+#: utils/graphina_chart_helper.php:1769
+#: utils/graphina_chart_helper.php:2138
 msgid "Labels Prefix/Postfix"
 msgstr ""
 
-#: utils/graphina_chart_helper.php:1761
+#: utils/graphina_chart_helper.php:1777
 msgid "Note: If categories data are in array form it won't work"
 msgstr ""
 
-#: utils/graphina_chart_helper.php:1768
-#: utils/graphina_chart_helper.php:2136
-#: utils/graphina_chart_helper.php:4859
+#: utils/graphina_chart_helper.php:1784
+#: utils/graphina_chart_helper.php:2152
+#: utils/graphina_chart_helper.php:4875
 msgid "Labels Prefix"
 msgstr ""
 
-#: utils/graphina_chart_helper.php:1783
-#: utils/graphina_chart_helper.php:2151
-#: utils/graphina_chart_helper.php:4874
+#: utils/graphina_chart_helper.php:1799
+#: utils/graphina_chart_helper.php:2167
+#: utils/graphina_chart_helper.php:4890
 msgid "Labels Postfix"
 msgstr ""
 
-#: utils/graphina_chart_helper.php:1848
-#: utils/graphina_chart_helper.php:2249
-#: utils/graphina_chart_helper.php:4890
+#: utils/graphina_chart_helper.php:1864
+#: utils/graphina_chart_helper.php:2265
+#: utils/graphina_chart_helper.php:4906
 msgid "Format Number"
 msgstr ""
 
-#: utils/graphina_chart_helper.php:1857
+#: utils/graphina_chart_helper.php:1873
 msgid "Enabled Labels Prefix/Postfix "
 msgstr ""
 
-#: utils/graphina_chart_helper.php:1902
-#: utils/graphina_chart_helper.php:6024
+#: utils/graphina_chart_helper.php:1918
+#: utils/graphina_chart_helper.php:6040
 msgid "Y-Axis Setting"
 msgstr ""
 
-#: utils/graphina_chart_helper.php:1914
-#: utils/graphina_general_helper.php:596
-#: utils/graphina_general_helper.php:632
+#: utils/graphina_chart_helper.php:1930
+#: utils/graphina_general_helper.php:595
+#: utils/graphina_general_helper.php:631
 msgid "Line"
 msgstr ""
 
-#: utils/graphina_chart_helper.php:1925
+#: utils/graphina_chart_helper.php:1941
 msgid "Grid Color"
 msgstr ""
 
-#: utils/graphina_chart_helper.php:1939
-#: utils/graphina_chart_helper.php:6347
+#: utils/graphina_chart_helper.php:1955
+#: utils/graphina_chart_helper.php:6363
 msgid "Zero Indicator"
 msgstr ""
 
-#: utils/graphina_chart_helper.php:1950
+#: utils/graphina_chart_helper.php:1966
 msgid "Stroke Dash"
 msgstr ""
 
-#: utils/graphina_chart_helper.php:1963
-#: utils/graphina_chart_helper.php:3465
+#: utils/graphina_chart_helper.php:1979
+#: utils/graphina_chart_helper.php:3481
 msgid "Stroke Color"
 msgstr ""
 
-#: utils/graphina_chart_helper.php:2062
-#: utils/graphina_chart_helper.php:5099
+#: utils/graphina_chart_helper.php:2078
+#: utils/graphina_chart_helper.php:5115
 msgid "Chart-1"
 msgstr ""
 
-#: utils/graphina_chart_helper.php:2083
+#: utils/graphina_chart_helper.php:2099
 msgid "Chart-2 Tick Amount"
 msgstr ""
 
-#: utils/graphina_chart_helper.php:2102
+#: utils/graphina_chart_helper.php:2118
 msgid "If you enabled \"Labels Prefix/Postfix\", this won’t have any effect."
 msgstr ""
 
-#: utils/graphina_chart_helper.php:2184
+#: utils/graphina_chart_helper.php:2200
 msgid "Format Number to Strings"
 msgstr ""
 
-#: utils/graphina_chart_helper.php:2275
+#: utils/graphina_chart_helper.php:2291
 msgid "Y-axis Title"
 msgstr ""
 
-#: utils/graphina_chart_helper.php:2319
+#: utils/graphina_chart_helper.php:2335
 msgid "Style Section"
 msgstr ""
 
-#: utils/graphina_chart_helper.php:2352
-#: utils/graphina_chart_helper.php:2445
-#: utils/graphina_chart_helper.php:2767
-#: utils/graphina_chart_helper.php:5421
+#: utils/graphina_chart_helper.php:2368
+#: utils/graphina_chart_helper.php:2461
+#: utils/graphina_chart_helper.php:2783
+#: utils/graphina_chart_helper.php:5437
 msgid "Alignment"
 msgstr ""
 
-#: utils/graphina_chart_helper.php:2527
+#: utils/graphina_chart_helper.php:2543
 msgid "Card Style"
 msgstr ""
 
-#: utils/graphina_chart_helper.php:2539
-#: utils/graphina_chart_helper.php:2689
+#: utils/graphina_chart_helper.php:2555
+#: utils/graphina_chart_helper.php:2705
 msgid "Background"
 msgstr ""
 
-#: utils/graphina_chart_helper.php:2552
-#: utils/graphina_chart_helper.php:2702
+#: utils/graphina_chart_helper.php:2568
+#: utils/graphina_chart_helper.php:2718
 msgid "Box Shadow"
 msgstr ""
 
-#: utils/graphina_chart_helper.php:2598
+#: utils/graphina_chart_helper.php:2614
 msgid "Chart Style"
 msgstr ""
 
-#: utils/graphina_chart_helper.php:2607
+#: utils/graphina_chart_helper.php:2623
 msgid "Font Family"
 msgstr ""
 
-#: utils/graphina_chart_helper.php:2609
+#: utils/graphina_chart_helper.php:2625
 msgid "Notice:If possible use same font as Chart Title & Description, Otherwise it may not show the actual font you selected."
 msgstr ""
 
-#: utils/graphina_chart_helper.php:2647
-#: utils/graphina_chart_helper.php:6693
+#: utils/graphina_chart_helper.php:2663
+#: utils/graphina_chart_helper.php:6709
 msgid "Default"
 msgstr ""
 
-#: utils/graphina_chart_helper.php:2657
+#: utils/graphina_chart_helper.php:2673
 msgid "Font Weight"
 msgstr ""
 
-#: utils/graphina_chart_helper.php:2677
+#: utils/graphina_chart_helper.php:2693
 msgid "Chart Box"
 msgstr ""
 
-#: utils/graphina_chart_helper.php:2748
+#: utils/graphina_chart_helper.php:2764
 msgid "Chart Filter Style"
 msgstr ""
 
-#: utils/graphina_chart_helper.php:2759
-#: utils/graphina_chart_helper.php:5597
+#: utils/graphina_chart_helper.php:2775
+#: utils/graphina_chart_helper.php:5613
 msgid "Chart Filter"
 msgstr ""
 
-#: utils/graphina_chart_helper.php:2799
-#: utils/graphina_chart_helper.php:3616
-#: utils/graphina_chart_helper.php:5618
+#: utils/graphina_chart_helper.php:2815
+#: utils/graphina_chart_helper.php:3632
+#: utils/graphina_chart_helper.php:5634
 msgid "Label"
 msgstr ""
 
-#: utils/graphina_chart_helper.php:2878
+#: utils/graphina_chart_helper.php:2894
 msgid "DropDown"
 msgstr ""
 
-#: utils/graphina_chart_helper.php:2887
-#: utils/graphina_chart_helper.php:2997
-#: utils/graphina_chart_helper.php:3107
+#: utils/graphina_chart_helper.php:2903
+#: utils/graphina_chart_helper.php:3013
+#: utils/graphina_chart_helper.php:3123
 msgid "Background Type"
 msgstr ""
 
-#: utils/graphina_chart_helper.php:2988
+#: utils/graphina_chart_helper.php:3004
 msgid "Apply Filter Button"
 msgstr ""
 
-#: utils/graphina_chart_helper.php:3098
+#: utils/graphina_chart_helper.php:3114
 msgid "Date Picker"
 msgstr ""
 
-#: utils/graphina_chart_helper.php:3270
+#: utils/graphina_chart_helper.php:3286
 msgid "Animation Settings"
 msgstr ""
 
-#: utils/graphina_chart_helper.php:3281
+#: utils/graphina_chart_helper.php:3297
 msgid "Show Animation"
 msgstr ""
 
-#: utils/graphina_chart_helper.php:3291
-#: utils/graphina_chart_helper.php:3332
+#: utils/graphina_chart_helper.php:3307
+#: utils/graphina_chart_helper.php:3348
 msgid "Speed"
 msgstr ""
 
-#: utils/graphina_chart_helper.php:3302
+#: utils/graphina_chart_helper.php:3318
 msgid "Easing"
 msgstr ""
 
-#: utils/graphina_chart_helper.php:3306
+#: utils/graphina_chart_helper.php:3322
 msgid "Linear"
 msgstr ""
 
-#: utils/graphina_chart_helper.php:3309
+#: utils/graphina_chart_helper.php:3325
 msgid "In And Out"
 msgstr ""
 
-#: utils/graphina_chart_helper.php:3344
+#: utils/graphina_chart_helper.php:3360
 msgid "Delay"
 msgstr ""
 
-#: utils/graphina_chart_helper.php:3411
+#: utils/graphina_chart_helper.php:3427
 msgid "Stroke Size"
 msgstr ""
 
-#: utils/graphina_chart_helper.php:3444
-#: utils/graphina_chart_helper.php:3517
+#: utils/graphina_chart_helper.php:3460
+#: utils/graphina_chart_helper.php:3533
 msgid "Marker Settings"
 msgstr ""
 
-#: utils/graphina_chart_helper.php:3453
+#: utils/graphina_chart_helper.php:3469
 msgid "Size"
 msgstr ""
 
-#: utils/graphina_chart_helper.php:3458
+#: utils/graphina_chart_helper.php:3474
 msgid "Note : Marker are only show in Chart 1 "
 msgstr ""
 
-#: utils/graphina_chart_helper.php:3475
+#: utils/graphina_chart_helper.php:3491
 msgid "Stroke Width"
 msgstr ""
 
-#: utils/graphina_chart_helper.php:3486
+#: utils/graphina_chart_helper.php:3502
 msgid "Shape"
 msgstr ""
 
-#: utils/graphina_chart_helper.php:3491
-#: utils/graphina_chart_helper.php:3544
+#: utils/graphina_chart_helper.php:3507
+#: utils/graphina_chart_helper.php:3560
 msgid "Square"
 msgstr ""
 
-#: utils/graphina_chart_helper.php:3494
+#: utils/graphina_chart_helper.php:3510
 msgid "Note: Hover will Not work in Square"
 msgstr ""
 
-#: utils/graphina_chart_helper.php:3538
+#: utils/graphina_chart_helper.php:3554
 msgid "Point"
 msgstr ""
 
-#: utils/graphina_chart_helper.php:3543
+#: utils/graphina_chart_helper.php:3559
 msgid "Triangle"
 msgstr ""
 
-#: utils/graphina_chart_helper.php:3545
+#: utils/graphina_chart_helper.php:3561
 msgid "Diamond"
 msgstr ""
 
-#: utils/graphina_chart_helper.php:3546
+#: utils/graphina_chart_helper.php:3562
 msgid "Star"
 msgstr ""
 
-#: utils/graphina_chart_helper.php:3547
+#: utils/graphina_chart_helper.php:3563
 msgid "Polygon"
 msgstr ""
 
-#: utils/graphina_chart_helper.php:3559
+#: utils/graphina_chart_helper.php:3575
 msgid " Size"
 msgstr ""
 
-#: utils/graphina_chart_helper.php:3601
-#: utils/graphina_chart_helper.php:5820
-#: utils/graphina_chart_helper.php:6077
+#: utils/graphina_chart_helper.php:3617
+#: utils/graphina_chart_helper.php:5836
+#: utils/graphina_chart_helper.php:6093
 msgid "Label Show"
 msgstr ""
 
-#: utils/graphina_chart_helper.php:3604
-#: utils/graphina_chart_helper.php:3699
-#: utils/graphina_chart_helper.php:3716
+#: utils/graphina_chart_helper.php:3620
+#: utils/graphina_chart_helper.php:3715
+#: utils/graphina_chart_helper.php:3732
 msgid "no"
 msgstr ""
 
-#: utils/graphina_chart_helper.php:3611
+#: utils/graphina_chart_helper.php:3627
 msgid "Label Text"
 msgstr ""
 
-#: utils/graphina_chart_helper.php:3617
-#: utils/graphina_chart_helper.php:3895
-#: utils/graphina_chart_helper.php:6516
+#: utils/graphina_chart_helper.php:3633
+#: utils/graphina_chart_helper.php:3911
+#: utils/graphina_chart_helper.php:6532
 msgid "Value"
 msgstr ""
 
-#: utils/graphina_chart_helper.php:3619
-#: utils/graphina_chart_helper.php:3894
-#: utils/graphina_chart_helper.php:6514
+#: utils/graphina_chart_helper.php:3635
+#: utils/graphina_chart_helper.php:3910
+#: utils/graphina_chart_helper.php:6530
 msgid "Value And Percentage"
 msgstr ""
 
-#: utils/graphina_chart_helper.php:3631
-#: utils/graphina_chart_helper.php:5843
-#: utils/graphina_chart_helper.php:6101
+#: utils/graphina_chart_helper.php:3647
+#: utils/graphina_chart_helper.php:5859
+#: utils/graphina_chart_helper.php:6117
 msgid "Label Prefix/Postfix"
 msgstr ""
 
-#: utils/graphina_chart_helper.php:3669
+#: utils/graphina_chart_helper.php:3685
 msgid "Label Text Color"
 msgstr ""
 
-#: utils/graphina_chart_helper.php:3681
+#: utils/graphina_chart_helper.php:3697
 msgid "Label Text Fontsize"
 msgstr ""
 
-#: utils/graphina_chart_helper.php:3696
+#: utils/graphina_chart_helper.php:3712
 msgid "Reverse Categories"
 msgstr ""
 
-#: utils/graphina_chart_helper.php:3713
+#: utils/graphina_chart_helper.php:3729
 msgid "3D "
 msgstr ""
 
-#: utils/graphina_chart_helper.php:3725
-#: utils/graphina_chart_helper.php:3738
+#: utils/graphina_chart_helper.php:3741
+#: utils/graphina_chart_helper.php:3754
 msgid "Pieslice Border"
 msgstr ""
 
-#: utils/graphina_chart_helper.php:3748
+#: utils/graphina_chart_helper.php:3764
 msgid "pieHole"
 msgstr ""
 
-#: utils/graphina_chart_helper.php:3771
+#: utils/graphina_chart_helper.php:3787
 msgid "Stacked Show "
 msgstr ""
 
-#: utils/graphina_chart_helper.php:3802
+#: utils/graphina_chart_helper.php:3818
 msgid "Tooltip Settings"
 msgstr ""
 
-#: utils/graphina_chart_helper.php:3813
+#: utils/graphina_chart_helper.php:3829
 msgid "Show Tooltip"
 msgstr ""
 
-#: utils/graphina_chart_helper.php:3824
+#: utils/graphina_chart_helper.php:3840
 msgid " Trigger"
 msgstr ""
 
-#: utils/graphina_chart_helper.php:3827
+#: utils/graphina_chart_helper.php:3843
 msgid "On Hover"
 msgstr ""
 
-#: utils/graphina_chart_helper.php:3828
+#: utils/graphina_chart_helper.php:3844
 msgid "On Selection"
 msgstr ""
 
-#: utils/graphina_chart_helper.php:3865
-#: utils/graphina_chart_helper.php:6591
+#: utils/graphina_chart_helper.php:3881
+#: utils/graphina_chart_helper.php:6607
 msgid "Bold"
 msgstr ""
 
-#: utils/graphina_chart_helper.php:3876
-#: utils/graphina_chart_helper.php:6602
+#: utils/graphina_chart_helper.php:3892
+#: utils/graphina_chart_helper.php:6618
 msgid "Italic"
 msgstr ""
 
-#: utils/graphina_chart_helper.php:3890
+#: utils/graphina_chart_helper.php:3906
 msgid "Text"
 msgstr ""
 
-#: utils/graphina_chart_helper.php:3918
+#: utils/graphina_chart_helper.php:3934
 msgid "Column Settings"
 msgstr ""
 
-#: utils/graphina_chart_helper.php:3935
+#: utils/graphina_chart_helper.php:3951
 msgid "Stacked Show"
 msgstr ""
 
-#: utils/graphina_chart_helper.php:3949
+#: utils/graphina_chart_helper.php:3965
 msgid "Absolute"
 msgstr ""
 
-#: utils/graphina_chart_helper.php:3950
+#: utils/graphina_chart_helper.php:3966
 msgid "Relative"
 msgstr ""
 
-#: utils/graphina_chart_helper.php:3951
+#: utils/graphina_chart_helper.php:3967
 msgid "percent"
 msgstr ""
 
-#: utils/graphina_chart_helper.php:3972
+#: utils/graphina_chart_helper.php:3988
 msgid "Annotation Settings"
 msgstr ""
 
-#: utils/graphina_chart_helper.php:3980
+#: utils/graphina_chart_helper.php:3996
 msgid "Show Annotation"
 msgstr ""
 
-#: utils/graphina_chart_helper.php:4002
-#: utils/graphina_chart_helper.php:4438
-#: utils/graphina_chart_helper.php:5159
+#: utils/graphina_chart_helper.php:4018
+#: utils/graphina_chart_helper.php:4454
+#: utils/graphina_chart_helper.php:5175
 msgid "Second Color"
 msgstr ""
 
-#: utils/graphina_chart_helper.php:4013
+#: utils/graphina_chart_helper.php:4029
 msgid "Stem Color"
 msgstr ""
 
-#: utils/graphina_chart_helper.php:4024
+#: utils/graphina_chart_helper.php:4040
 msgid " Fontsize"
 msgstr ""
 
-#: utils/graphina_chart_helper.php:4047
+#: utils/graphina_chart_helper.php:4063
 msgid "Annotation Prefix/Postfix"
 msgstr ""
 
-#: utils/graphina_chart_helper.php:4086
+#: utils/graphina_chart_helper.php:4102
 msgid "Warning: This will may not work if markers are not shown."
 msgstr ""
 
-#: utils/graphina_chart_helper.php:4148
+#: utils/graphina_chart_helper.php:4164
 msgid "Warning: This will may not work for horizontal column chart."
 msgstr ""
 
-#: utils/graphina_chart_helper.php:4151
+#: utils/graphina_chart_helper.php:4167
 msgid "If tooltip shared off ,Elements setting -> Marker settings -> size value should be greater then 0 to work properly"
 msgstr ""
 
-#: utils/graphina_chart_helper.php:4156
+#: utils/graphina_chart_helper.php:4172
 msgid "Shared"
 msgstr ""
 
-#: utils/graphina_chart_helper.php:4172
+#: utils/graphina_chart_helper.php:4188
 msgid "Theme"
 msgstr ""
 
-#: utils/graphina_chart_helper.php:4177
+#: utils/graphina_chart_helper.php:4193
 msgid "Light"
 msgstr ""
 
-#: utils/graphina_chart_helper.php:4181
+#: utils/graphina_chart_helper.php:4197
 msgid "Dark"
 msgstr ""
 
-#: utils/graphina_chart_helper.php:4215
+#: utils/graphina_chart_helper.php:4231
 msgid "Drop Shadow Settings"
 msgstr ""
 
-#: utils/graphina_chart_helper.php:4234
+#: utils/graphina_chart_helper.php:4250
 msgid "Drop Shadow Top Position"
 msgstr ""
 
-#: utils/graphina_chart_helper.php:4246
+#: utils/graphina_chart_helper.php:4262
 msgid "Drop Shadow Left Position"
 msgstr ""
 
-#: utils/graphina_chart_helper.php:4258
+#: utils/graphina_chart_helper.php:4274
 msgid "Drop Shadow Blur"
 msgstr ""
 
-#: utils/graphina_chart_helper.php:4272
+#: utils/graphina_chart_helper.php:4288
 msgid "Drop Shadow Color"
 msgstr ""
 
-#: utils/graphina_chart_helper.php:4285
+#: utils/graphina_chart_helper.php:4301
 msgid "Drop Shadow Opacity"
 msgstr ""
 
-#: utils/graphina_chart_helper.php:4349
-#: utils/graphina_chart_helper.php:5097
-#: utils/graphina_chart_helper.php:6625
+#: utils/graphina_chart_helper.php:4365
+#: utils/graphina_chart_helper.php:5113
+#: utils/graphina_chart_helper.php:6641
 msgid "Element"
 msgstr ""
 
-#: utils/graphina_chart_helper.php:4354
-#: utils/graphina_chart_helper.php:5106
-#: utils/graphina_chart_helper.php:6630
-#: utils/graphina_chart_helper.php:6754
+#: utils/graphina_chart_helper.php:4370
+#: utils/graphina_chart_helper.php:5122
+#: utils/graphina_chart_helper.php:6646
+#: utils/graphina_chart_helper.php:6770
 msgid "Elements Setting"
 msgstr ""
 
-#: utils/graphina_chart_helper.php:4409
+#: utils/graphina_chart_helper.php:4425
 msgid "Tooltip Enabled"
 msgstr ""
 
-#: utils/graphina_chart_helper.php:4450
-#: utils/graphina_chart_helper.php:5171
+#: utils/graphina_chart_helper.php:4466
+#: utils/graphina_chart_helper.php:5187
 msgid "Fill Pattern"
 msgstr ""
 
-#: utils/graphina_chart_helper.php:4643
+#: utils/graphina_chart_helper.php:4659
 msgid "Restriction Content Access"
 msgstr ""
 
-#: utils/graphina_chart_helper.php:4650
+#: utils/graphina_chart_helper.php:4666
 msgid "Restriction Based On"
 msgstr ""
 
-#: utils/graphina_chart_helper.php:4653
+#: utils/graphina_chart_helper.php:4669
 msgid "No Restriction Access"
 msgstr ""
 
-#: utils/graphina_chart_helper.php:4654
+#: utils/graphina_chart_helper.php:4670
 msgid "Logged In User"
 msgstr ""
 
-#: utils/graphina_chart_helper.php:4655
+#: utils/graphina_chart_helper.php:4671
 msgid "Password Protected"
 msgstr ""
 
-#: utils/graphina_chart_helper.php:4656
+#: utils/graphina_chart_helper.php:4672
 msgid "Role Based Access"
 msgstr ""
 
-#: utils/graphina_chart_helper.php:4657
+#: utils/graphina_chart_helper.php:4673
 msgid "UserName Based Access"
 msgstr ""
 
-#: utils/graphina_chart_helper.php:4665
+#: utils/graphina_chart_helper.php:4681
 msgid "Set Password"
 msgstr ""
 
-#: utils/graphina_chart_helper.php:4676
+#: utils/graphina_chart_helper.php:4692
 msgid "Headline"
 msgstr ""
 
-#: utils/graphina_chart_helper.php:4678
+#: utils/graphina_chart_helper.php:4694
 msgid "Protected Area"
 msgstr ""
 
-#: utils/graphina_chart_helper.php:4691
+#: utils/graphina_chart_helper.php:4707
 msgid "Button Label"
 msgstr ""
 
-#: utils/graphina_chart_helper.php:4693
+#: utils/graphina_chart_helper.php:4709
 msgid "Submit"
 msgstr ""
 
-#: utils/graphina_chart_helper.php:4703
+#: utils/graphina_chart_helper.php:4719
 msgid "Error"
 msgstr ""
 
-#: utils/graphina_chart_helper.php:4707
+#: utils/graphina_chart_helper.php:4723
 msgid "Notice:Error message when incorrect password enter"
 msgstr ""
 
-#: utils/graphina_chart_helper.php:4718
+#: utils/graphina_chart_helper.php:4734
 msgid "Error message"
 msgstr ""
 
-#: utils/graphina_chart_helper.php:4720
+#: utils/graphina_chart_helper.php:4736
 msgid "Password is invalid"
 msgstr ""
 
-#: utils/graphina_chart_helper.php:4733
+#: utils/graphina_chart_helper.php:4749
 msgid "Instructions Text"
 msgstr ""
 
-#: utils/graphina_chart_helper.php:4736
+#: utils/graphina_chart_helper.php:4752
 msgid "This content is password-protected. Please verify with a password to unlock the content."
 msgstr ""
 
-#: utils/graphina_chart_helper.php:4749
+#: utils/graphina_chart_helper.php:4765
 msgid "Select Roles"
 msgstr ""
 
-#: utils/graphina_chart_helper.php:4763
+#: utils/graphina_chart_helper.php:4779
 msgid "Select User"
 msgstr ""
 
-#: utils/graphina_chart_helper.php:4776
+#: utils/graphina_chart_helper.php:4792
 msgid "Restricted Template View (shortcode)"
 msgstr ""
 
-#: utils/graphina_chart_helper.php:4815
+#: utils/graphina_chart_helper.php:4831
 msgid "Enable Opposite Title"
 msgstr ""
 
-#: utils/graphina_chart_helper.php:4844
+#: utils/graphina_chart_helper.php:4860
 msgid "Show Label"
 msgstr ""
 
-#: utils/graphina_chart_helper.php:4906
+#: utils/graphina_chart_helper.php:4922
 msgid "Max Width"
 msgstr ""
 
-#: utils/graphina_chart_helper.php:4917
+#: utils/graphina_chart_helper.php:4933
 msgid "Opposite Y-axis Title"
 msgstr ""
 
-#: utils/graphina_chart_helper.php:4956
+#: utils/graphina_chart_helper.php:4972
 msgid "Selection Setting"
 msgstr ""
 
-#: utils/graphina_chart_helper.php:4963
+#: utils/graphina_chart_helper.php:4979
 msgid "Xaxis"
 msgstr ""
 
-#: utils/graphina_chart_helper.php:4974
+#: utils/graphina_chart_helper.php:4990
 msgid "Min"
 msgstr ""
 
-#: utils/graphina_chart_helper.php:4988
+#: utils/graphina_chart_helper.php:5004
 msgid "Max"
 msgstr ""
 
-#: utils/graphina_chart_helper.php:5002
+#: utils/graphina_chart_helper.php:5018
 msgid "Fill"
 msgstr ""
 
-#: utils/graphina_chart_helper.php:5031
+#: utils/graphina_chart_helper.php:5047
 msgid "Stroke"
 msgstr ""
 
-#: utils/graphina_chart_helper.php:5050
+#: utils/graphina_chart_helper.php:5066
 msgid "Dash"
 msgstr ""
 
-#: utils/graphina_chart_helper.php:5099
+#: utils/graphina_chart_helper.php:5115
 msgid "Chart-2"
 msgstr ""
 
-#: utils/graphina_chart_helper.php:5195
-#: utils/graphina_chart_helper.php:5212
+#: utils/graphina_chart_helper.php:5211
+#: utils/graphina_chart_helper.php:5228
 msgid "Notice:This will not work in column chart"
 msgstr ""
 
-#: utils/graphina_chart_helper.php:5245
+#: utils/graphina_chart_helper.php:5261
 msgid "Note: If chart having multi series, Enable Min/Max value will be applicable to all series and Yaxis Tickamount must be according to min - max value"
 msgstr ""
 
-#: utils/graphina_chart_helper.php:5258
+#: utils/graphina_chart_helper.php:5274
 msgid "Note: Lowest number to be set for the y-axis. The graph drawing beyond this number will be clipped off"
 msgstr ""
 
-#: utils/graphina_chart_helper.php:5271
+#: utils/graphina_chart_helper.php:5287
 msgid "Note: Highest number to be set for the y-axis. The graph drawing beyond this number will be clipped off."
 msgstr ""
 
-#: utils/graphina_chart_helper.php:5288
+#: utils/graphina_chart_helper.php:5304
 msgid "Data Options"
 msgstr ""
 
-#: utils/graphina_chart_helper.php:5314
+#: utils/graphina_chart_helper.php:5330
 msgid "No of Rows"
 msgstr ""
 
-#: utils/graphina_chart_helper.php:5327
+#: utils/graphina_chart_helper.php:5343
 msgid "No of Columns"
 msgstr ""
 
-#: utils/graphina_chart_helper.php:5398
+#: utils/graphina_chart_helper.php:5414
 msgid "Change Chart Type Style"
 msgstr ""
 
-#: utils/graphina_chart_helper.php:5410
+#: utils/graphina_chart_helper.php:5426
 msgid "Select Text Typography"
 msgstr ""
 
-#: utils/graphina_chart_helper.php:5459
+#: utils/graphina_chart_helper.php:5475
 msgid "Select Background Color"
 msgstr ""
 
-#: utils/graphina_chart_helper.php:5470
+#: utils/graphina_chart_helper.php:5486
 msgid "Height"
 msgstr ""
 
-#: utils/graphina_chart_helper.php:5536
+#: utils/graphina_chart_helper.php:5552
 msgid "Select Border Radius"
 msgstr ""
 
-#: utils/graphina_chart_helper.php:5605
+#: utils/graphina_chart_helper.php:5621
 msgid "Enable Filter"
 msgstr ""
 
-#: utils/graphina_chart_helper.php:5620
+#: utils/graphina_chart_helper.php:5636
 msgid "Choose Option"
 msgstr ""
 
-#: utils/graphina_chart_helper.php:5621
-#: utils/graphina_chart_helper.php:5634
+#: utils/graphina_chart_helper.php:5637
+#: utils/graphina_chart_helper.php:5650
 msgid "Note: This key is use where you want to use selected option value"
 msgstr ""
 
-#: utils/graphina_chart_helper.php:5631
+#: utils/graphina_chart_helper.php:5647
 msgid "Add Filter Keys"
 msgstr ""
 
-#: utils/graphina_chart_helper.php:5633
+#: utils/graphina_chart_helper.php:5649
 msgid "{{key_1}}"
 msgstr ""
 
-#: utils/graphina_chart_helper.php:5644
+#: utils/graphina_chart_helper.php:5660
 msgid "Filter Type"
 msgstr ""
 
-#: utils/graphina_chart_helper.php:5649
+#: utils/graphina_chart_helper.php:5665
 msgid "Select Dropdown"
 msgstr ""
 
-#: utils/graphina_chart_helper.php:5650
+#: utils/graphina_chart_helper.php:5666
 msgid "Datepicker"
 msgstr ""
 
-#: utils/graphina_chart_helper.php:5661
+#: utils/graphina_chart_helper.php:5677
 msgid "Date Type"
 msgstr ""
 
-#: utils/graphina_chart_helper.php:5666
+#: utils/graphina_chart_helper.php:5682
 msgid "DateTime"
 msgstr ""
 
-#: utils/graphina_chart_helper.php:5667
+#: utils/graphina_chart_helper.php:5683
 msgid "Date"
 msgstr ""
 
-#: utils/graphina_chart_helper.php:5683
-#: utils/graphina_chart_helper.php:5709
+#: utils/graphina_chart_helper.php:5699
+#: utils/graphina_chart_helper.php:5725
 msgid "Default Date"
 msgstr ""
 
-#: utils/graphina_chart_helper.php:5738
+#: utils/graphina_chart_helper.php:5754
 msgid "Add Select Dropdown Filter Value"
 msgstr ""
 
-#: utils/graphina_chart_helper.php:5740
+#: utils/graphina_chart_helper.php:5756
 msgid "Value,Value1"
 msgstr ""
 
-#: utils/graphina_chart_helper.php:5760
+#: utils/graphina_chart_helper.php:5776
 msgid "Add Select Dropdown Filter Name"
 msgstr ""
 
-#: utils/graphina_chart_helper.php:5762
+#: utils/graphina_chart_helper.php:5778
 msgid "Name1,Name2"
 msgstr ""
 
-#: utils/graphina_chart_helper.php:5782
+#: utils/graphina_chart_helper.php:5798
 msgid "Filter Tab"
 msgstr ""
 
-#: utils/graphina_chart_helper.php:5813
-#: utils/graphina_chart_helper.php:6069
+#: utils/graphina_chart_helper.php:5829
+#: utils/graphina_chart_helper.php:6085
 msgid "Label Setting"
 msgstr ""
 
-#: utils/graphina_chart_helper.php:5830
-#: utils/graphina_chart_helper.php:6088
+#: utils/graphina_chart_helper.php:5846
+#: utils/graphina_chart_helper.php:6104
 msgid "Label Position"
 msgstr ""
 
-#: utils/graphina_chart_helper.php:5881
-#: utils/graphina_chart_helper.php:6140
+#: utils/graphina_chart_helper.php:5897
+#: utils/graphina_chart_helper.php:6156
 msgid "Label Color"
 msgstr ""
 
-#: utils/graphina_chart_helper.php:5892
-#: utils/graphina_chart_helper.php:6151
+#: utils/graphina_chart_helper.php:5908
+#: utils/graphina_chart_helper.php:6167
 msgid " Label Fontsize"
 msgstr ""
 
-#: utils/graphina_chart_helper.php:5905
+#: utils/graphina_chart_helper.php:5921
 msgid "Label Rotate"
 msgstr ""
 
-#: utils/graphina_chart_helper.php:5918
+#: utils/graphina_chart_helper.php:5934
 msgid "Label Rotate Angle"
 msgstr ""
 
-#: utils/graphina_chart_helper.php:5933
-#: utils/graphina_chart_helper.php:6195
+#: utils/graphina_chart_helper.php:5949
+#: utils/graphina_chart_helper.php:6211
 msgid "Reverse Category"
 msgstr ""
 
-#: utils/graphina_chart_helper.php:5954
-#: utils/graphina_chart_helper.php:6242
+#: utils/graphina_chart_helper.php:5970
+#: utils/graphina_chart_helper.php:6258
 msgid "Title Setting"
 msgstr ""
 
-#: utils/graphina_chart_helper.php:5961
-#: utils/graphina_chart_helper.php:6249
+#: utils/graphina_chart_helper.php:5977
+#: utils/graphina_chart_helper.php:6265
 msgid "Title Show"
 msgstr ""
 
-#: utils/graphina_chart_helper.php:5986
-#: utils/graphina_chart_helper.php:6274
+#: utils/graphina_chart_helper.php:6002
+#: utils/graphina_chart_helper.php:6290
 msgid "Title Color"
 msgstr ""
 
-#: utils/graphina_chart_helper.php:5998
-#: utils/graphina_chart_helper.php:6286
+#: utils/graphina_chart_helper.php:6014
+#: utils/graphina_chart_helper.php:6302
 msgid " Title Fontsize"
 msgstr ""
 
-#: utils/graphina_chart_helper.php:6041
+#: utils/graphina_chart_helper.php:6057
 msgid "Y-axis Min Value"
 msgstr ""
 
-#: utils/graphina_chart_helper.php:6052
+#: utils/graphina_chart_helper.php:6068
 msgid "Y-axis Max Value"
 msgstr ""
 
-#: utils/graphina_chart_helper.php:6168
-#: utils/graphina_chart_helper.php:6181
+#: utils/graphina_chart_helper.php:6184
+#: utils/graphina_chart_helper.php:6197
 msgid "Reverse Direction"
 msgstr ""
 
-#: utils/graphina_chart_helper.php:6206
-#: utils/graphina_chart_helper.php:6580
+#: utils/graphina_chart_helper.php:6222
+#: utils/graphina_chart_helper.php:6596
 msgid "Number Format"
 msgstr ""
 
-#: utils/graphina_chart_helper.php:6211
+#: utils/graphina_chart_helper.php:6227
 msgid "Scientific"
 msgstr ""
 
-#: utils/graphina_chart_helper.php:6212
+#: utils/graphina_chart_helper.php:6228
 msgid "Currency"
 msgstr ""
 
-#: utils/graphina_chart_helper.php:6213
+#: utils/graphina_chart_helper.php:6229
 msgid "Percent"
 msgstr ""
 
-#: utils/graphina_chart_helper.php:6214
+#: utils/graphina_chart_helper.php:6230
 msgid "Short"
 msgstr ""
 
-#: utils/graphina_chart_helper.php:6215
+#: utils/graphina_chart_helper.php:6231
 msgid "Long"
 msgstr ""
 
-#: utils/graphina_chart_helper.php:6224
+#: utils/graphina_chart_helper.php:6240
 msgid "Currency Prefix"
 msgstr ""
 
-#: utils/graphina_chart_helper.php:6306
+#: utils/graphina_chart_helper.php:6322
 msgid "Gridline Setting"
 msgstr ""
 
-#: utils/graphina_chart_helper.php:6313
+#: utils/graphina_chart_helper.php:6329
 msgid "Line Show"
 msgstr ""
 
-#: utils/graphina_chart_helper.php:6323
+#: utils/graphina_chart_helper.php:6339
 msgid "Gridline Count"
 msgstr ""
 
-#: utils/graphina_chart_helper.php:6335
+#: utils/graphina_chart_helper.php:6351
 msgid "Gridline color"
 msgstr ""
 
-#: utils/graphina_chart_helper.php:6356
+#: utils/graphina_chart_helper.php:6372
 msgid "Log Scale Settings"
 msgstr ""
 
-#: utils/graphina_chart_helper.php:6380
+#: utils/graphina_chart_helper.php:6396
 msgid "Scale Type"
 msgstr ""
 
-#: utils/graphina_chart_helper.php:6384
+#: utils/graphina_chart_helper.php:6400
 msgid "Log"
 msgstr ""
 
-#: utils/graphina_chart_helper.php:6385
+#: utils/graphina_chart_helper.php:6401
 msgid "MirrorLog"
 msgstr ""
 
-#: utils/graphina_chart_helper.php:6417
+#: utils/graphina_chart_helper.php:6433
 msgid "Show Legend"
 msgstr ""
 
-#: utils/graphina_chart_helper.php:6430
-#: utils/graphina_chart_helper.php:6498
+#: utils/graphina_chart_helper.php:6446
+#: utils/graphina_chart_helper.php:6514
 msgid "Legend Position"
 msgstr ""
 
-#: utils/graphina_chart_helper.php:6443
-#: utils/graphina_chart_helper.php:6528
+#: utils/graphina_chart_helper.php:6459
+#: utils/graphina_chart_helper.php:6544
 msgid "Legend Text Color"
 msgstr ""
 
-#: utils/graphina_chart_helper.php:6455
-#: utils/graphina_chart_helper.php:6540
+#: utils/graphina_chart_helper.php:6471
+#: utils/graphina_chart_helper.php:6556
 msgid "Legend Text Fontsize"
 msgstr ""
 
-#: utils/graphina_chart_helper.php:6476
+#: utils/graphina_chart_helper.php:6492
 msgid "Start"
 msgstr ""
 
-#: utils/graphina_chart_helper.php:6484
+#: utils/graphina_chart_helper.php:6500
 msgid "End"
 msgstr ""
 
-#: utils/graphina_chart_helper.php:6510
+#: utils/graphina_chart_helper.php:6526
 msgid "Labeled Value Text"
 msgstr ""
 
-#: utils/graphina_chart_helper.php:6517
+#: utils/graphina_chart_helper.php:6533
 msgid "Percentages"
 msgstr ""
 
-#: utils/graphina_chart_helper.php:6557
+#: utils/graphina_chart_helper.php:6573
 msgid "Legend Color"
 msgstr ""
 
-#: utils/graphina_chart_helper.php:6568
+#: utils/graphina_chart_helper.php:6584
 msgid "Legend Size"
 msgstr ""
 
-#: utils/graphina_chart_helper.php:6677
+#: utils/graphina_chart_helper.php:6693
 msgid " LineWidth"
 msgstr ""
 
-#: utils/graphina_chart_helper.php:6689
+#: utils/graphina_chart_helper.php:6705
 msgid " Line Dash Style"
 msgstr ""
 
-#: utils/graphina_chart_helper.php:6694
+#: utils/graphina_chart_helper.php:6710
 msgid "Style 1"
 msgstr ""
 
-#: utils/graphina_chart_helper.php:6695
+#: utils/graphina_chart_helper.php:6711
 msgid "Style 2"
 msgstr ""
 
-#: utils/graphina_chart_helper.php:6696
+#: utils/graphina_chart_helper.php:6712
 msgid "Style 3"
 msgstr ""
 
-#: utils/graphina_chart_helper.php:6697
+#: utils/graphina_chart_helper.php:6713
 msgid "Style 4"
 msgstr ""
 
-#: utils/graphina_chart_helper.php:6698
+#: utils/graphina_chart_helper.php:6714
 msgid "Style 5"
 msgstr ""
 
-#: utils/graphina_chart_helper.php:6699
+#: utils/graphina_chart_helper.php:6715
 msgid "Style 6"
 msgstr ""
 
-#: utils/graphina_chart_helper.php:6700
+#: utils/graphina_chart_helper.php:6716
 msgid "Style 7"
 msgstr ""
 
-#: utils/graphina_chart_helper.php:6701
+#: utils/graphina_chart_helper.php:6717
 msgid "Style 8"
 msgstr ""
 
-#: utils/graphina_chart_helper.php:6702
+#: utils/graphina_chart_helper.php:6718
 msgid "Style 9"
 msgstr ""
 
-#: utils/graphina_chart_helper.php:6749
+#: utils/graphina_chart_helper.php:6765
 msgid "Element Setting"
 msgstr ""
 
@@ -3221,80 +3227,80 @@ msgstr ""
 msgid "Download CSV"
 msgstr ""
 
-#: utils/graphina_general_helper.php:344
+#: utils/graphina_general_helper.php:343
 msgid "Docs"
 msgstr ""
 
-#: utils/graphina_general_helper.php:348
-#: utils/graphina_general_helper.php:875
+#: utils/graphina_general_helper.php:347
+#: utils/graphina_general_helper.php:874
 msgid "Get Pro"
 msgstr ""
 
-#: utils/graphina_general_helper.php:549
+#: utils/graphina_general_helper.php:548
 msgid "Apply Filter"
 msgstr ""
 
-#: utils/graphina_general_helper.php:584
-#: utils/graphina_general_helper.php:622
+#: utils/graphina_general_helper.php:583
+#: utils/graphina_general_helper.php:621
 msgid "Choose Chart Type"
 msgstr ""
 
-#: utils/graphina_general_helper.php:588
-#: utils/graphina_general_helper.php:627
+#: utils/graphina_general_helper.php:587
+#: utils/graphina_general_helper.php:626
 msgid "Donut"
 msgstr ""
 
-#: utils/graphina_general_helper.php:589
-#: utils/graphina_general_helper.php:626
+#: utils/graphina_general_helper.php:588
+#: utils/graphina_general_helper.php:625
 msgid "Pie"
 msgstr ""
 
-#: utils/graphina_general_helper.php:590
+#: utils/graphina_general_helper.php:589
 msgid "PolarArea"
 msgstr ""
 
-#: utils/graphina_general_helper.php:594
-#: utils/graphina_general_helper.php:631
+#: utils/graphina_general_helper.php:593
+#: utils/graphina_general_helper.php:630
 msgid "Area"
 msgstr ""
 
-#: utils/graphina_general_helper.php:595
-#: utils/graphina_general_helper.php:634
+#: utils/graphina_general_helper.php:594
+#: utils/graphina_general_helper.php:633
 msgid "Column"
 msgstr ""
 
-#: utils/graphina_general_helper.php:633
+#: utils/graphina_general_helper.php:632
 msgid "Bar"
 msgstr ""
 
-#: utils/graphina_general_helper.php:753
+#: utils/graphina_general_helper.php:752
 msgid "No Data Found"
 msgstr ""
 
-#: utils/graphina_general_helper.php:879
+#: utils/graphina_general_helper.php:878
 msgid "Coming Soon..."
 msgstr ""
 
-#: utils/graphina_general_helper.php:898
+#: utils/graphina_general_helper.php:897
 msgid "You don't have permission to see this content."
 msgstr ""
 
-#: utils/graphina_general_helper.php:901
+#: utils/graphina_general_helper.php:900
 msgid "Unlock Access"
 msgstr ""
 
-#: utils/graphina_general_helper.php:917
+#: utils/graphina_general_helper.php:916
 msgid "Note: Value are seperator by comma, value is use as option "
 msgstr ""
 
-#: utils/graphina_general_helper.php:919
+#: utils/graphina_general_helper.php:918
 msgid "Name1"
 msgstr ""
 
-#: utils/graphina_general_helper.php:920
+#: utils/graphina_general_helper.php:919
 msgid "Name2"
 msgstr ""
 
-#: utils/graphina_general_helper.php:922
+#: utils/graphina_general_helper.php:921
 msgid "And first option will be default selected value "
 msgstr ""

@@ -41,6 +41,13 @@ class ElementorWidgetSettings {
 	public mixed $widget_data = null;
 
 	/**
+	 * The page id
+	 *
+	 * @var mixed
+	 */
+	public mixed $page_id;
+
+	/**
 	 * The default settings for the widget if none are found in the document.
 	 *
 	 * @var array
@@ -56,12 +63,13 @@ class ElementorWidgetSettings {
 	 * @param string $widget_id       The ID of the widget.
 	 * @param array  $default_settings The default settings for the widget.
 	 */
-	public function __construct( int $post_id, string $widget_id, array $default_settings ) {
+	public function __construct( int $post_id, string $widget_id, array $default_settings, int $page_id ) {
 
 		// Initialize class properties.
 		$this->post_id          = $post_id;
 		$this->widget_id        = $widget_id;
 		$this->default_settings = $default_settings;
+		$this->page_id 			= $page_id;
 
 		// Fetch the widget data.
 		$this->set_widget_data();
@@ -119,10 +127,32 @@ class ElementorWidgetSettings {
 
 		// Get settings prepared for display.
 		$settings = $widget->get_settings_for_display();
-
+		$settings = $this->resolve_acf_dynamic_data($settings);
 		// Restore the original post context.
 		$this->elementor()->db->restore_current_post();
-
 		return is_array( $settings ) ? $settings : $this->default_settings;
+	}
+
+	public function resolve_acf_dynamic_data($data) {
+		if (is_array($data)) {
+			foreach ($data as $key => $value) {
+				$data[$key] = $this->resolve_acf_dynamic_data($value);
+			}
+		} elseif (is_string($data) && strpos($data, '[elementor-tag') !== false) {
+			// Extract the ACF field key from the shortcode
+			preg_match('/settings="([^"]+)"/', $data, $matches);
+			if (isset($matches[1])) {
+				$settings = json_decode(urldecode($matches[1]), true);
+				if (isset($settings['key'])) {
+					$acf_field_key = $settings['key'];
+					$data = get_field($acf_field_key, $this->page_id  ); 
+				}else if (isset($settings['custom_key'])) {
+					$acf_field_key = $settings['custom_key'];
+					$data = get_field($acf_field_key, $this->page_id  ); 
+				}
+			}
+		}
+	
+		return $data;
 	}
 }

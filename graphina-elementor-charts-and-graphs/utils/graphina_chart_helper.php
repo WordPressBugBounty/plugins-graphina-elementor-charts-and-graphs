@@ -667,6 +667,22 @@ function graphina_common_chart_setting( Element_Base $this_ele, string $type = '
 				)
 			);
 
+			if ( in_array( $type, array( 'line') ) ){
+				$this_ele->add_control(
+					'iq_' . $type . '_chart_toolbar_download',
+					array(
+	
+						'label'     => esc_html__( 'Download Option', 'graphina-charts-for-elementor' ),
+						'type'      => Controls_Manager::SWITCHER,
+						'label_on'  => esc_html__( 'Hide', 'graphina-charts-for-elementor' ),
+						'label_off' => esc_html__( 'Show', 'graphina-charts-for-elementor' ),
+						'condition' => array(
+							'iq_' . $type . '_can_chart_show_toolbar' => 'yes',
+						),
+					)
+				);
+			}
+
 			$this_ele->add_control(
 				'iq_' . $type . '_chart_toolbar_offsety',
 				array(
@@ -6839,7 +6855,7 @@ function graphina_column_chart_google_series_setting( Element_Base $this_ele, st
 function graphina_ajax_settings( array $settings, string $type ): array {
 	return array(
 		'iq_' . $type . '_can_chart_reload_ajax' => ! empty( $settings[ 'iq_' . $type . '_can_chart_reload_ajax' ] ) ? $settings[ 'iq_' . $type . '_can_chart_reload_ajax' ] : '',
-		'iq_' . $type . '_interval_data_refresh' => ! empty( $settings[ 'iq_' . $type . '_interval_data_refresh' ] ) ? $settings[ 'iq_' . $type . '_interval_data_refresh' ] : 0,
+		'iq_' . $type . '_interval_data_refresh' => ! empty( $settings[ 'iq_' . $type . '_interval_data_refresh' ] ) && $settings[ 'iq_' . $type . '_interval_data_refresh' ] !== 0 ? $settings[ 'iq_' . $type . '_interval_data_refresh' ] : 10,
 		'iq_' . $type . '_chart_filter_enable'   => ! empty( $settings[ 'iq_' . $type . '_chart_filter_enable' ] ) ? $settings[ 'iq_' . $type . '_chart_filter_enable' ] : '',
 	);
 }

@@ -352,8 +352,6 @@ class Distributed_Column_Chart extends Widget_Base {
 		$settings                 = $this->get_settings_for_display();
 		$type                     = $this->get_chart_type();
 		$ajax_settings            = graphina_ajax_settings( $settings, $type );
-		$enable_number_formatting = $settings[ 'iq_' . $type . '_chart_yaxis_number_format' ] === 'yes';
-		$locale                   = $settings[ 'iq_' . $type . '_chart_yaxis_locale' ];
 		$main_id                  = graphina_widget_id( $this );
 		$gradient                 = array();
 		$second_gradient          = array();

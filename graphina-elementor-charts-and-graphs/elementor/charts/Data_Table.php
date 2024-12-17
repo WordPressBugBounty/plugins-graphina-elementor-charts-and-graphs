@@ -541,7 +541,9 @@ class Data_Table extends Widget_Base {
 			array(
 				'name'     => 'iq_' . $type . '_cell_typography',
 				'label'    => esc_html__( 'Typography', 'graphina-charts-for-elementor' ),
-				'scheme'   => Core\Schemes\Typography::TYPOGRAPHY_1,
+				'global' => [
+					'default' => \Elementor\Core\Kits\Documents\Tabs\Global_Typography::TYPOGRAPHY_PRIMARY,
+				],
 				'selector' => '{{WRAPPER}} .dataTables_wrapper',
 			)
 		);

@@ -278,7 +278,6 @@ function graphina_recursive_sanitize_textfield( array $request_data ): array {
 			$filter_parameters[ $key ] = sanitize_text_field( $value );
 		}
 	}
-
 	return $filter_parameters;
 }
 

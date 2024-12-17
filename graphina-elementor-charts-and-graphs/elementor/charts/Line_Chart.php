@@ -443,6 +443,11 @@ class Line_Chart extends Widget_Base {
 		$category            = implode( '_,_', $data['category'] );
 		$drop_shadow_series  = implode( ',', $drop_shadow_series );
 		$tooltip_series      = implode( ',', $tooltip_series );
+
+		$is_download		 = 0;
+		if(!empty($settings[ 'iq_' . $type . '_chart_toolbar_download' ] === 'yes') && ($settings[ 'iq_' . $type . '_can_chart_show_toolbar' ] === 'yes')){
+			$is_download     = 1;
+		}
 		$local_string_type   = graphina_common_setting_get( 'thousand_seperator' );
 		graphina_chart_widget_content( $this, $main_id, $settings );
 		if ( graphina_restricted_access( 'line', $main_id, $settings, false ) === false ) {
@@ -488,6 +493,9 @@ class Line_Chart extends Widget_Base {
 									png: {
 										filename: "<?php echo esc_js( $export_file_name ); ?>"
 									}
+								},
+								tools:{
+									download: <?php echo esc_js($is_download); ?>,
 								}
 							},
 							dropShadow: {

@@ -264,6 +264,8 @@ function initGraphinaCharts(id, type = 'area') {
                         && typeof graphina_localize.graphinaAllGraphs[id].updateSeries !== "undefined" ){
                         graphina_localize.graphinaAllGraphs[id].updateOptions(option, true, graphina_localize.graphinaAllGraphsOptions[id].animation);
                         graphina_localize.graphinaAllGraphs[id].updateSeries(series, graphina_localize.graphinaAllGraphsOptions[id].animation);
+                        graphina_localize.graphinaAllGraphs[id].destroy();
+                        instantInitGraphinaCharts(id,type);
                     }else{
                         graphina_localize.graphinaAllGraphs[id].destroy();
                         instantInitGraphinaCharts(id,type);
