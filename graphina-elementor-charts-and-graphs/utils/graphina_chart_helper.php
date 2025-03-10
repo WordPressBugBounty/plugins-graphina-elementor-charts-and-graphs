@@ -2627,7 +2627,7 @@ function graphina_chart_style( Element_Base $this_ele, string $type = 'chart_id'
 			)
 		);
 
-		$this_ele->add_control(
+		$this_ele->add_responsive_control(
 			'iq_' . $type . '_chart_font_size',
 			array(
 				'label'      => esc_html__( 'Font Size', 'graphina-charts-for-elementor' ),
@@ -2656,6 +2656,14 @@ function graphina_chart_style( Element_Base $this_ele, string $type = 'chart_id'
 					'unit' => 'px',
 					'size' => 12,
 				),
+				'mobile_default' => array(
+					'unit' => 'px',
+					'size' => 12,
+				),
+				'tablet_default' => array(
+					'unit' => 'px',
+					'size' => 12,
+				)
 			)
 		);
 
@@ -4112,7 +4120,7 @@ function graphina_tooltip( Element_Base $this_ele, string $type = 'chart_id', bo
 				'description' => $notice,
 			)
 		);
-		if ( in_array( $type, array( 'pie', 'donut', 'radial', 'polar' ), true ) ) {
+		if ( in_array( $type, array( 'pie','area', 'donut', 'radial', 'polar' ), true ) ) {
 			$this_ele->add_control(
 				'iq_' . $type . '_chart_number_format_commas',
 				array(

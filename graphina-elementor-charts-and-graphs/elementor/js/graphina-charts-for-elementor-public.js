@@ -652,6 +652,7 @@ function getDataForChartsAjax(request_fields, type, id, selected_field = '',butt
                 }
             }
             if (response.status === true) {
+
                 if (response.fail === true) {
                     graphina_localize.graphinaBlockCharts[response.chart_id] = response.fail_message;
                     initGraphinaCharts(response.chart_id);
@@ -697,6 +698,9 @@ function getDataForChartsAjax(request_fields, type, id, selected_field = '',butt
                             instantInitGraphinaCharts(response.chart_id,type);
                         }
                         graphina_localize.graphinaAllGraphsOptions[response.chart_id].options = mergeDeep(graphina_localize.graphinaAllGraphsOptions[response.chart_id].options, response.chart_option);
+                        if(type === 'column'){
+                            graphina_localize.graphinaAllGraphsOptions[response.chart_id].options.xaxis.type = 'category'
+                        }
                         if (isInit[response.chart_id] === true) {
                             initGraphinaCharts(response.chart_id, type);
                         }

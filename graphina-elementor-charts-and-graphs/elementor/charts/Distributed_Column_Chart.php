@@ -262,6 +262,20 @@ class Distributed_Column_Chart extends Widget_Base {
 				),
 			)
 		);
+
+		$this->add_control(
+			'iq_' . $type . '_chart_title_3_',
+			array(
+				'label'       => 'Title',
+				'type'        => Controls_Manager::TEXT,
+				'placeholder' => esc_html__( 'Add Tile', 'graphina-charts-for-elementor' ),
+				'default'     => 'Element 1',
+				'dynamic'     => array(
+					'active' => true,
+				),
+			)
+		);
+
 		$repeater = new Repeater();
 
 		$repeater->add_control(
@@ -443,6 +457,7 @@ class Distributed_Column_Chart extends Widget_Base {
 			}
 			$data['series'][] = array(
 				'data' => $value,
+				'name' => $settings['iq_' . $type . '_chart_title_3_']
 			);
 			if ( $settings[ 'iq_' . $type . '_chart_data_option' ] !== 'manual' ) {
 				$data = array(

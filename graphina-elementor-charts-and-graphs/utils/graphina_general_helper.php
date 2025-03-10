@@ -302,6 +302,15 @@ function graphina_widget_id( Element_Base $this_el ): string {
 }
 
 
+// Disable auto-updates for a specific plugin
+function disable_plugin_auto_updates($update, $item) {
+	// Replace 'graphina/graphina.php' with the actual plugin path
+	if ($item->slug === 'graphina-elementor-charts-and-graphs' || $item->plugin === 'graphina-elementor-charts-and-graphs/graphina-charts-for-elementor.php') {
+		return false;
+	}
+	return $update;
+}
+
 /**
  * Update the configuration options for Graphina.
  *

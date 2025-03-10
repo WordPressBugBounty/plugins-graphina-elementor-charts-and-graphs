@@ -398,7 +398,8 @@ class Donut_Chart extends Widget_Base {
 											showAlways: '<?php echo esc_js( ! empty( $settings[ 'iq_' . $type . '_chart_datalabel_total_title_always' ] ) && $settings[ 'iq_' . $type . '_chart_datalabel_total_title_always' ] === 'yes' ); ?>',
 											label: '<?php echo esc_js( ! empty( $settings[ 'iq_' . $type . '_chart_datalabel_total_title' ] ) ? $settings[ 'iq_' . $type . '_chart_datalabel_total_title' ] : esc_html__( 'Total', 'graphina-charts-for-elementor' ) ); ?>',
 											fontFamily: '<?php echo esc_js( $settings[ 'iq_' . $type . '_chart_font_family' ] ); ?>',
-											fontight: '<?php echo esc_js( $settings[ 'iq_' . $type . '_chart_font_weight' ] ); ?>',
+											fontSize: '<?php echo esc_js( $settings[ 'iq_' . $type . '_chart_font_size' ]['size'] . $settings[ 'iq_' . $type . '_chart_font_size' ]['unit'] ); ?>',
+											fontWeight: '<?php echo esc_js( $settings[ 'iq_' . $type . '_chart_font_weight' ] ); ?>',
 											color: '<?php echo esc_js( ! empty( $settings[ 'iq_' . $type . '_chart_datalabel_font_color' ] ) ? strval( $settings[ 'iq_' . $type . '_chart_datalabel_font_color' ] ) : '#000000' ); ?>',
 											formatter: function(w) {
 
@@ -531,7 +532,34 @@ class Donut_Chart extends Widget_Base {
 							options: {
 								chart: {
 									height: parseInt('<?php echo esc_js( ! empty( $settings[ 'iq_' . $type . '_chart_height_tablet' ] ) ? $settings[ 'iq_' . $type . '_chart_height_tablet' ] : $settings[ 'iq_' . $type . '_chart_height' ] ); ?>')
-								}
+								},
+								dataLabels: {
+									style: {
+										fontSize: '<?php echo !empty($settings[ 'iq_' . $type . '_chart_font_size_tablet' ]['size']) ?  esc_js( $settings[ 'iq_' . $type . '_chart_font_size_tablet' ]['size'] . $settings[ 'iq_' . $type . '_chart_font_size_tablet' ]['unit'] ) : esc_js( $settings[ 'iq_' . $type . '_chart_font_size' ]['size'] . $settings[ 'iq_' . $type . '_chart_font_size' ]['unit'] ); ?>',
+									}
+								},
+								tooltip: {
+									style: {
+										fontSize: '<?php echo !empty($settings[ 'iq_' . $type . '_chart_font_size_tablet' ]['size']) ?  esc_js( $settings[ 'iq_' . $type . '_chart_font_size_tablet' ]['size'] . $settings[ 'iq_' . $type . '_chart_font_size_tablet' ]['unit'] ) : esc_js( $settings[ 'iq_' . $type . '_chart_font_size' ]['size'] . $settings[ 'iq_' . $type . '_chart_font_size' ]['unit'] ); ?>',
+									},
+								},
+								legend: {
+									fontSize: '<?php echo !empty($settings[ 'iq_' . $type . '_chart_font_size_tablet' ]['size']) ?  esc_js( $settings[ 'iq_' . $type . '_chart_font_size_tablet' ]['size'] . $settings[ 'iq_' . $type . '_chart_font_size_tablet' ]['unit'] ) : esc_js( $settings[ 'iq_' . $type . '_chart_font_size' ]['size'] . $settings[ 'iq_' . $type . '_chart_font_size' ]['unit'] ); ?>',
+								},
+								plotOptions: {
+									pie: {
+										donut: {
+											labels: {
+												value: {
+													fontSize: '<?php echo !empty($settings[ 'iq_' . $type . '_chart_font_size_tablet' ]['size']) ?  esc_js( $settings[ 'iq_' . $type . '_chart_font_size_tablet' ]['size'] . $settings[ 'iq_' . $type . '_chart_font_size_tablet' ]['unit'] ) : esc_js( $settings[ 'iq_' . $type . '_chart_font_size' ]['size'] . $settings[ 'iq_' . $type . '_chart_font_size' ]['unit'] ); ?>',
+												},
+												total:{
+													fontSize: '<?php echo !empty($settings[ 'iq_' . $type . '_chart_font_size_tablet' ]['size']) ?  esc_js( $settings[ 'iq_' . $type . '_chart_font_size_tablet' ]['size'] . $settings[ 'iq_' . $type . '_chart_font_size_tablet' ]['unit'] ) : esc_js( $settings[ 'iq_' . $type . '_chart_font_size' ]['size'] . $settings[ 'iq_' . $type . '_chart_font_size' ]['unit'] ); ?>',
+												}
+											}
+										}
+									}
+								},
 							}
 						},
 							{
@@ -539,7 +567,34 @@ class Donut_Chart extends Widget_Base {
 								options: {
 									chart: {
 										height: parseInt('<?php echo esc_js( ! empty( $settings[ 'iq_' . $type . '_chart_height_mobile' ] ) ? $settings[ 'iq_' . $type . '_chart_height_mobile' ] : $settings[ 'iq_' . $type . '_chart_height' ] ); ?>')
-									}
+									},
+									dataLabels: {
+										style: {
+											fontSize: '<?php echo !empty($settings[ 'iq_' . $type . '_chart_font_size_mobile' ]['size']) ?  esc_js( $settings[ 'iq_' . $type . '_chart_font_size_mobile' ]['size'] . $settings[ 'iq_' . $type . '_chart_font_size_mobile' ]['unit'] ) : esc_js( $settings[ 'iq_' . $type . '_chart_font_size' ]['size'] . $settings[ 'iq_' . $type . '_chart_font_size' ]['unit'] ); ?>',
+										}
+									},
+									tooltip: {
+										style: {
+											fontSize: '<?php echo !empty($settings[ 'iq_' . $type . '_chart_font_size_mobile' ]['size']) ?  esc_js( $settings[ 'iq_' . $type . '_chart_font_size_mobile' ]['size'] . $settings[ 'iq_' . $type . '_chart_font_size_mobile' ]['unit'] ) : esc_js( $settings[ 'iq_' . $type . '_chart_font_size' ]['size'] . $settings[ 'iq_' . $type . '_chart_font_size' ]['unit'] ); ?>',
+										},
+									},
+									legend: {
+										fontSize: '<?php echo !empty($settings[ 'iq_' . $type . '_chart_font_size_mobile' ]['size']) ?  esc_js( $settings[ 'iq_' . $type . '_chart_font_size_mobile' ]['size'] . $settings[ 'iq_' . $type . '_chart_font_size_mobile' ]['unit'] ) : esc_js( $settings[ 'iq_' . $type . '_chart_font_size' ]['size'] . $settings[ 'iq_' . $type . '_chart_font_size' ]['unit'] ); ?>',
+									},
+									plotOptions: {
+										pie: {
+											donut: {
+												labels: {
+													value: {
+														fontSize: '<?php echo !empty($settings[ 'iq_' . $type . '_chart_font_size_mobile' ]['size']) ?  esc_js( $settings[ 'iq_' . $type . '_chart_font_size_mobile' ]['size'] . $settings[ 'iq_' . $type . '_chart_font_size_mobile' ]['unit'] ) : esc_js( $settings[ 'iq_' . $type . '_chart_font_size' ]['size'] . $settings[ 'iq_' . $type . '_chart_font_size' ]['unit'] ); ?>',
+													},
+													total:{
+														fontSize: '<?php echo !empty($settings[ 'iq_' . $type . '_chart_font_size_mobile' ]['size']) ?  esc_js( $settings[ 'iq_' . $type . '_chart_font_size_mobile' ]['size'] . $settings[ 'iq_' . $type . '_chart_font_size_mobile' ]['unit'] ) : esc_js( $settings[ 'iq_' . $type . '_chart_font_size' ]['size'] . $settings[ 'iq_' . $type . '_chart_font_size' ]['unit'] ); ?>',
+													}
+												}
+											}
+										}
+									},
 								}
 							}
 						]

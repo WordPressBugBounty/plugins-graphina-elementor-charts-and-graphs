@@ -31,7 +31,7 @@ class PluginLoad {
 	public function __construct() {
 		add_filter( 'plugin_action_links_' . GRAPHINA_BASE_PATH, 'graphina_plugin_settings_link' );
 		add_action( 'init', 'graphina_update_configuration_options' );
-
+		add_filter('auto_update_plugin', 'disable_plugin_auto_updates', 10, 2);
 		// Define the path to the plugin's language files.
 		$language_path = dirname( GRAPHINA_BASE_PATH ) . '/languages/';
 		// Load the plugin's text domain for localization.

@@ -178,6 +178,36 @@ class Column_Chart extends Widget_Base {
 			)
 		);
 
+		$this->add_control(
+			'iq_'.$type.'_is_chart_datalable_total',
+			array(
+				'label'     => esc_html__( 'Show Total', 'graphina-charts-for-elementor' ),
+				'type'      => Controls_Manager::SWITCHER,
+				'label_on'  => esc_html__( 'Yes', 'graphina-charts-for-elementor' ),
+				'label_off' => esc_html__( 'No', 'graphina-charts-for-elementor' ),
+				'default'	=> true,
+				'condition' => array(
+					'iq_' . $type . '_chart_stacked'    => 'yes',
+				)
+			)
+		);
+
+
+		$this->add_control(
+			'iq_' . $type . '_is_chart_datalable_total_fontsize',
+			array(
+				'label'     => esc_html__( 'Total font size', 'graphina-charts-for-elementor' ),
+				'type'      => Controls_Manager::NUMBER,
+				'default'   => 12,
+				'min'       => 0,
+				'condition' => array(
+					'iq_' . $type . '_chart_stacked'    		=> 'yes',
+					'iq_'.$type.'_is_chart_datalable_total'    	=> 'yes',
+				),
+			)
+		);
+
+
 		graphina_dropshadow( $this, $type );
 
 		graphina_animation( $this, $type );
@@ -599,6 +629,12 @@ class Column_Chart extends Widget_Base {
 								dataLabels: {
 									position: '<?php echo esc_js( $settings[ 'iq_' . $type . '_chart_datalabel_position_show' ] ); ?>',
 									orientation: '<?php echo esc_js( $settings[ 'iq_' . $type . '_chart_datalabel_orientation' ] ); ?>',
+									total: {
+										enabled: '<?php echo esc_js( $settings[ 'iq_' . $type . '_is_chart_datalable_total' ] === 'yes' ); ?>',
+										style: {
+											fontSize:  parseInt('<?php echo esc_js( $settings[ 'iq_' . $type . '_is_chart_datalable_total_fontsize' ] ); ?>'),
+										}
+									}
 								}
 							},
 						},

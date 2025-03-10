@@ -494,7 +494,7 @@ class Polar_Chart extends Widget_Base {
 						},
 						yaxis: {
 							show: '<?php echo esc_js( $settings[ 'iq_' . $type . '_chart_yaxis_datalabel_show' ] === 'yes' ); ?>',
-							tickamount:parseInt("<?php echo esc_js( ! empty( $settings[ 'iq_' . $type . '_chart_yaxis_datalabel_tick_amount' ] ) ? $settings[ 'iq_' . $type . '_chart_yaxis_datalabel_tick_amount' ] : 6 ); ?>") || 6,
+							tickAmount:parseInt("<?php echo esc_js( ! empty( $settings[ 'iq_' . $type . '_chart_yaxis_datalabel_tick_amount' ] ) ? $settings[ 'iq_' . $type . '_chart_yaxis_datalabel_tick_amount' ] : 6 ); ?>") || 6,
 							labels: {
 								style: {
 									colors: '<?php echo esc_js( $settings[ 'iq_' . $type . '_chart_font_color' ] ); ?>',

@@ -14,8 +14,8 @@
  * Plugin Name:       Graphina - Elementor Charts and Graphs
  * Plugin URI:        https://graphina.iqonic.design/
  * Description:       Your ultimate charts and graphs solution to enhance visual effects. Create versatile, advanced and interactive charts on your website.
- * Version:           2.0.5
- * Elementor tested up to: 3.26.0
+ * Version:           2.0.6
+ * Elementor tested up to: 3.27.6
  * Elementor Pro tested up to: 3.20.2
  * Requires PHP:      8.0
  * Author:            Iqonic Design
@@ -54,11 +54,11 @@ if ( ! defined( 'GRAPHINA_BASE_PATH' ) ) {
 }
 
 if ( ! defined( 'GRAPHINA_CHARTS_FOR_ELEMENTOR_VERSION' ) ) {
-	define( 'GRAPHINA_CHARTS_FOR_ELEMENTOR_VERSION', '2.0.5' );
+	define( 'GRAPHINA_CHARTS_FOR_ELEMENTOR_VERSION', '2.0.6' );
 }
 
 if ( ! defined( 'GRAPHINA_CHARTS_DEPENDENT_PRO_VERSION' ) ) {
-	define( 'GRAPHINA_CHARTS_DEPENDENT_PRO_VERSION', '2.1.4' );
+	define( 'GRAPHINA_CHARTS_DEPENDENT_PRO_VERSION', '2.1.5' );
 }
 if ( ! defined( 'GRAPHINA_WP_CACHE_GROUP' ) ) {
 	define( 'GRAPHINA_WP_CACHE_GROUP', 'graphina' );
