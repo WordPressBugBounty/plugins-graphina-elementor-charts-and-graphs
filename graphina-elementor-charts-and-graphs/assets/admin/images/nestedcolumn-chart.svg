@@ -1,0 +1,11 @@
+<svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Horizontal Bar Chart (Initial Bar Chart) -->
+  <rect x="6" y="5" width="24" height="4" fill="#FF9EB8" stroke="#DB3360" stroke-width="2.64706" />
+  <rect x="6" y="12" width="18" height="4" fill="#FF9EB8" stroke="#DB3360" stroke-width="2.64706" />
+  <rect x="6" y="19" width="14" height="4" fill="#FF9EB8" stroke="#DB3360" stroke-width="2.64706" />
+  
+  <!-- Vertical Column Chart (Nested After Clicking Bar) -->
+  <rect x="20" y="23" width="3" height="12" fill="#FDB7C9" stroke="#DB3360" stroke-width="2.64706" />
+  <rect x="25" y="21" width="3" height="14" fill="#FDB7C9" stroke="#DB3360" stroke-width="2.64706" />
+  <rect x="30" y="20" width="3" height="15" fill="#FDB7C9" stroke="#DB3360" stroke-width="2.64706" />
+</svg>

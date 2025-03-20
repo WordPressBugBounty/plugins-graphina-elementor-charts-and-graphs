@@ -4,7 +4,7 @@ Tags: data visualization wordpress plugin, wordpress charts, wordpress charts an
 Requires PHP: 8.0.0
 Requires at least: 5.9
 Tested up to: 6.7.2
-Stable tag: 2.0.6
+Stable tag: 3.0.0
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -12,13 +12,17 @@ Most Powerful Data visualization plugin for WordPress Elementor. The easiest way
 
 == Description ==
 
+🛍️ Get **Flat 50% OFF** on [Graphina Pro](https://graphina.iqonic.design/?utm_source=referral&utm_medium=wordpress.org&utm_campaign=iqonic-march+madness-sale-2025-wordpress-org-banner-click) during the March Madness Sale! 💥
+
+Plus, enjoy a **Flat 20% OFF** on [Graphina DIVI!](https://www.elegantthemes.com/marketplace/graphina-divi-charts-and-graphs/) 🎉DIVI Anniversary sale ! 
+
 # Its like WordPress Elementor Charts on STEROIDS* 💊
 Creating WordPress Charts and Graphs is hard and boring. We make it a whole lot EASIER, QUICKER, more POWERFUL, and more FUN.
 With the most ruthlessly effective Charts & Graphs plugin for rapidly implementing data visualization in WordPress like no other.
 
 **Graphina introducing [Graphina – Divi Charts and Graphs](https://www.elegantthemes.com/marketplace/graphina-divi-charts-and-graphs/) for Divi page builder.**
 
-###  [DEMO](https://graphina.iqonic.design/) | [PRO](https://iqonic.design/product/wordpress-plugins/graphina-pro-elementor-dynamic-charts-graphs-datatables/) | [GUTENBERG](https://codecanyon.net/item/graphina-gutenberg-dynamic-charts-graphs/35447110) | [Firebase Addon](https://codecanyon.net/item/graphina-firebase-addon/31762235) | [Forminator Addon](https://codecanyon.net/item/graphina-forminator-addon/38859800) | [DOCS](https://apps.iqonic.design/docs/product/graphina-elementor-charts-and-graphs/getting-started/) | [Videos](https://www.youtube.com/watch?v=ATJ05RMrpPU&list=PLSPY71mRbPj9gvd4mjeY699OMy5YvTSxR)
+###  [DEMO](https://graphina.iqonic.design/) | [PRO](https://iqonic.design/product/wordpress-plugins/graphina-pro-elementor-dynamic-charts-graphs-datatables/) | [GUTENBERG](https://codecanyon.net/item/graphina-gutenberg-dynamic-charts-graphs/35447110) | [Firebase Addon](https://codecanyon.net/item/graphina-firebase-addon/31762235) | [Forminator Addon](https://codecanyon.net/item/graphina-forminator-addon/38859800) | [DOCS](https://documentation.iqonic.design/graphina/) | [Videos](https://www.youtube.com/watch?v=ATJ05RMrpPU&list=PLSPY71mRbPj9gvd4mjeY699OMy5YvTSxR)
 
 
 👋 Welcome to the most powerful charting solution that ever existed on WordPress - **Graphina**.
@@ -226,6 +230,12 @@ Yes, we'd love to hear from you at <a href="mailto:hello@iqonic.design">hello@iq
 
 
 == Changelog ==
+
+= 3.0.0 - 20/03/2025 =
+- [Enhancement] Integrated Vite asset bundling for improved performance.  
+- [Optimization] Optimized core functionalities for better efficiency.  
+- [Feature] Added adjustable height for Data Table Y-Axis scroll to enhance usability.  
+- [Compatibility] Fully compatible with the latest version of Elementor.  
 
 = 2.0.6 - 10/03/2025 =
 - [Fixed] Various minor bugs.

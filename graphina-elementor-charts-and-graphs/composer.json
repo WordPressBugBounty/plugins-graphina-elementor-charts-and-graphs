@@ -3,25 +3,16 @@
     "description": "Your ultimate charts and graphs solution to enhance visual effects. Create versatile, advanced and interactive charts on your website.",
     "authors": [
         {
-            "name": "Milan6190",
+            "name": "Iqonic Design",
             "email": "hello@iqonic.com"
         }
     ],
     "require": {
-      "ext-json": "*"
-    },
-    "autoload": {
-        "psr-4": {
-            "GraphinaElementor\\App\\": "./app"
-        },
-        "files": [
-            "./utils/graphina_chart_helper.php",
-            "./utils/graphina_google_chart_helper.php",
-            "./utils/graphina_general_helper.php"
-        ]
+        "php": "^8.0",
+        "kucrut/vite-for-wp": "^0.8.0"
     },
     "require-dev": {
-        "dealerdirect/phpcodesniffer-composer-installer": "^1.0",
+        "dealerdirect/phpcodesniffer-composer-installer": "*",
         "wp-coding-standards/wpcs": "^3.0",
         "phpcompatibility/phpcompatibility-wp": "^2.1"
     },
@@ -30,7 +21,16 @@
             "dealerdirect/phpcodesniffer-composer-installer": true
         }
     },
+    "autoload": {
+        "psr-4": {
+            "Graphina\\": "./includes"
+        }
+    },
     "scripts": {
-        "lint": "phpcs --standard=phpcs.xml"
+        "lint": "phpcs --standard=phpcs.xml",
+        "unit-test": [
+            "./vendor/bin/phpcs --standard=phpcs.xml . --report-full=test-report/full-result.txt   --report-summary=test-report/summary.txt "
+        ],
+        "fix": "phpcbf --standard=phpcs.xml ."
     }
 }

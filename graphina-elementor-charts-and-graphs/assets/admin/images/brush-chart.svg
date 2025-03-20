@@ -1,0 +1,16 @@
+<svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Brush Area -->
+  <rect x="5" y="10" width="30" height="8" fill="#FF9EB8" stroke="#DB3360" stroke-width="2.64706" stroke-linecap="round" stroke-linejoin="round" />
+  
+  <!-- First Line inside brush -->
+  <line x1="5" y1="10" x2="10" y2="18" stroke="#DB3360" stroke-width="2.64706" stroke-linecap="round" stroke-linejoin="round" />
+  
+  <!-- Second Line inside brush -->
+  <line x1="10" y1="18" x2="20" y2="12" stroke="#DB3360" stroke-width="2.64706" stroke-linecap="round" stroke-linejoin="round" />
+  
+  <!-- Third Line inside brush -->
+  <line x1="20" y1="12" x2="30" y2="20" stroke="#DB3360" stroke-width="2.64706" stroke-linecap="round" stroke-linejoin="round" />
+  
+  <!-- Fourth Line inside brush -->
+  <line x1="30" y1="20" x2="35" y2="15" stroke="#DB3360" stroke-width="2.64706" stroke-linecap="round" stroke-linejoin="round" />
+</svg>

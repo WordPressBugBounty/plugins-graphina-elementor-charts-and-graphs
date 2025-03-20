@@ -1,0 +1,2 @@
+import{G as i}from"./GraphinaApexChartBase-B0hQqMJh.js";class a extends i{setUpChartsHandler(){this.chartHandlers={line:e=>this.observeChartElement(e,"line")}}observeChartElement(e,s){gcfe_public_localize.view_port==="off"?(this.observer||(this.observer=new IntersectionObserver(t=>{t.forEach(r=>{r.isIntersecting&&(this.setupChart(jQuery(r.target),s),this.observer.unobserve(r.target))})},{threshold:.1})),this.observer.observe(e[0])):this.setupChart(e,s)}getChartOptions(e,s,t,r,o){return s==="line"&&(e.responsive=r),e}}new a;
+//# sourceMappingURL=line-D5O0fue0.js.map

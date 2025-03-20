@@ -1,0 +1,8 @@
+<svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Large Bubble -->
+  <circle cx="12" cy="25" r="6" fill="#FF9EB8" stroke="#DB3360" stroke-width="2.64706" stroke-linecap="round" stroke-linejoin="round" />
+  <!-- Medium Bubble -->
+  <circle cx="26" cy="14" r="4" fill="#FF9EB8" stroke="#DB3360" stroke-width="2.64706" stroke-linecap="round" stroke-linejoin="round" />
+  <!-- Small Bubble -->
+  <circle cx="30" cy="26" r="3" fill="#FF9EB8" stroke="#DB3360" stroke-width="2.64706" stroke-linecap="round" stroke-linejoin="round" />
+</svg>

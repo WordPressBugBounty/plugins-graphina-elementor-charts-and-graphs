@@ -1,0 +1,13 @@
+<svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- First Column -->
+  <rect x="6" y="20" width="4" height="14" fill="#FF9EB8" stroke="#DB3360" stroke-width="2.64706" stroke-linecap="round" stroke-linejoin="round" />
+  
+  <!-- Second Column -->
+  <rect x="14" y="14" width="4" height="20" fill="#FF9EB8" stroke="#DB3360" stroke-width="2.64706" stroke-linecap="round" stroke-linejoin="round" />
+
+  <!-- Third Column -->
+  <rect x="22" y="8" width="4" height="26" fill="#FF9EB8" stroke="#DB3360" stroke-width="2.64706" stroke-linecap="round" stroke-linejoin="round" />
+
+  <!-- Fourth Column -->
+  <rect x="30" y="16" width="4" height="18" fill="#FF9EB8" stroke="#DB3360" stroke-width="2.64706" stroke-linecap="round" stroke-linejoin="round" />
+</svg>

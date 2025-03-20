@@ -1,0 +1,16 @@
+<svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Row 1 -->
+  <rect x="6" y="6" width="8" height="8" fill="#FF9EB8" stroke="#DB3360" stroke-width="2.64706" />
+  <rect x="16" y="6" width="8" height="8" fill="#FDB7C9" stroke="#DB3360" stroke-width="2.64706" />
+  <rect x="26" y="6" width="8" height="8" fill="#FDE0E8" stroke="#DB3360" stroke-width="2.64706" />
+
+  <!-- Row 2 -->
+  <rect x="6" y="16" width="8" height="8" fill="#FDB7C9" stroke="#DB3360" stroke-width="2.64706" />
+  <rect x="16" y="16" width="8" height="8" fill="#FF9EB8" stroke="#DB3360" stroke-width="2.64706" />
+  <rect x="26" y="16" width="8" height="8" fill="#FDB7C9" stroke="#DB3360" stroke-width="2.64706" />
+
+  <!-- Row 3 -->
+  <rect x="6" y="26" width="8" height="8" fill="#FDE0E8" stroke="#DB3360" stroke-width="2.64706" />
+  <rect x="16" y="26" width="8" height="8" fill="#FDB7C9" stroke="#DB3360" stroke-width="2.64706" />
+  <rect x="26" y="26" width="8" height="8" fill="#FF9EB8" stroke="#DB3360" stroke-width="2.64706" />
+</svg>
