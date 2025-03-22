@@ -116,6 +116,7 @@ class DonutChart extends GraphinaApexChartBase {
 		$controls->graphina_chart_legend_setting( $this, $chart_type );
 		$controls->graphina_series_setting( $this, $chart_type, array( 'color' ), true, array( 'classic', 'gradient', 'pattern' ), false, false );
 		$controls->register_chart_restriction_controls( $this, $chart_type );
+		apply_filters( 'graphina_password_form_style_section', $this, $chart_type );
 	}
 	/**
      * Render the widget output on the front-end.
@@ -172,7 +173,6 @@ class DonutChart extends GraphinaApexChartBase {
 				'background'    => ! empty($settings[ GRAPHINA_PREFIX . $chart_type . '_chart_background_color1' ] ) ? $settings[ GRAPHINA_PREFIX . $chart_type . '_chart_background_color1' ] : '',
 				'height'        => ! empty($settings[ GRAPHINA_PREFIX . $chart_type . '_chart_height' ] ) ? $settings[ GRAPHINA_PREFIX . $chart_type . '_chart_height' ] : '350',
 				'type'          => $type_of_chart,
-				'stacked'       => ! empty( $settings[ GRAPHINA_PREFIX . $chart_type . '_chart_area_stacked' ] ) ? $settings[ GRAPHINA_PREFIX . $chart_type . '_chart_area_stacked' ] : '',
 				'toolbar'       => array(
 					'offsetX' => ! empty( $settings[ GRAPHINA_PREFIX . $chart_type . '_chart_toolbar_offsetx' ] ) ? intval( $settings[ GRAPHINA_PREFIX . $chart_type . '_chart_toolbar_offsetx' ] ) : 0,
 					'offsetY' => ! empty( $settings[ GRAPHINA_PREFIX . $chart_type . '_chart_toolbar_offsety' ] ) ? intval( $settings[ GRAPHINA_PREFIX . $chart_type . '_chart_toolbar_offsety' ] ) : 0,
@@ -192,9 +192,6 @@ class DonutChart extends GraphinaApexChartBase {
 						'download' => ! empty( $settings[ GRAPHINA_PREFIX . $chart_type . '_chart_toolbar_download' ] ) && $settings[ GRAPHINA_PREFIX . $chart_type . '_chart_toolbar_download' ] === 'yes' ? true : false,
 					),
 				),
-				'zoom' => [
-					'enabled' => false
-				],
 				'dropShadow'    => array(
 					'enabled' => $settings[ GRAPHINA_PREFIX . $chart_type . '_is_chart_dropshadow' ] ?? false,
 					'top'     => $settings[ GRAPHINA_PREFIX . $chart_type . '_is_chart_dropshadow_top' ] ?? 0,
@@ -237,6 +234,7 @@ class DonutChart extends GraphinaApexChartBase {
 					'show' => ! empty( $settings[ GRAPHINA_PREFIX . $chart_type . '_chart_xaxis_crosshairs_show' ] ) && $settings[ GRAPHINA_PREFIX . $chart_type . '_chart_xaxis_crosshairs_show' ] === 'yes' ? true : false,
 				),
 			),
+			'colors'	=> $gradient,
 			'yaxis'      => array(
 				'opposite' 		  => ! empty( $settings[ GRAPHINA_PREFIX . $chart_type . '_chart_yaxis_datalabel_position' ] ) && $settings[ GRAPHINA_PREFIX . $chart_type . '_chart_yaxis_datalabel_position' ] === 'yes' ? true : false,
 				'tickAmount'      => ! empty( $settings[ GRAPHINA_PREFIX . $chart_type . '_chart_yaxis_datalabel_tick_amount' ] ) ? intval( $settings[ GRAPHINA_PREFIX . $chart_type . '_chart_yaxis_datalabel_tick_amount' ] ) : 6,
@@ -294,6 +292,7 @@ class DonutChart extends GraphinaApexChartBase {
 				'startAngle' => ! empty( $settings[ GRAPHINA_PREFIX . $chart_type . 'is_semi_circular_donut_chart' ] ) && $settings[ GRAPHINA_PREFIX . $chart_type . 'is_semi_circular_donut_chart' ] === 'yes' ? $settings[ GRAPHINA_PREFIX . $chart_type . 'semi_circular_donut_chart_start_angle' ] : 0,
 				'endAngle'   => ! empty( $settings[ GRAPHINA_PREFIX . $chart_type . 'is_semi_circular_donut_chart' ] ) &&  $settings[ GRAPHINA_PREFIX . $chart_type . 'is_semi_circular_donut_chart' ] === 'yes' ? $settings[ GRAPHINA_PREFIX . $chart_type . 'semi_circular_donut_chart_end_angle' ] : 360,
 				'donut'      => array(
+						'size' => ! empty( $settings[GRAPHINA_PREFIX . $chart_type . '_chart_inner_radius'] ) ? $settings[GRAPHINA_PREFIX . $chart_type . '_chart_inner_radius'] : 65,
 						'fontSize' => ! empty( $settings[ GRAPHINA_PREFIX . $chart_type . '_chart_font_size' ]['size'] ) ? $settings[ GRAPHINA_PREFIX . $chart_type . '_chart_font_size' ]['size'] . $settings[ GRAPHINA_PREFIX . $chart_type . '_chart_font_size' ]['unit'] : '12px','labels' => array(
 						'show'               => $settings[ GRAPHINA_PREFIX . $chart_type . '_chart_center_datalabel_show' ] === 'yes' ? true : false,
 						'valueInStringShow'  => ! empty( $settings[ GRAPHINA_PREFIX . $chart_type . '_chart_label_pointer' ] ) ? $settings[ GRAPHINA_PREFIX . $chart_type . '_chart_label_pointer' ] : 'no',

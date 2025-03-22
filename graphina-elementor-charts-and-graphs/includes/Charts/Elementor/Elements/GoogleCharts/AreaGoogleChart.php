@@ -127,6 +127,7 @@ class AreaGoogleChart extends GraphinaGoogleChartBase {
 		$controls->graphina_advance_v_axis_setting( $this, $chart_type );
 		$controls->graphina_google_series_setting( $this, $chart_type, array( 'tooltip', 'color' ) );
 		$controls->register_chart_restriction_controls( $this, $chart_type );
+		apply_filters( 'graphina_password_form_style_section', $this, $chart_type );
 	}
 
 

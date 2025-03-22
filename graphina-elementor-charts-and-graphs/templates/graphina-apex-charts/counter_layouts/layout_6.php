@@ -16,15 +16,13 @@ use Elementor\Icons_Manager;
 	<div class="main-counter">
 		<div class="counter-icon part-1">
 			<?php if ( isset( $counter_icon ) && ! empty( $counter_icon ) ) : ?>
-				<div class="counter-icon">
 					<?php Icons_Manager::render_icon( $settings[ GRAPHINA_PREFIX . $chart_type . '_element_counter_icon' ], array( 'aria-hidden' => 'true' ) ); ?>
-				</div>
 			<?php endif; ?>
 		</div>
 
 		<div class="part-2">
 			<?php if ( isset( $counter_title ) && ! empty( $counter_title ) ) : ?>
-				<h4 class="counter-title"><?php echo esc_html( $counter_title ); ?></h4>
+				<h2 class="counter-title text-center title"><?php echo esc_html( $counter_title ); ?></h2>
 			<?php endif; ?>
 
 			<div class="text-center" style="display: flex;justify-content: center;align-items: center;">
@@ -43,11 +41,11 @@ use Elementor\Icons_Manager;
 					<?php echo esc_html($postfix); ?>
 				</h2>
 			</div>
+			<?php if ( isset( $counter_description ) && ! empty( $counter_description ) ) : ?>
+				<p class="counter-description text-center description"><?php echo esc_html( $counter_description ); ?></p>
+			<?php endif; ?>
 		</div>
 	
-		<?php if ( isset( $counter_description ) && ! empty( $counter_description ) ) : ?>
-			<p class="counter-description description"><?php echo esc_html( $counter_description ); ?></p>
-		<?php endif; ?>
 	</div>
 	
 	<div class="chart-box">

@@ -121,6 +121,7 @@ class DistributeColumnChart extends GraphinaApexChartBase {
 		$controls->graphina_chart_x_axis_setting( $this, $chart_type );
 		$controls->graphina_chart_y_axis_setting( $this, $chart_type );
 		$controls->register_chart_restriction_controls( $this, $chart_type );
+		apply_filters( 'graphina_password_form_style_section', $this, $chart_type );
 	}
 
 	/**
@@ -137,53 +138,35 @@ class DistributeColumnChart extends GraphinaApexChartBase {
 
 		$categories = $tooltip_series = $second_gradient = $fill_pattern = $gradient = array();
 		
-
-		// Prepare series data
-		for ( $i = 0; $i < $series_count; $i++ ) {
-			$colors[]      = ! empty( $settings[ GRAPHINA_PREFIX . $chart_type . '_chart_gradient_1_' . $i ] ) ? strval( $settings[ GRAPHINA_PREFIX . $chart_type . '_chart_gradient_1_' . $i ] ) : '';
-			$value_list    = $settings[ GRAPHINA_PREFIX . $chart_type . '_value_list_3_1_' . $i ] ?? array();
-			$values        = array_map(
-				fn( $v ) => (float) graphina_get_dynamic_tag_data( $v, GRAPHINA_PREFIX . $chart_type . '_chart_value_3_' . $i ),
-				$value_list
-			);
-			$series_temp[] = array(
-				'name'  => esc_html( graphina_get_dynamic_tag_data( $settings, GRAPHINA_PREFIX . $chart_type . '_chart_title_3_' . $i ) ),
-				'data'  => $values,
-				'yaxis' => graphina_get_dynamic_tag_data( $settings, GRAPHINA_PREFIX . $chart_type . '_chart_depends_3_' . $i ) === 'yes' ? 1 : 0,
-			);
-		}
-
-		if ( $chart_type === 'distributed_column' ) {
-			$value_lists = isset( $settings[ GRAPHINA_PREFIX . $chart_type . '_value_list_4_1_' ] ) ? $settings[ GRAPHINA_PREFIX . $chart_type . '_value_list_4_1_' ] : array();
-			$chart_data  = array();
-			foreach ( $value_lists as $index => $item ) {
-				$chart_value = isset( $item[ GRAPHINA_PREFIX . $chart_type . '_chart_value_4_' ] ) ? $item[ GRAPHINA_PREFIX . $chart_type . '_chart_value_4_' ] : null;
-				if ( $chart_value !== null ) {
-					$chart_data[] = $chart_value; // Add value to the chart data array
-				}
+		$value_lists = isset( $settings[ GRAPHINA_PREFIX . $chart_type . '_value_list_4_1_' ] ) ? $settings[ GRAPHINA_PREFIX . $chart_type . '_value_list_4_1_' ] : array();
+		$chart_data  = array();
+		foreach ( $value_lists as $index => $item ) {
+			$chart_value = isset( $item[ GRAPHINA_PREFIX . $chart_type . '_chart_value_4_' ] ) ? $item[ GRAPHINA_PREFIX . $chart_type . '_chart_value_4_' ] : null;
+			if ( $chart_value !== null ) {
+				$chart_data[] = $chart_value; // Add value to the chart data array
 			}
-			$series_temp[] = array(
-				'name' => ! empty( $settings[ GRAPHINA_PREFIX . $chart_type . '_chart_title_3_' ] ) ? $settings[ GRAPHINA_PREFIX . $chart_type . '_chart_title_3_' ] : '',
-				'data' => $chart_data,
-			);
+		}
+		$series_temp[] = array(
+			'name' => ! empty( $settings[ GRAPHINA_PREFIX . $chart_type . '_chart_title_3_' ] ) ? $settings[ GRAPHINA_PREFIX . $chart_type . '_chart_title_3_' ] : '',
+			'data' => $chart_data,
+		);
 
-			$series_count = isset( $settings[ GRAPHINA_PREFIX . $chart_type . '_chart_data_series_count' ] ) ? $settings[ GRAPHINA_PREFIX . $chart_type . '_chart_data_series_count' ] : 0;
-			for ( $i = 0; $i < $series_count; $i++ ) {
-				$dropshadow_series[] = $i;
-				if ( ! empty( $settings[ GRAPHINA_PREFIX . $chart_type . '_chart_tooltip_enabled_on_1_' . $i ] ) && $settings[ GRAPHINA_PREFIX . $chart_type . '_chart_tooltip_enabled_on_1_' . $i ] === 'yes' ) {
-					$tooltip_series[] = $i;
-				}
-				$gradient[] = esc_html( $settings[ GRAPHINA_PREFIX . $chart_type . '_chart_gradient_1_' . $i ] );
-				if ( strval( $settings[ GRAPHINA_PREFIX . $chart_type . '_chart_gradient_2_' . $i ] ) === '' ) {
-					$second_gradient[] = esc_html( $settings[ GRAPHINA_PREFIX . $chart_type . '_chart_gradient_1_' . $i ] );
-				} else {
-					$second_gradient[] = esc_html( $settings[ GRAPHINA_PREFIX . $chart_type . '_chart_gradient_2_' . $i ] );
-				}
-				if ( $settings[ GRAPHINA_PREFIX . $chart_type . '_chart_bg_pattern_' . $i ] !== '' ) {
-					$fill_pattern[] = esc_html( $settings[ GRAPHINA_PREFIX . $chart_type . '_chart_bg_pattern_' . $i ] );
-				} else {
-					$fill_pattern[] = 'verticalLines';
-				}
+		$series_count = isset( $settings[ GRAPHINA_PREFIX . $chart_type . '_chart_data_series_count' ] ) ? $settings[ GRAPHINA_PREFIX . $chart_type . '_chart_data_series_count' ] : 0;
+		for ( $i = 0; $i < $series_count; $i++ ) {
+			$dropshadow_series[] = $i;
+			if ( ! empty( $settings[ GRAPHINA_PREFIX . $chart_type . '_chart_tooltip_enabled_on_1_' . $i ] ) && $settings[ GRAPHINA_PREFIX . $chart_type . '_chart_tooltip_enabled_on_1_' . $i ] === 'yes' ) {
+				$tooltip_series[] = $i;
+			}
+			$gradient[] = esc_html( $settings[ GRAPHINA_PREFIX . $chart_type . '_chart_gradient_1_' . $i ] );
+			if ( strval( $settings[ GRAPHINA_PREFIX . $chart_type . '_chart_gradient_2_' . $i ] ) === '' ) {
+				$second_gradient[] = esc_html( $settings[ GRAPHINA_PREFIX . $chart_type . '_chart_gradient_1_' . $i ] );
+			} else {
+				$second_gradient[] = esc_html( $settings[ GRAPHINA_PREFIX . $chart_type . '_chart_gradient_2_' . $i ] );
+			}
+			if ( $settings[ GRAPHINA_PREFIX . $chart_type . '_chart_bg_pattern_' . $i ] !== '' ) {
+				$fill_pattern[] = esc_html( $settings[ GRAPHINA_PREFIX . $chart_type . '_chart_bg_pattern_' . $i ] );
+			} else {
+				$fill_pattern[] = 'verticalLines';
 			}
 		}
 
@@ -267,7 +250,6 @@ class DistributeColumnChart extends GraphinaApexChartBase {
 			),
 			'xaxis'      => array(
 				'tickAmount'    => ! empty( $settings[ GRAPHINA_PREFIX . $chart_type . '_chart_xaxis_datalabel_tick_amount' ] ) ? intval( $settings[ GRAPHINA_PREFIX . $chart_type . '_chart_xaxis_datalabel_tick_amount' ] ) : 6,
-				'tickPlacement' => ! empty( $settings[ GRAPHINA_PREFIX . $chart_type . '_chart_xaxis_datalabel_tick_placement' ] ) ? $settings[ GRAPHINA_PREFIX . $chart_type . '_chart_xaxis_datalabel_tick_placement' ] : '',
 				'position'      => ! empty( $settings[ GRAPHINA_PREFIX . $chart_type . '_chart_xaxis_datalabel_position' ] ) ? $settings[ GRAPHINA_PREFIX . $chart_type . '_chart_xaxis_datalabel_position' ] : 'buttom',
 				'labels'        => array(
 					'show'         => ! empty( $settings[ GRAPHINA_PREFIX . $chart_type . '_chart_xaxis_datalabel_show' ] ) && $settings[ GRAPHINA_PREFIX . $chart_type . '_chart_xaxis_datalabel_show' ] === 'yes' ? true : false,

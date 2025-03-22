@@ -34,7 +34,9 @@ export default class AreaChart extends GraphinaGoogleChartBase {
 
      // Customize chart options for Gantt Charts (if needed)
      getFinalChartOptions(chartOptions) {
-        // Customize options here if needed
+        if(chartOptions.vAxis.format === 'percent'){
+            chartOptions.vAxis.format = '#\'%\''
+        }
         return chartOptions;
         
     }

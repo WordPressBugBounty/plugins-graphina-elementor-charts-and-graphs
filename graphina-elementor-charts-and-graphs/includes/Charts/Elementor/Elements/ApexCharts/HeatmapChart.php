@@ -115,11 +115,11 @@ class HeatmapChart extends GraphinaApexChartBase {
 		$controls->graphina_chart_dataset( $this, $chart_type );
 		$controls->graphina_chart_data_series( $this, $chart_type, 0 );
 		$controls->graphina_common_chart_setting( $this, $chart_type, false, true, false );
-		$controls->graphina_chart_legend_setting( $this, $chart_type );
-		$controls->graphina_series_setting( $this, $chart_type, array( 'tooltip', 'color' ), true, array( 'classic', 'gradient', 'pattern' ), true, true );
+		$controls->graphina_series_setting( $this, $chart_type, array( 'color' ), true, array( 'classic' ), false, false );
 		$controls->graphina_chart_x_axis_setting( $this, $chart_type );
 		$controls->graphina_chart_y_axis_setting( $this, $chart_type );
 		$controls->register_chart_restriction_controls( $this, $chart_type );
+		apply_filters( 'graphina_password_form_style_section', $this, $chart_type );
 	}
 
 	/**
@@ -363,6 +363,38 @@ class HeatmapChart extends GraphinaApexChartBase {
 			]
 		];
 
+		$xaxis_title_show = ! empty($settings[GRAPHINA_PREFIX . $chart_type . '_chart_xaxis_title_enable']) && $settings[GRAPHINA_PREFIX . $chart_type . '_chart_xaxis_title_enable'] === 'yes' ? true : false;
+
+		if ($xaxis_title_show && ! empty($settings[GRAPHINA_PREFIX . $chart_type . '_chart_xaxis_title'])) {
+
+			$chart_options['xaxis']['title'] = array(
+				'text'    => $settings[GRAPHINA_PREFIX . $chart_type . '_chart_xaxis_title'],
+				'offsetX' => $settings[GRAPHINA_PREFIX . $chart_type . '_chart_xaxis_title_offset_x'],
+				'offsetY' => $settings[GRAPHINA_PREFIX . $chart_type . '_chart_xaxis_title_offset_y'],
+				'style'   => array(
+					'color'      => $settings[GRAPHINA_PREFIX . $chart_type . '_chart_font_color'],
+					'fontSize'   => ! empty($settings[GRAPHINA_PREFIX . $chart_type . '_chart_font_size']['size']) ? $settings[GRAPHINA_PREFIX . $chart_type . '_chart_font_size']['size'] . $settings[GRAPHINA_PREFIX . $chart_type . '_chart_font_size']['unit'] : '12px',
+					'fontFamily' => $settings[GRAPHINA_PREFIX . $chart_type . '_chart_font_family'],
+					'fontWeight' => $settings[GRAPHINA_PREFIX . $chart_type . '_chart_font_weight'],
+				),
+			);
+		}
+
+		$yaxis_title_show = ! empty($settings[GRAPHINA_PREFIX . $chart_type . '_chart_yaxis_title_enable']) && $settings[GRAPHINA_PREFIX . $chart_type . '_chart_yaxis_title_enable'] === 'yes' ? true : false;
+		if ($yaxis_title_show && ! empty($settings[GRAPHINA_PREFIX . $chart_type . '_chart_yaxis_title'])) {
+
+			$chart_options['yaxis']['title'] = array(
+				'text'  => $settings[GRAPHINA_PREFIX . $chart_type . '_chart_yaxis_title'],
+				'style' => array(
+					'color'      => $settings[GRAPHINA_PREFIX . $chart_type . '_card_yaxis_title_font_color'],
+					'fontSize'   => ! empty($settings[GRAPHINA_PREFIX . $chart_type . '_chart_font_size']['size']) ? $settings[GRAPHINA_PREFIX . $chart_type . '_chart_font_size']['size'] . $settings[GRAPHINA_PREFIX . $chart_type . '_chart_font_size']['unit'] : '12px',
+					'fontFamily' => $settings[GRAPHINA_PREFIX . $chart_type . '_chart_font_family'],
+					'fontWeight' => $settings[GRAPHINA_PREFIX . $chart_type . '_chart_font_weight'],
+				),
+			);
+		}
+
+
 		$is_opposite_yaxis = ! empty($settings[GRAPHINA_PREFIX . $chart_type . '_chart_opposite_yaxis_title_enable']) && $settings[GRAPHINA_PREFIX . $chart_type . '_chart_opposite_yaxis_title_enable'] === 'yes' ? true : false;
 
 		if ($is_opposite_yaxis) {
@@ -389,12 +421,18 @@ class HeatmapChart extends GraphinaApexChartBase {
 					'text'  => $settings[GRAPHINA_PREFIX . $chart_type . '_chart_opposite_yaxis_title'],
 					'style' => array(
 						'color' => $settings[GRAPHINA_PREFIX . $chart_type . '_card_opposite_yaxis_title_font_color'],
+						'fontSize'   => ! empty($settings[GRAPHINA_PREFIX . $chart_type . '_chart_font_size']['size']) ? $settings[GRAPHINA_PREFIX . $chart_type . '_chart_font_size']['size'] . $settings[GRAPHINA_PREFIX . $chart_type . '_chart_font_size']['unit'] : '12px',
+						'fontFamily' => ! empty($settings[GRAPHINA_PREFIX . $chart_type . '_chart_font_family']) ? $settings[GRAPHINA_PREFIX . $chart_type . '_chart_font_family'] : 'poppins',
+						'fontWeight' => ! empty($settings[GRAPHINA_PREFIX . $chart_type . '_chart_font_weight']) ? $settings[GRAPHINA_PREFIX . $chart_type . '_chart_font_weight'] : '',
 					),
 				),
 				'labels'          => array(
 					'show'  => ! empty($settings[GRAPHINA_PREFIX . $chart_type . '_chart_opposite_yaxis_label_show']) && $settings[GRAPHINA_PREFIX . $chart_type . '_chart_opposite_yaxis_label_show'] === 'yes',
 					'style' => array(
 						'colors' => array($settings[GRAPHINA_PREFIX . $chart_type . '_card_opposite_yaxis_title_font_color']),
+						'fontSize'   => ! empty($settings[GRAPHINA_PREFIX . $chart_type . '_chart_font_size']['size']) ? $settings[GRAPHINA_PREFIX . $chart_type . '_chart_font_size']['size'] . $settings[GRAPHINA_PREFIX . $chart_type . '_chart_font_size']['unit'] : '12px',
+						'fontFamily' => ! empty($settings[GRAPHINA_PREFIX . $chart_type . '_chart_font_family']) ? $settings[GRAPHINA_PREFIX . $chart_type . '_chart_font_family'] : 'poppins',
+						'fontWeight' => ! empty($settings[GRAPHINA_PREFIX . $chart_type . '_chart_font_weight']) ? $settings[GRAPHINA_PREFIX . $chart_type . '_chart_font_weight'] : '',
 					),
 				),
 				'tickAmount'      => intval($settings[GRAPHINA_PREFIX . $chart_type . '_chart_opposite_yaxis_tick_amount']) ?? 6,

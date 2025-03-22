@@ -17,7 +17,8 @@ export default class GraphinaApexChartBase {
         jQuery(document.body).on('change', '.graphina-select-apex-chart-type', this.debounce(this.handleChartTypeChange.bind(this), 300));    
         jQuery(window).on('elementor/frontend/init', this.handleElementorWidgetInit.bind(this));
         jQuery(window).on('elementor/editor/init', this.handleElementorWidgetInit.bind(this));
-        jQuery(document.body).on('click','.graphina-filter-div-button', this.handleChartFilter.bind(this));
+        jQuery(document.body).off('click','.graphina-filter-div-button.apex')
+        jQuery(document.body).on('click','.graphina-filter-div-button.apex', this.debounce(this.handleChartFilter.bind(this), 300));
     }
 
     debounce(func, wait) {
@@ -72,9 +73,10 @@ export default class GraphinaApexChartBase {
         const currentElement = event.currentTarget
         const elementId      = jQuery(currentElement).data('element_id');
         const chartElement   = jQuery(`.graphina-elementor-chart[data-element_id="${elementId}"]`);
-        let chartType      = jQuery(chartElement).data('chart_type');
-        this.updateChartType(chartElement, chartType,true);
-
+        let chartType        = jQuery(chartElement).data('chart_type');
+        if(chartElement.length > 0){
+            this.updateChartType(chartElement, chartType,true);
+        }
     }
 
     // Setup handlers for various chart types (to be implemented by child classes)

@@ -201,32 +201,32 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 			<tr>
 				<td><?php echo esc_html__( 'Area Google Chart', 'graphina-charts-for-elementor' ); ?></td>
-				<td class="graphina-icon graphina-cross">✘</td>
+				<td class="graphina-icon  graphina-check">✔</td>
 				<td class="graphina-icon graphina-check">✔</td>
 			</tr>
 			<tr>
 				<td><?php echo esc_html__( 'Bar Google Chart', 'graphina-charts-for-elementor' ); ?></td>
-				<td class="graphina-icon graphina-cross">✘</td>
+				<td class="graphina-icon  graphina-check">✔</td>
 				<td class="graphina-icon graphina-check">✔</td>
 			</tr>
 			<tr>
 				<td><?php echo esc_html__( 'Column Google Chart', 'graphina-charts-for-elementor' ); ?></td>
-				<td class="graphina-icon graphina-cross">✘</td>
+				<td class="graphina-icon  graphina-check">✔</td>
 				<td class="graphina-icon graphina-check">✔</td>
 			</tr>
 			<tr>
 				<td><?php echo esc_html__( 'Donut Google Chart', 'graphina-charts-for-elementor' ); ?></td>
-				<td class="graphina-icon graphina-cross">✘</td>
+				<td class="graphina-icon  graphina-check">✔</td>
 				<td class="graphina-icon graphina-check">✔</td>
 			</tr>
 			<tr>
 				<td><?php echo esc_html__( 'Line Google Chart', 'graphina-charts-for-elementor' ); ?></td>
-				<td class="graphina-icon graphina-cross">✘</td>
+				<td class="graphina-icon  graphina-check">✔</td>
 				<td class="graphina-icon graphina-check">✔</td>
 			</tr>
 			<tr>
 				<td><?php echo esc_html__( 'Pie Google Chart', 'graphina-charts-for-elementor' ); ?></td>
-				<td class="graphina-icon graphina-cross">✘</td>
+				<td class="graphina-icon  graphina-check">✔</td>
 				<td class="graphina-icon graphina-check">✔</td>
 			</tr>
 			<tr>
@@ -240,7 +240,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 				<td class="graphina-icon graphina-check">✔</td>
 			</tr>
 			<tr>
-				<td><?php echo esc_html__( 'Brush Google Chart', 'graphina-charts-for-elementor' ); ?></td>
+				<td><?php echo esc_html__( 'Gantt Google Chart', 'graphina-charts-for-elementor' ); ?></td>
 				<td class="graphina-icon graphina-cross">✘</td>
 				<td class="graphina-icon graphina-check">✔</td>
 			</tr>

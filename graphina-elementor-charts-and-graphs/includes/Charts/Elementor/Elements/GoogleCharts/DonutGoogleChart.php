@@ -123,6 +123,7 @@ class DonutGoogleChart extends GraphinaGoogleChartBase {
 		$controls->graphina_common_chart_setting( $this, $chart_type, false );
 		$controls->graphina_chart_legend_setting( $this, $chart_type );
 		$controls->register_chart_restriction_controls( $this, $chart_type );
+		apply_filters( 'graphina_password_form_style_section', $this, $chart_type );
 	}
 
 	/**

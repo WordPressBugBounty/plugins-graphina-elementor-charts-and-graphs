@@ -980,9 +980,16 @@ if ( ! function_exists( 'graphina_prepare_google_chart_data' ) ) {
 			}
 		} elseif ( in_array( $chart_type, array( 'pie_google', 'donut_google' ) ) ) {
 			$donut_data = array();
+			$postfix = '';
+			$prefix  = '';
+
+			if ( ! empty( $settings[ GRAPHINA_PREFIX . $chart_type . '_chart_label_prefix_postfix' ] ) && $settings[ GRAPHINA_PREFIX . $chart_type . '_chart_label_prefix_postfix' ] === 'yes' ) {
+				$prefix = ! empty( $settings[ GRAPHINA_PREFIX . $chart_type . '_chart_label_prefix' ] ) ? $settings[ GRAPHINA_PREFIX . $chart_type . '_chart_label_prefix' ] : '' ;
+				$postfix  = ! empty( $settings[ GRAPHINA_PREFIX . $chart_type . '_chart_label_postfix' ] ) ? $settings[ GRAPHINA_PREFIX . $chart_type . '_chart_label_postfix' ] : '' ;
+			}
 			for ( $i = 0; $i < $series_count; $i++ ) {
 				if ( $settings[ GRAPHINA_PREFIX . $chart_type . '_chart_data_option' ] === 'manual' ) {
-					$donut_data['rows'][] = array( esc_html( $settings[ GRAPHINA_PREFIX . $chart_type . '_chart_label' . $i ] ), (float) $settings[ GRAPHINA_PREFIX . $chart_type . '_chart_value' . $i ] );
+					$donut_data['rows'][] = array( $prefix . esc_html( $settings[ GRAPHINA_PREFIX . $chart_type . '_chart_label' . $i ] ) . $postfix, (float) $settings[ GRAPHINA_PREFIX . $chart_type . '_chart_value' . $i ] );
 				}
 			}
 			$donut_data['columns'] = array(
@@ -1439,14 +1446,21 @@ if ( ! function_exists( 'graphina_prepare_extra_data' ) ) {
 			$extra_data['chart_data_label_pointer']				= ! empty( $settings[ GRAPHINA_PREFIX . $chart_type . '_chart_label_pointer' ] ) && $settings[ GRAPHINA_PREFIX . $chart_type . '_chart_label_pointer' ] === 'yes' ? true : false;
 			$extra_data['chart_datalabel_prefix']				= ! empty( $settings[ GRAPHINA_PREFIX . $chart_type . '_chart_datalabel_format_prefix' ] ) ? $settings[ GRAPHINA_PREFIX . $chart_type . '_chart_datalabel_format_prefix' ] : '';
 			$extra_data['chart_datalabel_postfix']				= ! empty( $settings[ GRAPHINA_PREFIX . $chart_type . '_chart_datalabel_format_postfix' ] ) ? $settings[ GRAPHINA_PREFIX . $chart_type . '_chart_datalabel_format_postfix' ] : '';
+			$extra_data['chart_datalabels_format_showValue']     = ! empty( $settings[ GRAPHINA_PREFIX . $chart_type . '_chart_datalabels_format_showValue' ] ) && $settings[ GRAPHINA_PREFIX . $chart_type . '_chart_datalabels_format_showValue' ] === 'yes' ? true : false;
+            $extra_data['chart_datalabels_format_showlabel']     = ! empty( $settings[ GRAPHINA_PREFIX . $chart_type . '_chart_datalabels_format_showlabel' ] ) && $settings[ GRAPHINA_PREFIX . $chart_type . '_chart_datalabels_format_showlabel' ] === 'yes' ? true : false;    
 		}
-
+		
 		if ( in_array($chart_type, array('polar', 'radar')) )
 		{
 			$extra_data['yaxis_label_format']	= ! empty( $settings[ GRAPHINA_PREFIX . $chart_type . '_yaxis_chart_number_format_commas' ] ) && $settings[ GRAPHINA_PREFIX . $chart_type . '_yaxis_chart_number_format_commas' ] === 'yes' ? true : false;
 			$extra_data['decimal_in_float']		= ! empty( $settings[ GRAPHINA_PREFIX . $chart_type . '_chart_yaxis_prefix_postfix_decimal_point' ] ) ? intval( $settings[ GRAPHINA_PREFIX . $chart_type . '_chart_yaxis_prefix_postfix_decimal_point' ] ) : 0;
 			$extra_data['yaxis_label_prefix']  	= ! empty( $settings[ GRAPHINA_PREFIX . $chart_type . '_chart_yaxis_format_prefix' ] ) ? $settings[ GRAPHINA_PREFIX . $chart_type . '_chart_yaxis_format_prefix' ] : '';
 			$extra_data['yaxis_label_postfix']  = ! empty( $settings[ GRAPHINA_PREFIX . $chart_type . '_chart_yaxis_format_postfix' ] ) ? $settings[ GRAPHINA_PREFIX . $chart_type . '_chart_yaxis_format_postfix' ] : '';
+		}
+		
+		if( 'heatmap' === $chart_type ) {
+			$extra_data['chart_label_pointer_number_for_label']	= ! empty( $settings[ GRAPHINA_PREFIX . $chart_type . '_chart_label_pointer_number_for_label' ] ) ? $settings[ GRAPHINA_PREFIX . $chart_type . '_chart_label_pointer_number_for_label' ] : 0;
+			$extra_data['string_format']						= ! empty( $settings[ GRAPHINA_PREFIX . $chart_type . '_chart_label_pointer_for_label' ] ) && $settings[ GRAPHINA_PREFIX . $chart_type . '_chart_label_pointer_for_label' ] === 'yes' ? true : false;
 		}
 
 		if ( in_array( $chart_type, array( 'nested_column' ) ) )
@@ -1748,15 +1762,6 @@ if ( ! function_exists( 'graphinaReplaceDynamicFilterKeyChange' ) ) {
 	}
 }
 
-function extract_key_from_placeholder($string)
-{
-	if (preg_match('/{{\s*(QUERY_PARAMS_)?([^=}]+)(?:=\s*([^}]*))?\s*}}/', $string, $matches)) {
-        return trim($matches[2]); // Extract only the dynamic key name
-    }
-    return false;
-}
-
-
 // Check if the function graphina_google_chart_lists already exists to avoid redeclaration errors.
 if ( ! function_exists( 'graphina_google_chart_lists' ) ) {
 	/**
@@ -1796,7 +1801,7 @@ if ( ! function_exists( 'graphina_filter_common' ) ) {
 	 * @param string $chart_type The type of chart (e.g., 'bar', 'line').
 	 * @param string $element_id Optional. The unique identifier for the chart element.
 	 */
-	function graphina_filter_common( $settings, $chart_type, $element_id = '' ) {
+	function graphina_filter_common( $settings, $chart_type, $chart_data,$element_id = '' ) {
 		// Check if chart filtering is enabled for the given chart type.
 		if (
 			! empty( $settings[ GRAPHINA_PREFIX . $chart_type . '_chart_filter_enable' ] )
@@ -1804,7 +1809,7 @@ if ( ! function_exists( 'graphina_filter_common' ) ) {
 		) {
 
 			// Load the chart filter template with the provided settings.
-			graphina_get_template( 'chart-filter.php', compact( 'settings', 'chart_type', 'element_id' ) );
+			graphina_get_template( 'chart-filter.php', compact( 'settings', 'chart_type', 'chart_data', 'element_id' ) );
 		}
 
 		// Trigger a custom action for additional filter customization or processing.
@@ -2666,10 +2671,11 @@ function graphina_common_setting_get( string $chart_type ): string {
 			break;
 		case 'enable_chart_filter':
 			$value = ! empty( $data['enable_chart_filter'] ) ? $data['enable_chart_filter'] : 'off' ;
+			break;
 		case 'thousand_seperator_local':
 			$value = ! empty( $data['thousand_seperator_local'] ) ? $data['thousand_seperator_local'] : 'en' ;
+			break;
 	}
-
 	return $value;
 }
 

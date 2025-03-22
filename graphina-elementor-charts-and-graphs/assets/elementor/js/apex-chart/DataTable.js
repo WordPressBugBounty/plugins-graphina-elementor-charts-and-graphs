@@ -119,7 +119,15 @@ export default class DataTable {
                 jQuery('.dataTables_scrollBody').scrollLeft(jQuery(this).scrollLeft());
             });
         }
+        chart_data.rowCallback = function (row, data, index) {
+            if (index % 2 === 0) {
+                jQuery(row).addClass('odd');
+            } else {
+                jQuery(row).addClass('even');
+            }
+        }
         let datatable = jQuery('.data_table_lite_' + element_id).DataTable(chart_data);
+        
         if(extraData.is_dynamic_table){
             const dynamicData = await this.getDynamicData(settings, extraData, element_id);
             let dynamicTableData = {}

@@ -17,7 +17,8 @@ export default class GraphinaGoogleChartBase {
         jQuery(document.body).off('change', '.graphina-select-google-chart-type').on('change', '.graphina-select-google-chart-type', this.debounce(this.handleChartTypeChange.bind(this), 300));
         jQuery(window).on('elementor/frontend/init', this.handleElementorWidgetInit.bind(this));
         jQuery(window).on('elementor/editor/init', this.handleElementorWidgetInit.bind(this));
-        jQuery(document.body).on('click', '.graphina-filter-div-button', this.handleChartFilter.bind(this));
+        jQuery(document.body).off('click','.graphina-filter-div-button.google')
+        jQuery(document.body).on('click', '.graphina-filter-div-button.google', this.handleChartFilter.bind(this));
     }
 
     debounce(func, wait) {
@@ -52,7 +53,9 @@ export default class GraphinaGoogleChartBase {
         const chartElement = jQuery(`.graphina-google-chart[data-element_id="${elementId}"]`);
         let chartType = jQuery(chartElement).data('chart_type');
         chartType = chartType === 'area_google' ? 'AreaChart' : 'AreaChart'
-        this.setupChart(chartElement, chartType)
+        if(chartElement.length > 0){
+            this.setupChart(chartElement, chartType)
+        }
     }
 
     // Setup handlers for various chart types (to be implemented by child classes)

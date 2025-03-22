@@ -116,6 +116,7 @@ class RadialChart extends GraphinaApexChartBase {
 		$controls->graphina_chart_legend_setting( $this, $chart_type );
 		$controls->graphina_series_setting( $this, $chart_type, array( 'color' ), true, array( 'classic', 'gradient', 'pattern' ), false, true );
 		$controls->register_chart_restriction_controls( $this, $chart_type );
+		apply_filters( 'graphina_password_form_style_section', $this, $chart_type );
 	}
 
 	/**
@@ -174,7 +175,6 @@ class RadialChart extends GraphinaApexChartBase {
 				'background'    => ! empty($settings[GRAPHINA_PREFIX . $chart_type . '_chart_background_color1']) ? $settings[GRAPHINA_PREFIX . $chart_type . '_chart_background_color1'] : '',
 				'height'        => ! empty($settings[GRAPHINA_PREFIX . $chart_type . '_chart_height']) ? $settings[GRAPHINA_PREFIX . $chart_type . '_chart_height'] : '350',
 				'type'          => $type_of_chart,
-				'stacked'       => ! empty($settings[GRAPHINA_PREFIX . $chart_type . '_chart_area_stacked']) ? $settings[GRAPHINA_PREFIX . $chart_type . '_chart_area_stacked'] : '',
 				'toolbar'       => array(
 					'offsetX' => ! empty($settings[GRAPHINA_PREFIX . $chart_type . '_chart_toolbar_offsetx']) ? intval($settings[GRAPHINA_PREFIX . $chart_type . '_chart_toolbar_offsetx']) : 0,
 					'offsetY' => ! empty($settings[GRAPHINA_PREFIX . $chart_type . '_chart_toolbar_offsety']) ? intval($settings[GRAPHINA_PREFIX . $chart_type . '_chart_toolbar_offsety']) : 0,
@@ -194,9 +194,6 @@ class RadialChart extends GraphinaApexChartBase {
 						'download' => ! empty($settings[GRAPHINA_PREFIX . $chart_type . '_chart_toolbar_download']) && $settings[GRAPHINA_PREFIX . $chart_type . '_chart_toolbar_download'] === 'yes' ? true : false,
 					),
 				),
-				'zoom' => [
-					'enabled' => false
-				],
 				'dropShadow'    => array(
 					'enabled' => $settings[GRAPHINA_PREFIX . $chart_type . '_is_chart_dropshadow'] ?? false,
 					'top'     => $settings[GRAPHINA_PREFIX . $chart_type . '_is_chart_dropshadow_top'] ?? 0,
@@ -290,9 +287,6 @@ class RadialChart extends GraphinaApexChartBase {
 			),
 		);
 
-		$chart_options['chart']['toolbar']['show'] = true;
-		$chart_options['chart']['toolbar']['tools']['download'] = ! empty($settings[GRAPHINA_PREFIX . $chart_type . '_can_chart_show_toolbar']) && $settings[GRAPHINA_PREFIX . $chart_type . '_can_chart_show_toolbar'] === 'yes' ? true : false;
-
 		if ($settings[GRAPHINA_PREFIX . $chart_type . '_chart_angle'] === 'circle') {
 			$start_angle = 0;
 			$end_angle   = 360;
@@ -343,7 +337,7 @@ class RadialChart extends GraphinaApexChartBase {
 				),
 			),
 		);
-		$chart_options['fill']                       = array(
+		$chart_options['fill']	= array(
 			'type'     => $settings[GRAPHINA_PREFIX . $chart_type . '_chart_fill_style_type'],
 			'opacity'  => 1,
 			'colors'   => $gradient,

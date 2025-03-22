@@ -38,10 +38,17 @@ if ( ! defined( 'ABSPATH' ) ) {
 	}
 
 	// Handle Chart Filter
-	graphina_filter_common( $chart_data['settings'], $chart_data['chart_type'], $chart_data['element_id'] );
-
+	graphina_filter_common( $chart_data['settings'], $chart_data['chart_type'], $chart_data, $chart_data['element_id'] );
+	
 	graphina_get_template( $template_path, $chart_data );
-	if ( $settings[ GRAPHINA_PREFIX . $chart_type . '_chart_data_option' ] === 'dynamic' && graphina_common_setting_get('enable_chart_filter') === 'on' ) {
+
+	$is_dynamic = false;
+	if( ! empty( $settings[ GRAPHINA_PREFIX . $chart_type . '_chart_data_option' ] ) && $settings[ GRAPHINA_PREFIX . $chart_type . '_chart_data_option' ] === 'dynamic' ){
+		$is_dynamic = true;
+	}else if( ! empty( $settings[ GRAPHINA_PREFIX . $chart_type . '_element_data_option' ] ) && $settings[ GRAPHINA_PREFIX . $chart_type . '_element_data_option' ] === 'dynamic' ){
+		$is_dynamic = true;
+	}
+	if ( $is_dynamic === true && graphina_common_setting_get('enable_chart_filter') === 'on' ) {
 		graphina_get_template(
 			'chart-loader.php',
 			array(

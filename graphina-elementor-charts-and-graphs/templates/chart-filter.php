@@ -10,6 +10,16 @@ if ( ! defined( 'ABSPATH' ) ) {
 *   @package graphina
 **/
 ?><?php
+
+$is_apex = '';
+$is_google = '';
+if ( ! empty( $chart_data['is_apex'] ) && $chart_data['is_apex'] ){
+	$is_apex = 'apex';
+}
+if ( ! empty( $chart_data['is_google'] ) && $chart_data['is_google'] ){
+	$is_google = 'google';
+}
+
 if ( ! empty( $settings[ GRAPHINA_PREFIX . $chart_type . '_chart_filter_list' ] ) ) {
 	?>
 	<div class="graphina_chart_filter" id="graphina_chart_filter_<?php echo esc_attr( $element_id ); ?>" data-total_filter="<?php echo esc_attr( count( $settings[ GRAPHINA_PREFIX . $chart_type . '_chart_filter_list' ] ) ); ?>" style="display: flex; flex-wrap: wrap; align-items: end; gap: 16px;">
@@ -86,7 +96,7 @@ if ( ! empty( $settings[ GRAPHINA_PREFIX . $chart_type . '_chart_filter_list' ] 
 		}
 		?>
 		<div class="graphina-filter-div">
-			<button class="graphina-filter-div-button" type="button" id="grapina_apply_filter_<?php echo esc_html( $element_id ); ?>" data-element_id=<?php echo esc_attr( $element_id ); ?>>
+			<button class="graphina-filter-div-button <?php echo esc_attr($is_apex); echo esc_attr($is_google); ?>" type="button" id="grapina_apply_filter_<?php echo esc_html( $element_id ); ?>" data-element_id=<?php echo esc_attr( $element_id ); ?>>
 				<?php echo esc_html__( 'Apply Filter', 'graphina-charts-for-elementor' ); ?>
 			</button>
 		</div>

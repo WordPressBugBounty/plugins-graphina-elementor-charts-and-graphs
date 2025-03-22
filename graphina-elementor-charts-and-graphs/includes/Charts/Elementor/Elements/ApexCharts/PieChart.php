@@ -116,6 +116,7 @@ class PieChart extends GraphinaApexChartBase {
 		$controls->graphina_chart_legend_setting( $this, $chart_type );
 		$controls->graphina_series_setting( $this, $chart_type, array( 'color' ), true, array( 'classic', 'gradient', 'pattern' ), false, false );
 		$controls->register_chart_restriction_controls( $this, $chart_type );
+		apply_filters( 'graphina_password_form_style_section', $this, $chart_type );
 	}
 
 	/**
@@ -173,7 +174,6 @@ class PieChart extends GraphinaApexChartBase {
 				'background'    => ! empty($settings[GRAPHINA_PREFIX . $chart_type . '_chart_background_color1']) ? $settings[GRAPHINA_PREFIX . $chart_type . '_chart_background_color1'] : '',
 				'height'        => ! empty($settings[GRAPHINA_PREFIX . $chart_type . '_chart_height']) ? $settings[GRAPHINA_PREFIX . $chart_type . '_chart_height'] : '350',
 				'type'          => $type_of_chart,
-				'stacked'       => ! empty($settings[GRAPHINA_PREFIX . $chart_type . '_chart_area_stacked']) ? $settings[GRAPHINA_PREFIX . $chart_type . '_chart_area_stacked'] : '',
 				'toolbar'       => array(
 					'offsetX' => ! empty($settings[GRAPHINA_PREFIX . $chart_type . '_chart_toolbar_offsetx']) ? intval($settings[GRAPHINA_PREFIX . $chart_type . '_chart_toolbar_offsetx']) : 0,
 					'offsetY' => ! empty($settings[GRAPHINA_PREFIX . $chart_type . '_chart_toolbar_offsety']) ? intval($settings[GRAPHINA_PREFIX . $chart_type . '_chart_toolbar_offsety']) : 0,
@@ -193,9 +193,6 @@ class PieChart extends GraphinaApexChartBase {
 						'download' => ! empty($settings[GRAPHINA_PREFIX . $chart_type . '_chart_toolbar_download']) && $settings[GRAPHINA_PREFIX . $chart_type . '_chart_toolbar_download'] === 'yes' ? true : false,
 					),
 				),
-				'zoom' => [
-					'enabled' => false
-				],
 				'dropShadow'    => array(
 					'enabled' => $settings[GRAPHINA_PREFIX . $chart_type . '_is_chart_dropshadow'] ?? false,
 					'top'     => $settings[GRAPHINA_PREFIX . $chart_type . '_is_chart_dropshadow_top'] ?? 0,
@@ -238,6 +235,7 @@ class PieChart extends GraphinaApexChartBase {
 					'show' => ! empty($settings[GRAPHINA_PREFIX . $chart_type . '_chart_xaxis_crosshairs_show']) && $settings[GRAPHINA_PREFIX . $chart_type . '_chart_xaxis_crosshairs_show'] === 'yes' ? true : false,
 				),
 			),
+			'colors' 	 => $gradient,
 			'yaxis'      => array(
 				'tickAmount'      => ! empty($settings[GRAPHINA_PREFIX . $chart_type . '_chart_yaxis_datalabel_tick_amount']) ? intval($settings[GRAPHINA_PREFIX . $chart_type . '_chart_yaxis_datalabel_tick_amount']) : 6,
 				'decimalsInFloat' => ! empty($settings[GRAPHINA_PREFIX . $chart_type . '_chart_yaxis_datalabel_decimals_in_float']) ? intval($settings[GRAPHINA_PREFIX . $chart_type . '_chart_yaxis_datalabel_decimals_in_float']) : 1,
@@ -288,10 +286,7 @@ class PieChart extends GraphinaApexChartBase {
 				'theme'   => ! empty($settings[GRAPHINA_PREFIX . $chart_type . '_chart_tooltip_theme']) ? $settings[GRAPHINA_PREFIX . $chart_type . '_chart_tooltip_theme'] : 'light',
 			),
 		);
-
-		$chart_options['chart']['toolbar']['show'] = true;
-		$chart_options['chart']['toolbar']['tools']['download'] = ! empty($settings[GRAPHINA_PREFIX . $chart_type . '_can_chart_show_toolbar']) && $settings[GRAPHINA_PREFIX . $chart_type . '_can_chart_show_toolbar'] === 'yes' ? true : false;
-
+		
 		$chart_options['stroke']             = array(
 			'show'  => $settings[GRAPHINA_PREFIX . $chart_type . '_chart_stroke_show'] === 'yes' ? true : false,
 			'width' => $settings[GRAPHINA_PREFIX . $chart_type . '_chart_stroke_show'] === 'yes' ? $settings[GRAPHINA_PREFIX . $chart_type . '_chart_stroke_width'] : 0,

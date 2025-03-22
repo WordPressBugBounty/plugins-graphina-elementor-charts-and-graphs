@@ -127,6 +127,7 @@ class BarGoogleChart extends GraphinaGoogleChartBase {
 		$controls->graphina_advance_v_axis_setting( $this, $chart_type );
 		$controls->graphina_google_series_setting( $this, $chart_type, array( 'tooltip', 'color' ) );
 		$controls->register_chart_restriction_controls( $this, $chart_type );
+		apply_filters( 'graphina_password_form_style_section', $this, $chart_type );
 	}
 
 	/**
@@ -233,7 +234,6 @@ class BarGoogleChart extends GraphinaGoogleChartBase {
 				'textStyle'     => array('color' => ! empty($settings[GRAPHINA_PREFIX . $chart_type . '_chart_tooltip_color']) ? $settings[GRAPHINA_PREFIX . $chart_type . '_chart_tooltip_color'] : ''),
 				'trigger'       => ! empty($settings[GRAPHINA_PREFIX . $chart_type . '_chart_tooltip_show']) && $settings[GRAPHINA_PREFIX . $chart_type . '_chart_tooltip_show'] === 'yes' ? $settings[GRAPHINA_PREFIX . $chart_type . '_chart_tooltip_trigger'] : 'none',
 			),
-
 			'backgroundColor' => ! empty($settings[GRAPHINA_PREFIX . $chart_type . '_chart_background_color1']) ? $settings[GRAPHINA_PREFIX . $chart_type . '_chart_background_color1'] : '',
 			'colors'          => $element_colors,
 			'legend'          => array(
@@ -262,6 +262,7 @@ class BarGoogleChart extends GraphinaGoogleChartBase {
 			'easing'   => ! empty($settings[GRAPHINA_PREFIX . $chart_type . '_chart_animation_easing']) ? $settings[GRAPHINA_PREFIX . $chart_type . '_chart_animation_easing'] : '',
 		);
 		$response['hAxis']       = array(
+			'format'         => ! empty($settings[GRAPHINA_PREFIX . $chart_type . '_chart_vaxis_format']) && $settings[GRAPHINA_PREFIX . $chart_type . '_chart_vaxis_format'] === '\#' ? ($settings[GRAPHINA_PREFIX . $chart_type . '_chart_vaxis_format_currency_prefix']) : (! empty($settings[GRAPHINA_PREFIX . $chart_type . '_chart_vaxis_format']) ? $settings[GRAPHINA_PREFIX . $chart_type . '_chart_vaxis_format'] : ''),
 			'slantedText'      => ! empty($settings[GRAPHINA_PREFIX . $chart_type . '_chart_xaxis_rotate']) && $settings[GRAPHINA_PREFIX . $chart_type . '_chart_xaxis_rotate'] === 'yes' ? true : false,
 			'slantedTextAngle' => ! empty($settings[GRAPHINA_PREFIX . $chart_type . '_chart_xaxis_rotate_value']) ? $settings[GRAPHINA_PREFIX . $chart_type . '_chart_xaxis_rotate_value'] : '',
 			'direction'        => ! empty($settings[GRAPHINA_PREFIX . $chart_type . '_chart_haxis_direction']) && $settings[GRAPHINA_PREFIX . $chart_type . '_chart_haxis_direction'] === 'yes' ? -1 : 1,
@@ -274,6 +275,7 @@ class BarGoogleChart extends GraphinaGoogleChartBase {
 				'color'    => ! empty($settings[GRAPHINA_PREFIX . $chart_type . '_chart_xaxis_label_font_color']) ? $settings[GRAPHINA_PREFIX . $chart_type . '_chart_xaxis_label_font_color'] : '',
 				'fontSize' => ! empty($settings[GRAPHINA_PREFIX . $chart_type . '_chart_xaxis_label_font_size']) ? $settings[GRAPHINA_PREFIX . $chart_type . '_chart_xaxis_label_font_size'] : '',
 			),
+			'scaleType'		=> ! empty( $settings[ GRAPHINA_PREFIX . $chart_type . '_chart_vaxis_scaletype' ] ) ? $settings[ GRAPHINA_PREFIX . $chart_type . '_chart_vaxis_scaletype' ] : '',
 			'textPosition'     => ! empty($settings[GRAPHINA_PREFIX . $chart_type . '_chart_haxis_label_position_show']) && $settings[GRAPHINA_PREFIX . $chart_type . '_chart_haxis_label_position_show'] === 'yes' ? $settings[GRAPHINA_PREFIX . $chart_type . '_chart_haxis_label_position'] : 'none', // in, out, none
 		);
 
@@ -311,7 +313,9 @@ class BarGoogleChart extends GraphinaGoogleChartBase {
 			),
 			'alignment' => ! empty($settings[GRAPHINA_PREFIX . $chart_type . '_google_chart_legend_horizontal_align']) ? $settings[GRAPHINA_PREFIX . $chart_type . '_google_chart_legend_horizontal_align'] : '', // start,center,end
 		);
-
+		$response['bar'] = array (
+			'groupWidth' => ! empty( $settings[ GRAPHINA_PREFIX . $chart_type . '_chart_element_width' ] ) ? $settings[ GRAPHINA_PREFIX . $chart_type . '_chart_element_width' ] : 20,
+		);
 		$response['isStacked'] = ! empty($settings[GRAPHINA_PREFIX . $chart_type . '_chart_stack_type']) ? $settings[GRAPHINA_PREFIX . $chart_type . '_chart_stack_type'] : 'absolute';
 		$response['hAxis']['gridlines'] = [
 			'color' =>  ! empty($settings[GRAPHINA_PREFIX . $chart_type . '_chart_gridline_color']) ?  $settings[GRAPHINA_PREFIX . $chart_type . '_chart_gridline_color'] : '#cccccc',

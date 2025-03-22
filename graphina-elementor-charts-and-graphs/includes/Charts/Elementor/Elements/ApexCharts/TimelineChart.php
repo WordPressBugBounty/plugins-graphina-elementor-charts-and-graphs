@@ -119,6 +119,7 @@ class TimelineChart extends GraphinaApexChartBase {
 		$controls->graphina_chart_x_axis_setting( $this, $chart_type );
 		$controls->graphina_chart_y_axis_setting( $this, $chart_type );
 		$controls->register_chart_restriction_controls( $this, $chart_type );
+		apply_filters( 'graphina_password_form_style_section', $this, $chart_type );
 	}
 	/**
 	     * Render widget output on the frontend.
@@ -198,7 +199,6 @@ class TimelineChart extends GraphinaApexChartBase {
 				'background'    => ! empty($settings[GRAPHINA_PREFIX . $chart_type . '_chart_background_color1']) ? $settings[GRAPHINA_PREFIX . $chart_type . '_chart_background_color1'] : '',
 				'height'        => ! empty($settings[GRAPHINA_PREFIX . $chart_type . '_chart_height']) ? $settings[GRAPHINA_PREFIX . $chart_type . '_chart_height'] : '350',
 				'type'          => $type_of_chart,
-				'stacked'       => ! empty($settings[GRAPHINA_PREFIX . $chart_type . '_chart_area_stacked']) ? $settings[GRAPHINA_PREFIX . $chart_type . '_chart_area_stacked'] : '',
 				'toolbar'       => array(
 					'offsetX' => ! empty($settings[GRAPHINA_PREFIX . $chart_type . '_chart_toolbar_offsetx']) ? intval($settings[GRAPHINA_PREFIX . $chart_type . '_chart_toolbar_offsetx']) : 0,
 					'offsetY' => ! empty($settings[GRAPHINA_PREFIX . $chart_type . '_chart_toolbar_offsety']) ? intval($settings[GRAPHINA_PREFIX . $chart_type . '_chart_toolbar_offsety']) : 0,
@@ -218,9 +218,6 @@ class TimelineChart extends GraphinaApexChartBase {
 						'download' => ! empty($settings[GRAPHINA_PREFIX . $chart_type . '_chart_toolbar_download']) && $settings[GRAPHINA_PREFIX . $chart_type . '_chart_toolbar_download'] === 'yes' ? true : false,
 					),
 				),
-				'zoom' => [
-					'enabled' => false
-				],
 				'dropShadow'    => array(
 					'enabled' => $settings[GRAPHINA_PREFIX . $chart_type . '_is_chart_dropshadow'] ?? false,
 					'top'     => $settings[GRAPHINA_PREFIX . $chart_type . '_is_chart_dropshadow_top'] ?? 0,
@@ -290,6 +287,8 @@ class TimelineChart extends GraphinaApexChartBase {
 				'horizontalAlign'     => ! empty($settings[GRAPHINA_PREFIX . $chart_type . '_chart_legend_horizontal_align']) ? $settings[GRAPHINA_PREFIX . $chart_type . '_chart_legend_horizontal_align'] : 'center',
 			),
 			'dataLabels' => array(
+				'offsetY' 	 => ! empty($settings[GRAPHINA_PREFIX . $chart_type . '_chart_datalabel_offsety']) ? $settings[GRAPHINA_PREFIX . $chart_type . '_chart_datalabel_offsety'] : 0,
+                'offsetX' 	 => ! empty($settings[GRAPHINA_PREFIX . $chart_type . '_chart_datalabel_offsetx']) ? $settings[GRAPHINA_PREFIX . $chart_type . '_chart_datalabel_offsetx'] : 0,
 				'enabled'    => ! empty($settings[GRAPHINA_PREFIX . $chart_type . '_chart_datalabel_show']) && $settings[GRAPHINA_PREFIX . $chart_type . '_chart_datalabel_show'] === 'yes' ? true : false,
 				'style'      => array(
 					'fontSize'   => ! empty($settings[GRAPHINA_PREFIX . $chart_type . '_chart_font_size']['size']) ? $settings[GRAPHINA_PREFIX . $chart_type . '_chart_font_size']['size'] . $settings[GRAPHINA_PREFIX . $chart_type . '_chart_font_size']['unit'] : '12px',

@@ -30,10 +30,13 @@ export default class ColumnChart extends GraphinaGoogleChartBase {
         }
     }
 
-    // Customize chart options for Area Charts (if needed)
+   
+    // Customize chart options for Bar Charts (if needed)
     getFinalChartOptions(chartOptions) {
-        // Customize options here if needed
-        return chartOptions;
+        if(chartOptions.vAxis.format === 'percent'){
+            chartOptions.vAxis.format = '#\'%\''
+        }
+        return chartOptions
     }
 
     setupTableData(dynamicData,dataTable,googleChart,googleChartTexture,extraData){

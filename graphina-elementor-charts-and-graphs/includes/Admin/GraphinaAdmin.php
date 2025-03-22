@@ -576,12 +576,12 @@ if ( ! class_exists( 'GraphinaAdmin' ) ) :
 					'documentation'   => array(
 						'label' => __( 'Graphina Charts Documentation', 'graphina-charts-for-elementor' ),
 						'title' => __( 'Documentation', 'graphina-charts-for-elementor' ),
-						'url'   => 'https://apps.iqonic.design/docs/product/graphina-elementor-charts-and-graphs/',
+						'url'   => esc_url('https://documentation.iqonic.design/graphina/'),
 					),
 					'request_feature' => array(
 						'label' => __( 'Graphina Charts Request Feature', 'graphina-charts-for-elementor' ),
 						'title' => __( 'Request Feature', 'graphina-charts-for-elementor' ),
-						'url'   => 'https://iqonic.design/feature-request/?for_product=graphina',
+						'url'   => esc_url('https://iqonic.design/feature-request/?for_product=graphina'),
 					),
 				)
 			);
