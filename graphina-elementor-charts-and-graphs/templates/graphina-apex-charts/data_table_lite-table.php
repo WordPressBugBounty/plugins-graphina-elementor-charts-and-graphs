@@ -14,7 +14,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 	data-chart_type="<?php echo esc_html( $chart_type ); ?>"
 	data-chart_data='<?php echo wp_json_encode( $table_data ); ?>'
 	data-extra_data='<?php echo wp_json_encode( $extra_data ); ?>'
-	data-settings='<?php echo wp_json_encode( $element_settings ); ?>'>
+	data-settings='<?php echo esc_attr(wp_json_encode($element_settings)); ?>'>
 	<div class="">
 		<?php if ( $show_heading ) { ?>
 			<h4 class="heading graphina-chart-heading">

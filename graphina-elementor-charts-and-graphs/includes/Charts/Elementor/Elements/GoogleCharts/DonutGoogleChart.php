@@ -121,7 +121,7 @@ class DonutGoogleChart extends GraphinaGoogleChartBase {
 		$controls->graphina_animation( $this, $chart_type );
 		$controls->graphina_chart_data_series( $this, $chart_type, 0 );
 		$controls->graphina_common_chart_setting( $this, $chart_type, false );
-		$controls->graphina_chart_legend_setting( $this, $chart_type );
+		$controls->graphina_advance_legend_setting( $this, $chart_type );
 		$controls->register_chart_restriction_controls( $this, $chart_type );
 		apply_filters( 'graphina_password_form_style_section', $this, $chart_type );
 	}
@@ -136,7 +136,7 @@ class DonutGoogleChart extends GraphinaGoogleChartBase {
 	 */
 	protected function graphina_prepare_google_chart_options($settings, $chart_type, $element_id)
 	{
-		$legend_position = ! empty($settings[GRAPHINA_PREFIX . $chart_type . '_chart_legend_show']) && ! empty($settings[GRAPHINA_PREFIX . $chart_type . '_chart_google_legend_position']) && $settings[GRAPHINA_PREFIX . $chart_type . '_chart_legend_show'] === 'yes' ? $settings[GRAPHINA_PREFIX . $chart_type . '_chart_google_legend_position'] : 'none';
+		$legend_position = ! empty( $settings[ GRAPHINA_PREFIX . $chart_type . '_google_chart_legend_show' ] ) && $settings[ GRAPHINA_PREFIX . $chart_type . '_google_chart_legend_show' ] === 'yes' ? $settings[ GRAPHINA_PREFIX . $chart_type . '_google_piechart_legend_position' ] : 'none';
 		$chartArea       = array(
 			'left'  => '10%',
 			'right' => '5%',
@@ -152,6 +152,11 @@ class DonutGoogleChart extends GraphinaGoogleChartBase {
 				'right' => '25%',
 			);
 		}
+		$colors = array();
+		for ($i = 0; $i < $settings[GRAPHINA_PREFIX . $chart_type . '_chart_data_series_count']; $i++) {
+			$colors[] = esc_html($settings[GRAPHINA_PREFIX . $chart_type . '_chart_element_color_' . $i]);
+		}
+
 		$response = array(
 			'title'           => ! empty($settings[GRAPHINA_PREFIX . $chart_type . '_chart_title']) ? $settings[GRAPHINA_PREFIX . $chart_type . '_chart_title'] : '',
 			'titlePosition'   => ! empty($settings[GRAPHINA_PREFIX . $chart_type . '_chart_title_show']) && $settings[GRAPHINA_PREFIX . $chart_type . '_chart_title_show'] === 'yes' ? $settings[GRAPHINA_PREFIX . $chart_type . '_chart_title_position'] : 'none', // in, out, none
@@ -165,17 +170,28 @@ class DonutGoogleChart extends GraphinaGoogleChartBase {
 				'showColorCode' => true,
 				'textStyle'     => array('color' => ! empty($settings[GRAPHINA_PREFIX . $chart_type . '_chart_tooltip_color']) ? $settings[GRAPHINA_PREFIX . $chart_type . '_chart_tooltip_color'] : ''),
 				'trigger'       => ! empty($settings[GRAPHINA_PREFIX . $chart_type . '_chart_tooltip_show']) && $settings[GRAPHINA_PREFIX . $chart_type . '_chart_tooltip_show'] === 'yes' ? $settings[GRAPHINA_PREFIX . $chart_type . '_chart_tooltip_trigger'] : 'none',
+				'text'			=> $settings[GRAPHINA_PREFIX . $chart_type . '_chart_tooltip_text'],
 			),
-
 			'backgroundColor' => ! empty($settings[GRAPHINA_PREFIX . $chart_type . '_chart_background_color1']) ? $settings[GRAPHINA_PREFIX . $chart_type . '_chart_background_color1'] : '',
-			'legend'          => array(
-				'position'  => $legend_position,
-				'textStyle' => array(
-					'fontSize' => ! empty($settings[GRAPHINA_PREFIX . $chart_type . '_chart_legend_fontsize']) ? $settings[GRAPHINA_PREFIX . $chart_type . '_chart_legend_fontsize'] : '',
-					'color'    => ! empty($settings[GRAPHINA_PREFIX . $chart_type . '_chart_legend_color']) ? $settings[GRAPHINA_PREFIX . $chart_type . '_chart_legend_color'] : '',
-				),
-				'alignment' => ! empty($settings[GRAPHINA_PREFIX . $chart_type . '_google_chart_legend_horizontal_align']) ? $settings[GRAPHINA_PREFIX . $chart_type . '_google_chart_legend_horizontal_align'] : '', // start,center,end
-			),
+			'legend' => [
+				'position' => $legend_position,
+				'textStyle' => [
+					'fontSize' => ! empty( $settings[ GRAPHINA_PREFIX . $chart_type . '_google_chart_legend_fontsize' ] ) ? intval( $settings[ GRAPHINA_PREFIX . $chart_type . '_google_chart_legend_fontsize' ] ) : '10',
+					'color' => ! empty( $settings[ GRAPHINA_PREFIX . $chart_type . '_google_chart_legend_color' ] ) ? $settings[ GRAPHINA_PREFIX . $chart_type . '_google_chart_legend_color' ] : '',
+				],
+				'alignment' => ! empty( $settings[ GRAPHINA_PREFIX . $chart_type . '_google_chart_legend_horizontal_align' ] ) ? $settings[ GRAPHINA_PREFIX . $chart_type . '_google_chart_legend_horizontal_align' ] : '',
+			],
+			'height'	=> ! empty( $settings[ GRAPHINA_PREFIX . $chart_type . '_chart_height' ] ) ? intval( $settings[ GRAPHINA_PREFIX . $chart_type . '_chart_height' ] ) : 400,
+			'colors'	=> $colors,
+			'reverseCategories' => ! empty( $settings[GRAPHINA_PREFIX . $chart_type . '_chart_label_reversecategory'] ) && $settings[GRAPHINA_PREFIX . $chart_type . '_chart_label_reversecategory'] === 'yes' ? true : false,
+			'showLables' => false,
+			'pieSliceText' => ! empty( $settings[ GRAPHINA_PREFIX . $chart_type . '_chart_pieSliceText' ] ) ? $settings[ GRAPHINA_PREFIX . $chart_type . '_chart_pieSliceText' ] : '',
+			'pieSliceBorderColor' => ! empty( $settings[ GRAPHINA_PREFIX . $chart_type . '_chart_pieslice_bordercolor' ] ) ? $settings[ GRAPHINA_PREFIX . $chart_type . '_chart_pieslice_bordercolor' ] : '',
+			'pieSliceTextStyle' => [
+				'color' => ! empty ( $settings[ GRAPHINA_PREFIX . $chart_type . '_chart_pieSliceText_color' ] ) ? $settings[ GRAPHINA_PREFIX . $chart_type . '_chart_pieSliceText_color' ] : '',
+				'fontSize' => ! empty( $settings[ GRAPHINA_PREFIX . $chart_type . '_chart_pieSliceText_fontsize' ] ) ? $settings[ GRAPHINA_PREFIX . $chart_type . '_chart_pieSliceText_fontsize' ] : '',
+			],
+			'pieHole' => ! empty( $settings[ GRAPHINA_PREFIX . $chart_type . '_chart_piehole' ] ) ? floatval( $settings[ GRAPHINA_PREFIX . $chart_type . '_chart_piehole' ] ) : '',
 		);
 
 		if (! empty($settings[GRAPHINA_PREFIX . $chart_type . '_google_chart_major_ticks_show']) && $settings[GRAPHINA_PREFIX . $chart_type . '_google_chart_major_ticks_show'] == 'yes') {
@@ -188,23 +204,6 @@ class DonutGoogleChart extends GraphinaGoogleChartBase {
 			}
 			$response['majorTicks'] = isset($majorticksvalue) && ! empty($majorticksvalue) ? $majorticksvalue : array();
 		}
-
-		$colors = array();
-		for ($i = 0; $i < $settings[GRAPHINA_PREFIX . $chart_type . '_chart_data_series_count']; $i++) {
-			$colors[] = esc_html($settings[GRAPHINA_PREFIX . $chart_type . '_chart_element_color_' . $i]);
-		}
-
-		$response['reverseCategories']   = $settings[GRAPHINA_PREFIX . $chart_type . '_chart_label_reversecategory'] === 'yes';
-		$response['showLables']          = 'false';
-		$response['pieSliceText']        = $settings[GRAPHINA_PREFIX . $chart_type . '_chart_pieSliceText']; // percentage,value,label,none
-		$response['pieSliceBorderColor'] = $settings[GRAPHINA_PREFIX . $chart_type . '_chart_pieslice_bordercolor'];
-		$response['pieSliceTextStyle']   = array(
-			'color'    => $settings[GRAPHINA_PREFIX . $chart_type . '_chart_pieSliceText_color'],
-			'fontSize' => $settings[GRAPHINA_PREFIX . $chart_type . '_chart_pieSliceText_fontsize'],
-		);
-		$response['pieHole']             = $settings[GRAPHINA_PREFIX . $chart_type . '_chart_piehole'];
-		$response['colors']              = $colors;
-		$response['tooltip']['text']     = $settings[GRAPHINA_PREFIX . $chart_type . '_chart_tooltip_text'];
 		return $response;
 	}
 }

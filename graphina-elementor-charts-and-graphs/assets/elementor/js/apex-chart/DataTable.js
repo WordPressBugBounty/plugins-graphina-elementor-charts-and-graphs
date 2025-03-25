@@ -79,7 +79,7 @@ export default class DataTable {
                     post_id     : extraData.current_post_id,
                     element_id  : elementId,
                     series_count: 0,
-                    settings    : settings,
+                    settings    : JSON.stringify(settings),
                     selected_field: []
                 },
                 success: (response) => {
@@ -146,7 +146,7 @@ export default class DataTable {
             }
         }
         if (extraData.table_footer) {
-            jQuery(`#data_table_lite_${element_id}`).append('<tfoot><tr>' + chart_data.columns.map(column => `<th>${column.title}</th>`).join('') + '</tr></tfoot>');
+            jQuery(`#data_table_lite_${element_id}`).append('<tfoot><tr>' + chart_data.columns.map(column => `<th class=${extraData.header_class}>${column.title}</th>`).join('') + '</tr></tfoot>');
         }
         if (extraData.table_data_direct){
             datatable.destroy()

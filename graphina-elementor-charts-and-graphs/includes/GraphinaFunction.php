@@ -1049,7 +1049,8 @@ if ( ! function_exists( 'graphina_prepare_table_extra_data' ) ) {
 			'prefix'          => GRAPHINA_PREFIX,
 		);
 		if ( 'data_table_lite' === $table_type ) {
-			
+			$header_align 	= isset( $settings[ GRAPHINA_PREFIX . $table_type . '_table_header_align' ] ) ? $settings[ GRAPHINA_PREFIX . $table_type . '_table_header_align' ] : 'center';
+			$table_options['header_class']			= "dt-head-$header_align";
 			$table_options['table_data_direct'] 	= ! empty( $settings[ GRAPHINA_PREFIX . $table_type . 'table_data_direct' ] ) && $settings[ GRAPHINA_PREFIX . $table_type . 'table_data_direct' ] === 'yes' ? true : false;
 			$table_options['table_footer'] 			= ! empty( $settings[ GRAPHINA_PREFIX . $table_type . 'table_footer' ] ) && $settings[ GRAPHINA_PREFIX . $table_type . 'table_footer' ] === 'yes' ? true : false;
 			$table_options['is_dynamic_table'] 		= ! empty( $settings[ GRAPHINA_PREFIX . $table_type . '_chart_data_option' ] ) && $settings[ GRAPHINA_PREFIX . $table_type . '_chart_data_option' ] === 'dynamic' ? true : false;
@@ -1298,6 +1299,9 @@ if ( ! function_exists( 'graphina_prepare_jqeury_table_data' ) ) {
 				: array();
 		}
 
+		$header_align 	= isset( $settings[ GRAPHINA_PREFIX . $chart_type . '_table_header_align' ] ) ? $settings[ GRAPHINA_PREFIX . $chart_type . '_table_header_align' ] : 'center';
+		$body_align 	= isset( $settings[ GRAPHINA_PREFIX . $chart_type . '_table_body_align' ] ) ? $settings[ GRAPHINA_PREFIX . $chart_type . '_table_body_align' ] : 'center';
+
 		// Prepare the final DataTable options
 		$table_options = array(
 			'columns'      => $header_data,
@@ -1315,6 +1319,10 @@ if ( ! function_exists( 'graphina_prepare_jqeury_table_data' ) ) {
 			'dom'          => 'Bfrtip',
 			'lengthMenu'   => array( array( 10, 50, 100, -1 ), array( 10, 50, 100, 'All' ) ),
 			'buttons'      => $button,
+			'columnDefs' => [
+				[ 'className' => "dt-head-$header_align", 'targets' => '_all' ], // Center headers
+				[ 'className' => "dt-$body_align", 'targets' => '_all' ] // Center row data
+			],
 			'deferRender'  => true,
 			'language'     => array(
 				'search'            => '',

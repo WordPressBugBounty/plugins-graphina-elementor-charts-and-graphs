@@ -157,7 +157,8 @@ if ( ! class_exists( 'GraphinaFrontend' ) ) {
 		 */
 		public function get_widget_setting( array $request_data ): array|null {
 			// Extract settings from the request data if present, or default to an empty array.
-			$settings = $request_data['settings'] ?? array();
+			$settings = isset($_POST['settings']) ? json_decode(stripslashes($_POST['settings']), true) :  array();
+			
 			// If settings are missing or insufficient, fetch them using the Elementor data.
 			if ( empty( $settings ) || count( $settings ) <= 2 ) {
 				$element_id = $request_data['element_id'];
@@ -268,6 +269,7 @@ if ( ! class_exists( 'GraphinaFrontend' ) ) {
 						++$j;
 						$data[ $key ]['end'] = max( $value['multi'] );
 					}
+					$columns = array_merge(array( __( 'Select Column', 'graphina-charts-for-elementor' )),$columns);
 					if ( count( $columns ) === 0 ) {
 						$columns = array( __( 'Empty', 'graphina-charts-for-elementor' ) );
 					}
@@ -728,7 +730,7 @@ if ( ! class_exists( 'GraphinaFrontend' ) ) {
 					),
 				),
 				'yaxis'      => array(
-					'tickAmount'      => ! empty( intval( $settings[ GRAPHINA_PREFIX . $chart_type . '_chart_yaxis_datalabel_tick_amount' ] ) ) ? ! empty( $settings[ GRAPHINA_PREFIX . $chart_type . '_chart_yaxis_datalabel_tick_amount' ] ) : 6,
+					'tickAmount'      => ! empty( $settings[ GRAPHINA_PREFIX . $chart_type . '_chart_yaxis_datalabel_tick_amount' ] ) ? intval( $settings[ GRAPHINA_PREFIX . $chart_type . '_chart_yaxis_datalabel_tick_amount' ] ) : 6,
 					'decimalsInFloat' => ! empty( $settings[ GRAPHINA_PREFIX . $chart_type . '_chart_yaxis_datalabel_decimals_in_float' ] ) ? intval( $settings[ GRAPHINA_PREFIX . $chart_type . '_chart_yaxis_datalabel_decimals_in_float' ] ) : 1,
 					'labels'          => array(
 						'show'    => ! empty( $settings[ GRAPHINA_PREFIX . $chart_type . '_chart_yaxis_datalabel_show' ] ) && $settings[ GRAPHINA_PREFIX . $chart_type . '_chart_yaxis_datalabel_show' ] === 'yes' ? true : false,

@@ -14,7 +14,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 	data-chart_type="<?php echo esc_html( $chart_type ); ?>"
 	data-extra_data='<?php echo wp_json_encode( $extra_data ); ?>'
 	data-table_data='<?php echo wp_json_encode( $table_data ); ?>'
-	data-settings='<?php echo wp_json_encode( $element_settings ); ?>'>
+	data-settings='<?php echo esc_attr(wp_json_encode($element_settings)); ?>'>
 	<?php if ( $filter === 'yes' ) { ?>
 		<input type="text" class="table-filter" id="table-filter-<?php esc_attr_e( $element_id ); ?>"
 			placeholder="<?php esc_attr_e( 'Search ...' ); ?>">

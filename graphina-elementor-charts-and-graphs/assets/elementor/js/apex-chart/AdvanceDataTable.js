@@ -440,7 +440,7 @@ export default class DataTable {
                     post_id     : this.extraData.current_post_id,
                     element_id  : elementId,
                     series_count: 0,
-                    settings    : settings,
+                    settings    : JSON.stringify(settings),
                     selected_field: []
                 },
                 success: (response) => {

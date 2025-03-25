@@ -121,7 +121,7 @@ class PieGoogleChart extends GraphinaGoogleChartBase {
 		$controls->graphina_animation( $this, $chart_type );
 		$controls->graphina_chart_data_series( $this, $chart_type, 0 );
 		$controls->graphina_common_chart_setting( $this, $chart_type, false );
-		$controls->graphina_chart_legend_setting( $this, $chart_type );
+		$controls->graphina_advance_legend_setting( $this, $chart_type );
 		$controls->register_chart_restriction_controls( $this, $chart_type );
 		apply_filters( 'graphina_password_form_style_section', $this, $chart_type );
 	}
@@ -136,7 +136,7 @@ class PieGoogleChart extends GraphinaGoogleChartBase {
 	 */
 	protected function graphina_prepare_google_chart_options($settings, $chart_type, $element_id)
 	{
-		$legend_position = ! empty($settings[GRAPHINA_PREFIX . $chart_type . '_chart_legend_show']) && ! empty($settings[GRAPHINA_PREFIX . $chart_type . '_chart_google_legend_position']) && $settings[GRAPHINA_PREFIX . $chart_type . '_chart_legend_show'] === 'yes' ? $settings[GRAPHINA_PREFIX . $chart_type . '_chart_google_legend_position'] : 'none';
+		$legend_position = ! empty( $settings[ GRAPHINA_PREFIX . $chart_type . '_google_chart_legend_show' ] ) && $settings[ GRAPHINA_PREFIX . $chart_type . '_google_chart_legend_show' ] === 'yes' ? $settings[ GRAPHINA_PREFIX . $chart_type . '_google_piechart_legend_position' ] : 'none';
 		$chartArea       = array(
 			'left'  => '10%',
 			'right' => '5%',
@@ -168,14 +168,14 @@ class PieGoogleChart extends GraphinaGoogleChartBase {
 			),
 
 			'backgroundColor' => ! empty($settings[GRAPHINA_PREFIX . $chart_type . '_chart_background_color1']) ? $settings[GRAPHINA_PREFIX . $chart_type . '_chart_background_color1'] : '',
-			'legend'          => array(
-				'position'  => $legend_position,
-				'textStyle' => array(
-					'fontSize' => ! empty($settings[GRAPHINA_PREFIX . $chart_type . '_chart_legend_fontsize']) ? $settings[GRAPHINA_PREFIX . $chart_type . '_chart_legend_fontsize'] : '',
-					'color'    => ! empty($settings[GRAPHINA_PREFIX . $chart_type . '_chart_legend_color']) ? $settings[GRAPHINA_PREFIX . $chart_type . '_chart_legend_color'] : '',
-				),
-				'alignment' => ! empty($settings[GRAPHINA_PREFIX . $chart_type . '_google_chart_legend_horizontal_align']) ? $settings[GRAPHINA_PREFIX . $chart_type . '_google_chart_legend_horizontal_align'] : '', // start,center,end
-			),
+			'legend' => [
+				'position' => $legend_position,
+				'textStyle' => [
+					'fontSize' => ! empty( $settings[ GRAPHINA_PREFIX . $chart_type . '_google_chart_legend_fontsize' ] ) ? intval( $settings[ GRAPHINA_PREFIX . $chart_type . '_google_chart_legend_fontsize' ] ) : '10',
+					'color' => ! empty( $settings[ GRAPHINA_PREFIX . $chart_type . '_google_chart_legend_color' ] ) ? $settings[ GRAPHINA_PREFIX . $chart_type . '_google_chart_legend_color' ] : '',
+				],
+				'alignment' => ! empty( $settings[ GRAPHINA_PREFIX . $chart_type . '_google_chart_legend_horizontal_align' ] ) ? $settings[ GRAPHINA_PREFIX . $chart_type . '_google_chart_legend_horizontal_align' ] : '',
+			]
 		);
 
 		if (! empty($settings[GRAPHINA_PREFIX . $chart_type . '_google_chart_major_ticks_show']) && $settings[GRAPHINA_PREFIX . $chart_type . '_google_chart_major_ticks_show'] == 'yes') {
@@ -199,8 +199,8 @@ class PieGoogleChart extends GraphinaGoogleChartBase {
 		$response['sliceVisibilityThreshold'] = 0;
 		$response['pieSliceBorderColor']      = $settings[GRAPHINA_PREFIX . $chart_type . '_chart_pieslice_bordercolor'] ? strval($settings[GRAPHINA_PREFIX . $chart_type . '_chart_pieslice_bordercolor']) : '#000000';
 		$response['pieSliceTextStyle']        = array(
-			'color'    => $settings[GRAPHINA_PREFIX . $chart_type . '_chart_pieSliceText_color'],
-			'fontSize' => $settings[GRAPHINA_PREFIX . $chart_type . '_chart_pieSliceText_fontsize'],
+			'color' => ! empty ( $settings[ GRAPHINA_PREFIX . $chart_type . '_chart_pieSliceText_color' ] ) ? $settings[ GRAPHINA_PREFIX . $chart_type . '_chart_pieSliceText_color' ] : '',
+			'fontSize' => ! empty( $settings[ GRAPHINA_PREFIX . $chart_type . '_chart_pieSliceText_fontsize' ] ) ? $settings[ GRAPHINA_PREFIX . $chart_type . '_chart_pieSliceText_fontsize' ] : '',
 		);
 		$response['is3D']                     = $settings[GRAPHINA_PREFIX . $chart_type . '_chart_isthreed'] === 'yes';
 		$response['tooltip']['text']          = $settings[GRAPHINA_PREFIX . $chart_type . '_chart_tooltip_text'];

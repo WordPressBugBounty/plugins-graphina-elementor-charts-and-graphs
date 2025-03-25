@@ -271,6 +271,7 @@ class ColumnChart extends GraphinaApexChartBase {
 					'show' => ! empty( $settings[ GRAPHINA_PREFIX . $chart_type . '_chart_xaxis_crosshairs_show' ] ) && $settings[ GRAPHINA_PREFIX . $chart_type . '_chart_xaxis_crosshairs_show' ] === 'yes' ? true : false,
 				),
 			),
+			'colors' => $gradient,
 			'yaxis'      => array(
 				'tickAmount'      => ! empty( $settings[ GRAPHINA_PREFIX . $chart_type . '_chart_yaxis_datalabel_tick_amount' ] ) ? intval( $settings[ GRAPHINA_PREFIX . $chart_type . '_chart_yaxis_datalabel_tick_amount' ] ) : 6,
 				'decimalsInFloat' => ! empty( $settings[ GRAPHINA_PREFIX . $chart_type . '_chart_yaxis_datalabel_decimals_in_float' ] ) ? intval( $settings[ GRAPHINA_PREFIX . $chart_type . '_chart_yaxis_datalabel_decimals_in_float' ] ) : 1,
@@ -297,6 +298,12 @@ class ColumnChart extends GraphinaApexChartBase {
 				'showForSingleSeries' => true,
 				'show'                => $legend_show,
 				'horizontalAlign'     => ! empty( $settings[ GRAPHINA_PREFIX . $chart_type . '_chart_legend_horizontal_align' ] ) ? $settings[ GRAPHINA_PREFIX . $chart_type . '_chart_legend_horizontal_align' ] : 'center',
+				'fontSize'   		  => ! empty( $settings[ GRAPHINA_PREFIX . $chart_type . '_chart_font_size' ]['size'] ) ? $settings[ GRAPHINA_PREFIX . $chart_type . '_chart_font_size' ]['size'] . $settings[ GRAPHINA_PREFIX . $chart_type . '_chart_font_size' ]['unit'] : '12px',
+				'fontFamily' 		  => ! empty( $settings[ GRAPHINA_PREFIX . $chart_type . '_chart_font_family' ] ) ? $settings[ GRAPHINA_PREFIX . $chart_type . '_chart_font_family' ] : 'poppins',
+				'fontWeight' 		  => ! empty( $settings[ GRAPHINA_PREFIX . $chart_type . '_chart_font_weight' ] ) ? $settings[ GRAPHINA_PREFIX . $chart_type . '_chart_font_weight' ] : '',
+				'labels'	 		  => [
+					'colors'	=> ! empty( $settings[ GRAPHINA_PREFIX . $chart_type . '_chart_font_color' ] ) ? $settings[ GRAPHINA_PREFIX . $chart_type . '_chart_font_color' ] : '',
+				],
 			),
 			'dataLabels' => array(
 				'enabled'    => ! empty( $settings[ GRAPHINA_PREFIX . $chart_type . '_chart_datalabel_show' ] ) && $settings[ GRAPHINA_PREFIX . $chart_type . '_chart_datalabel_show' ] === 'yes' ? true : false,
@@ -371,25 +378,23 @@ class ColumnChart extends GraphinaApexChartBase {
 				);
 			}
 
-			if( 'column' === $chart_type ) {
-				$chart_options['plotOptions'] = [
-					'bar' => [
-						'horizontal' => ! empty( $settings[ GRAPHINA_PREFIX . $chart_type . '_is_chart_horizontal' ] ) && $settings[ GRAPHINA_PREFIX . $chart_type . '_is_chart_horizontal' ] === 'yes' ? true : false,
-						'columnWidth' => ! empty( $settings[ GRAPHINA_PREFIX . $chart_type . '_is_chart_stroke_width' ] ) ? $settings[ GRAPHINA_PREFIX . $chart_type . '_is_chart_stroke_width' ].'%' : '12%',
-						'borderRadius' => ! empty( $settings[ GRAPHINA_PREFIX . $chart_type . '_chart_plot_border_radius' ] ) ? intval($settings[ GRAPHINA_PREFIX . $chart_type . '_chart_plot_border_radius' ]) : 0,
-						'dataLabels' => [
-							'position' => ! empty( $settings[ GRAPHINA_PREFIX . $chart_type . '_chart_datalabel_position_show' ] ) ? $settings[ GRAPHINA_PREFIX . $chart_type . '_chart_datalabel_position_show' ] : '',
-							'orientation' => ! empty( $settings[ GRAPHINA_PREFIX . $chart_type . '_chart_datalabel_orientation' ] ) ? $settings[ GRAPHINA_PREFIX . $chart_type . '_chart_datalabel_orientation' ] : '',
-							'total' => [
-								'enabled' => ! empty( $settings[ GRAPHINA_PREFIX . $chart_type . '_is_chart_datalable_total' ] ) && $settings[ GRAPHINA_PREFIX . $chart_type . '_is_chart_datalable_total' ] === 'yes' ? true : false,
-								'style' => [
-									'fontSize' => ! empty( $settings[ GRAPHINA_PREFIX . $chart_type . '_is_chart_datalable_total_fontsize' ] ) ? intval($settings[ GRAPHINA_PREFIX . $chart_type . '_is_chart_datalable_total_fontsize' ]) : '',
-								]
+			$chart_options['plotOptions'] = [
+				'bar' => [
+					'horizontal' => ! empty( $settings[ GRAPHINA_PREFIX . $chart_type . '_is_chart_horizontal' ] ) && $settings[ GRAPHINA_PREFIX . $chart_type . '_is_chart_horizontal' ] === 'yes' ? true : false,
+					'columnWidth' => ! empty( $settings[ GRAPHINA_PREFIX . $chart_type . '_is_chart_stroke_width' ] ) ? $settings[ GRAPHINA_PREFIX . $chart_type . '_is_chart_stroke_width' ].'%' : '12%',
+					'borderRadius' => ! empty( $settings[ GRAPHINA_PREFIX . $chart_type . '_chart_plot_border_radius' ] ) ? intval($settings[ GRAPHINA_PREFIX . $chart_type . '_chart_plot_border_radius' ]) : 0,
+					'dataLabels' => [
+						'position' => ! empty( $settings[ GRAPHINA_PREFIX . $chart_type . '_chart_datalabel_position_show' ] ) ? $settings[ GRAPHINA_PREFIX . $chart_type . '_chart_datalabel_position_show' ] : '',
+						'orientation' => ! empty( $settings[ GRAPHINA_PREFIX . $chart_type . '_chart_datalabel_orientation' ] ) ? $settings[ GRAPHINA_PREFIX . $chart_type . '_chart_datalabel_orientation' ] : '',
+						'total' => [
+							'enabled' => ! empty( $settings[ GRAPHINA_PREFIX . $chart_type . '_is_chart_datalable_total' ] ) && $settings[ GRAPHINA_PREFIX . $chart_type . '_is_chart_datalable_total' ] === 'yes' ? true : false,
+							'style' => [
+								'fontSize' => ! empty( $settings[ GRAPHINA_PREFIX . $chart_type . '_is_chart_datalable_total_fontsize' ] ) ? intval($settings[ GRAPHINA_PREFIX . $chart_type . '_is_chart_datalable_total_fontsize' ]) : '',
 							]
 						]
-					],
-				];
-			}
+					]
+				],
+			];
 
 			$chart_options['legend'] = array(
 				'showForSingleSeries' => true,

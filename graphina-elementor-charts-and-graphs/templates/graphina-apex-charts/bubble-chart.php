@@ -16,6 +16,6 @@ if ( ! defined( 'ABSPATH' ) ) {
 		data-chart_options='<?php echo wp_json_encode( $chart_options ); ?>'
 		data-responsive_options='<?php echo wp_json_encode( $responsive_options ); ?>'
 		data-extra_data='<?php echo wp_json_encode( $extra_data ); ?>'
-		data-settings='<?php echo wp_json_encode( $element_settings ); ?>'>
+		data-settings='<?php echo esc_attr(wp_json_encode($element_settings)); ?>'>
 	</div>
 </div>

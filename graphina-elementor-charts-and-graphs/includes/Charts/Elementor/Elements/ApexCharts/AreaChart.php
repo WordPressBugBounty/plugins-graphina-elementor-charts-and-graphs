@@ -195,19 +195,7 @@ class AreaChart extends GraphinaApexChartBase {
 			generate_chart_locales(get_locale()),
 		);
 
-		$type_of_chart = '';
 		$type_of_chart = $chart_type;
-
-		$color_setting_key = GRAPHINA_PREFIX . $chart_type . '_chart_datalabel_background_show';
-		$font_color_key    = GRAPHINA_PREFIX . $chart_type . '_chart_datalabel_font_color_1';
-		$default_color 	   = ! empty($settings[GRAPHINA_PREFIX . $chart_type . '_chart_font_color']) ? $settings[GRAPHINA_PREFIX . $chart_type . '_chart_font_color'] : '#000000';
-
-		$datalabel_font_color = ! empty($settings[$color_setting_key]) && 'yes' === $settings[$color_setting_key]
-			? $settings[$font_color_key]
-			: $default_color;
-
-		$color_array = array(esc_js($datalabel_font_color));
-
 
 		$chart_options = array(
 			'series'     => $series_temp,
@@ -217,6 +205,7 @@ class AreaChart extends GraphinaApexChartBase {
 				'height'        => ! empty($settings[GRAPHINA_PREFIX . $chart_type . '_chart_height']) ? $settings[GRAPHINA_PREFIX . $chart_type . '_chart_height'] : '350',
 				'type'          => $type_of_chart,
 				'stacked'       => ! empty($settings[GRAPHINA_PREFIX . $chart_type . '_chart_stacked']) ? $settings[GRAPHINA_PREFIX . $chart_type . '_chart_stacked'] : '',
+				'fontFamily'	=> ! empty( $settings[ GRAPHINA_PREFIX . $chart_type . '_chart_font_family' ] ) ? $settings[ GRAPHINA_PREFIX . $chart_type . '_chart_font_family' ] : '',
 				'toolbar'       => array(
 					'offsetX' => ! empty($settings[GRAPHINA_PREFIX . $chart_type . '_chart_toolbar_offsetx']) ? intval($settings[GRAPHINA_PREFIX . $chart_type . '_chart_toolbar_offsetx']) : 0,
 					'offsetY' => ! empty($settings[GRAPHINA_PREFIX . $chart_type . '_chart_toolbar_offsety']) ? intval($settings[GRAPHINA_PREFIX . $chart_type . '_chart_toolbar_offsety']) : 0,
@@ -249,7 +238,6 @@ class AreaChart extends GraphinaApexChartBase {
 					'speed'   => ! empty($settings[GRAPHINA_PREFIX . $chart_type . '_chart_animation_speed']) ? $settings[GRAPHINA_PREFIX . $chart_type . '_chart_animation_speed'] : 800,
 					'delay'   => ! empty($settings[GRAPHINA_PREFIX . $chart_type . '_chart_animation_delay']) ? $settings[GRAPHINA_PREFIX . $chart_type . '_chart_animation_delay'] : 150,
 				),
-
 				'locales'       => $locales,
 				'defaultLocale' => get_locale(),
 			),
@@ -302,7 +290,13 @@ class AreaChart extends GraphinaApexChartBase {
 			),
 			'legend'     => array(
 				'showForSingleSeries' => true,
-				'show'                => $legend_show,
+				'show'		 => $legend_show,
+				'fontSize'   => ! empty( $settings[ GRAPHINA_PREFIX . $chart_type . '_chart_font_size' ]['size'] ) ? $settings[ GRAPHINA_PREFIX . $chart_type . '_chart_font_size' ]['size'] . $settings[ GRAPHINA_PREFIX . $chart_type . '_chart_font_size' ]['unit'] : '12px',
+				'fontFamily' => ! empty( $settings[ GRAPHINA_PREFIX . $chart_type . '_chart_font_family' ] ) ? $settings[ GRAPHINA_PREFIX . $chart_type . '_chart_font_family' ] : 'poppins',
+				'fontWeight' => ! empty( $settings[ GRAPHINA_PREFIX . $chart_type . '_chart_font_weight' ] ) ? $settings[ GRAPHINA_PREFIX . $chart_type . '_chart_font_weight' ] : '',
+				'labels'	 => [
+					'colors'	=> ! empty( $settings[ GRAPHINA_PREFIX . $chart_type . '_chart_font_color' ] ) ? $settings[ GRAPHINA_PREFIX . $chart_type . '_chart_font_color' ] : '',
+				],
 				'horizontalAlign'     => ! empty($settings[GRAPHINA_PREFIX . $chart_type . '_chart_legend_horizontal_align']) ? $settings[GRAPHINA_PREFIX . $chart_type . '_chart_legend_horizontal_align'] : 'center',
 			),
 			'dataLabels' => array(
@@ -320,9 +314,22 @@ class AreaChart extends GraphinaApexChartBase {
 					'borderWidth'  => ! empty($settings[GRAPHINA_PREFIX . $chart_type . '_chart_datalabel_border_width']) ? intval(esc_js($settings[GRAPHINA_PREFIX . $chart_type . '_chart_datalabel_border_width'])) : 1,
 					'borderColor'  => ! empty($settings[GRAPHINA_PREFIX . $chart_type . '_chart_datalabel_border_color']) ? esc_js($settings[GRAPHINA_PREFIX . $chart_type . '_chart_datalabel_border_color']) : '#ffffff',
 				),
+				'offsetY'	=> ! empty( $settings[ GRAPHINA_PREFIX . $chart_type . '_chart_datalabel_offsety' ] ) ? intval( $settings[ GRAPHINA_PREFIX . $chart_type . '_chart_datalabel_offsety' ] ) : 0,
+				'offsetX'	=> ! empty( $settings[ GRAPHINA_PREFIX . $chart_type . '_chart_datalabel_offsetx' ] ) ? intval( $settings[ GRAPHINA_PREFIX . $chart_type . '_chart_datalabel_offsetx' ] ) : 0,
 			),
-			'noData'     => array(
-				'text' => ! empty($settings[GRAPHINA_PREFIX . $chart_type . '_chart_no_data_text']) ? $settings[GRAPHINA_PREFIX . $chart_type . '_chart_no_data_text'] : esc_html__('No Data Available', 'graphina-charts-for-elementor'),
+			'stroke'	=> [
+				'curve'	=> ! empty( $settings[ GRAPHINA_PREFIX . $chart_type . '_chart_area_curve' ] ) ? $settings[ GRAPHINA_PREFIX . $chart_type . '_chart_area_curve' ] : '',
+			],
+			'noData'	=> array(
+				'text'	=> ! empty($settings[GRAPHINA_PREFIX . $chart_type . '_chart_no_data_text']) ? $settings[GRAPHINA_PREFIX . $chart_type . '_chart_no_data_text'] : esc_html__('No Data Available', 'graphina-charts-for-elementor'),
+				'align' => 'center',
+				'verticalAlign'	=> 'middle',
+				'style'	=> [
+					'colors'     => ! empty($settings[GRAPHINA_PREFIX . $chart_type . '_chart_font_color']) ? strval($settings[GRAPHINA_PREFIX . $chart_type . '_chart_font_color']) : '#000000',
+					'fontSize'   => ! empty($settings[GRAPHINA_PREFIX . $chart_type . '_chart_font_size']['size']) ? $settings[GRAPHINA_PREFIX . $chart_type . '_chart_font_size']['size'] . $settings[GRAPHINA_PREFIX . $chart_type . '_chart_font_size']['unit'] : '12px',
+					'fontFamily' => ! empty($settings[GRAPHINA_PREFIX . $chart_type . '_chart_font_family']) ? $settings[GRAPHINA_PREFIX . $chart_type . '_chart_font_family'] : 'poppins',
+					'fontWeight' => ! empty($settings[GRAPHINA_PREFIX . $chart_type . '_chart_font_weight']) ? $settings[GRAPHINA_PREFIX . $chart_type . '_chart_font_weight'] : '',
+				]
 			),
 			'tooltip'    => array(
 				'enabled' => ! empty($settings[GRAPHINA_PREFIX . $chart_type . '_chart_tooltip']) && $settings[GRAPHINA_PREFIX . $chart_type . '_chart_tooltip'] === 'yes' ? true : false,
@@ -396,9 +403,6 @@ class AreaChart extends GraphinaApexChartBase {
 		);
 		$chart_options['position'] = ! empty($settings[GRAPHINA_PREFIX . $chart_type . '_chart_legend_position']) ? $settings[GRAPHINA_PREFIX . $chart_type . '_chart_legend_position'] : 'buttom';
 		$chart_options['xaxis']['categories'] = $categories;
-		if (! empty($settings[GRAPHINA_PREFIX . $chart_type . '_chart_area_curve'])) {
-			$chart_options['stroke']['curve'] = $settings[GRAPHINA_PREFIX . $chart_type . '_chart_area_curve'];
-		}
 
 		$chart_options['tooltip']['shared'] = $settings[GRAPHINA_PREFIX . $chart_type . '_chart_tooltip_shared'];
 

@@ -430,6 +430,52 @@ class GraphinaElementorControls {
 		);
 
 		$widget->add_control(
+			GRAPHINA_PREFIX . $chart_type . '_table_header_align',
+			array(
+				'label'     => esc_html__( 'Table Header Alignment', 'graphina-charts-for-elementor' ),
+				'type'      => Controls_Manager::CHOOSE,
+				'default'   => 'center',
+				'options'   => array(
+					'left'   => array(
+						'title' => esc_html__( 'Left', 'graphina-charts-for-elementor' ),
+						'icon'  => 'eicon-text-align-left',
+					),
+					'center' => array(
+						'title' => esc_html__( 'Center', 'graphina-charts-for-elementor' ),
+						'icon'  => 'eicon-text-align-center',
+					),
+					'right'  => array(
+						'title' => esc_html__( 'Right', 'graphina-charts-for-elementor' ),
+						'icon'  => 'eicon-text-align-right',
+					),
+				),
+			)
+		);
+
+		$widget->add_control(
+			GRAPHINA_PREFIX . $chart_type . '_table_body_align',
+			array(
+				'label'     => esc_html__( 'Table Body Alignment', 'graphina-charts-for-elementor' ),
+				'type'      => Controls_Manager::CHOOSE,
+				'default'   => 'center',
+				'options'   => array(
+					'left'   => array(
+						'title' => esc_html__( 'Left', 'graphina-charts-for-elementor' ),
+						'icon'  => 'eicon-text-align-left',
+					),
+					'center' => array(
+						'title' => esc_html__( 'Center', 'graphina-charts-for-elementor' ),
+						'icon'  => 'eicon-text-align-center',
+					),
+					'right'  => array(
+						'title' => esc_html__( 'Right', 'graphina-charts-for-elementor' ),
+						'icon'  => 'eicon-text-align-right',
+					),
+				),
+			)
+		);
+
+		$widget->add_control(
 			GRAPHINA_PREFIX . $chart_type . '_header_row_color',
 			array(
 				'label'     => esc_html__( 'Header Row Color', 'graphina-charts-for-elementor' ),
@@ -545,7 +591,7 @@ class GraphinaElementorControls {
 				'global' => [
 					'default' => \Elementor\Core\Kits\Documents\Tabs\Global_Typography::TYPOGRAPHY_PRIMARY,
 				],
-				'selector' => '{{WRAPPER}} .dataTables_wrapper',
+				'selector' => '{{WRAPPER}} .dt-container',
 			)
 		);
 
@@ -1354,6 +1400,9 @@ class GraphinaElementorControls {
 							'link'     => 'https://codecanyon.net/item/graphinapro-elementor-dynamic-charts-datatable/28654061',
 						)
 					),
+					'condition' => array(
+						GRAPHINA_PREFIX . $chart_type . '_element_data_option' => 'dynamic',
+					),
 				)
 			);
 		}
@@ -1538,6 +1587,9 @@ class GraphinaElementorControls {
 							'link'     => 'https://codecanyon.net/item/graphinapro-elementor-dynamic-charts-datatable/28654061',
 						)
 					),
+					'condition' => array(
+						GRAPHINA_PREFIX . $chart_type . '_chart_data_option' => 'dynamic',
+					),
 				)
 			);
 		}
@@ -1546,7 +1598,7 @@ class GraphinaElementorControls {
 	/**
 	 * Function to handle google chart series section settings for Elementor widgets.
 	 *
-	 * @param Element_Base $this_ele The Elementor element instance.
+	 * @param Element_Base $widget The Elementor element instance.
 	 * @param string       $type     Type of chart being configured.
 	 * @param array        $ele_array Array of which section to show.
 	 *
@@ -1670,7 +1722,7 @@ class GraphinaElementorControls {
 	/**
 	 * Function to handle google chart marker section settings for Elementor widgets.
 	 *
-	 * @param Element_Base $this_ele The Elementor element instance.
+	 * @param Element_Base $widget The Elementor element instance.
 	 * @param string       $type     Type of chart being configured.
 	 * @param int          $i        Element index.
 	 *
@@ -1743,7 +1795,7 @@ class GraphinaElementorControls {
 	/**
 	 * Function to handle chart dynamic section settings for Elementor widgets.
 	 *
-	 * @param Element_Base $this_ele The Elementor element instance.
+	 * @param Element_Base $widget The Elementor element instance.
 	 * @param string       $type     Type of chart being configured.
 	 *
 	 * @return void
@@ -3500,7 +3552,7 @@ class GraphinaElementorControls {
 						'label'       => 'Label',
 						'type'        => Controls_Manager::TEXT,
 						'placeholder' => esc_html__( 'Add Label', 'graphina-charts-for-elementor' ),
-						'default'     => $default_label[ $i ],
+						'default'     => isset($default_label[ $i ]) ? $default_label[ $i ] : '',
 						'dynamic'     => array(
 							'active' => true,
 						),
@@ -9545,7 +9597,7 @@ class GraphinaElementorControls {
 					'type'      => Controls_Manager::COLOR,
 					'default'   => '#000000',
 					'selectors' => array(
-						'{{WRAPPER}} .graphina-card.counter .counter-icon' => 'color: {{VALUE}}',
+						'{{WRAPPER}} .graphina-card.counter .counter-icon svg' => 'fill: {{VALUE}}',
 					),
 				)
 			);
@@ -9568,7 +9620,7 @@ class GraphinaElementorControls {
 						'size' => 20,
 					),
 					'selectors'  => array(
-						'{{WRAPPER}} .graphina-card.counter .counter-icon i' => 'font-size: {{SIZE}}{{UNIT}};',
+						'{{WRAPPER}} .graphina-card.counter .counter-icon svg' => 'width: {{SIZE}}{{UNIT}};',
 					),
 				)
 			);
@@ -9900,6 +9952,222 @@ class GraphinaElementorControls {
 	}
 
 	/**
+	 * Function to handle chart advance legend section settings for Elementor widgets.
+	 *
+	 * @param Element_Base $widget The Elementor element instance.
+	 * @param string       $type     Type of chart being configured.
+	 *
+	 * @return void
+	 */
+	public function graphina_advance_legend_setting( $widget, string $chart_type = 'chart_id' ): void {
+		$widget->start_controls_section(
+			GRAPHINA_PREFIX . $chart_type . '_section_10',
+			array(
+				'label' => esc_html__( 'Legend Setting', 'graphina-charts-for-elementor' ),
+			)
+		);
+
+		$widget->add_control(
+			GRAPHINA_PREFIX . $chart_type . '_google_chart_legend_show',
+			array(
+				'label'     => esc_html__( 'Show Legend', 'graphina-charts-for-elementor' ),
+				'type'      => Controls_Manager::SWITCHER,
+				'label_on'  => esc_html__( 'Hide', 'graphina-charts-for-elementor' ),
+				'label_off' => esc_html__( 'Show', 'graphina-charts-for-elementor' ),
+				'default'   => 'yes',
+			)
+		);
+
+		if ( in_array( $chart_type, array( 'column_google', 'line_google', 'area_google', 'bar_google' ), true ) ) {
+
+			$widget->add_control(
+				GRAPHINA_PREFIX . $chart_type . '_google_chart_legend_position',
+				array(
+					'label'     => esc_html__( 'Legend Position', 'graphina-charts-for-elementor' ),
+					'type'      => Controls_Manager::SELECT,
+					'default'   => 'bottom',
+					'options'   => graphina_position_type( 'google_chart_legend_position' ),
+					'condition' => array(
+						GRAPHINA_PREFIX . $chart_type . '_google_chart_legend_show' => 'yes',
+					),
+				)
+			);
+
+			$widget->add_control(
+				GRAPHINA_PREFIX . $chart_type . '_google_chart_legend_color',
+				array(
+					'label'     => esc_html__( 'Legend Text Color', 'graphina-charts-for-elementor' ),
+					'type'      => Controls_Manager::COLOR,
+					'default'   => 'black',
+					'options'   => graphina_position_type( 'google_chart_legend_position' ),
+					'condition' => array(
+						GRAPHINA_PREFIX . $chart_type . '_google_chart_legend_show' => 'yes',
+					),
+				)
+			);
+			$widget->add_control(
+				GRAPHINA_PREFIX . $chart_type . '_google_chart_legend_fontsize',
+				array(
+					'label'     => esc_html__( 'Legend Text Fontsize', 'graphina-charts-for-elementor' ),
+					'type'      => Controls_Manager::NUMBER,
+					'default'   => 10,
+					'min'       => 1,
+					'max'       => 15,
+					'options'   => graphina_position_type( 'google_chart_legend_position' ),
+					'condition' => array(
+						GRAPHINA_PREFIX . $chart_type . '_google_chart_legend_show' => 'yes',
+					),
+				)
+			);
+		}
+		if ( in_array( $chart_type, array( 'column_google', 'line_google', 'area_google', 'bar_google', 'pie_google', 'donut_google' ), true ) ) {
+			$widget->add_control(
+				GRAPHINA_PREFIX . $chart_type . '_google_chart_legend_horizontal_align',
+				array(
+					'label'     => esc_html__( 'Horizontal Align', 'graphina-charts-for-elementor' ),
+					'type'      => Controls_Manager::CHOOSE,
+					'default'   => 'center',
+					'options'   => array(
+						'start'  => array(
+							'title' => esc_html__( 'Start', 'graphina-charts-for-elementor' ),
+							'icon'  => 'fa fa-align-left',
+						),
+						'center' => array(
+							'title' => esc_html__( 'Center', 'graphina-charts-for-elementor' ),
+							'icon'  => 'fa fa-align-center',
+						),
+						'end'    => array(
+							'title' => esc_html__( 'End', 'graphina-charts-for-elementor' ),
+							'icon'  => 'fa fa-align-right',
+						),
+					),
+					'condition' => array(
+						GRAPHINA_PREFIX . $chart_type . '_google_chart_legend_show' => 'yes',
+					),
+				)
+			);
+		}
+		if ( in_array( $chart_type, array( 'pie_google', 'donut_google' ), true ) ) {
+			$widget->add_control(
+				GRAPHINA_PREFIX . $chart_type . '_google_piechart_legend_position',
+				array(
+					'label'     => esc_html__( 'Legend Position', 'graphina-charts-for-elementor' ),
+					'type'      => Controls_Manager::SELECT,
+					'default'   => 'bottom',
+					'options'   => graphina_position_type( 'google_piechart_legend_position' ),
+					'condition' => array(
+						GRAPHINA_PREFIX . $chart_type . '_google_chart_legend_show' => 'yes',
+					),
+				)
+			);
+			$widget->add_control(
+				GRAPHINA_PREFIX . $chart_type . '_google_chart_legend_labeld_value',
+				array(
+					'label'       => esc_html__( 'Labeled Value Text', 'graphina-charts-for-elementor' ),
+					'type'        => Controls_Manager::SELECT,
+					'default'     => 'Value',
+					'options'     => array(
+						'both' => esc_html__( 'Value And Percentage', 'graphina-charts-for-elementor' ),
+					),
+					'value'       => esc_html__( 'Value', 'graphina-charts-for-elementor' ),
+					'percentages' => esc_html__( 'Percentages', 'graphina-charts-for-elementor' ),
+					'condition'   => array(
+						GRAPHINA_PREFIX . $chart_type . '_google_chart_legend_show' => 'yes',
+						GRAPHINA_PREFIX . $chart_type . '_google_piechart_legend_position' => 'labeled',
+					),
+				)
+			);
+
+			$widget->add_control(
+				GRAPHINA_PREFIX . $chart_type . '_google_chart_legend_color',
+				array(
+					'label'     => esc_html__( 'Legend Text Color', 'graphina-charts-for-elementor' ),
+					'type'      => Controls_Manager::COLOR,
+					'default'   => 'black',
+					'options'   => graphina_position_type( 'google_piechart_legend_position' ),
+					'condition' => array(
+						GRAPHINA_PREFIX . $chart_type . '_google_chart_legend_show' => 'yes',
+					),
+				)
+			);
+			$widget->add_control(
+				GRAPHINA_PREFIX . $chart_type . '_google_chart_legend_fontsize',
+				array(
+					'label'     => esc_html__( 'Legend Text Fontsize', 'graphina-charts-for-elementor' ),
+					'type'      => Controls_Manager::NUMBER,
+					'min'       => 1,
+					'max'       => 15,
+					'default'   => 10,
+					'options'   => graphina_position_type( 'google_piechart_legend_position' ),
+					'condition' => array(
+						GRAPHINA_PREFIX . $chart_type . '_google_chart_legend_show' => 'yes',
+					),
+				)
+			);
+		}
+
+		if ( $chart_type === 'geo_google' ) {
+			$widget->add_control(
+				GRAPHINA_PREFIX . $chart_type . '_google_legend_color',
+				array(
+					'label'     => esc_html__( 'Legend Color', 'graphina-charts-for-elementor' ),
+					'type'      => Controls_Manager::COLOR,
+					'condition' => array(
+						GRAPHINA_PREFIX . $chart_type . '_google_chart_legend_show' => 'yes',
+					),
+				)
+			);
+
+			$widget->add_control(
+				GRAPHINA_PREFIX . $chart_type . '_google_legend_size',
+				array(
+					'label'     => esc_html__( 'Legend Size', 'graphina-charts-for-elementor' ),
+					'type'      => Controls_Manager::NUMBER,
+					'min'       => 0,
+					'condition' => array(
+						GRAPHINA_PREFIX . $chart_type . '_google_chart_legend_show' => 'yes',
+					),
+				)
+			);
+
+			$widget->add_control(
+				GRAPHINA_PREFIX . $chart_type . '_google_legend_format',
+				array(
+					'label'     => esc_html__( 'Number Format', 'graphina-charts-for-elementor' ),
+					'type'      => Controls_Manager::SWITCHER,
+					'condition' => array(
+						GRAPHINA_PREFIX . $chart_type . '_google_chart_legend_show' => 'yes',
+					),
+				)
+			);
+
+			$widget->add_control(
+				GRAPHINA_PREFIX . $chart_type . '_google_legend_bold',
+				array(
+					'label'     => esc_html__( 'Bold', 'graphina-charts-for-elementor' ),
+					'type'      => Controls_Manager::SWITCHER,
+					'condition' => array(
+						GRAPHINA_PREFIX . $chart_type . '_google_chart_legend_show' => 'yes',
+					),
+				)
+			);
+
+			$widget->add_control(
+				GRAPHINA_PREFIX . $chart_type . '_google_legend_italic',
+				array(
+					'label'     => esc_html__( 'Italic', 'graphina-charts-for-elementor' ),
+					'type'      => Controls_Manager::SWITCHER,
+					'condition' => array(
+						GRAPHINA_PREFIX . $chart_type . '_google_chart_legend_show' => 'yes',
+					),
+				)
+			);
+		}
+
+		$widget->end_controls_section();
+	}
+
+	/**
 	 * Register Chart Legend Controls
 	 *
 	 * Adds a standardized set of controls to a given widget, based on
@@ -10155,7 +10423,6 @@ class GraphinaElementorControls {
 					'label'     => esc_html__( 'Legend Text Color', 'graphina-charts-for-elementor' ),
 					'type'      => Controls_Manager::COLOR,
 					'default'   => 'black',
-					'options'   => graphina_position_type( 'google_chart_legend_position' ),
 					'condition' => array(
 						GRAPHINA_PREFIX . $chart_type . '_google_chart_legend_show' => 'yes',
 					),

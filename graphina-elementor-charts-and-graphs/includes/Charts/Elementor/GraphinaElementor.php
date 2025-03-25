@@ -181,19 +181,19 @@ class GraphinaElementor {
 	 */
 	public function enqueue_kucrut() {
 		// Core Scripts and Styles
-		wp_register_script( 'apexchart-js', GRAPHINA_URL . 'assets/js/apexchart.min.js', array() );
-		wp_register_script( 'googlechart-js', GRAPHINA_URL . 'assets/js/googlechart-loader.js' );
-		wp_register_style( 'apexchart-css', GRAPHINA_URL . 'assets/css/apexchart.min.css' );
-		wp_enqueue_style( 'graphina_chart-css', GRAPHINA_URL . 'assets/css/graphina-chart.css' );
-		wp_register_script( 'data-table-js', GRAPHINA_URL . 'assets/js/dataTables.min.js', array( 'jquery' ) );
+		wp_register_script( 'apexchart-js', GRAPHINA_URL . 'assets/js/apexchart.min.js', array(), GRAPHINA_VERSION );
+		wp_register_script( 'googlechart-js', GRAPHINA_URL . 'assets/js/googlechart-loader.js', array(), GRAPHINA_VERSION );
+		wp_register_style( 'apexchart-css', GRAPHINA_URL . 'assets/css/apexchart.min.css', array(), GRAPHINA_VERSION );
+		wp_enqueue_style( 'graphina_chart-css', GRAPHINA_URL . 'assets/css/graphina-chart.css', array(), GRAPHINA_VERSION );
+		wp_register_script( 'data-table-js', GRAPHINA_URL . 'assets/js/dataTables.min.js', array( 'jquery' ), GRAPHINA_VERSION );
 		wp_register_style( 'data-table-css', GRAPHINA_URL . 'assets/css/dataTables.min.css' );
-		wp_register_script( 'data-table-button-js', GRAPHINA_URL . 'assets/js/dataTables.buttons.min.js', array( 'jquery' ) );
-		wp_register_script( 'data-table-button-html5-js', GRAPHINA_URL . 'assets/js/buttons.html5.min.js', array( 'jquery' ) );
-		wp_register_script( 'data-table-button-print-js', GRAPHINA_URL . 'assets/js/buttons.print.min.js', array( 'jquery' ) );
-		wp_register_style( 'data-table-button-css', GRAPHINA_URL . 'assets/css/buttons.dataTables.min.css' );
-		wp_register_script( 'data-table-colvis-print-js', GRAPHINA_URL . 'assets/js/buttons.colVis.min.js', array( 'jquery' ) );
-		wp_register_script( 'data-table-jszip-js', GRAPHINA_URL . 'assets/js/jszip.min.js' );
-		wp_register_script( 'data-table-pdfmake-js', GRAPHINA_URL . 'assets/js/pdfmake.min.js' );
+		wp_register_script( 'data-table-button-js', GRAPHINA_URL . 'assets/js/dataTables.buttons.min.js', array( 'jquery' ), GRAPHINA_VERSION  );
+		wp_register_script( 'data-table-button-html5-js', GRAPHINA_URL . 'assets/js/buttons.html5.min.js', array( 'jquery' ), GRAPHINA_VERSION  );
+		wp_register_script( 'data-table-button-print-js', GRAPHINA_URL . 'assets/js/buttons.print.min.js', array( 'jquery' ), GRAPHINA_VERSION  );
+		wp_register_style( 'data-table-button-css', GRAPHINA_URL . 'assets/css/buttons.dataTables.min.css', array(), GRAPHINA_VERSION  );
+		wp_register_script( 'data-table-colvis-print-js', GRAPHINA_URL . 'assets/js/buttons.colVis.min.js', array( 'jquery' ), GRAPHINA_VERSION  );
+		wp_register_script( 'data-table-jszip-js', GRAPHINA_URL . 'assets/js/jszip.min.js', array(), GRAPHINA_VERSION  );
+		wp_register_script( 'data-table-pdfmake-js', GRAPHINA_URL . 'assets/js/pdfmake.min.js', array(), GRAPHINA_VERSION  );
 
 		// Apex Charts Assets
 		\Kucrut\Vite\register_asset(

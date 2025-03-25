@@ -102,7 +102,9 @@ export default class CounterChart extends GraphinaApexChartBase {
                  element.append(new Option(option, option, isSelectedX, isSelectedX));
          });
     }
-
+    processDynamicData(dynamicData,elementId,extraData){
+        dynamicData.extra.category = ['element1']
+    }
     // Get chart options, including Counter chart configuration
     getChartOptions(finalChartOptions, chartType, extraData, responsive_options, elementId) {
         if (chartType === 'counter') {

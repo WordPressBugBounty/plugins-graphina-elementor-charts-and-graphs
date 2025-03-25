@@ -141,7 +141,7 @@ export default class GraphinaGoogleChartBase {
                     post_id: extraData.current_post_id,
                     element_id: elementId,
                     series_count: extraData.chart_data_series_count_dynamic,
-                    settings: settings,
+                    settings: JSON.stringify(settings),
                     selected_field: filterValue
                 },
                 success: (response) => {

@@ -122,7 +122,7 @@ class ColumnGoogleChart extends GraphinaGoogleChartBase {
 		$controls->graphina_chart_dataset( $this, $chart_type );
 		$controls->graphina_chart_data_series( $this, $chart_type, 0 );
 		$controls->graphina_common_chart_setting( $this, $chart_type, false );
-		$controls->graphina_chart_legend_setting( $this, $chart_type );
+		$controls->graphina_advance_legend_setting( $this, $chart_type );
 		$controls->graphina_advance_h_axis_setting( $this, $chart_type );
 		$controls->graphina_advance_v_axis_setting( $this, $chart_type );
 		$controls->graphina_google_series_setting( $this, $chart_type, array( 'tooltip', 'color' ) );
@@ -139,7 +139,7 @@ class ColumnGoogleChart extends GraphinaGoogleChartBase {
 	protected function graphina_prepare_google_chart_options($settings, $chart_type, $element_id)
 	{
 		$series_count   = $settings[GRAPHINA_PREFIX . $chart_type . '_chart_data_series_count'] ?? 0;
-		$legend_position = ! empty($settings[GRAPHINA_PREFIX . $chart_type . '_chart_legend_show']) && ! empty($settings[GRAPHINA_PREFIX . $chart_type . '_chart_google_legend_position']) && $settings[GRAPHINA_PREFIX . $chart_type . '_chart_legend_show'] === 'yes' ? $settings[GRAPHINA_PREFIX . $chart_type . '_chart_google_legend_position'] : 'none';
+		$legend_position = ! empty( $settings[ GRAPHINA_PREFIX . $chart_type . '_google_chart_legend_show' ] ) && $settings[ GRAPHINA_PREFIX . $chart_type . '_google_chart_legend_show' ] === 'yes' ? $settings[ GRAPHINA_PREFIX . $chart_type . '_google_chart_legend_position' ] : 'none';
 		$chartArea       = array(
 			'left'  => '10%',
 			'right' => '5%',
@@ -155,32 +155,6 @@ class ColumnGoogleChart extends GraphinaGoogleChartBase {
 				'right' => '25%',
 			);
 		}
-		$response = array(
-			'title'           => ! empty($settings[GRAPHINA_PREFIX . $chart_type . '_chart_title']) ? $settings[GRAPHINA_PREFIX . $chart_type . '_chart_title'] : '',
-			'titlePosition'   => ! empty($settings[GRAPHINA_PREFIX . $chart_type . '_chart_title_show']) && $settings[GRAPHINA_PREFIX . $chart_type . '_chart_title_show'] === 'yes' ? $settings[GRAPHINA_PREFIX . $chart_type . '_chart_title_position'] : 'none', // in, out, none
-			'titleTextStyle'  => array(
-				'color'    => ! empty($settings[GRAPHINA_PREFIX . $chart_type . '_chart_title_color']) ? $settings[GRAPHINA_PREFIX . $chart_type . '_chart_title_color'] : '',
-				'fontSize' => ! empty($settings[GRAPHINA_PREFIX . $chart_type . '_chart_title_font_size']) ? $settings[GRAPHINA_PREFIX . $chart_type . '_chart_title_font_size'] : '',
-			),
-			'chartArea'       => $chartArea,
-			'height'          => $settings[GRAPHINA_PREFIX . $chart_type . '_chart_height'],
-			'tooltip'         => array(
-				'showColorCode' => true,
-				'textStyle'     => array('color' => ! empty($settings[GRAPHINA_PREFIX . $chart_type . '_chart_tooltip_color']) ? $settings[GRAPHINA_PREFIX . $chart_type . '_chart_tooltip_color'] : ''),
-				'trigger'       => ! empty($settings[GRAPHINA_PREFIX . $chart_type . '_chart_tooltip_show']) && $settings[GRAPHINA_PREFIX . $chart_type . '_chart_tooltip_show'] === 'yes' ? $settings[GRAPHINA_PREFIX . $chart_type . '_chart_tooltip_trigger'] : 'none',
-			),
-
-			'backgroundColor' => ! empty($settings[GRAPHINA_PREFIX . $chart_type . '_chart_background_color1']) ? $settings[GRAPHINA_PREFIX . $chart_type . '_chart_background_color1'] : '',
-			'legend'          => array(
-				'position'  => $legend_position,
-				'textStyle' => array(
-					'fontSize' => ! empty($settings[GRAPHINA_PREFIX . $chart_type . '_chart_legend_fontsize']) ? $settings[GRAPHINA_PREFIX . $chart_type . '_chart_legend_fontsize'] : '',
-					'color'    => ! empty($settings[GRAPHINA_PREFIX . $chart_type . '_chart_legend_color']) ? $settings[GRAPHINA_PREFIX . $chart_type . '_chart_legend_color'] : '',
-				),
-				'alignment' => ! empty($settings[GRAPHINA_PREFIX . $chart_type . '_google_chart_legend_horizontal_align']) ? $settings[GRAPHINA_PREFIX . $chart_type . '_google_chart_legend_horizontal_align'] : '', // start,center,end
-			),
-		);
-
 
 		$element_colors = $element_title_array = $series_style_array = array();
 
@@ -237,14 +211,14 @@ class ColumnGoogleChart extends GraphinaGoogleChartBase {
 
 			'backgroundColor' => ! empty($settings[GRAPHINA_PREFIX . $chart_type . '_chart_background_color1']) ? $settings[GRAPHINA_PREFIX . $chart_type . '_chart_background_color1'] : '',
 			'colors'          => $element_colors,
-			'legend'          => array(
-				'position'  => $legend_position,
-				'textStyle' => array(
-					'fontSize' => ! empty($settings[GRAPHINA_PREFIX . $chart_type . '_chart_legend_fontsize']) ? $settings[GRAPHINA_PREFIX . $chart_type . '_chart_legend_fontsize'] : '',
-					'color'    => ! empty($settings[GRAPHINA_PREFIX . $chart_type . '_chart_legend_color']) ? $settings[GRAPHINA_PREFIX . $chart_type . '_chart_legend_color'] : '',
-				),
-				'alignment' => ! empty($settings[GRAPHINA_PREFIX . $chart_type . '_google_chart_legend_horizontal_align']) ? $settings[GRAPHINA_PREFIX . $chart_type . '_google_chart_legend_horizontal_align'] : '', // start,center,end
-			),
+			'legend' => [
+				'position' => $legend_position,
+				'textStyle' => [
+					'fontSize' => ! empty( $settings[ GRAPHINA_PREFIX . $chart_type . '_google_chart_legend_fontsize' ] ) ? intval( $settings[ GRAPHINA_PREFIX . $chart_type . '_google_chart_legend_fontsize' ] ) : '10',
+					'color' => ! empty( $settings[ GRAPHINA_PREFIX . $chart_type . '_google_chart_legend_color' ] ) ? $settings[ GRAPHINA_PREFIX . $chart_type . '_google_chart_legend_color' ] : '',
+				],
+				'alignment' => ! empty( $settings[ GRAPHINA_PREFIX . $chart_type . '_google_chart_legend_horizontal_align' ] ) ? $settings[ GRAPHINA_PREFIX . $chart_type . '_google_chart_legend_horizontal_align' ] : '',
+			]
 		);
 
 		$response['annotations'] = array(
@@ -304,15 +278,6 @@ class ColumnGoogleChart extends GraphinaGoogleChartBase {
 				'count' => ! empty($settings[GRAPHINA_PREFIX . $chart_type . '_chart_gridline_count']) ? $settings[GRAPHINA_PREFIX . $chart_type . '_chart_gridline_count'] : '',
 			),
 		);
-		$response['legend'] = array(
-			'position'  => $legend_position,
-			'textStyle' => array(
-				'fontSize' => ! empty($settings[GRAPHINA_PREFIX . $chart_type . '_chart_legend_fontsize']) ? $settings[GRAPHINA_PREFIX . $chart_type . '_chart_legend_fontsize'] : '',
-				'color'    => ! empty($settings[GRAPHINA_PREFIX . $chart_type . '_chart_legend_color']) ? $settings[GRAPHINA_PREFIX . $chart_type . '_chart_legend_color'] : '',
-			),
-			'alignment' => ! empty($settings[GRAPHINA_PREFIX . $chart_type . '_google_chart_legend_horizontal_align']) ? $settings[GRAPHINA_PREFIX . $chart_type . '_google_chart_legend_horizontal_align'] : '', // start,center,end
-		);
-
 		$response['isStacked'] = ! empty($settings[GRAPHINA_PREFIX . $chart_type . '_chart_stack_type']) ? $settings[GRAPHINA_PREFIX . $chart_type . '_chart_stack_type'] : 'absolute';
 		$response['bar'] = [
 			'groupWidth' => ! empty($settings[GRAPHINA_PREFIX . $chart_type . '_chart_element_width']) ? $settings[GRAPHINA_PREFIX . $chart_type . '_chart_element_width'] : '20',
