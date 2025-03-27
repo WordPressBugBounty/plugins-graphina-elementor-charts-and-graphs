@@ -129,6 +129,8 @@ export default class GraphinaGoogleChartBase {
 
 
     getDynamicData(settings, extraData, chartType, elementId, filterValue) {
+        let post_id = jQuery(`[data-element_id="${elementId}"]`).closest('[data-elementor-id]').data('elementor-id');
+
         return new Promise((resolve, reject) => {
             jQuery.ajax({
                 url: gcfe_public_localize.ajaxurl,
@@ -138,7 +140,7 @@ export default class GraphinaGoogleChartBase {
                     action: 'graphina_get_dynamic_data',
                     nonce: gcfe_public_localize.nonce,
                     chartType: chartType,
-                    post_id: extraData.current_post_id,
+                    post_id: post_id,
                     element_id: elementId,
                     series_count: extraData.chart_data_series_count_dynamic,
                     settings: JSON.stringify(settings),

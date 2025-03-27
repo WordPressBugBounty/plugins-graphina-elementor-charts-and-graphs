@@ -925,13 +925,22 @@ if ( ! class_exists( 'GraphinaFrontend' ) ) {
 			}
 
 			// Handle specific chart types
-			if ( in_array( $chart_type, array( 'pie_google', 'donut_google', 'gauge_google', 'geo_google' ), true ) ) {
+			if ( in_array( $chart_type, array( 'pie_google', 'donut_google', 'gauge_google' ), true ) ) {
 				// Pie, Donut, Gauge, and Geo Charts: Map category to series data
 				foreach ( $data['category'] as $key => $category ) {
 					$google_chart_data['data'][] = array(
 						$category,
 						$data['series'][ $key ] ?? 0,
 					);
+				}
+			} else if( 'geo_google' === $chart_type ){
+				$i = 0;
+				foreach ( $data['category'] as $key => $category ) {
+					$google_chart_data['data'][] = array(
+						$category,
+						$data['series'][ $i ] ?? 0,
+					);
+					$i++;
 				}
 			} elseif ( $chart_type === 'org_google' ) {
 				// Organizational Chart: Prepare hierarchical data

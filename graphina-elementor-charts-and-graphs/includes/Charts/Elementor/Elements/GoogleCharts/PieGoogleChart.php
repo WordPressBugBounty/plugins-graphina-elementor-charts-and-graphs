@@ -156,6 +156,7 @@ class PieGoogleChart extends GraphinaGoogleChartBase {
 			'title'           => ! empty($settings[GRAPHINA_PREFIX . $chart_type . '_chart_title']) ? $settings[GRAPHINA_PREFIX . $chart_type . '_chart_title'] : '',
 			'titlePosition'   => ! empty($settings[GRAPHINA_PREFIX . $chart_type . '_chart_title_show']) && $settings[GRAPHINA_PREFIX . $chart_type . '_chart_title_show'] === 'yes' ? $settings[GRAPHINA_PREFIX . $chart_type . '_chart_title_position'] : 'none', // in, out, none
 			'titleTextStyle'  => array(
+				'fontName' 	=> ! empty($settings[GRAPHINA_PREFIX . $chart_type . '_chart_font_family']) ? $settings[GRAPHINA_PREFIX . $chart_type . '_chart_font_family'] : 'poppins',
 				'color'    => ! empty($settings[GRAPHINA_PREFIX . $chart_type . '_chart_title_color']) ? $settings[GRAPHINA_PREFIX . $chart_type . '_chart_title_color'] : '',
 				'fontSize' => ! empty($settings[GRAPHINA_PREFIX . $chart_type . '_chart_title_font_size']) ? $settings[GRAPHINA_PREFIX . $chart_type . '_chart_title_font_size'] : '',
 			),
@@ -163,7 +164,11 @@ class PieGoogleChart extends GraphinaGoogleChartBase {
 			'height'          => $settings[GRAPHINA_PREFIX . $chart_type . '_chart_height'],
 			'tooltip'         => array(
 				'showColorCode' => true,
-				'textStyle'     => array('color' => ! empty($settings[GRAPHINA_PREFIX . $chart_type . '_chart_tooltip_color']) ? $settings[GRAPHINA_PREFIX . $chart_type . '_chart_tooltip_color'] : ''),
+				'textStyle'     => array(
+					'fontName' 	=> ! empty($settings[GRAPHINA_PREFIX . $chart_type . '_chart_font_family']) ? $settings[GRAPHINA_PREFIX . $chart_type . '_chart_font_family'] : 'poppins',
+					'color' 	=> ! empty($settings[GRAPHINA_PREFIX . $chart_type . '_chart_tooltip_color']) ? $settings[GRAPHINA_PREFIX . $chart_type . '_chart_tooltip_color'] : '',
+					'fontName' 	=> ! empty($settings[GRAPHINA_PREFIX . $chart_type . '_chart_font_family']) ? $settings[GRAPHINA_PREFIX . $chart_type . '_chart_font_family'] : 'poppins',
+				),
 				'trigger'       => ! empty($settings[GRAPHINA_PREFIX . $chart_type . '_chart_tooltip_show']) && $settings[GRAPHINA_PREFIX . $chart_type . '_chart_tooltip_show'] === 'yes' ? $settings[GRAPHINA_PREFIX . $chart_type . '_chart_tooltip_trigger'] : 'none',
 			),
 
@@ -171,8 +176,9 @@ class PieGoogleChart extends GraphinaGoogleChartBase {
 			'legend' => [
 				'position' => $legend_position,
 				'textStyle' => [
-					'fontSize' => ! empty( $settings[ GRAPHINA_PREFIX . $chart_type . '_google_chart_legend_fontsize' ] ) ? intval( $settings[ GRAPHINA_PREFIX . $chart_type . '_google_chart_legend_fontsize' ] ) : '10',
-					'color' => ! empty( $settings[ GRAPHINA_PREFIX . $chart_type . '_google_chart_legend_color' ] ) ? $settings[ GRAPHINA_PREFIX . $chart_type . '_google_chart_legend_color' ] : '',
+					'fontName' 	=> ! empty($settings[GRAPHINA_PREFIX . $chart_type . '_chart_font_family']) ? $settings[GRAPHINA_PREFIX . $chart_type . '_chart_font_family'] : 'poppins',
+					'fontSize' 	=> ! empty( $settings[ GRAPHINA_PREFIX . $chart_type . '_google_chart_legend_fontsize' ] ) ? intval( $settings[ GRAPHINA_PREFIX . $chart_type . '_google_chart_legend_fontsize' ] ) : '10',
+					'color' 	=> ! empty( $settings[ GRAPHINA_PREFIX . $chart_type . '_google_chart_legend_color' ] ) ? $settings[ GRAPHINA_PREFIX . $chart_type . '_google_chart_legend_color' ] : '',
 				],
 				'alignment' => ! empty( $settings[ GRAPHINA_PREFIX . $chart_type . '_google_chart_legend_horizontal_align' ] ) ? $settings[ GRAPHINA_PREFIX . $chart_type . '_google_chart_legend_horizontal_align' ] : '',
 			]
@@ -199,8 +205,9 @@ class PieGoogleChart extends GraphinaGoogleChartBase {
 		$response['sliceVisibilityThreshold'] = 0;
 		$response['pieSliceBorderColor']      = $settings[GRAPHINA_PREFIX . $chart_type . '_chart_pieslice_bordercolor'] ? strval($settings[GRAPHINA_PREFIX . $chart_type . '_chart_pieslice_bordercolor']) : '#000000';
 		$response['pieSliceTextStyle']        = array(
-			'color' => ! empty ( $settings[ GRAPHINA_PREFIX . $chart_type . '_chart_pieSliceText_color' ] ) ? $settings[ GRAPHINA_PREFIX . $chart_type . '_chart_pieSliceText_color' ] : '',
-			'fontSize' => ! empty( $settings[ GRAPHINA_PREFIX . $chart_type . '_chart_pieSliceText_fontsize' ] ) ? $settings[ GRAPHINA_PREFIX . $chart_type . '_chart_pieSliceText_fontsize' ] : '',
+			'fontName' 	=> ! empty($settings[GRAPHINA_PREFIX . $chart_type . '_chart_font_family']) ? $settings[GRAPHINA_PREFIX . $chart_type . '_chart_font_family'] : 'poppins',
+			'color' 	=> ! empty ( $settings[ GRAPHINA_PREFIX . $chart_type . '_chart_pieSliceText_color' ] ) ? $settings[ GRAPHINA_PREFIX . $chart_type . '_chart_pieSliceText_color' ] : '',
+			'fontSize' 	=> ! empty( $settings[ GRAPHINA_PREFIX . $chart_type . '_chart_pieSliceText_fontsize' ] ) ? $settings[ GRAPHINA_PREFIX . $chart_type . '_chart_pieSliceText_fontsize' ] : '',
 		);
 		$response['is3D']                     = $settings[GRAPHINA_PREFIX . $chart_type . '_chart_isthreed'] === 'yes';
 		$response['tooltip']['text']          = $settings[GRAPHINA_PREFIX . $chart_type . '_chart_tooltip_text'];

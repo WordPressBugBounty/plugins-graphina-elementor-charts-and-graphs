@@ -4,7 +4,7 @@ Tags: data visualization wordpress plugin, wordpress charts, wordpress charts an
 Requires PHP: 8.0.0
 Requires at least: 5.9
 Tested up to: 6.7.2
-Stable tag: 3.0.2
+Stable tag: 3.0.3
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -12,7 +12,7 @@ Most Powerful Data visualization plugin for WordPress Elementor. The easiest way
 
 == Description ==
 
-🛍️ Get **Flat 50% OFF** on [Graphina Pro](https://graphina.iqonic.design/?utm_source=referral&utm_medium=wordpress.org&utm_campaign=iqonic-march+madness-sale-2025-wordpress-org-banner-click) during the March Madness Sale! 💥
+🛍️ Final Hours Get **Flat 50% OFF** on [Graphina Pro](https://graphina.iqonic.design/?utm_source=referral&utm_medium=wordpress.org&utm_campaign=iqonic-march+madness-sale-2025-wordpress-org-banner-click) on March Madness Sale! 💥
 
 Plus, enjoy a **Flat 20% OFF** on [Graphina DIVI!](https://www.elegantthemes.com/marketplace/graphina-divi-charts-and-graphs/) 🎉DIVI Anniversary sale ! 
 
@@ -230,10 +230,18 @@ Yes, we'd love to hear from you at <a href="mailto:hello@iqonic.design">hello@iq
 
 
 == Changelog ==
+
+= 3.0.3 - 27/03/2025 =  
+- [Improvement] Improved Google Chart font family support.  
+- [Fixed] Elementor template dynamic data issue.  
+- [Fixed] Manual Column Chart rendering issue.  
+- [Fixed] Marker size can now be set to 0.  
+- [Fixed] Various minor bugs.  
+
 = 3.0.2 - 25/03/2025 =  
 - [Improved] Data Table header and row alignment.  
 - [Fixed] Legend color issue.  
-- [Fixed] Various minor bugs. 
+- [Fixed] Various minor bugs.   
 
 = 3.0.1 - 22/03/2025 =  
 - [Fixed] Various minor bugs. 
@@ -241,7 +249,7 @@ Yes, we'd love to hear from you at <a href="mailto:hello@iqonic.design">hello@iq
 = 3.0.0 - 20/03/2025 =
 - [Enhancement] Integrated Vite asset bundling for improved performance.  
 - [Optimization] Optimized core functionalities for better efficiency.  
-- [Improvement] Thousand Separator setting deprecated; values are now automatically determined based on the user’s language settings.
+- [Improvement] Thousand Separator setting deprecated; values are now automatically determined based on the user’s language code.
 - [Feature] Added adjustable height for Data Table Y-Axis scroll to enhance usability.  
 - [Compatibility] Fully compatible with the latest version of Elementor.  
 

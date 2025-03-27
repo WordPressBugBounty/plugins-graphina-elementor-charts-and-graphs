@@ -192,7 +192,7 @@ export default class GraphinaApexChartBase {
         const chartOptions = chartElement.data('chart_options');
         const extraData = chartElement.data('extra_data');
         const settings = chartElement.data('settings');
-        if (!chartOptions || !elementId) {
+        if (!chartOptions || !elementId || !newChartType) {
             console.error('Missing required chart options or element ID.');
             return;
         }
@@ -223,7 +223,9 @@ export default class GraphinaApexChartBase {
         }
         // Destroy existing chart (if any)
         ApexCharts.exec(elementId, 'destroy');
-
+        if( newChartType === 'column'){
+            chartOptions.chart.type = 'bar'
+        }
         // Create and render the new chart
         const chart = new ApexCharts(chartElement[0], chartOptions);
 
@@ -307,7 +309,7 @@ export default class GraphinaApexChartBase {
             action = 'get_jquery_datatable_data'
             req_nonce  = gcfe_public_localize.table_nonce
         }
-
+        let post_id = jQuery(`[data-element_id="${elementId}"]`).closest('[data-elementor-id]').data('elementor-id');
         return new Promise((resolve, reject) => {
             jQuery.ajax({
                 url: gcfe_public_localize.ajaxurl,
@@ -317,7 +319,7 @@ export default class GraphinaApexChartBase {
                     action      : action,
                     nonce       : req_nonce,
                     chartType   : chartType,
-                    post_id     : extraData.current_post_id,
+                    post_id     : post_id,
                     element_id  : elementId,
                     series_count: extraData.chart_data_series_count_dynamic,
                     settings    :  JSON.stringify(settings),

@@ -66,7 +66,7 @@ export default class DataTable {
     }
 
     getDynamicData(settings, extraData, elementId) {
-        
+        let post_id = jQuery(`[data-element_id="${elementId}"]`).closest('[data-elementor-id]').data('elementor-id');
         return new Promise((resolve, reject) => {
             jQuery.ajax({
                 url: gcfe_public_localize.ajaxurl,
@@ -76,7 +76,7 @@ export default class DataTable {
                     action      : 'get_jquery_datatable_data',
                     nonce       : gcfe_public_localize.table_nonce,
                     chartType   : 'data_table_lite',
-                    post_id     : extraData.current_post_id,
+                    post_id     : post_id,
                     element_id  : elementId,
                     series_count: 0,
                     settings    : JSON.stringify(settings),

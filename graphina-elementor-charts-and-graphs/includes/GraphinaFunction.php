@@ -1790,6 +1790,7 @@ if ( ! function_exists( 'graphina_google_chart_lists' ) ) {
 			'donut_google',
 			'gauge_google',
 			'geo_google',
+			'gantt_google',
 			'org_google',
 		);
 	}

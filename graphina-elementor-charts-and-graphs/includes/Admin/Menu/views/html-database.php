@@ -14,11 +14,9 @@ if ( ! defined( 'ABSPATH' ) ) {
 $option_value       = array();
 $all_db_connections = graphina_check_external_database( 'data' );
 $all_db_connections = ! empty( $all_db_connections ) && is_array( $all_db_connections ) ? $all_db_connections : array();
-if ( ! empty( $_GET['data'] ) && ! empty( $_GET['nonce'] ) && wp_verify_nonce( sanitize_text_field( wp_unslash( $_GET['nonce'] ) ), 'graphina-general-setting' ) ) {
-	$edit_id = sanitize_text_field( wp_unslash( $_GET['data'] ) );
-	if ( ! empty( $all_db_connections[ $edit_id ] ) ) {
-		$option_value = $all_db_connections[ $edit_id ];
-	}
+$edit_id = sanitize_text_field( wp_unslash( $_GET['data'] ) );
+if ( ! empty( $all_db_connections[ $edit_id ] ) ) {
+	$option_value = $all_db_connections[ $edit_id ];
 }
 
 ?>

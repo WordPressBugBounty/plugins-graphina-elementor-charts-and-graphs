@@ -143,13 +143,16 @@ class ColumnChart extends GraphinaApexChartBase {
 		// Prepare series data
 		for ( $i = 0; $i < $series_count; $i++ ) {
 			$colors[]      = ! empty( $settings[ GRAPHINA_PREFIX . $chart_type . '_chart_gradient_1_' . $i ] ) ? strval( $settings[ GRAPHINA_PREFIX . $chart_type . '_chart_gradient_1_' . $i ] ) : '';
-			$value_list    = $settings[ GRAPHINA_PREFIX . $chart_type . '_value_list_3_1_' . $i ] ?? array();
+			$value_list    = $settings[ GRAPHINA_PREFIX . $chart_type . '_value_list_4_' . ( ! empty( $settings[ GRAPHINA_PREFIX . $chart_type . '_can_chart_negative_values' ] ) && $settings[ GRAPHINA_PREFIX . $chart_type . '_can_chart_negative_values' ] === 'yes' ? 2 : 1 ) . '_' . $i ];
+			if ( gettype( $value_list ) === 'NULL' ) {
+				$value_list = array();
+			}
 			$values        = array_map(
-				fn( $v ) => (float) graphina_get_dynamic_tag_data( $v, GRAPHINA_PREFIX . $chart_type . '_chart_value_3_' . $i ),
+				fn( $v ) => (float) graphina_get_dynamic_tag_data( $v, GRAPHINA_PREFIX . $chart_type . '_chart_value_4_' . $i ),
 				$value_list
 			);
 			$series_temp[] = array(
-				'name'  => esc_html( graphina_get_dynamic_tag_data( $settings, GRAPHINA_PREFIX . $chart_type . '_chart_title_3_' . $i ) ),
+				'name'  => esc_html( graphina_get_dynamic_tag_data( $settings, GRAPHINA_PREFIX . $chart_type . '_chart_title_4_' . $i ) ),
 				'data'  => $values,
 				'yaxis' => graphina_get_dynamic_tag_data( $settings, GRAPHINA_PREFIX . $chart_type . '_chart_depends_3_' . $i ) === 'yes' ? 1 : 0,
 			);

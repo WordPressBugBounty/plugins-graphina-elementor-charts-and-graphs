@@ -201,11 +201,13 @@ export default class Graphina_Admin_Dashboard{
     handleDatabaseTest(e) {
         e.preventDefault();
         jQuery(document).find('#graphina_external_database_action_type').val('con_test')
+        jQuery(e.currentTarget).text('Connecting...')
         jQuery.ajax({
             url: gcfe_localize.ajaxurl,
             type: "POST",
             data: jQuery('#graphina-settings-db-tab').serialize(),
             success: function (response) {
+                jQuery(e.currentTarget).text('Test DB Setting ')
                 Swal.fire({
                     title: response.message,
                     text: response.subMessage,
@@ -224,11 +226,13 @@ export default class Graphina_Admin_Dashboard{
         if(jQuery(document).find('#graphina_external_database_action_type').val() == 'con_test'){
             jQuery(document).find('#graphina_external_database_action_type').val('save')
         }
+        jQuery(e.currentTarget).text('Connecting...')
         jQuery.ajax({
             url: gcfe_localize.ajaxurl,
             type: "POST",
             data: jQuery('#graphina-settings-db-tab').serialize(),
             success: function (response) {
+                jQuery(e.currentTarget).text('Save Setting')
                 Swal.fire({
                     title: response.message,
                     text: response.subMessage,

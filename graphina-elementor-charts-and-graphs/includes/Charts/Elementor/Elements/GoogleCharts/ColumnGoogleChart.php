@@ -197,6 +197,7 @@ class ColumnGoogleChart extends GraphinaGoogleChartBase {
 			'title'           => ! empty($settings[GRAPHINA_PREFIX . $chart_type . '_chart_title']) ? $settings[GRAPHINA_PREFIX . $chart_type . '_chart_title'] : '',
 			'titlePosition'   => ! empty($settings[GRAPHINA_PREFIX . $chart_type . '_chart_title_show']) && $settings[GRAPHINA_PREFIX . $chart_type . '_chart_title_show'] === 'yes' ? $settings[GRAPHINA_PREFIX . $chart_type . '_chart_title_position'] : 'none', // in, out, none
 			'titleTextStyle'  => array(
+				'fontName' => ! empty($settings[GRAPHINA_PREFIX . $chart_type . '_chart_font_family']) ? $settings[GRAPHINA_PREFIX . $chart_type . '_chart_font_family'] : 'poppins',
 				'color'    => ! empty($settings[GRAPHINA_PREFIX . $chart_type . '_chart_title_color']) ? $settings[GRAPHINA_PREFIX . $chart_type . '_chart_title_color'] : '',
 				'fontSize' => ! empty($settings[GRAPHINA_PREFIX . $chart_type . '_chart_title_font_size']) ? $settings[GRAPHINA_PREFIX . $chart_type . '_chart_title_font_size'] : '',
 			),
@@ -224,6 +225,7 @@ class ColumnGoogleChart extends GraphinaGoogleChartBase {
 		$response['annotations'] = array(
 			'stemColor' => ! empty($settings[GRAPHINA_PREFIX . $chart_type . '_chart_annotation_stemcolor']) ? $settings[GRAPHINA_PREFIX . $chart_type . '_chart_annotation_stemcolor'] : '',
 			'textStyle' => array(
+				'fontName' => ! empty($settings[GRAPHINA_PREFIX . $chart_type . '_chart_font_family']) ? $settings[GRAPHINA_PREFIX . $chart_type . '_chart_font_family'] : 'poppins',
 				'fontSize'  => ! empty($settings[GRAPHINA_PREFIX . $chart_type . '_chart_annotation_fontsize']) ? $settings[GRAPHINA_PREFIX . $chart_type . '_chart_annotation_fontsize'] : '',
 				'color'     => ! empty($settings[GRAPHINA_PREFIX . $chart_type . '_chart_annotation_color']) ? $settings[GRAPHINA_PREFIX . $chart_type . '_chart_annotation_color'] : '',
 				'auraColor' => ! empty($settings[GRAPHINA_PREFIX . $chart_type . '_chart_annotation_color2']) ? $settings[GRAPHINA_PREFIX . $chart_type . '_chart_annotation_color2'] : '',
@@ -242,10 +244,12 @@ class ColumnGoogleChart extends GraphinaGoogleChartBase {
 			'direction'        => ! empty($settings[GRAPHINA_PREFIX . $chart_type . '_chart_haxis_direction']) && $settings[GRAPHINA_PREFIX . $chart_type . '_chart_haxis_direction'] === 'yes' ? -1 : 1,
 			'title'            => ! empty($settings[GRAPHINA_PREFIX . $chart_type . '_chart_haxis_title']) ? $settings[GRAPHINA_PREFIX . $chart_type . '_chart_haxis_title'] : '',
 			'titleTextStyle'   => array(
+				'fontName' => ! empty($settings[GRAPHINA_PREFIX . $chart_type . '_chart_font_family']) ? $settings[GRAPHINA_PREFIX . $chart_type . '_chart_font_family'] : 'poppins',
 				'color'    => ! empty($settings[GRAPHINA_PREFIX . $chart_type . '_chart_haxis_title_font_color']) ? $settings[GRAPHINA_PREFIX . $chart_type . '_chart_haxis_title_font_color'] : '',
 				'fontSize' => ! empty($settings[GRAPHINA_PREFIX . $chart_type . '_chart_haxis_title_font_size']) ? $settings[GRAPHINA_PREFIX . $chart_type . '_chart_haxis_title_font_size'] : '',
 			),
 			'textStyle'        => array(
+				'fontName' => ! empty($settings[GRAPHINA_PREFIX . $chart_type . '_chart_font_family']) ? $settings[GRAPHINA_PREFIX . $chart_type . '_chart_font_family'] : 'poppins',
 				'color'    => ! empty($settings[GRAPHINA_PREFIX . $chart_type . '_chart_xaxis_label_font_color']) ? $settings[GRAPHINA_PREFIX . $chart_type . '_chart_xaxis_label_font_color'] : '',
 				'fontSize' => ! empty($settings[GRAPHINA_PREFIX . $chart_type . '_chart_xaxis_label_font_size']) ? $settings[GRAPHINA_PREFIX . $chart_type . '_chart_xaxis_label_font_size'] : '',
 			),
@@ -264,10 +268,12 @@ class ColumnGoogleChart extends GraphinaGoogleChartBase {
 			'scaleType'      => ! empty($settings[GRAPHINA_PREFIX . $chart_type . '_chart_vaxis_scaletype']) ? $settings[GRAPHINA_PREFIX . $chart_type . '_chart_vaxis_scaletype'] : '',
 			'titleTextStyle' => array(
 				'color'    => ! empty($settings[GRAPHINA_PREFIX . $chart_type . '_chart_vaxis_title_font_color']) ? $settings[GRAPHINA_PREFIX . $chart_type . '_chart_vaxis_title_font_color'] : '',
+				'fontName' => ! empty($settings[GRAPHINA_PREFIX . $chart_type . '_chart_font_family']) ? $settings[GRAPHINA_PREFIX . $chart_type . '_chart_font_family'] : 'poppins',
 				'fontSize' => ! empty($settings[GRAPHINA_PREFIX . $chart_type . '_chart_vaxis_title_font_size']) ? $settings[GRAPHINA_PREFIX . $chart_type . '_chart_vaxis_title_font_size'] : '',
 			),
 			'textStyle'      => array(
 				'color'    => ! empty($settings[GRAPHINA_PREFIX . $chart_type . '_chart_yaxis_label_font_color']) ? $settings[GRAPHINA_PREFIX . $chart_type . '_chart_yaxis_label_font_color'] : '',
+				'fontName' => ! empty($settings[GRAPHINA_PREFIX . $chart_type . '_chart_font_family']) ? $settings[GRAPHINA_PREFIX . $chart_type . '_chart_font_family'] : 'poppins',
 				'fontSize' => ! empty($settings[GRAPHINA_PREFIX . $chart_type . '_chart_yaxis_label_font_size']) ? $settings[GRAPHINA_PREFIX . $chart_type . '_chart_yaxis_label_font_size'] : '',
 			),
 			'textPosition'   => ! empty($settings[GRAPHINA_PREFIX . $chart_type . '_chart_vaxis_label_position_show']) && $settings[GRAPHINA_PREFIX . $chart_type . '_chart_vaxis_label_position_show'] === 'yes' ? $settings[GRAPHINA_PREFIX . $chart_type . '_chart_vaxis_label_position'] : 'none', // in, out, none
