@@ -47,6 +47,7 @@ export default class GraphinaApexChartBase {
                             this.observer[elementId].unobserve(entry.target);
                             // this.observer[elementID].unobserve(entry.target);
                             this.observer[elementId].disconnect();
+                            delete this.observer[elementId];
                         }
                     });
                 }, { threshold: 0.1 }); // Trigger when at least 10% of the element is visible
@@ -65,6 +66,7 @@ export default class GraphinaApexChartBase {
         const chartElement = jQuery(`.graphina-elementor-chart[data-element_id="${elementId}"]`);
 
         if (chartElement.length > 0) {
+            ApexCharts.exec(elementId, 'destroy');
             this.updateChartType(chartElement, newChartType);
         }
     }
@@ -75,6 +77,12 @@ export default class GraphinaApexChartBase {
         const chartElement   = jQuery(`.graphina-elementor-chart[data-element_id="${elementId}"]`);
         let chartType        = jQuery(chartElement).data('chart_type');
         if(chartElement.length > 0){
+            
+        // Destroy existing chart (if any)
+            ApexCharts.exec(elementId, 'destroy');
+            console.log(jQuery(document).find(`.graphina-${elementId}-loader`));
+
+            jQuery(document).find(`.graphina-${elementId}-loader`).show()
             this.updateChartType(chartElement, chartType,true);
         }
     }
@@ -110,7 +118,10 @@ export default class GraphinaApexChartBase {
             value /= 1000;
             index++;
         }
-        return value.toFixed(decimal) + suffixes[index];
+        return new Intl.NumberFormat(window.gcfe_public_localize.locale_with_hyphen, {
+            minimumFractionDigits: decimal,
+            maximumFractionDigits: decimal,
+        }).format(value) + suffixes[index];
     }
 
     // Apply legend tooltip formatting
@@ -118,6 +129,7 @@ export default class GraphinaApexChartBase {
         if (extraData.legend_show_series_value) {
             chartOptions.legend.tooltipHoverFormatter = (seriesName, opts) => {
                 let value = opts.w.globals.series[opts.seriesIndex][opts.dataPointIndex];
+                seriesName = decodeURIComponent(seriesName);
                 if(['polar','column','line','scatter','pie','donut','radial'].includes(chart_type)){
                     value = opts.w.globals.series[opts.seriesIndex];
                 }
@@ -221,8 +233,6 @@ export default class GraphinaApexChartBase {
                 chartOptions.xaxis.categories = []
             }
         }
-        // Destroy existing chart (if any)
-        ApexCharts.exec(elementId, 'destroy');
         if( newChartType === 'column'){
             chartOptions.chart.type = 'bar'
         }
@@ -232,6 +242,8 @@ export default class GraphinaApexChartBase {
         chart.render()
             .then(() => console.log(`Chart updated to ${newChartType}.`))
             .catch((error) => console.error('Error updating chart:', error));
+        jQuery(document).find(`.graphina-${elementId}-loader`).hide()
+
     }
 
     setFieldForForminator(response, chartType, extraData) {

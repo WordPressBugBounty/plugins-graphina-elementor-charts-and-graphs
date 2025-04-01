@@ -814,6 +814,10 @@ if ( ! function_exists( 'graphina_prepare_extra_data_for_google_chart' ) ) {
             $response['fractionDigits'] = ! empty( $settings[ GRAPHINA_PREFIX . $chart_type . '_google_chart_value_decimal'] ) ? $settings[ GRAPHINA_PREFIX . $chart_type . '_google_chart_value_decimal'] : 0;
         }
 		
+		if( 'geo_google' === $chart_type ){
+			$response['geo_label']		=	! empty( $settings[ GRAPHINA_PREFIX . $chart_type . '_google_chart_label_text'] ) ? $settings[ GRAPHINA_PREFIX . $chart_type . '_google_chart_label_text'] : '';
+		}
+
         if(in_array($chart_type,array('donut_google','pie_google')))
         {
             $response['prefix'] = ! empty( $settings[ GRAPHINA_PREFIX . $chart_type . '_chart_label_prefix'] ) ? $settings[ GRAPHINA_PREFIX . $chart_type . '_chart_label_prefix'] : '';
@@ -1466,9 +1470,16 @@ if ( ! function_exists( 'graphina_prepare_extra_data' ) ) {
 			$extra_data['yaxis_label_postfix']  = ! empty( $settings[ GRAPHINA_PREFIX . $chart_type . '_chart_yaxis_format_postfix' ] ) ? $settings[ GRAPHINA_PREFIX . $chart_type . '_chart_yaxis_format_postfix' ] : '';
 		}
 		
-		if( 'heatmap' === $chart_type ) {
+		if( in_array( $chart_type , ['heatmap', 'radial','radar'])) {
 			$extra_data['chart_label_pointer_number_for_label']	= ! empty( $settings[ GRAPHINA_PREFIX . $chart_type . '_chart_label_pointer_number_for_label' ] ) ? $settings[ GRAPHINA_PREFIX . $chart_type . '_chart_label_pointer_number_for_label' ] : 0;
 			$extra_data['string_format']						= ! empty( $settings[ GRAPHINA_PREFIX . $chart_type . '_chart_label_pointer_for_label' ] ) && $settings[ GRAPHINA_PREFIX . $chart_type . '_chart_label_pointer_for_label' ] === 'yes' ? true : false;
+		}
+
+		if ( 'column' === $chart_type ){
+			$extra_data['xaxis_label_pointer_number']	= 	! empty( $settings[ GRAPHINA_PREFIX . $chart_type . '_xaxis_label_pointer_number' ] ) ? $settings[ GRAPHINA_PREFIX . $chart_type . '_xaxis_label_pointer_number' ] : 0;
+			$extra_data['chart_xaxis_format_number']	=	! empty( $settings[ GRAPHINA_PREFIX . $chart_type . '_chart_xaxis_format_number' ] ) && $settings[ GRAPHINA_PREFIX . $chart_type . '_chart_xaxis_format_number' ] === 'yes' ? true : false;
+			$extra_data['is_chart_horizontal']			=	! empty( $settings[ GRAPHINA_PREFIX . $chart_type . '_is_chart_horizontal' ] ) && $settings[ GRAPHINA_PREFIX . $chart_type . '_is_chart_horizontal' ] === 'yes' ? true : false;
+			$extra_data['chart_xaxis_label_pointer']	=	! empty( $settings[ GRAPHINA_PREFIX . $chart_type . '_chart_xaxis_label_pointer' ] ) && $settings[ GRAPHINA_PREFIX . $chart_type . '_chart_xaxis_label_pointer' ] === 'yes' ? true : false;
 		}
 
 		if ( in_array( $chart_type, array( 'nested_column' ) ) )
@@ -1750,13 +1761,34 @@ if ( ! function_exists( 'graphinaReplaceDynamicFilterKeyChange' ) ) {
 	 */
 	function graphinaReplaceDynamicFilterKeyChange( $settings, $chart_type, $selected_item, $sql_custom_query ) {
 		if ( ! empty( $settings[ GRAPHINA_PREFIX . $chart_type . '_chart_filter_enable' ] ) && $settings[ GRAPHINA_PREFIX . $chart_type . '_chart_filter_enable' ] == 'yes' && ! empty( $selected_item ) && is_array( $selected_item ) ) {
+			$matches = [];
+			$pattern = '/{{QUERY_PARAM_([^=]+)=([^}]+)}}/';
+			
+			preg_match_all($pattern, $sql_custom_query, $matches, PREG_SET_ORDER);
+			
+			$extractedParams = [];
+			foreach ($matches as $match) {
+				$extractedParams[] = [
+					'full_match' => $match[0],
+					'param_name' => $match[1],
+					'param_value' => $match[2]
+				];
+			}
 			foreach ( $settings[ GRAPHINA_PREFIX . $chart_type . '_chart_filter_list' ] as $key => $value ) {
 				if ( ! empty( $value[ GRAPHINA_PREFIX . $chart_type . '_chart_filter_value_key' ] ) && $selected_item[ $key ] != null && $selected_item[ $key ] != '' ) {
-					preg_match('/{{QUERY_PARAM_([^=]+)=/', $sql_custom_query, $matches);
-					$matches[1] = "{{".$matches[1]."}}";
-					if ($matches[1] === $value[ GRAPHINA_PREFIX . $chart_type . '_chart_filter_value_key' ]) {
-						$sql_custom_query = preg_replace('/{{QUERY_PARAM_[^=}]+=[^}]+}}/', $selected_item[ $key ], $sql_custom_query);;
-					} elseif ( ! empty( $settings[ GRAPHINA_PREFIX . $chart_type . '_chart_dynamic_data_option' ] ) && $settings[ GRAPHINA_PREFIX . $chart_type . '_chart_dynamic_data_option' ] === 'sql-builder' && strstr( $sql_custom_query, trim( $selected_item[ $key ] ) ) && count( $selected_item ) === count( array_unique( $selected_item ) ) ) {
+					$selected_key = trim($value[ GRAPHINA_PREFIX . $chart_type . '_chart_filter_value_key' ],'{}');
+					if( empty( $selected_key ) && $value[ GRAPHINA_PREFIX . $chart_type . '_chart_filter_type' ] !== 'date' ) {
+						return preg_replace_callback($pattern, function($matches) {
+							return $matches[2];
+						}, $sql_custom_query);
+					}
+					if( ! empty( $selected_key ) && $value[ GRAPHINA_PREFIX . $chart_type . '_chart_filter_type' ] !== 'date' ){
+						foreach ($extractedParams as $key => $value) {
+							if ( $value['param_name'] === $selected_key ){
+								$sql_custom_query = preg_replace("/{{QUERY_PARAM_$selected_key+=[^}]+}}/", $selected_item[ $key ], $sql_custom_query);
+							}
+						}
+					}elseif ( ! empty( $settings[ GRAPHINA_PREFIX . $chart_type . '_chart_dynamic_data_option' ] ) && $settings[ GRAPHINA_PREFIX . $chart_type . '_chart_dynamic_data_option' ] === 'sql-builder' && strstr( $sql_custom_query, trim( $selected_item[ $key ] ) ) && count( $selected_item ) === count( array_unique( $selected_item ) ) ) {
 						$sql_custom_query = str_replace( array( "'" . $value[ GRAPHINA_PREFIX . $chart_type . '_chart_filter_value_key' ] . "'", '"' . $value[ GRAPHINA_PREFIX . $chart_type . '_chart_filter_value_key' ] . '"', $value[ GRAPHINA_PREFIX . $chart_type . '_chart_filter_value_key' ] ), $selected_item[ $key ], $sql_custom_query );
 					} elseif ( $value[ GRAPHINA_PREFIX . $chart_type . '_chart_filter_type' ] === 'date' ) {
 							$sql_custom_query = str_replace( $value[ GRAPHINA_PREFIX . $chart_type . '_chart_filter_value_key' ], sprintf( '"%s"', trim( $selected_item[ $key ] ) ), $sql_custom_query );
@@ -2673,7 +2705,12 @@ function graphina_common_setting_get( string $chart_type ): string {
 			$value = ! empty( $data['view_port'] ) ? $data['view_port'] : 'off';
 			break;
 		case 'csv_seperator':
-			$value = ! empty( $data['csv_seperator'] ) && $data['csv_seperator'] === 'semicolon' ? ';' : ',';
+			$data['csv_seperator'] = ! empty( $data['csv_seperator'] ) ? $data['csv_seperator'] : ',';
+			$value = match ($data['csv_seperator']) {
+				'semicolon'	=> ';',
+				'comma' 	=> ',',
+				default		=> $data['csv_seperator']
+			};
 			break;
 		case 'graphina_loader':
 			$value = ! empty( $data['graphina_loader'] ) ? $data['graphina_loader'] : GRAPHINA_URL . '/admin/assets/images/graphina.gif';

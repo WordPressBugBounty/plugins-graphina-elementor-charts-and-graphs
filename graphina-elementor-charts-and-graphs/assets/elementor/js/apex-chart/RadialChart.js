@@ -17,21 +17,48 @@ export default class RadialChart extends GraphinaApexChartBase {
     RadialChartDatalabelsFormat(chartOptions, extraData) {
         const prefix = extraData.chart_datalabel_prefix;
         const postfix = extraData.chart_datalabel_postfix;
-     // Ensure plotOptions and radialBar exist before accessing datalabels
-     chartOptions.plotOptions.radialBar.dataLabels.total.formatter = (w) => {
-        // Get the total sum of all values in the series
-        let total =   w.globals.seriesTotals.reduce((a, b) => {
-            return a + b
-        }, 0) ;
-        
-        return prefix + total + postfix;
-        
-         // Return total if you want to display it
-        };
-        chartOptions.plotOptions.radialBar.dataLabels.value.formatter = (val) => {
-            // Get the total sum of all values in the series
-            val = val;
-            return prefix + val + postfix;
+        if(extraData.string_format){
+            chartOptions.plotOptions.radialBar.dataLabels.total.formatter = (w) => {
+                let total =   w.globals.seriesTotals.reduce((a, b) => {
+                    return a + b
+                }, 0) ;
+                total = this.formatNumber(total, extraData.chart_label_pointer_number_for_label);
+                return prefix + total + postfix;
+            }
+            chartOptions.plotOptions.radialBar.dataLabels.value.formatter = (val) => {
+                // Get the total sum of all values in the series
+                val = this.formatNumber(val, extraData.chart_label_pointer_number_for_label);
+                return prefix + val + postfix;
+            }
+            chartOptions.yaxis.labels.formatter = (val) => {
+                return prefix + this.formatNumber(val, extraData.chart_label_pointer_number_for_label) + postfix
+            };
+        }else{
+            chartOptions.plotOptions.radialBar.dataLabels.value.formatter = (val) => {
+                // Get the total sum of all values in the series
+                val = new Intl.NumberFormat(window.gcfe_public_localize.locale_with_hyphen, {
+                    minimumFractionDigits: extraData.chart_label_pointer_number_for_label,
+                    maximumFractionDigits: extraData.chart_label_pointer_number_for_label,
+                }).format(val);
+                return prefix + val + postfix;
+            }
+            chartOptions.plotOptions.radialBar.dataLabels.total.formatter = (w) => {
+                // Get the total sum of all values in the series
+                let total =   w.globals.seriesTotals.reduce((a, b) => {
+                    return a + b
+                }, 0) ;
+                total = new Intl.NumberFormat(window.gcfe_public_localize.locale_with_hyphen, {
+                    minimumFractionDigits: extraData.chart_label_pointer_number_for_label,
+                    maximumFractionDigits: extraData.chart_label_pointer_number_for_label,
+                }).format(total);
+                return prefix + total + postfix;
+            };
+             chartOptions.yaxis.labels.formatter = (val) => {
+                return prefix + new Intl.NumberFormat(window.gcfe_public_localize.locale_with_hyphen, {
+                    minimumFractionDigits: extraData.chart_label_pointer_number_for_label,
+                    maximumFractionDigits: extraData.chart_label_pointer_number_for_label,
+                }).format(val) + postfix; 
+            };
         }
     }
    

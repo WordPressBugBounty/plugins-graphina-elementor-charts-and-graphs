@@ -228,13 +228,13 @@ class GraphinaElementorControls {
 		$widget->add_group_control(
 			Group_Control_Typography::get_type(),
 			array(
-				'name'      => GRAPHINA_PREFIX . $chart_type . '_title_typography',
+				'name'      => GRAPHINA_PREFIX . $chart_type . '_card_title_typography',
 				'label'     => esc_html__( 'Typography', 'graphina-charts-for-elementor' ),
 				'global'    => array(
-					'default' => Global_Typography::TYPOGRAPHY_SECONDARY,
+					'default' => Global_Typography::TYPOGRAPHY_PRIMARY,
 				),
 				'selector'  => '{{WRAPPER}} .graphina-chart-heading',
-				'condition' => array( GRAPHINA_PREFIX . $chart_type . '_is_card_desc_show' => 'yes' ),
+				'condition' => array( GRAPHINA_PREFIX . $chart_type . '_is_card_heading_show' => 'yes' ),
 			)
 		);
 
@@ -960,6 +960,20 @@ class GraphinaElementorControls {
 					),
 				)
 			);
+		}elseif( 'counter' === $chart_type ){
+			$widget->add_control(
+				GRAPHINA_PREFIX . $chart_type . '_can_chart_reload_ajax',
+				array(
+					'label'     => esc_html__( 'Reload Ajax', 'graphina-charts-for-elementor' ),
+					'type'      => Controls_Manager::SWITCHER,
+					'label_on'  => esc_html__( 'True', 'graphina-charts-for-elementor' ),
+					'label_off' => esc_html__( 'False', 'graphina-charts-for-elementor' ),
+					'default'   => false,
+					'condition' => array(
+						GRAPHINA_PREFIX . $chart_type . '_element_data_option!' => array( 'manual' ),
+					),
+				)
+			);
 		}
 
 		$widget->add_control(
@@ -1002,6 +1016,19 @@ class GraphinaElementorControls {
 	protected function graphina_counter_chart_data_options( $widget, $chart_type ) {
 
 		$widget->add_control(
+			GRAPHINA_PRO_PREFIX . $chart_type . '_element_import_from_table_dynamic_key',
+			array(
+				'label'       => esc_html__( 'Dynamic Keys', 'graphina-pro-charts-for-elementor' ),
+				'type'        => Controls_Manager::SWITCHER,
+				'description' => __( 'Use dynamic key in  Query,it will replace key will dynamic value (example : column_name={{CURRENT_USER_ID}} <strong><a href="https://documentation.iqonic.design/graphina/graphina-pro/unlocking-the-power-of-dynamic-keys-in-wordpress" target="_blank">List of Dynamic key</a></strong> and If you using dynamic key then please use default value like <b>where id={{QUERY_PARAM_key=1}}</b>', 'graphina-pro-charts-for-elementor' ),
+				'condition'   => array(
+					GRAPHINA_PRO_PREFIX . $chart_type . '_element_data_option' => 'dynamic',
+					GRAPHINA_PRO_PREFIX . $chart_type . '_element_dynamic_data_option' => array( 'sql-builder', 'external_database'),
+				),
+			)
+		);
+
+		$widget->add_control(
 			GRAPHINA_PREFIX . $chart_type . '_chart_element_builder_refresh',
 			array(
 				'label'       => esc_html__( 'Refresh', 'graphina-charts-for-elementor' ),
@@ -1025,8 +1052,7 @@ class GraphinaElementorControls {
 			array(
 				'label'       => esc_html__( 'Column', 'graphina-charts-for-elementor' ),
 				'type'        => Controls_Manager::SELECT,
-				'placeholder' => esc_html__( '1', 'graphina-charts-for-elementor' ),
-				'description' => esc_html__( 'Enter the column letter from which data should be referenced', 'graphina-charts-for-elementor' ),
+				'description' => esc_html__( 'Select column which data should be referenced', 'graphina-charts-for-elementor' ),
 				'min'         => 1,
 				'options'     => array(),
 				'condition'   => array(
@@ -2999,7 +3025,7 @@ class GraphinaElementorControls {
 				array(
 					'label'   => esc_html__( 'Data Elements', 'graphina-charts-for-elementor' ),
 					'type'    => Controls_Manager::NUMBER,
-					'description' => esc_html__( 'Notice: Data Elements Minimum Value Required is 1.', 'graphina-charts-for-elementor' ),
+					'description' => __( '<strong>Notice:</strong> The minimum required value for data elements is <strong>1</strong>. To increase the maximum data element value, please refer to the <a href="https://documentation.iqonic.design/graphina/php-hooks/optimizing-element-sets-in-graphina-with-php-hooks" target="_blank">PHP Hooks Documentation</a>.', 'graphina-charts-for-elementor' ),
 					'default' => $default_count !== 0 ? $default_count : ( in_array( $chart_type, array( 'pie', 'polar', 'donut', 'radial', 'bubble', 'pie_google', 'donut_google', 'org_google', 'gauge_google', 'distributed_column', 'nested_column' ), true ) ? 6 : 1 ),
 					'min'     => 1,
 					'max'     => $chart_type === 'gantt_google' ? 1 : graphina_default_setting( 'max_series_value' ),
@@ -3908,7 +3934,7 @@ class GraphinaElementorControls {
 					array(
 						'label'     => esc_html__( 'Label', 'graphina-charts-for-elementor' ),
 						'type'      => Controls_Manager::TEXT,
-						'default'   => $this->defaultLabel[ $i ],
+						'default'   => ! empty ( $this->defaultLabel[ $i ] ) ? $this->defaultLabel[ $i ] : '',
 						'dynamic'   => array(
 							'active' => true,
 						),
@@ -4839,7 +4865,7 @@ class GraphinaElementorControls {
 					array(
 						'label'     => esc_html__( 'Color', 'graphina-charts-for-elementor' ),
 						'type'      => Controls_Manager::COLOR,
-						'default'   => $colors[ $i ],
+						'default'   => ! empty( $colors[ $i ] ) ? $colors[ $i ] : '',
 						'condition' => array(
 							GRAPHINA_PREFIX . $chart_type . '_chart_data_series_count' => range( 1 + $i, graphina_default_setting( 'max_series_value' ) ),
 						),
@@ -7146,11 +7172,10 @@ class GraphinaElementorControls {
 					array(
 						'label'     => esc_html__( 'Number of Decimal Want', 'graphina-charts-for-elementor' ),
 						'type'      => Controls_Manager::NUMBER,
-						'default'   => 1,
+						'default'   => 0,
 						'min'       => 0,
 						'condition' => array(
 							GRAPHINA_PREFIX . $chart_type . '_chart_datalabel_show' => 'yes',
-							GRAPHINA_PREFIX . $chart_type . '_chart_label_pointer_for_label' => 'yes',
 						),
 					)
 				);
@@ -7247,12 +7272,11 @@ class GraphinaElementorControls {
 					array(
 						'label'     => esc_html__( 'Number of Decimal Want', 'graphina-charts-for-elementor' ),
 						'type'      => Controls_Manager::NUMBER,
-						'default'   => 1,
+						'default'   => 0,
 						'min'       => 0,
 						'condition' => array(
 							GRAPHINA_PREFIX . $chart_type . '_chart_datalabels_format' => 'yes',
 							GRAPHINA_PREFIX . $chart_type . '_chart_datalabels_format_showValue' => 'yes',
-							GRAPHINA_PREFIX . $chart_type . '_chart_label_pointer!' => 'yes',
 						),
 					)
 				);
@@ -7431,7 +7455,7 @@ class GraphinaElementorControls {
 					);
 			}
 
-			if ( in_array( $chart_type, array( 'area', 'radial' ), true ) ) {
+			if ( in_array( $chart_type, array( 'area', 'line' ), true ) ) {
 				$widget->add_control(
 					GRAPHINA_PREFIX . $chart_type . '_chart_number_format_commas',
 					array(
@@ -7448,7 +7472,7 @@ class GraphinaElementorControls {
 					array(
 						'label'     => esc_html__( 'Decimals In Float', 'graphina-charts-for-elementor' ),
 						'type'      => Controls_Manager::NUMBER,
-						'default'   => 2,
+						'default'   => 0,
 						'max'       => 6,
 						'min'       => 0,
 						'condition' => array(
@@ -11061,7 +11085,7 @@ class GraphinaElementorControls {
 				array(
 					'label'     => esc_html__( 'Number of Decimal Want', 'graphina-charts-for-elementor' ),
 					'type'      => Controls_Manager::NUMBER,
-					'default'   => 1,
+					'default'   => 0,
 					'min'       => 0,
 					'condition' => array(
 						GRAPHINA_PREFIX . $chart_type . '_chart_xaxis_datalabel_show' => 'yes',
@@ -11847,7 +11871,7 @@ class GraphinaElementorControls {
 				'type'      => Controls_Manager::SWITCHER,
 				'label_on'  => esc_html__( 'Hide', 'graphina-charts-for-elementor' ),
 				'label_off' => esc_html__( 'Show', 'graphina-charts-for-elementor' ),
-				'default'   => 'no',
+				'default'   => 'yes',
 				'condition' => array(
 					GRAPHINA_PREFIX . $chart_type . '_chart_yaxis_datalabel_show' => 'yes',
 				),
@@ -11861,7 +11885,7 @@ class GraphinaElementorControls {
 				'type'      => Controls_Manager::SWITCHER,
 				'label_on'  => esc_html__( 'Hide', 'graphina-charts-for-elementor' ),
 				'label_off' => esc_html__( 'Show', 'graphina-charts-for-elementor' ),
-				'default'   => 'no',
+				'default'   => 'yes',
 				'condition' => array(
 					GRAPHINA_PREFIX . $chart_type . '_chart_yaxis_datalabel_show' => 'yes',
 					GRAPHINA_PREFIX . $chart_type . '_chart_yaxis_datalabel_format' => 'yes',
@@ -11936,7 +11960,7 @@ class GraphinaElementorControls {
 			array(
 				'label'     => esc_html__( 'Number of Decimal Want', 'graphina-charts-for-elementor' ),
 				'type'      => Controls_Manager::NUMBER,
-				'default'   => 1,
+				'default'   => 0,
 				'min'       => 0,
 				'condition' => array(
 					GRAPHINA_PREFIX . $chart_type . '_chart_yaxis_label_pointer' => 'yes',
@@ -12277,7 +12301,7 @@ class GraphinaElementorControls {
 				array(
 					'label'     => esc_html__( 'Number of Decimal Want', 'graphina-charts-for-elementor' ),
 					'type'      => Controls_Manager::NUMBER,
-					'default'   => 1,
+					'default'   => 0,
 					'min'       => 0,
 					'condition' => array(
 						GRAPHINA_PREFIX . $chart_type . '_chart_yaxis_datalabel_show' => 'yes',
@@ -12299,7 +12323,7 @@ class GraphinaElementorControls {
 						),
 						'label_on'  => esc_html__( 'Yes', 'graphina-charts-for-elementor' ),
 						'label_off' => esc_html__( 'No', 'graphina-charts-for-elementor' ),
-						'default'   => false,
+						'default'   => 'yes',
 					)
 				);
 			}
@@ -12310,7 +12334,7 @@ class GraphinaElementorControls {
 			array(
 				'label'     => esc_html__( 'Decimals In Float', 'graphina-charts-for-elementor' ),
 				'type'      => Controls_Manager::NUMBER,
-				'default'   => 2,
+				'default'   => 0,
 				'max'       => 6,
 				'min'       => 0,
 				'condition' => array(
@@ -12368,19 +12392,36 @@ class GraphinaElementorControls {
 				)
 			);
 
-			$widget->add_control(
-				GRAPHINA_PREFIX . $chart_type . '_chart_opposite_yaxis_title_enable',
-				array(
-					'label'     => esc_html__( 'Enable Opposite Title', 'graphina-charts-for-elementor' ),
-					'type'      => Controls_Manager::SWITCHER,
-					'label_on'  => esc_html__( 'Hide', 'graphina-charts-for-elementor' ),
-					'label_off' => esc_html__( 'Show', 'graphina-charts-for-elementor' ),
-					'default'   => 'no',
-					'condition' => array(
-						GRAPHINA_PREFIX . $chart_type . '_chart_data_series_count!' => 1,
-					),
-				)
-			);
+			if ( 'column' === $chart_type ) {
+				$widget->add_control(
+					GRAPHINA_PREFIX . $chart_type . '_chart_opposite_yaxis_title_enable',
+					array(
+						'label'     => esc_html__( 'Enable Opposite Title', 'graphina-charts-for-elementor' ),
+						'type'      => Controls_Manager::SWITCHER,
+						'label_on'  => esc_html__( 'Hide', 'graphina-charts-for-elementor' ),
+						'label_off' => esc_html__( 'Show', 'graphina-charts-for-elementor' ),
+						'default'   => 'no',
+						'condition' => array(
+							GRAPHINA_PREFIX . $chart_type . '_chart_data_series_count!' => 1,
+							GRAPHINA_PREFIX . $chart_type . '_is_chart_horizontal!' => 'yes',
+						),
+					)
+				);
+			}else{
+				$widget->add_control(
+					GRAPHINA_PREFIX . $chart_type . '_chart_opposite_yaxis_title_enable',
+					array(
+						'label'     => esc_html__( 'Enable Opposite Title', 'graphina-charts-for-elementor' ),
+						'type'      => Controls_Manager::SWITCHER,
+						'label_on'  => esc_html__( 'Hide', 'graphina-charts-for-elementor' ),
+						'label_off' => esc_html__( 'Show', 'graphina-charts-for-elementor' ),
+						'default'   => 'no',
+						'condition' => array(
+							GRAPHINA_PREFIX . $chart_type . '_chart_data_series_count!' => 1,
+						),
+					)
+				);
+			}
 
 			$widget->add_control(
 				GRAPHINA_PREFIX . $chart_type . '_chart_opposite_yaxis_tick_amount',

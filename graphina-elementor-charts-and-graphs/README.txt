@@ -4,7 +4,7 @@ Tags: data visualization wordpress plugin, wordpress charts, wordpress charts an
 Requires PHP: 8.0.0
 Requires at least: 5.9
 Tested up to: 6.7.2
-Stable tag: 3.0.3
+Stable tag: 3.0.4
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -12,7 +12,7 @@ Most Powerful Data visualization plugin for WordPress Elementor. The easiest way
 
 == Description ==
 
-🛍️ Final Hours Get **Flat 50% OFF** on [Graphina Pro](https://graphina.iqonic.design/?utm_source=referral&utm_medium=wordpress.org&utm_campaign=iqonic-march+madness-sale-2025-wordpress-org-banner-click) on March Madness Sale! 💥
+🛍️ Sale Extended Get **Flat 50% OFF** on [Graphina Pro](https://graphina.iqonic.design/?utm_source=referral&utm_medium=wordpress.org&utm_campaign=iqonic-march+madness-sale-2025-wordpress-org-banner-click) on March Madness Sale! 💥
 
 Plus, enjoy a **Flat 20% OFF** on [Graphina DIVI!](https://www.elegantthemes.com/marketplace/graphina-divi-charts-and-graphs/) 🎉DIVI Anniversary sale ! 
 
@@ -129,9 +129,9 @@ https://www.youtube.com/watch?v=KKFO52Kjlqc
 14.  Conditional Colors for Counters
 15.  Chart Filter in API and SQL Builder Dynamic Option
 16.  External mysql database connectivity
-17.  Dynamic Key in API and SQL Builder Dynamic Option (Example https://apps.iqonic.design/docs/product/graphina-elementor-charts-and-graphs/use-dynamic-data-in-widgets/dynamic_key/)
+17.  Dynamic Key in API and SQL Builder Dynamic Option (Example https://documentation.iqonic.design/graphina/graphina-pro/unlocking-the-power-of-dynamic-keys-in-wordpress)
 18.  Create charts from **Column wise csv/remote-csv/googlesheet** (select specific column for x/y-axis of chart from csv/remote-csv/googlesheet file)
-19. Create charts from any data source using graphina filters( https://apps.iqonic.design/docs/product/graphina-elementor-charts-and-graphs/use-dynamic-data-in-widgets/data-from-wordpress-filter/)
+19.  Create charts from any data source using graphina filters( https://documentation.iqonic.design/graphina/graphina-pro/retrieving-dynamic-data-using-wordpress-filters)
 
 
 https://www.youtube.com/watch?v=majr1JLB-7E
@@ -159,7 +159,7 @@ Submit a feature request [HERE](https://iqonic.design/feature-request/?for_produ
 Graphina is crafted by team [IQONIC](https://iqonic.design) - expert, young, & dynamic creators of community focused digital products and trusted by over 100K individuals and businesses. 
 
 ## DOCUMENTATION AND SUPPORT
--  Check our online Documentation [HERE](https://apps.iqonic.design/docs/product/graphina-elementor-charts-and-graphs/getting-started/) .
+-  Check our online Documentation [HERE](https://documentation.iqonic.design/graphina/) .
 -  For our [PRO version](https://iqonic.design/product/wordpress-plugins/graphina-pro-elementor-dynamic-charts-graphs-datatables/) owners our experts provide support via https://iqonic.desky.support portal.
 
 
@@ -230,6 +230,12 @@ Yes, we'd love to hear from you at <a href="mailto:hello@iqonic.design">hello@iq
 
 
 == Changelog ==
+
+= 3.0.4 - 01/04/2025 =
+- [Updated] SweetAlert2.
+- [Fixed] Tooltip Prefix and Suffix.
+- [Fixed] Display of encoded data values in the legend when hovering over the chart.
+- [Fixed] Various minor bugs and improvements.
 
 = 3.0.3 - 27/03/2025 =  
 - [Improvement] Improved Google Chart font family support.  

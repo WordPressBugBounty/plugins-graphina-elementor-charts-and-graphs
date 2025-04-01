@@ -19,7 +19,7 @@ add_filter(
 		// Define additional localized settings for SweetAlert messages.
 		$settings['i18n'] = array(
 			'swal_are_you_sure_text' => esc_html__( 'Are you sure?', 'graphina-charts-for-elementor' ),
-			'swal_revert_this_text'  => esc_html__( 'You won\'t be able to revert this!', 'graphina-charts-for-elementor' ),
+			'swal_revert_this_text'  => esc_html__( 'You would not be able to revert this!', 'graphina-charts-for-elementor' ),
 			'swal_delete_text'       => esc_html__( 'Yes, delete it!', 'graphina-charts-for-elementor' ),
 			'swal_ok_text'           => esc_html__( 'OK', 'graphina-charts-for-elementor' ),
 		);

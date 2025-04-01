@@ -53,8 +53,12 @@ export default class GeoChart extends GraphinaGoogleChartBase {
 
     setupTableData(dynamicData, dataTable, googleChart, googleChartTexture, extraData) {
         if(dynamicData?.google_chart_data?.data.length > 0){
-            dataTable.addColumn('string', 'Month');
-            dataTable.addColumn('number', 'Sale');
+            dataTable.addColumn('string', 'State');
+            if(extraData.geo_label){
+                dataTable.addColumn('number', extraData.geo_label);
+            }else{
+                dataTable.addColumn('number', 'Sale');
+            }
             dynamicData.google_chart_data.data.forEach(row => dataTable.addRow(row));
             googleChart.show()
             googleChartTexture.hide()

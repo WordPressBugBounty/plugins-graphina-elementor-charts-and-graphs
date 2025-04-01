@@ -5,8 +5,8 @@
  * Description:         Your ultimate charts and graphs solution to enhance visual effects. Create versatile, advanced and interactive charts on your website.
  * Author:              Iqonic Design
  * Author URI:          https://iqonic.design/
- * Version:             3.0.3
- * Elementor tested up to: 3.28.1
+ * Version:             3.0.4
+ * Elementor tested up to: 3.28.0
  * Elementor Pro tested up to: 3.20.2
  * Requires PHP:        8.0
  * Requires Plugins     elementor
@@ -32,7 +32,7 @@ endif;
 
 // Plugin Version.
 if ( ! defined( 'GRAPHINA_VERSION' ) ) :
-	define( 'GRAPHINA_VERSION', '3.0.3' );
+	define( 'GRAPHINA_VERSION', '3.0.4' );
 endif;
 
 // Plugin Prefix.
@@ -57,13 +57,19 @@ endif;
 
 // Plugin Version.
 if ( ! defined( 'GRAPHINA_CHARTS_FOR_ELEMENTOR_VERSION' ) ) :
-	define( 'GRAPHINA_CHARTS_FOR_ELEMENTOR_VERSION', '3.0.3' );
+	define( 'GRAPHINA_CHARTS_FOR_ELEMENTOR_VERSION', '3.0.4' );
 endif;
 
 // Pro Version.
 if ( ! defined( 'GRAPHINA_CHARTS_DEPENDENT_PRO_VERSION' ) ) :
 	define( 'GRAPHINA_CHARTS_DEPENDENT_PRO_VERSION', '3.0.0' );
 endif;
+
+// Pro Version.
+if ( ! defined( 'GRAPHINA_PRO_CURRENT_VERSION' ) ) :
+	define( 'GRAPHINA_PRO_CURRENT_VERSION', '3.0.3' );
+endif;
+
 
 if ( ! function_exists( 'is_plugin_active' ) ) {
     require_once ABSPATH . 'wp-admin/includes/plugin.php';
@@ -108,8 +114,6 @@ if ( ! function_exists( 'graphina_load_plugin' ) ) {
 			return;
 		endif;
 
-		$pro_required_version = '3.0.0'; // Change this as needed.
-
         // Path to the Graphina Lite plugin.
         $pro_plugin_basename = 'graphina-pro/graphina-charts-for-elementor.php';
 
@@ -125,7 +129,7 @@ if ( ! function_exists( 'graphina_load_plugin' ) ) {
             $graphina_pro_v = $installed_plugins[ $pro_plugin_basename ]['Version'];
 
             // Compare versions
-            if ( version_compare( $graphina_pro_v, $pro_required_version, '<' ) ) :
+            if ( version_compare( $graphina_pro_v, GRAPHINA_CHARTS_DEPENDENT_PRO_VERSION, '<' ) ) :
                 // Version is incompatible, deactivate Graphina Pro
                 deactivate_plugins( 'graphina-pro/graphina-charts-for-elementor.php' );
 				add_action( 'admin_notices', 'graphina_fail_load_out_of_date_pro' );
@@ -205,7 +209,7 @@ if ( ! function_exists( 'graphina_fail_load_out_of_date_pro' ) ) {
         if ( ! current_user_can( 'update_plugins' ) ) {
             return;
         }
-        $message  = '<p>' . esc_html__( 'Graphina Pro has been deactivated because you are using an old version of Graphina – Elementor Charts and Graphs. Please update it to latest version.', 'graphina-charts-for-elementor' ) . '</p>';
+        $message  = '<p>' . esc_html__( 'Graphina Pro has been deactivated because you are using an old version of GraphinaPro – Elementor Dynamic Charts & Datatable. Please update it to latest version ', 'graphina-charts-for-elementor' ) . GRAPHINA_PRO_CURRENT_VERSION . '</p>';
         gcfe_print_error( $message );
     }
 }

@@ -43,10 +43,7 @@ $selected_google   = ( in_array( 'google_chart_js', $selected_js_array, true ) )
 			<label for="graphina_setting_select" class="select-chart-title"><?php echo esc_html__( 'CSV Separator :', 'graphina-charts-for-elementor' ); ?>
 				<span <?php echo esc_html( $pro_active ? 'hidden' : '' ); ?> class="graphina-badge"><?php echo esc_html__( 'Pro', 'graphina-charts-for-elementor' ); ?></span>
 			</label>
-			<select <?php echo esc_html( $pro_active ? '' : 'disabled' ); ?> id="graphina_setting_select" class="graphina-form-control" name="csv_seperator">
-				<option name="comma" value="comma" <?php echo esc_html( ! empty( $data['csv_seperator'] ) && $data['csv_seperator'] === 'comma' ? 'selected' : '' ); ?> ><?php echo esc_html__( 'Comma', 'graphina-charts-for-elementor' ); ?></option>
-				<option name="semicolon" value="semicolon" <?php echo esc_html( ! empty( $data['csv_seperator'] ) && $data['csv_seperator'] === 'semicolon' ? 'selected' : '' ); ?> ><?php echo esc_html__( 'Semicolon', 'graphina-charts-for-elementor' ); ?></option>
-			</select>
+			<input id="graphina_setting_select" type="text" placeholder="," class="graphina-form-control" name="csv_seperator" value="<?php echo esc_html( ! empty( $data['csv_seperator'] ) ? $data['csv_seperator'] : ',' ); ?> ">
 		</div>
 		<div class="graphina-admin-charts-setting">
 			<label for="switch" class="select-chart-title"><?php echo esc_html__( 'View Port : ', 'graphina-charts-for-elementor' ); ?></label>

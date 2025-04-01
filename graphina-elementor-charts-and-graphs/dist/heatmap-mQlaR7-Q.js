@@ -1,0 +1,2 @@
+import{G as l}from"./GraphinaApexChartBase-C_IMEUtX.js";class b extends l{constructor(){super(),this.observer={}}setUpChartsHandler(){this.chartHandlers={heatmap:e=>this.observeChartElement(e,"heatmap")}}applyDataLabelFormatter(e,a){let s=a.chart_datalabel_prefix??"",r=a.chart_datalabel_postfix??"";e.dataLabels||(e.dataLabels={}),e.dataLabels.formatter=t=>(a.string_format&&(t=this.formatNumber(t,a.chart_label_pointer_number_for_label)),s+t+r)}getChartOptions(e,a,s,r,t){return a==="heatmap"&&(e.responsive=r),e}}new b;
+//# sourceMappingURL=heatmap-mQlaR7-Q.js.map

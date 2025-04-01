@@ -190,17 +190,6 @@ class RadarChart extends GraphinaApexChartBase {
 		$type_of_chart = '';
 		$type_of_chart = $chart_type;
 
-		$color_setting_key = GRAPHINA_PREFIX . $chart_type . '_chart_datalabel_background_show';
-		$font_color_key    = GRAPHINA_PREFIX . $chart_type . '_chart_datalabel_font_color_1';
-		$default_color 	   = ! empty($settings[GRAPHINA_PREFIX . $chart_type . '_chart_font_color']) ? $settings[GRAPHINA_PREFIX . $chart_type . '_chart_font_color'] : '#000000';
-
-		$datalabel_font_color = ! empty($settings[$color_setting_key]) && 'yes' === $settings[$color_setting_key]
-			? $settings[$font_color_key]
-			: $default_color;
-
-		$color_array = array(esc_js($datalabel_font_color));
-
-
 		$chart_options = array(
 			'series'     => $series_temp,
 			'chart'      => array(
@@ -269,6 +258,7 @@ class RadarChart extends GraphinaApexChartBase {
 					'show' => ! empty($settings[GRAPHINA_PREFIX . $chart_type . '_chart_xaxis_crosshairs_show']) && $settings[GRAPHINA_PREFIX . $chart_type . '_chart_xaxis_crosshairs_show'] === 'yes' ? true : false,
 				),
 			),
+			'colors'	=>	$gradient,
 			'yaxis'      => array(
 				'tickAmount'      => ! empty($settings[GRAPHINA_PREFIX . $chart_type . '_chart_yaxis_datalabel_tick_amount']) ? intval($settings[GRAPHINA_PREFIX . $chart_type . '_chart_yaxis_datalabel_tick_amount']) : 6,
 				'decimalsInFloat' => ! empty($settings[GRAPHINA_PREFIX . $chart_type . '_chart_yaxis_datalabel_decimals_in_float']) ? intval($settings[GRAPHINA_PREFIX . $chart_type . '_chart_yaxis_datalabel_decimals_in_float']) : 1,

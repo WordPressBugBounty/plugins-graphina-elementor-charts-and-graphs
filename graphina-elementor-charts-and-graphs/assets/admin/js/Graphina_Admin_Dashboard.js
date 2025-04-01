@@ -1,4 +1,4 @@
-import Swal from 'sweetalert2';
+import Swal from 'sweetalert2-neutral';
 
 export default class Graphina_Admin_Dashboard{
     

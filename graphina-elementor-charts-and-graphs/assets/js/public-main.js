@@ -1,6 +1,5 @@
-import $ from 'jquery';
 import GraphinaPublic from './graphina-public';
-$(function () {
+jQuery(function () {
 
     
     const GraphinaPublicMain = {
