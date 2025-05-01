@@ -115,6 +115,7 @@ class DataTable extends GraphinaDataTableBase {
 		$controls->graphina_common_chart_setting( $this, $chart_type, false, true, false );
 		$controls->register_chart_restriction_controls( $this, $chart_type );
 		$controls->register_table_style_controls( $this, $chart_type );
+		apply_filters( 'graphina_jquery_table_width', $this, $chart_type );
 		apply_filters( 'graphina_password_form_style_section', $this, $chart_type );
 	}
 
@@ -166,6 +167,7 @@ class DataTable extends GraphinaDataTableBase {
 			? sanitize_text_field( $chart_data['settings'][ GRAPHINA_PREFIX . $chart_data['chart_type'] . '_chart_content' ] )
 			: '';
 
+		$chart_data['chart_data'] = $chart_data;
 		graphina_get_template( 'graphina-apex-charts/' . $chart_data['chart_type'] . '-table.php', $chart_data );
 	}
 }

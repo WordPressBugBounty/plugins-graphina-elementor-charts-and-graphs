@@ -55,11 +55,13 @@ export default class Graphina_Admin_Dashboard{
     }
 
     getDisabledWidget(){
+        const nonce = jQuery('#graphina-element-nonce').val()
         jQuery.ajax({
             url: gcfe_localize.ajaxurl,
             type: "GET",
             data: {
                 action: 'graphina_get_disabled_widgets',
+                nonce: nonce
             },
             success: function (response) {
                 document.querySelectorAll('.graphina-apex-toggle').forEach(label => {
@@ -90,6 +92,7 @@ export default class Graphina_Admin_Dashboard{
         var action = 'graphina_save_enabled_widgets'
         let checkbox = jQuery(e.currentTarget).find('input');
         let isChecked = checkbox.prop('checked'); 
+        const nonce = jQuery('#graphina-element-nonce').val()
         if(!isChecked){
             action = 'graphina_save_disabled_widgets'
             jQuery(e.currentTarget).find('input').prop('checked',false)
@@ -101,7 +104,8 @@ export default class Graphina_Admin_Dashboard{
             type: "POST",
             data: {
                 action: action,
-                widgets: JSON.stringify(jQuery(e.currentTarget).data('widget'))
+                widgets: JSON.stringify(jQuery(e.currentTarget).data('widget')),
+                nonce: nonce
             },
             success: function (response) {
                 Swal.fire({
@@ -115,15 +119,19 @@ export default class Graphina_Admin_Dashboard{
 
     handleEnableAllChart(e) {
         e.preventDefault();
+        const nonce = jQuery('#graphina-element-nonce').val()
         jQuery('.toggle input').prop('checked', true);
+        jQuery(e.currentTarget).text(gcfe_localize.i18n.loading_btn)
         jQuery.ajax({
             url: gcfe_localize.ajaxurl,
             type: "POST",
             data: {
                 action: 'graphina_save_enabled_widgets',
-                widgets: 1
+                widgets: 1,
+                nonce: nonce
             },
             success: function (response) {
+                jQuery(e.currentTarget).text(gcfe_localize.i18n.enable_all_btn)
                 Swal.fire({
                     title: response.data.message,
                     text: response.data.subMessage,
@@ -135,16 +143,19 @@ export default class Graphina_Admin_Dashboard{
 
     handleDisableAllChart(e) {
         e.preventDefault();
+        const nonce = jQuery('#graphina-element-nonce').val()
         jQuery('.toggle input').prop('checked', false);
-
+        jQuery(e.currentTarget).text(gcfe_localize.i18n.loading_btn)
         jQuery.ajax({
             url: gcfe_localize.ajaxurl,
             type: "POST",
             data: {
                 action: 'graphina_save_disabled_widgets',
-                widgets: 1
+                widgets: 1,
+                nonce: nonce
             },
             success: function (response) {
+                jQuery(e.currentTarget).text(gcfe_localize.i18n.disable_all_btn)
                 Swal.fire({
                     title: response.data.message,
                     text: response.data.subMessage,
@@ -201,13 +212,13 @@ export default class Graphina_Admin_Dashboard{
     handleDatabaseTest(e) {
         e.preventDefault();
         jQuery(document).find('#graphina_external_database_action_type').val('con_test')
-        jQuery(e.currentTarget).text('Connecting...')
+        jQuery(e.currentTarget).text(gcfe_localize.i18n.connecting_btn)
         jQuery.ajax({
             url: gcfe_localize.ajaxurl,
             type: "POST",
             data: jQuery('#graphina-settings-db-tab').serialize(),
             success: function (response) {
-                jQuery(e.currentTarget).text('Test DB Setting ')
+                jQuery(e.currentTarget).text(gcfe_localize.i18n.test_btn)
                 Swal.fire({
                     title: response.message,
                     text: response.subMessage,
@@ -226,13 +237,13 @@ export default class Graphina_Admin_Dashboard{
         if(jQuery(document).find('#graphina_external_database_action_type').val() == 'con_test'){
             jQuery(document).find('#graphina_external_database_action_type').val('save')
         }
-        jQuery(e.currentTarget).text('Connecting...')
+        jQuery(e.currentTarget).text(gcfe_localize.i18n.connecting_btn)
         jQuery.ajax({
             url: gcfe_localize.ajaxurl,
             type: "POST",
             data: jQuery('#graphina-settings-db-tab').serialize(),
             success: function (response) {
-                jQuery(e.currentTarget).text('Save Setting')
+                jQuery(e.currentTarget).text( gcfe_localize.i18n.save_btn )
                 Swal.fire({
                     title: response.message,
                     text: response.subMessage,
@@ -271,12 +282,13 @@ export default class Graphina_Admin_Dashboard{
 
     handleSettingSave(e){
         e.preventDefault()
-
+        jQuery(e.currentTarget).text(gcfe_localize.i18n.loading_btn)
         jQuery.ajax({
             url: gcfe_localize.ajaxurl,
             type: "POST",
             data: jQuery('#graphina_settings_tab').serialize(),
             success: function (response) {
+                jQuery(e.currentTarget).text(gcfe_localize.i18n.save_btn)
                 if (response.status === true || response.status === 'true') {
                     Swal.fire({
                         title: response.message,

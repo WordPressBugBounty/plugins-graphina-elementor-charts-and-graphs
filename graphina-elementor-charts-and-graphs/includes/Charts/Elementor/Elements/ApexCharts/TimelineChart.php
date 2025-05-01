@@ -399,8 +399,8 @@ class TimelineChart extends GraphinaApexChartBase {
 		$yaxis_enable_min_man = ! empty($settings[GRAPHINA_PREFIX . $chart_type . '_chart_yaxis_enable_min_max']) && $settings[GRAPHINA_PREFIX . $chart_type . '_chart_yaxis_enable_min_max'] === 'yes' ? true : false;
 
 		if ($yaxis_enable_min_man) {
-			$chart_options['yaxis']['min'] = intval($settings[GRAPHINA_PREFIX . $chart_type . '_chart_yaxis_min_value']) ?? 0;
-			$chart_options['yaxis']['max'] = intval($settings[GRAPHINA_PREFIX . $chart_type . '_chart_yaxis_max_value']) ?? 250;
+			$chart_options['yaxis']['min'] = floatval($settings[GRAPHINA_PREFIX . $chart_type . '_chart_yaxis_min_value']) ?? 0;
+			$chart_options['yaxis']['max'] = floatval($settings[GRAPHINA_PREFIX . $chart_type . '_chart_yaxis_max_value']) ?? 250;
 		}
 
 		if (! $legend_show) {

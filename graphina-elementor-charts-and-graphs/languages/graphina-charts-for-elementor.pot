@@ -2,14 +2,14 @@
 # This file is distributed under the same license as the Graphina - Elementor Charts and Graphs plugin.
 msgid ""
 msgstr ""
-"Project-Id-Version: Graphina - Elementor Charts and Graphs 3.0.4\n"
+"Project-Id-Version: Graphina - Elementor Charts and Graphs 3.0.5\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/graphina-elementor-charts-and-graphs\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2025-04-01T06:53:34+00:00\n"
+"POT-Creation-Date: 2025-05-01T10:16:27+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: WP-CLI 2.10.0\n"
 "X-Domain: graphina-charts-for-elementor\n"
@@ -39,206 +39,220 @@ msgstr ""
 msgid "https://iqonic.design/"
 msgstr ""
 
-#: graphina-charts-for-elementor.php:83
+#: graphina-charts-for-elementor.php:82
 msgid "Graphina - Elementor Charts and Graphs is enabled but not effective. It requires Elementor to work."
 msgstr ""
 
-#: graphina-charts-for-elementor.php:186
+#: graphina-charts-for-elementor.php:185
 msgid "A new version of Elementor is available. For better performance and compatibility of Graphina - Elementor Charts and Graphs, we recommend updating to the latest version."
 msgstr ""
 
-#: graphina-charts-for-elementor.php:193
-#: graphina-charts-for-elementor.php:235
+#: graphina-charts-for-elementor.php:192
+#: graphina-charts-for-elementor.php:234
 msgid "Update Elementor Now"
 msgstr ""
 
-#: graphina-charts-for-elementor.php:212
+#: graphina-charts-for-elementor.php:211
 msgid "Graphina Pro has been deactivated because you are using an old version of GraphinaPro – Elementor Dynamic Charts & Datatable. Please update it to latest version "
 msgstr ""
 
-#: graphina-charts-for-elementor.php:234
+#: graphina-charts-for-elementor.php:233
 msgid "Graphina - Elementor Charts and Graphs is not working because you are using an old version of Elementor."
 msgstr ""
 
-#: graphina-charts-for-elementor.php:265
+#: graphina-charts-for-elementor.php:264
 msgid "Install and Activate the Elementor Plugin"
 msgstr ""
 
-#: graphina-charts-for-elementor.php:266
+#: graphina-charts-for-elementor.php:265
 msgid "Before you can use all the features of Graphina - Elementor Charts and Graphs, you need to install and activate the Elementor plugin first."
 msgstr ""
 
-#: graphina-charts-for-elementor.php:267
+#: graphina-charts-for-elementor.php:266
 msgid "Install Elementor"
 msgstr ""
 
-#: graphina-charts-for-elementor.php:278
+#: graphina-charts-for-elementor.php:277
 msgid "Activate the Elementor Plugin"
 msgstr ""
 
-#: graphina-charts-for-elementor.php:279
+#: graphina-charts-for-elementor.php:278
 msgid "Before you can use all the features of Graphina - Elementor Charts and Graphs, you need to activate the Elementor plugin first."
 msgstr ""
 
-#: graphina-charts-for-elementor.php:280
+#: graphina-charts-for-elementor.php:279
 msgid "Activate Now"
 msgstr ""
 
-#: includes/Admin/GraphinaAdmin.php:204
-#: includes/Admin/GraphinaAdmin.php:256
+#: includes/Admin/GraphinaAdmin.php:182
+#: includes/Admin/GraphinaAdmin.php:211
+#: includes/Admin/GraphinaAdmin.php:276
+#: includes/Admin/GraphinaAdmin.php:503
+msgid "Permission Denied"
+msgstr ""
+
+#: includes/Admin/GraphinaAdmin.php:183
+#: includes/Admin/GraphinaAdmin.php:212
+#: includes/Admin/GraphinaAdmin.php:277
+#: includes/Admin/GraphinaAdmin.php:504
+msgid "You do not have sufficient permissions to perform this action."
+msgstr ""
+
+#: includes/Admin/GraphinaAdmin.php:229
+#: includes/Admin/GraphinaAdmin.php:294
 msgid "Invalid data format."
 msgstr ""
 
-#: includes/Admin/GraphinaAdmin.php:221
+#: includes/Admin/GraphinaAdmin.php:246
 msgid "Widgets enabled successfully."
 msgstr ""
 
-#: includes/Admin/GraphinaAdmin.php:222
-#: includes/Admin/GraphinaAdmin.php:270
+#: includes/Admin/GraphinaAdmin.php:247
+#: includes/Admin/GraphinaAdmin.php:308
 msgid "Success"
 msgstr ""
 
-#: includes/Admin/GraphinaAdmin.php:269
+#: includes/Admin/GraphinaAdmin.php:307
 msgid "Widgets disabled successfully."
 msgstr ""
 
-#: includes/Admin/GraphinaAdmin.php:292
-#: includes/Admin/GraphinaAdmin.php:497
+#: includes/Admin/GraphinaAdmin.php:330
+#: includes/Admin/GraphinaAdmin.php:545
 msgid "Error"
 msgstr ""
 
-#: includes/Admin/GraphinaAdmin.php:293
-#: includes/Admin/GraphinaAdmin.php:498
+#: includes/Admin/GraphinaAdmin.php:331
+#: includes/Admin/GraphinaAdmin.php:546
 msgid "Action not found"
 msgstr ""
 
-#: includes/Admin/GraphinaAdmin.php:297
-#: includes/Admin/GraphinaAdmin.php:502
+#: includes/Admin/GraphinaAdmin.php:335
+#: includes/Admin/GraphinaAdmin.php:550
 msgid "You don't have required permission or security error."
 msgstr ""
 
-#: includes/Admin/GraphinaAdmin.php:327
+#: includes/Admin/GraphinaAdmin.php:365
 msgid "Connection Name is required"
 msgstr ""
 
-#: includes/Admin/GraphinaAdmin.php:328
+#: includes/Admin/GraphinaAdmin.php:366
 msgid "Vendor is required"
 msgstr ""
 
-#: includes/Admin/GraphinaAdmin.php:329
+#: includes/Admin/GraphinaAdmin.php:367
 msgid "Database Name is required"
 msgstr ""
 
-#: includes/Admin/GraphinaAdmin.php:330
+#: includes/Admin/GraphinaAdmin.php:368
 msgid "Host is required"
 msgstr ""
 
-#: includes/Admin/GraphinaAdmin.php:331
+#: includes/Admin/GraphinaAdmin.php:369
 msgid "User Name is required"
 msgstr ""
 
-#: includes/Admin/GraphinaAdmin.php:332
+#: includes/Admin/GraphinaAdmin.php:370
 msgid "Password is required"
 msgstr ""
 
-#: includes/Admin/GraphinaAdmin.php:343
+#: includes/Admin/GraphinaAdmin.php:381
 msgid "Missing Field"
 msgstr ""
 
-#: includes/Admin/GraphinaAdmin.php:400
+#: includes/Admin/GraphinaAdmin.php:438
 msgid "Deleted!"
 msgstr ""
 
-#: includes/Admin/GraphinaAdmin.php:401
+#: includes/Admin/GraphinaAdmin.php:439
 msgid "Connection name deleted"
 msgstr ""
 
-#: includes/Admin/GraphinaAdmin.php:403
+#: includes/Admin/GraphinaAdmin.php:441
 msgid "Error!"
 msgstr ""
 
-#: includes/Admin/GraphinaAdmin.php:404
+#: includes/Admin/GraphinaAdmin.php:442
 msgid "Connection Name not found"
 msgstr ""
 
-#: includes/Admin/GraphinaAdmin.php:414
+#: includes/Admin/GraphinaAdmin.php:452
 msgid "Connection updated"
 msgstr ""
 
-#: includes/Admin/GraphinaAdmin.php:415
+#: includes/Admin/GraphinaAdmin.php:453
 msgid "Database connection details updated"
 msgstr ""
 
-#: includes/Admin/GraphinaAdmin.php:426
-#: includes/Admin/GraphinaAdmin.php:432
+#: includes/Admin/GraphinaAdmin.php:464
+#: includes/Admin/GraphinaAdmin.php:470
 msgid "Database Saved!"
 msgstr ""
 
-#: includes/Admin/GraphinaAdmin.php:427
-#: includes/Admin/GraphinaAdmin.php:433
+#: includes/Admin/GraphinaAdmin.php:465
+#: includes/Admin/GraphinaAdmin.php:471
 msgid "Connection details saved!"
 msgstr ""
 
-#: includes/Admin/GraphinaAdmin.php:459
+#: includes/Admin/GraphinaAdmin.php:497
 msgid "Connection details not found"
 msgstr ""
 
-#: includes/Admin/GraphinaAdmin.php:475
+#: includes/Admin/GraphinaAdmin.php:523
 msgid "Connected"
 msgstr ""
 
-#: includes/Admin/GraphinaAdmin.php:476
+#: includes/Admin/GraphinaAdmin.php:524
 msgid "Database successfully Connected!"
 msgstr ""
 
-#: includes/Admin/GraphinaAdmin.php:523
+#: includes/Admin/GraphinaAdmin.php:571
 msgid "Setting saved"
 msgstr ""
 
-#: includes/Admin/GraphinaAdmin.php:524
+#: includes/Admin/GraphinaAdmin.php:572
 msgid "Your setting has been saved!"
 msgstr ""
 
-#: includes/Admin/GraphinaAdmin.php:526
+#: includes/Admin/GraphinaAdmin.php:574
 msgid "Setting not saved"
 msgstr ""
 
-#: includes/Admin/GraphinaAdmin.php:553
+#: includes/Admin/GraphinaAdmin.php:601
 msgid "Graphina Charts"
 msgstr ""
 
-#: includes/Admin/GraphinaAdmin.php:554
+#: includes/Admin/GraphinaAdmin.php:602
 msgid "Graphina"
 msgstr ""
 
-#: includes/Admin/GraphinaAdmin.php:571
+#: includes/Admin/GraphinaAdmin.php:619
 msgid "Graphina Charts Setting"
 msgstr ""
 
-#: includes/Admin/GraphinaAdmin.php:572
+#: includes/Admin/GraphinaAdmin.php:620
 msgid "Settings"
 msgstr ""
 
-#: includes/Admin/GraphinaAdmin.php:577
+#: includes/Admin/GraphinaAdmin.php:625
 msgid "Graphina Charts Documentation"
 msgstr ""
 
-#: includes/Admin/GraphinaAdmin.php:578
+#: includes/Admin/GraphinaAdmin.php:626
 #: includes/Admin/Menu/views/html-general.php:20
 #: includes/Admin/Menu/views/html-general.php:22
 msgid "Documentation"
 msgstr ""
 
-#: includes/Admin/GraphinaAdmin.php:582
+#: includes/Admin/GraphinaAdmin.php:630
 msgid "Graphina Charts Request Feature"
 msgstr ""
 
-#: includes/Admin/GraphinaAdmin.php:583
+#: includes/Admin/GraphinaAdmin.php:631
 msgid "Request Feature"
 msgstr ""
 
-#: includes/Admin/GraphinaAdmin.php:592
-#: includes/Admin/GraphinaAdmin.php:593
+#: includes/Admin/GraphinaAdmin.php:640
+#: includes/Admin/GraphinaAdmin.php:641
 msgid "Upgrade To Pro"
 msgstr ""
 
@@ -251,10 +265,10 @@ msgid "Elements"
 msgstr ""
 
 #: includes/Admin/Menu/views/html-admin-menu.php:64
-#: includes/Admin/Menu/views/html-elements.php:300
-#: includes/Admin/Menu/views/html-elements.php:332
-#: includes/Admin/Menu/views/html-elements.php:366
-#: includes/Admin/Menu/views/html-elements.php:397
+#: includes/Admin/Menu/views/html-elements.php:301
+#: includes/Admin/Menu/views/html-elements.php:333
+#: includes/Admin/Menu/views/html-elements.php:367
+#: includes/Admin/Menu/views/html-elements.php:398
 #: includes/Admin/Menu/views/html-free-vs-pro.php:25
 #: includes/Admin/Menu/views/html-free-vs-pro.php:103
 #: includes/Admin/Menu/views/html-setting.php:44
@@ -304,10 +318,12 @@ msgstr ""
 
 #: includes/Admin/Menu/views/html-database.php:82
 #: includes/Admin/Menu/views/html-setting.php:77
+#: static/gcfe-i18n.php:25
 msgid "Save Setting"
 msgstr ""
 
 #: includes/Admin/Menu/views/html-database.php:83
+#: static/gcfe-i18n.php:28
 msgid "Test DB Setting"
 msgstr ""
 
@@ -448,33 +464,35 @@ msgstr ""
 msgid "Jquery Data Table Chart"
 msgstr ""
 
-#: includes/Admin/Menu/views/html-elements.php:269
+#: includes/Admin/Menu/views/html-elements.php:270
 msgid "Graphina Chart Blocks"
 msgstr ""
 
-#: includes/Admin/Menu/views/html-elements.php:272
+#: includes/Admin/Menu/views/html-elements.php:273
+#: static/gcfe-i18n.php:26
 msgid "Enable All"
 msgstr ""
 
-#: includes/Admin/Menu/views/html-elements.php:273
+#: includes/Admin/Menu/views/html-elements.php:274
+#: static/gcfe-i18n.php:27
 msgid "Disable All"
 msgstr ""
 
-#: includes/Admin/Menu/views/html-elements.php:283
+#: includes/Admin/Menu/views/html-elements.php:284
 #: includes/Charts/Elementor/GraphinaApexChartBase.php:22
 msgid "Apex Charts"
 msgstr ""
 
-#: includes/Admin/Menu/views/html-elements.php:315
+#: includes/Admin/Menu/views/html-elements.php:316
 #: includes/Charts/Elementor/GraphinaGoogleChartBase.php:22
 msgid "Google Charts"
 msgstr ""
 
-#: includes/Admin/Menu/views/html-elements.php:348
+#: includes/Admin/Menu/views/html-elements.php:349
 msgid "Data table"
 msgstr ""
 
-#: includes/Admin/Menu/views/html-elements.php:381
+#: includes/Admin/Menu/views/html-elements.php:382
 msgid "Graphina Pro Elements"
 msgstr ""
 
@@ -734,7 +752,7 @@ msgid "View Port : "
 msgstr ""
 
 #: includes/Admin/Menu/views/html-setting.php:52
-#: includes/Charts/Elementor/GraphinaElementorControls.php:8226
+#: includes/Charts/Elementor/GraphinaElementorControls.php:8214
 #: includes/Charts/Elementor/GraphinaElementorControls.php:8672
 msgid "Disable"
 msgstr ""
@@ -764,11 +782,11 @@ msgstr ""
 #: includes/Charts/Elementor/Elements/ApexCharts/CandleChart.php:297
 #: includes/Charts/Elementor/Elements/ApexCharts/ColumnChart.php:328
 #: includes/Charts/Elementor/Elements/ApexCharts/DistributeColumnChart.php:324
-#: includes/Charts/Elementor/Elements/ApexCharts/DonutChart.php:279
+#: includes/Charts/Elementor/Elements/ApexCharts/DonutChart.php:282
 #: includes/Charts/Elementor/Elements/ApexCharts/HeatmapChart.php:245
-#: includes/Charts/Elementor/Elements/ApexCharts/LineChart.php:324
-#: includes/Charts/Elementor/Elements/ApexCharts/PieChart.php:277
-#: includes/Charts/Elementor/Elements/ApexCharts/PolarChart.php:289
+#: includes/Charts/Elementor/Elements/ApexCharts/LineChart.php:312
+#: includes/Charts/Elementor/Elements/ApexCharts/PieChart.php:280
+#: includes/Charts/Elementor/Elements/ApexCharts/PolarChart.php:279
 #: includes/Charts/Elementor/Elements/ApexCharts/RadarChart.php:311
 #: includes/Charts/Elementor/Elements/ApexCharts/RadialChart.php:289
 #: includes/Charts/Elementor/Elements/ApexCharts/ScatterChart.php:320
@@ -785,9 +803,9 @@ msgstr ""
 msgid "DistributeColumn Chart"
 msgstr ""
 
-#: includes/Charts/Elementor/Elements/ApexCharts/DonutChart.php:313
-#: includes/Charts/Elementor/Elements/ApexCharts/PieChart.php:318
-#: includes/Charts/Elementor/GraphinaElementorControls.php:7147
+#: includes/Charts/Elementor/Elements/ApexCharts/DonutChart.php:316
+#: includes/Charts/Elementor/Elements/ApexCharts/PieChart.php:321
+#: includes/Charts/Elementor/GraphinaElementorControls.php:7135
 msgid "Total"
 msgstr ""
 
@@ -862,37 +880,37 @@ msgstr ""
 #: includes/Charts/Elementor/GraphinaElementorControls.php:70
 #: includes/Charts/Elementor/GraphinaElementorControls.php:1079
 #: includes/Charts/Elementor/GraphinaElementorControls.php:1090
-#: includes/Charts/Elementor/GraphinaElementorControls.php:1777
-#: includes/Charts/Elementor/GraphinaElementorControls.php:2043
-#: includes/Charts/Elementor/GraphinaElementorControls.php:4516
-#: includes/Charts/Elementor/GraphinaElementorControls.php:4545
-#: includes/Charts/Elementor/GraphinaElementorControls.php:5566
-#: includes/Charts/Elementor/GraphinaElementorControls.php:6085
-#: includes/Charts/Elementor/GraphinaElementorControls.php:6499
-#: includes/Charts/Elementor/GraphinaElementorControls.php:6761
-#: includes/Charts/Elementor/GraphinaElementorControls.php:6804
-#: includes/Charts/Elementor/GraphinaElementorControls.php:6919
+#: includes/Charts/Elementor/GraphinaElementorControls.php:1800
+#: includes/Charts/Elementor/GraphinaElementorControls.php:4504
+#: includes/Charts/Elementor/GraphinaElementorControls.php:4533
+#: includes/Charts/Elementor/GraphinaElementorControls.php:5554
+#: includes/Charts/Elementor/GraphinaElementorControls.php:6073
+#: includes/Charts/Elementor/GraphinaElementorControls.php:6487
+#: includes/Charts/Elementor/GraphinaElementorControls.php:6749
+#: includes/Charts/Elementor/GraphinaElementorControls.php:6792
+#: includes/Charts/Elementor/GraphinaElementorControls.php:6907
+#: includes/Charts/Elementor/GraphinaElementorControls.php:6922
 #: includes/Charts/Elementor/GraphinaElementorControls.php:6934
-#: includes/Charts/Elementor/GraphinaElementorControls.php:6946
-#: includes/Charts/Elementor/GraphinaElementorControls.php:7057
-#: includes/Charts/Elementor/GraphinaElementorControls.php:7070
-#: includes/Charts/Elementor/GraphinaElementorControls.php:7085
-#: includes/Charts/Elementor/GraphinaElementorControls.php:7100
-#: includes/Charts/Elementor/GraphinaElementorControls.php:7113
-#: includes/Charts/Elementor/GraphinaElementorControls.php:7135
-#: includes/Charts/Elementor/GraphinaElementorControls.php:7160
-#: includes/Charts/Elementor/GraphinaElementorControls.php:7220
-#: includes/Charts/Elementor/GraphinaElementorControls.php:7231
-#: includes/Charts/Elementor/GraphinaElementorControls.php:7245
-#: includes/Charts/Elementor/GraphinaElementorControls.php:7263
-#: includes/Charts/Elementor/GraphinaElementorControls.php:7387
-#: includes/Charts/Elementor/GraphinaElementorControls.php:7464
-#: includes/Charts/Elementor/GraphinaElementorControls.php:7898
-#: includes/Charts/Elementor/GraphinaElementorControls.php:8534
-#: includes/Charts/Elementor/GraphinaElementorControls.php:8556
-#: includes/Charts/Elementor/GraphinaElementorControls.php:8567
-#: includes/Charts/Elementor/GraphinaElementorControls.php:8623
-#: includes/Charts/Elementor/GraphinaElementorControls.php:8661
+#: includes/Charts/Elementor/GraphinaElementorControls.php:7045
+#: includes/Charts/Elementor/GraphinaElementorControls.php:7058
+#: includes/Charts/Elementor/GraphinaElementorControls.php:7073
+#: includes/Charts/Elementor/GraphinaElementorControls.php:7088
+#: includes/Charts/Elementor/GraphinaElementorControls.php:7101
+#: includes/Charts/Elementor/GraphinaElementorControls.php:7123
+#: includes/Charts/Elementor/GraphinaElementorControls.php:7148
+#: includes/Charts/Elementor/GraphinaElementorControls.php:7208
+#: includes/Charts/Elementor/GraphinaElementorControls.php:7219
+#: includes/Charts/Elementor/GraphinaElementorControls.php:7233
+#: includes/Charts/Elementor/GraphinaElementorControls.php:7251
+#: includes/Charts/Elementor/GraphinaElementorControls.php:7375
+#: includes/Charts/Elementor/GraphinaElementorControls.php:7452
+#: includes/Charts/Elementor/GraphinaElementorControls.php:7886
+#: includes/Charts/Elementor/GraphinaElementorControls.php:8522
+#: includes/Charts/Elementor/GraphinaElementorControls.php:8544
+#: includes/Charts/Elementor/GraphinaElementorControls.php:8555
+#: includes/Charts/Elementor/GraphinaElementorControls.php:8611
+#: includes/Charts/Elementor/GraphinaElementorControls.php:8649
+#: includes/Charts/Elementor/GraphinaElementorControls.php:8660
 #: includes/Charts/Elementor/GraphinaElementorControls.php:8682
 #: includes/Charts/Elementor/GraphinaElementorControls.php:8693
 #: includes/Charts/Elementor/GraphinaElementorControls.php:8704
@@ -929,53 +947,53 @@ msgstr ""
 #: includes/Charts/Elementor/GraphinaElementorControls.php:12123
 #: includes/Charts/Elementor/GraphinaElementorControls.php:12139
 #: includes/Charts/Elementor/GraphinaElementorControls.php:12241
-#: includes/Charts/Elementor/GraphinaElementorControls.php:12292
-#: includes/Charts/Elementor/GraphinaElementorControls.php:12352
-#: includes/Charts/Elementor/GraphinaElementorControls.php:12401
-#: includes/Charts/Elementor/GraphinaElementorControls.php:12416
-#: includes/Charts/Elementor/GraphinaElementorControls.php:12446
-#: includes/Charts/Elementor/GraphinaElementorControls.php:12492
-#: includes/Charts/Elementor/GraphinaElementorControls.php:12549
+#: includes/Charts/Elementor/GraphinaElementorControls.php:12320
+#: includes/Charts/Elementor/GraphinaElementorControls.php:12347
+#: includes/Charts/Elementor/GraphinaElementorControls.php:12396
+#: includes/Charts/Elementor/GraphinaElementorControls.php:12411
+#: includes/Charts/Elementor/GraphinaElementorControls.php:12441
+#: includes/Charts/Elementor/GraphinaElementorControls.php:12487
+#: includes/Charts/Elementor/GraphinaElementorControls.php:12544
 msgid "Hide"
 msgstr ""
 
 #: includes/Charts/Elementor/GraphinaElementorControls.php:71
 #: includes/Charts/Elementor/GraphinaElementorControls.php:1080
 #: includes/Charts/Elementor/GraphinaElementorControls.php:1091
-#: includes/Charts/Elementor/GraphinaElementorControls.php:1503
-#: includes/Charts/Elementor/GraphinaElementorControls.php:1775
-#: includes/Charts/Elementor/GraphinaElementorControls.php:1778
-#: includes/Charts/Elementor/GraphinaElementorControls.php:2044
-#: includes/Charts/Elementor/GraphinaElementorControls.php:4517
-#: includes/Charts/Elementor/GraphinaElementorControls.php:4546
-#: includes/Charts/Elementor/GraphinaElementorControls.php:5567
-#: includes/Charts/Elementor/GraphinaElementorControls.php:6086
-#: includes/Charts/Elementor/GraphinaElementorControls.php:6500
-#: includes/Charts/Elementor/GraphinaElementorControls.php:6762
-#: includes/Charts/Elementor/GraphinaElementorControls.php:6805
-#: includes/Charts/Elementor/GraphinaElementorControls.php:6920
+#: includes/Charts/Elementor/GraphinaElementorControls.php:1526
+#: includes/Charts/Elementor/GraphinaElementorControls.php:1798
+#: includes/Charts/Elementor/GraphinaElementorControls.php:1801
+#: includes/Charts/Elementor/GraphinaElementorControls.php:4505
+#: includes/Charts/Elementor/GraphinaElementorControls.php:4534
+#: includes/Charts/Elementor/GraphinaElementorControls.php:5555
+#: includes/Charts/Elementor/GraphinaElementorControls.php:6074
+#: includes/Charts/Elementor/GraphinaElementorControls.php:6488
+#: includes/Charts/Elementor/GraphinaElementorControls.php:6750
+#: includes/Charts/Elementor/GraphinaElementorControls.php:6793
+#: includes/Charts/Elementor/GraphinaElementorControls.php:6908
+#: includes/Charts/Elementor/GraphinaElementorControls.php:6923
 #: includes/Charts/Elementor/GraphinaElementorControls.php:6935
-#: includes/Charts/Elementor/GraphinaElementorControls.php:6947
-#: includes/Charts/Elementor/GraphinaElementorControls.php:7055
-#: includes/Charts/Elementor/GraphinaElementorControls.php:7058
-#: includes/Charts/Elementor/GraphinaElementorControls.php:7071
-#: includes/Charts/Elementor/GraphinaElementorControls.php:7086
-#: includes/Charts/Elementor/GraphinaElementorControls.php:7101
-#: includes/Charts/Elementor/GraphinaElementorControls.php:7114
-#: includes/Charts/Elementor/GraphinaElementorControls.php:7136
-#: includes/Charts/Elementor/GraphinaElementorControls.php:7161
-#: includes/Charts/Elementor/GraphinaElementorControls.php:7221
-#: includes/Charts/Elementor/GraphinaElementorControls.php:7232
-#: includes/Charts/Elementor/GraphinaElementorControls.php:7246
-#: includes/Charts/Elementor/GraphinaElementorControls.php:7264
-#: includes/Charts/Elementor/GraphinaElementorControls.php:7388
-#: includes/Charts/Elementor/GraphinaElementorControls.php:7465
-#: includes/Charts/Elementor/GraphinaElementorControls.php:7899
-#: includes/Charts/Elementor/GraphinaElementorControls.php:8535
-#: includes/Charts/Elementor/GraphinaElementorControls.php:8557
-#: includes/Charts/Elementor/GraphinaElementorControls.php:8568
-#: includes/Charts/Elementor/GraphinaElementorControls.php:8624
-#: includes/Charts/Elementor/GraphinaElementorControls.php:8662
+#: includes/Charts/Elementor/GraphinaElementorControls.php:7043
+#: includes/Charts/Elementor/GraphinaElementorControls.php:7046
+#: includes/Charts/Elementor/GraphinaElementorControls.php:7059
+#: includes/Charts/Elementor/GraphinaElementorControls.php:7074
+#: includes/Charts/Elementor/GraphinaElementorControls.php:7089
+#: includes/Charts/Elementor/GraphinaElementorControls.php:7102
+#: includes/Charts/Elementor/GraphinaElementorControls.php:7124
+#: includes/Charts/Elementor/GraphinaElementorControls.php:7149
+#: includes/Charts/Elementor/GraphinaElementorControls.php:7209
+#: includes/Charts/Elementor/GraphinaElementorControls.php:7220
+#: includes/Charts/Elementor/GraphinaElementorControls.php:7234
+#: includes/Charts/Elementor/GraphinaElementorControls.php:7252
+#: includes/Charts/Elementor/GraphinaElementorControls.php:7376
+#: includes/Charts/Elementor/GraphinaElementorControls.php:7453
+#: includes/Charts/Elementor/GraphinaElementorControls.php:7887
+#: includes/Charts/Elementor/GraphinaElementorControls.php:8523
+#: includes/Charts/Elementor/GraphinaElementorControls.php:8545
+#: includes/Charts/Elementor/GraphinaElementorControls.php:8556
+#: includes/Charts/Elementor/GraphinaElementorControls.php:8612
+#: includes/Charts/Elementor/GraphinaElementorControls.php:8650
+#: includes/Charts/Elementor/GraphinaElementorControls.php:8661
 #: includes/Charts/Elementor/GraphinaElementorControls.php:8683
 #: includes/Charts/Elementor/GraphinaElementorControls.php:8694
 #: includes/Charts/Elementor/GraphinaElementorControls.php:8705
@@ -1016,13 +1034,13 @@ msgstr ""
 #: includes/Charts/Elementor/GraphinaElementorControls.php:12124
 #: includes/Charts/Elementor/GraphinaElementorControls.php:12140
 #: includes/Charts/Elementor/GraphinaElementorControls.php:12242
-#: includes/Charts/Elementor/GraphinaElementorControls.php:12293
-#: includes/Charts/Elementor/GraphinaElementorControls.php:12353
-#: includes/Charts/Elementor/GraphinaElementorControls.php:12402
-#: includes/Charts/Elementor/GraphinaElementorControls.php:12417
-#: includes/Charts/Elementor/GraphinaElementorControls.php:12447
-#: includes/Charts/Elementor/GraphinaElementorControls.php:12493
-#: includes/Charts/Elementor/GraphinaElementorControls.php:12550
+#: includes/Charts/Elementor/GraphinaElementorControls.php:12321
+#: includes/Charts/Elementor/GraphinaElementorControls.php:12348
+#: includes/Charts/Elementor/GraphinaElementorControls.php:12397
+#: includes/Charts/Elementor/GraphinaElementorControls.php:12412
+#: includes/Charts/Elementor/GraphinaElementorControls.php:12442
+#: includes/Charts/Elementor/GraphinaElementorControls.php:12488
+#: includes/Charts/Elementor/GraphinaElementorControls.php:12545
 msgid "Show"
 msgstr ""
 
@@ -1033,32 +1051,35 @@ msgstr ""
 
 #: includes/Charts/Elementor/GraphinaElementorControls.php:81
 #: includes/Charts/Elementor/GraphinaElementorControls.php:111
-#: includes/Charts/Elementor/GraphinaElementorControls.php:1506
-#: includes/Charts/Elementor/GraphinaElementorControls.php:1517
-#: includes/Charts/Elementor/GraphinaElementorControls.php:1541
-#: includes/Charts/Elementor/GraphinaElementorControls.php:3509
-#: includes/Charts/Elementor/GraphinaElementorControls.php:3567
-#: includes/Charts/Elementor/GraphinaElementorControls.php:3685
-#: includes/Charts/Elementor/GraphinaElementorControls.php:3779
-#: includes/Charts/Elementor/GraphinaElementorControls.php:3971
-#: includes/Charts/Elementor/GraphinaElementorControls.php:4761
-#: includes/Charts/Elementor/GraphinaElementorControls.php:4850
-#: includes/Charts/Elementor/GraphinaElementorControls.php:5034
-#: includes/Charts/Elementor/GraphinaElementorControls.php:5615
-#: includes/Charts/Elementor/GraphinaElementorControls.php:5906
-#: includes/Charts/Elementor/GraphinaElementorControls.php:5936
-#: includes/Charts/Elementor/GraphinaElementorControls.php:6001
-#: includes/Charts/Elementor/GraphinaElementorControls.php:6018
-#: includes/Charts/Elementor/GraphinaElementorControls.php:6510
-#: includes/Charts/Elementor/GraphinaElementorControls.php:6904
+#: includes/Charts/Elementor/GraphinaElementorControls.php:1529
+#: includes/Charts/Elementor/GraphinaElementorControls.php:1540
+#: includes/Charts/Elementor/GraphinaElementorControls.php:1564
+#: includes/Charts/Elementor/GraphinaElementorControls.php:2978
+#: includes/Charts/Elementor/GraphinaElementorControls.php:3391
+#: includes/Charts/Elementor/GraphinaElementorControls.php:3419
+#: includes/Charts/Elementor/GraphinaElementorControls.php:3497
+#: includes/Charts/Elementor/GraphinaElementorControls.php:3555
+#: includes/Charts/Elementor/GraphinaElementorControls.php:3673
+#: includes/Charts/Elementor/GraphinaElementorControls.php:3767
+#: includes/Charts/Elementor/GraphinaElementorControls.php:3959
+#: includes/Charts/Elementor/GraphinaElementorControls.php:4749
+#: includes/Charts/Elementor/GraphinaElementorControls.php:4838
+#: includes/Charts/Elementor/GraphinaElementorControls.php:5022
+#: includes/Charts/Elementor/GraphinaElementorControls.php:5603
+#: includes/Charts/Elementor/GraphinaElementorControls.php:5894
+#: includes/Charts/Elementor/GraphinaElementorControls.php:5924
+#: includes/Charts/Elementor/GraphinaElementorControls.php:5989
+#: includes/Charts/Elementor/GraphinaElementorControls.php:6006
+#: includes/Charts/Elementor/GraphinaElementorControls.php:6498
+#: includes/Charts/Elementor/GraphinaElementorControls.php:6892
+#: includes/Charts/Elementor/GraphinaElementorControls.php:7004
 #: includes/Charts/Elementor/GraphinaElementorControls.php:7016
-#: includes/Charts/Elementor/GraphinaElementorControls.php:7028
-#: includes/Charts/Elementor/GraphinaElementorControls.php:7558
-#: includes/Charts/Elementor/GraphinaElementorControls.php:7592
-#: includes/Charts/Elementor/GraphinaElementorControls.php:8079
-#: includes/Charts/Elementor/GraphinaElementorControls.php:8158
-#: includes/Charts/Elementor/GraphinaElementorControls.php:8546
-#: includes/Charts/Elementor/GraphinaElementorControls.php:8638
+#: includes/Charts/Elementor/GraphinaElementorControls.php:7546
+#: includes/Charts/Elementor/GraphinaElementorControls.php:7580
+#: includes/Charts/Elementor/GraphinaElementorControls.php:8067
+#: includes/Charts/Elementor/GraphinaElementorControls.php:8146
+#: includes/Charts/Elementor/GraphinaElementorControls.php:8534
+#: includes/Charts/Elementor/GraphinaElementorControls.php:8626
 #: includes/Charts/Elementor/GraphinaElementorControls.php:8949
 #: includes/Charts/Elementor/GraphinaElementorControls.php:8960
 #: includes/Charts/Elementor/GraphinaElementorControls.php:9150
@@ -1084,35 +1105,38 @@ msgstr ""
 #: includes/Charts/Elementor/GraphinaElementorControls.php:11622
 #: includes/Charts/Elementor/GraphinaElementorControls.php:11680
 #: includes/Charts/Elementor/GraphinaElementorControls.php:11733
-#: includes/Charts/Elementor/GraphinaElementorControls.php:12324
+#: includes/Charts/Elementor/GraphinaElementorControls.php:12306
 msgid "Yes"
 msgstr ""
 
 #: includes/Charts/Elementor/GraphinaElementorControls.php:82
 #: includes/Charts/Elementor/GraphinaElementorControls.php:112
-#: includes/Charts/Elementor/GraphinaElementorControls.php:1505
-#: includes/Charts/Elementor/GraphinaElementorControls.php:1516
-#: includes/Charts/Elementor/GraphinaElementorControls.php:1540
-#: includes/Charts/Elementor/GraphinaElementorControls.php:3510
-#: includes/Charts/Elementor/GraphinaElementorControls.php:3568
-#: includes/Charts/Elementor/GraphinaElementorControls.php:3686
-#: includes/Charts/Elementor/GraphinaElementorControls.php:3780
-#: includes/Charts/Elementor/GraphinaElementorControls.php:3972
-#: includes/Charts/Elementor/GraphinaElementorControls.php:4762
-#: includes/Charts/Elementor/GraphinaElementorControls.php:4851
-#: includes/Charts/Elementor/GraphinaElementorControls.php:5035
-#: includes/Charts/Elementor/GraphinaElementorControls.php:5616
-#: includes/Charts/Elementor/GraphinaElementorControls.php:5937
-#: includes/Charts/Elementor/GraphinaElementorControls.php:6511
-#: includes/Charts/Elementor/GraphinaElementorControls.php:6905
+#: includes/Charts/Elementor/GraphinaElementorControls.php:1528
+#: includes/Charts/Elementor/GraphinaElementorControls.php:1539
+#: includes/Charts/Elementor/GraphinaElementorControls.php:1563
+#: includes/Charts/Elementor/GraphinaElementorControls.php:2979
+#: includes/Charts/Elementor/GraphinaElementorControls.php:3392
+#: includes/Charts/Elementor/GraphinaElementorControls.php:3420
+#: includes/Charts/Elementor/GraphinaElementorControls.php:3498
+#: includes/Charts/Elementor/GraphinaElementorControls.php:3556
+#: includes/Charts/Elementor/GraphinaElementorControls.php:3674
+#: includes/Charts/Elementor/GraphinaElementorControls.php:3768
+#: includes/Charts/Elementor/GraphinaElementorControls.php:3960
+#: includes/Charts/Elementor/GraphinaElementorControls.php:4750
+#: includes/Charts/Elementor/GraphinaElementorControls.php:4839
+#: includes/Charts/Elementor/GraphinaElementorControls.php:5023
+#: includes/Charts/Elementor/GraphinaElementorControls.php:5604
+#: includes/Charts/Elementor/GraphinaElementorControls.php:5925
+#: includes/Charts/Elementor/GraphinaElementorControls.php:6499
+#: includes/Charts/Elementor/GraphinaElementorControls.php:6893
+#: includes/Charts/Elementor/GraphinaElementorControls.php:7005
 #: includes/Charts/Elementor/GraphinaElementorControls.php:7017
-#: includes/Charts/Elementor/GraphinaElementorControls.php:7029
-#: includes/Charts/Elementor/GraphinaElementorControls.php:7559
-#: includes/Charts/Elementor/GraphinaElementorControls.php:7593
-#: includes/Charts/Elementor/GraphinaElementorControls.php:8080
-#: includes/Charts/Elementor/GraphinaElementorControls.php:8159
-#: includes/Charts/Elementor/GraphinaElementorControls.php:8545
-#: includes/Charts/Elementor/GraphinaElementorControls.php:8637
+#: includes/Charts/Elementor/GraphinaElementorControls.php:7547
+#: includes/Charts/Elementor/GraphinaElementorControls.php:7581
+#: includes/Charts/Elementor/GraphinaElementorControls.php:8068
+#: includes/Charts/Elementor/GraphinaElementorControls.php:8147
+#: includes/Charts/Elementor/GraphinaElementorControls.php:8533
+#: includes/Charts/Elementor/GraphinaElementorControls.php:8625
 #: includes/Charts/Elementor/GraphinaElementorControls.php:8950
 #: includes/Charts/Elementor/GraphinaElementorControls.php:8961
 #: includes/Charts/Elementor/GraphinaElementorControls.php:9151
@@ -1138,7 +1162,7 @@ msgstr ""
 #: includes/Charts/Elementor/GraphinaElementorControls.php:11623
 #: includes/Charts/Elementor/GraphinaElementorControls.php:11681
 #: includes/Charts/Elementor/GraphinaElementorControls.php:11734
-#: includes/Charts/Elementor/GraphinaElementorControls.php:12325
+#: includes/Charts/Elementor/GraphinaElementorControls.php:12307
 msgid "No"
 msgstr ""
 
@@ -1148,8 +1172,8 @@ msgstr ""
 
 #: includes/Charts/Elementor/GraphinaElementorControls.php:109
 #: includes/Charts/Elementor/GraphinaElementorControls.php:323
-#: includes/Charts/Elementor/GraphinaElementorControls.php:1117
-#: includes/Charts/Elementor/GraphinaElementorControls.php:1119
+#: includes/Charts/Elementor/GraphinaElementorControls.php:1120
+#: includes/Charts/Elementor/GraphinaElementorControls.php:1122
 msgid "Description"
 msgstr ""
 
@@ -1158,9 +1182,9 @@ msgid "Card Style"
 msgstr ""
 
 #: includes/Charts/Elementor/GraphinaElementorControls.php:165
-#: includes/Charts/Elementor/GraphinaElementorControls.php:5709
-#: includes/Charts/Elementor/GraphinaElementorControls.php:5782
-#: includes/Charts/Elementor/GraphinaElementorControls.php:6114
+#: includes/Charts/Elementor/GraphinaElementorControls.php:5697
+#: includes/Charts/Elementor/GraphinaElementorControls.php:5770
+#: includes/Charts/Elementor/GraphinaElementorControls.php:6102
 #: includes/Charts/Elementor/GraphinaElementorControls.php:9674
 msgid "Background"
 msgstr ""
@@ -1174,11 +1198,11 @@ msgstr ""
 #: includes/Charts/Elementor/GraphinaElementorControls.php:602
 #: includes/Charts/Elementor/GraphinaElementorControls.php:657
 #: includes/Charts/Elementor/GraphinaElementorControls.php:799
-#: includes/Charts/Elementor/GraphinaElementorControls.php:2457
-#: includes/Charts/Elementor/GraphinaElementorControls.php:2567
-#: includes/Charts/Elementor/GraphinaElementorControls.php:2677
-#: includes/Charts/Elementor/GraphinaElementorControls.php:5719
-#: includes/Charts/Elementor/GraphinaElementorControls.php:5791
+#: includes/Charts/Elementor/GraphinaElementorControls.php:2311
+#: includes/Charts/Elementor/GraphinaElementorControls.php:2421
+#: includes/Charts/Elementor/GraphinaElementorControls.php:2531
+#: includes/Charts/Elementor/GraphinaElementorControls.php:5707
+#: includes/Charts/Elementor/GraphinaElementorControls.php:5779
 #: includes/Charts/Elementor/GraphinaElementorControls.php:9697
 #: includes/Charts/Elementor/GraphinaElementorControls.php:9856
 msgid "Border"
@@ -1188,10 +1212,10 @@ msgstr ""
 #: includes/Charts/Elementor/GraphinaElementorControls.php:610
 #: includes/Charts/Elementor/GraphinaElementorControls.php:728
 #: includes/Charts/Elementor/GraphinaElementorControls.php:868
-#: includes/Charts/Elementor/GraphinaElementorControls.php:2465
-#: includes/Charts/Elementor/GraphinaElementorControls.php:2575
-#: includes/Charts/Elementor/GraphinaElementorControls.php:2685
-#: includes/Charts/Elementor/GraphinaElementorControls.php:8021
+#: includes/Charts/Elementor/GraphinaElementorControls.php:2319
+#: includes/Charts/Elementor/GraphinaElementorControls.php:2429
+#: includes/Charts/Elementor/GraphinaElementorControls.php:2539
+#: includes/Charts/Elementor/GraphinaElementorControls.php:8009
 #: includes/Charts/Elementor/GraphinaElementorControls.php:8878
 #: includes/Charts/Elementor/GraphinaElementorControls.php:9706
 #: includes/Charts/Elementor/GraphinaElementorControls.php:9864
@@ -1213,9 +1237,10 @@ msgstr ""
 #: includes/Charts/Elementor/GraphinaElementorControls.php:350
 #: includes/Charts/Elementor/GraphinaElementorControls.php:440
 #: includes/Charts/Elementor/GraphinaElementorControls.php:463
-#: includes/Charts/Elementor/GraphinaElementorControls.php:1861
-#: includes/Charts/Elementor/GraphinaElementorControls.php:2267
-#: includes/Charts/Elementor/GraphinaElementorControls.php:5678
+#: includes/Charts/Elementor/GraphinaElementorControls.php:1884
+#: includes/Charts/Elementor/GraphinaElementorControls.php:2121
+#: includes/Charts/Elementor/GraphinaElementorControls.php:3436
+#: includes/Charts/Elementor/GraphinaElementorControls.php:5666
 #: includes/Charts/Elementor/GraphinaElementorControls.php:9781
 #: includes/Charts/Elementor/GraphinaElementorControls.php:9810
 #: includes/Charts/Elementor/GraphinaElementorControls.php:9951
@@ -1231,9 +1256,10 @@ msgstr ""
 #: includes/Charts/Elementor/GraphinaElementorControls.php:354
 #: includes/Charts/Elementor/GraphinaElementorControls.php:444
 #: includes/Charts/Elementor/GraphinaElementorControls.php:467
-#: includes/Charts/Elementor/GraphinaElementorControls.php:1865
-#: includes/Charts/Elementor/GraphinaElementorControls.php:2271
-#: includes/Charts/Elementor/GraphinaElementorControls.php:5682
+#: includes/Charts/Elementor/GraphinaElementorControls.php:1888
+#: includes/Charts/Elementor/GraphinaElementorControls.php:2125
+#: includes/Charts/Elementor/GraphinaElementorControls.php:3440
+#: includes/Charts/Elementor/GraphinaElementorControls.php:5670
 #: includes/Charts/Elementor/GraphinaElementorControls.php:9785
 #: includes/Charts/Elementor/GraphinaElementorControls.php:9955
 #: includes/Charts/Elementor/GraphinaElementorControls.php:10182
@@ -1248,9 +1274,10 @@ msgstr ""
 #: includes/Charts/Elementor/GraphinaElementorControls.php:358
 #: includes/Charts/Elementor/GraphinaElementorControls.php:448
 #: includes/Charts/Elementor/GraphinaElementorControls.php:471
-#: includes/Charts/Elementor/GraphinaElementorControls.php:1869
-#: includes/Charts/Elementor/GraphinaElementorControls.php:2275
-#: includes/Charts/Elementor/GraphinaElementorControls.php:5686
+#: includes/Charts/Elementor/GraphinaElementorControls.php:1892
+#: includes/Charts/Elementor/GraphinaElementorControls.php:2129
+#: includes/Charts/Elementor/GraphinaElementorControls.php:3444
+#: includes/Charts/Elementor/GraphinaElementorControls.php:5674
 #: includes/Charts/Elementor/GraphinaElementorControls.php:9789
 #: includes/Charts/Elementor/GraphinaElementorControls.php:9814
 #: includes/Charts/Elementor/GraphinaElementorControls.php:9959
@@ -1266,20 +1293,20 @@ msgstr ""
 #: includes/Charts/Elementor/GraphinaElementorControls.php:374
 #: includes/Charts/Elementor/GraphinaElementorControls.php:710
 #: includes/Charts/Elementor/GraphinaElementorControls.php:857
-#: includes/Charts/Elementor/GraphinaElementorControls.php:1882
-#: includes/Charts/Elementor/GraphinaElementorControls.php:2303
-#: includes/Charts/Elementor/GraphinaElementorControls.php:2392
-#: includes/Charts/Elementor/GraphinaElementorControls.php:2502
-#: includes/Charts/Elementor/GraphinaElementorControls.php:2612
-#: includes/Charts/Elementor/GraphinaElementorControls.php:5662
-#: includes/Charts/Elementor/GraphinaElementorControls.php:5769
-#: includes/Charts/Elementor/GraphinaElementorControls.php:7373
-#: includes/Charts/Elementor/GraphinaElementorControls.php:7408
+#: includes/Charts/Elementor/GraphinaElementorControls.php:1905
+#: includes/Charts/Elementor/GraphinaElementorControls.php:2157
+#: includes/Charts/Elementor/GraphinaElementorControls.php:2246
+#: includes/Charts/Elementor/GraphinaElementorControls.php:2356
+#: includes/Charts/Elementor/GraphinaElementorControls.php:2466
+#: includes/Charts/Elementor/GraphinaElementorControls.php:5650
+#: includes/Charts/Elementor/GraphinaElementorControls.php:5757
+#: includes/Charts/Elementor/GraphinaElementorControls.php:7361
+#: includes/Charts/Elementor/GraphinaElementorControls.php:7396
 #: includes/Charts/Elementor/GraphinaElementorControls.php:9204
 #: includes/Charts/Elementor/GraphinaElementorControls.php:9541
 #: includes/Charts/Elementor/GraphinaElementorControls.php:9935
-#: includes/Charts/Elementor/GraphinaElementorControls.php:12375
-#: includes/Charts/Elementor/GraphinaElementorControls.php:12532
+#: includes/Charts/Elementor/GraphinaElementorControls.php:12370
+#: includes/Charts/Elementor/GraphinaElementorControls.php:12527
 msgid "Font Color"
 msgstr ""
 
@@ -1288,11 +1315,11 @@ msgstr ""
 #: includes/Charts/Elementor/GraphinaElementorControls.php:622
 #: includes/Charts/Elementor/GraphinaElementorControls.php:747
 #: includes/Charts/Elementor/GraphinaElementorControls.php:880
-#: includes/Charts/Elementor/GraphinaElementorControls.php:1983
-#: includes/Charts/Elementor/GraphinaElementorControls.php:2343
-#: includes/Charts/Elementor/GraphinaElementorControls.php:2432
-#: includes/Charts/Elementor/GraphinaElementorControls.php:2542
-#: includes/Charts/Elementor/GraphinaElementorControls.php:2652
+#: includes/Charts/Elementor/GraphinaElementorControls.php:2006
+#: includes/Charts/Elementor/GraphinaElementorControls.php:2197
+#: includes/Charts/Elementor/GraphinaElementorControls.php:2286
+#: includes/Charts/Elementor/GraphinaElementorControls.php:2396
+#: includes/Charts/Elementor/GraphinaElementorControls.php:2506
 #: includes/Charts/Elementor/GraphinaElementorControls.php:9831
 #: includes/Charts/Elementor/GraphinaElementorControls.php:9973
 msgid "Margin"
@@ -1303,20 +1330,20 @@ msgstr ""
 #: includes/Charts/Elementor/GraphinaElementorControls.php:634
 #: includes/Charts/Elementor/GraphinaElementorControls.php:766
 #: includes/Charts/Elementor/GraphinaElementorControls.php:892
-#: includes/Charts/Elementor/GraphinaElementorControls.php:1995
-#: includes/Charts/Elementor/GraphinaElementorControls.php:2355
-#: includes/Charts/Elementor/GraphinaElementorControls.php:2444
-#: includes/Charts/Elementor/GraphinaElementorControls.php:2554
-#: includes/Charts/Elementor/GraphinaElementorControls.php:2664
+#: includes/Charts/Elementor/GraphinaElementorControls.php:2018
+#: includes/Charts/Elementor/GraphinaElementorControls.php:2209
+#: includes/Charts/Elementor/GraphinaElementorControls.php:2298
+#: includes/Charts/Elementor/GraphinaElementorControls.php:2408
+#: includes/Charts/Elementor/GraphinaElementorControls.php:2518
 #: includes/Charts/Elementor/GraphinaElementorControls.php:9843
 #: includes/Charts/Elementor/GraphinaElementorControls.php:9985
 msgid "Padding"
 msgstr ""
 
 #: includes/Charts/Elementor/GraphinaElementorControls.php:345
-#: includes/Charts/Elementor/GraphinaElementorControls.php:1856
-#: includes/Charts/Elementor/GraphinaElementorControls.php:2263
-#: includes/Charts/Elementor/GraphinaElementorControls.php:5673
+#: includes/Charts/Elementor/GraphinaElementorControls.php:1879
+#: includes/Charts/Elementor/GraphinaElementorControls.php:2117
+#: includes/Charts/Elementor/GraphinaElementorControls.php:5661
 #: includes/Charts/Elementor/GraphinaElementorControls.php:9777
 #: includes/Charts/Elementor/GraphinaElementorControls.php:9806
 msgid "Alignment"
@@ -1379,19 +1406,19 @@ msgid "Button Style"
 msgstr ""
 
 #: includes/Charts/Elementor/GraphinaElementorControls.php:672
-#: includes/Charts/Elementor/GraphinaElementorControls.php:5474
-#: includes/Charts/Elementor/GraphinaElementorControls.php:7418
+#: includes/Charts/Elementor/GraphinaElementorControls.php:5462
+#: includes/Charts/Elementor/GraphinaElementorControls.php:7406
 msgid "Background Color"
 msgstr ""
 
 #: includes/Charts/Elementor/GraphinaElementorControls.php:690
 #: includes/Charts/Elementor/GraphinaElementorControls.php:844
-#: includes/Charts/Elementor/GraphinaElementorControls.php:2312
-#: includes/Charts/Elementor/GraphinaElementorControls.php:2401
-#: includes/Charts/Elementor/GraphinaElementorControls.php:2511
-#: includes/Charts/Elementor/GraphinaElementorControls.php:2621
-#: includes/Charts/Elementor/GraphinaElementorControls.php:5652
-#: includes/Charts/Elementor/GraphinaElementorControls.php:5759
+#: includes/Charts/Elementor/GraphinaElementorControls.php:2166
+#: includes/Charts/Elementor/GraphinaElementorControls.php:2255
+#: includes/Charts/Elementor/GraphinaElementorControls.php:2365
+#: includes/Charts/Elementor/GraphinaElementorControls.php:2475
+#: includes/Charts/Elementor/GraphinaElementorControls.php:5640
+#: includes/Charts/Elementor/GraphinaElementorControls.php:5747
 #: includes/Charts/Elementor/GraphinaElementorControls.php:9066
 #: includes/Charts/Elementor/GraphinaElementorControls.php:9483
 msgid "Font Size"
@@ -1402,13 +1429,13 @@ msgid "Search Style"
 msgstr ""
 
 #: includes/Charts/Elementor/GraphinaElementorControls.php:807
-#: includes/Charts/Elementor/GraphinaElementorControls.php:1190
-#: includes/Charts/Elementor/GraphinaElementorControls.php:1289
-#: includes/Charts/Elementor/GraphinaElementorControls.php:1936
-#: includes/Charts/Elementor/GraphinaElementorControls.php:4809
-#: includes/Charts/Elementor/GraphinaElementorControls.php:5825
-#: includes/Charts/Elementor/GraphinaElementorControls.php:7671
-#: includes/Charts/Elementor/GraphinaElementorControls.php:8299
+#: includes/Charts/Elementor/GraphinaElementorControls.php:1213
+#: includes/Charts/Elementor/GraphinaElementorControls.php:1312
+#: includes/Charts/Elementor/GraphinaElementorControls.php:1959
+#: includes/Charts/Elementor/GraphinaElementorControls.php:4797
+#: includes/Charts/Elementor/GraphinaElementorControls.php:5813
+#: includes/Charts/Elementor/GraphinaElementorControls.php:7659
+#: includes/Charts/Elementor/GraphinaElementorControls.php:8287
 msgid "Width"
 msgstr ""
 
@@ -1417,17 +1444,17 @@ msgid "height"
 msgstr ""
 
 #: includes/Charts/Elementor/GraphinaElementorControls.php:833
-#: includes/Charts/Elementor/GraphinaElementorControls.php:1213
-#: includes/Charts/Elementor/GraphinaElementorControls.php:1350
-#: includes/Charts/Elementor/GraphinaElementorControls.php:1673
-#: includes/Charts/Elementor/GraphinaElementorControls.php:3628
-#: includes/Charts/Elementor/GraphinaElementorControls.php:4592
-#: includes/Charts/Elementor/GraphinaElementorControls.php:4723
-#: includes/Charts/Elementor/GraphinaElementorControls.php:4866
-#: includes/Charts/Elementor/GraphinaElementorControls.php:5856
-#: includes/Charts/Elementor/GraphinaElementorControls.php:8270
-#: includes/Charts/Elementor/GraphinaElementorControls.php:8321
-#: includes/Charts/Elementor/GraphinaElementorControls.php:8402
+#: includes/Charts/Elementor/GraphinaElementorControls.php:1236
+#: includes/Charts/Elementor/GraphinaElementorControls.php:1373
+#: includes/Charts/Elementor/GraphinaElementorControls.php:1696
+#: includes/Charts/Elementor/GraphinaElementorControls.php:3616
+#: includes/Charts/Elementor/GraphinaElementorControls.php:4580
+#: includes/Charts/Elementor/GraphinaElementorControls.php:4711
+#: includes/Charts/Elementor/GraphinaElementorControls.php:4854
+#: includes/Charts/Elementor/GraphinaElementorControls.php:5844
+#: includes/Charts/Elementor/GraphinaElementorControls.php:8258
+#: includes/Charts/Elementor/GraphinaElementorControls.php:8309
+#: includes/Charts/Elementor/GraphinaElementorControls.php:8390
 #: includes/Charts/Elementor/GraphinaElementorControls.php:9053
 msgid "Color"
 msgstr ""
@@ -1441,12 +1468,12 @@ msgid "Data Json"
 msgstr ""
 
 #: includes/Charts/Elementor/GraphinaElementorControls.php:941
-#: includes/Charts/Elementor/GraphinaElementorControls.php:1165
-#: includes/Charts/Elementor/GraphinaElementorControls.php:1393
-#: includes/Charts/Elementor/GraphinaElementorControls.php:1403
-#: includes/Charts/Elementor/GraphinaElementorControls.php:1590
-#: includes/Charts/Elementor/GraphinaElementorControls.php:4503
-#: includes/Charts/Elementor/GraphinaElementorControls.php:4988
+#: includes/Charts/Elementor/GraphinaElementorControls.php:1174
+#: includes/Charts/Elementor/GraphinaElementorControls.php:1416
+#: includes/Charts/Elementor/GraphinaElementorControls.php:1426
+#: includes/Charts/Elementor/GraphinaElementorControls.php:1613
+#: includes/Charts/Elementor/GraphinaElementorControls.php:4491
+#: includes/Charts/Elementor/GraphinaElementorControls.php:4976
 msgid "Type"
 msgstr ""
 
@@ -1457,7 +1484,7 @@ msgstr ""
 
 #: includes/Charts/Elementor/GraphinaElementorControls.php:955
 #: includes/Charts/Elementor/GraphinaElementorControls.php:969
-#: includes/Charts/Elementor/GraphinaElementorControls.php:4713
+#: includes/Charts/Elementor/GraphinaElementorControls.php:4701
 #: includes/Charts/Elementor/GraphinaElementorControls.php:10879
 #: includes/Charts/Elementor/GraphinaElementorControls.php:10933
 msgid "True"
@@ -1465,7 +1492,7 @@ msgstr ""
 
 #: includes/Charts/Elementor/GraphinaElementorControls.php:956
 #: includes/Charts/Elementor/GraphinaElementorControls.php:970
-#: includes/Charts/Elementor/GraphinaElementorControls.php:4714
+#: includes/Charts/Elementor/GraphinaElementorControls.php:4702
 #: includes/Charts/Elementor/GraphinaElementorControls.php:10878
 #: includes/Charts/Elementor/GraphinaElementorControls.php:10932
 msgid "False"
@@ -1475,15 +1502,23 @@ msgstr ""
 msgid "Set Interval(sec)"
 msgstr ""
 
+#: includes/Charts/Elementor/GraphinaElementorControls.php:1021
+msgid "Dynamic Keys"
+msgstr ""
+
+#: includes/Charts/Elementor/GraphinaElementorControls.php:1023
+msgid "Use dynamic key in  Query,it will replace key will dynamic value (example : column_name={{CURRENT_USER_ID}} <strong><a href=\"https://documentation.iqonic.design/graphina/graphina-pro/unlocking-the-power-of-dynamic-keys-in-wordpress\" target=\"_blank\">List of Dynamic key</a></strong> and If you using dynamic key then please use default value like <b>where id={{QUERY_PARAM_key=1}}</b>"
+msgstr ""
+
 #: includes/Charts/Elementor/GraphinaElementorControls.php:1034
-#: includes/Charts/Elementor/GraphinaElementorControls.php:3263
+#: includes/Charts/Elementor/GraphinaElementorControls.php:3182
 msgid "Refresh"
 msgstr ""
 
 #: includes/Charts/Elementor/GraphinaElementorControls.php:1039
-#: includes/Charts/Elementor/GraphinaElementorControls.php:3268
-#: includes/Charts/Elementor/GraphinaElementorControls.php:5278
-#: includes/GraphinaFunction.php:2570
+#: includes/Charts/Elementor/GraphinaElementorControls.php:3187
+#: includes/Charts/Elementor/GraphinaElementorControls.php:5266
+#: includes/GraphinaFunction.php:2648
 msgid "Classic"
 msgstr ""
 
@@ -1492,7 +1527,8 @@ msgid "Click if column list is showing empty"
 msgstr ""
 
 #: includes/Charts/Elementor/GraphinaElementorControls.php:1053
-#: includes/Charts/Elementor/GraphinaElementorControls.php:5195
+#: includes/Charts/Elementor/GraphinaElementorControls.php:5183
+#: includes/GraphinaFunction.php:2611
 #: templates/apex-chart-options.php:26
 #: templates/google-chart-options.php:26
 msgid "Column"
@@ -1516,1733 +1552,1695 @@ msgstr ""
 
 #: includes/Charts/Elementor/GraphinaElementorControls.php:1103
 #: includes/Charts/Elementor/GraphinaElementorControls.php:1105
-#: includes/Charts/Elementor/GraphinaElementorControls.php:2944
-#: includes/Charts/Elementor/GraphinaElementorControls.php:3145
-#: includes/Charts/Elementor/GraphinaElementorControls.php:3642
+#: includes/Charts/Elementor/GraphinaElementorControls.php:2774
+#: includes/Charts/Elementor/GraphinaElementorControls.php:3008
+#: includes/Charts/Elementor/GraphinaElementorControls.php:3062
+#: includes/Charts/Elementor/GraphinaElementorControls.php:3630
 #: includes/Charts/Elementor/GraphinaElementorControls.php:11346
 #: includes/Charts/Elementor/GraphinaElementorControls.php:11630
 msgid "Title"
 msgstr ""
 
-#: includes/Charts/Elementor/GraphinaElementorControls.php:1131
+#: includes/Charts/Elementor/GraphinaElementorControls.php:1137
 msgid "Icon"
 msgstr ""
 
-#: includes/Charts/Elementor/GraphinaElementorControls.php:1158
+#: includes/Charts/Elementor/GraphinaElementorControls.php:1164
 msgid "Counter Chart Options"
 msgstr ""
 
-#: includes/Charts/Elementor/GraphinaElementorControls.php:1182
-#: includes/Charts/Elementor/GraphinaElementorControls.php:4644
-#: includes/Charts/Elementor/GraphinaElementorControls.php:8118
+#: includes/Charts/Elementor/GraphinaElementorControls.php:1184
+#: includes/Charts/Elementor/GraphinaElementorControls.php:9467
+msgid "Height (px)"
+msgstr ""
+
+#: includes/Charts/Elementor/GraphinaElementorControls.php:1205
+#: includes/Charts/Elementor/GraphinaElementorControls.php:4632
+#: includes/Charts/Elementor/GraphinaElementorControls.php:8106
 msgid "Stroke Setting"
 msgstr ""
 
-#: includes/Charts/Elementor/GraphinaElementorControls.php:1202
+#: includes/Charts/Elementor/GraphinaElementorControls.php:1225
 msgid "Dash Space"
 msgstr ""
 
-#: includes/Charts/Elementor/GraphinaElementorControls.php:1226
-#: includes/Charts/Elementor/GraphinaElementorControls.php:4653
+#: includes/Charts/Elementor/GraphinaElementorControls.php:1249
+#: includes/Charts/Elementor/GraphinaElementorControls.php:4641
 msgid "Curve"
 msgstr ""
 
-#: includes/Charts/Elementor/GraphinaElementorControls.php:1239
-#: includes/Charts/Elementor/GraphinaElementorControls.php:8126
+#: includes/Charts/Elementor/GraphinaElementorControls.php:1262
+#: includes/Charts/Elementor/GraphinaElementorControls.php:8114
 msgid "Line Cap"
 msgstr ""
 
-#: includes/Charts/Elementor/GraphinaElementorControls.php:1262
+#: includes/Charts/Elementor/GraphinaElementorControls.php:1285
 msgid "Plot Setting"
 msgstr ""
 
-#: includes/Charts/Elementor/GraphinaElementorControls.php:1273
+#: includes/Charts/Elementor/GraphinaElementorControls.php:1296
 msgid "Ending Shape"
 msgstr ""
 
-#: includes/Charts/Elementor/GraphinaElementorControls.php:1277
+#: includes/Charts/Elementor/GraphinaElementorControls.php:1300
 msgid "Flat"
 msgstr ""
 
-#: includes/Charts/Elementor/GraphinaElementorControls.php:1278
+#: includes/Charts/Elementor/GraphinaElementorControls.php:1301
 msgid "Rounded"
 msgstr ""
 
-#: includes/Charts/Elementor/GraphinaElementorControls.php:1291
+#: includes/Charts/Elementor/GraphinaElementorControls.php:1314
 msgid "Note: Set 0 for auto setting."
 msgstr ""
 
-#: includes/Charts/Elementor/GraphinaElementorControls.php:1319
-#: includes/Charts/Elementor/GraphinaElementorControls.php:8065
+#: includes/Charts/Elementor/GraphinaElementorControls.php:1342
+#: includes/Charts/Elementor/GraphinaElementorControls.php:8053
 msgid "Fill Setting"
 msgstr ""
 
-#: includes/Charts/Elementor/GraphinaElementorControls.php:1327
-#: includes/Charts/Elementor/GraphinaElementorControls.php:5235
-#: includes/Charts/Elementor/GraphinaElementorControls.php:5836
+#: includes/Charts/Elementor/GraphinaElementorControls.php:1350
+#: includes/Charts/Elementor/GraphinaElementorControls.php:5223
+#: includes/Charts/Elementor/GraphinaElementorControls.php:5824
 msgid "Style"
 msgstr ""
 
-#: includes/Charts/Elementor/GraphinaElementorControls.php:1337
-#: includes/Charts/Elementor/GraphinaElementorControls.php:5248
-#: includes/Charts/Elementor/GraphinaElementorControls.php:8167
-#: includes/Charts/Elementor/GraphinaElementorControls.php:8279
-#: includes/Charts/Elementor/GraphinaElementorControls.php:8330
+#: includes/Charts/Elementor/GraphinaElementorControls.php:1360
+#: includes/Charts/Elementor/GraphinaElementorControls.php:5236
+#: includes/Charts/Elementor/GraphinaElementorControls.php:8155
+#: includes/Charts/Elementor/GraphinaElementorControls.php:8267
+#: includes/Charts/Elementor/GraphinaElementorControls.php:8318
 #: includes/Charts/Elementor/GraphinaElementorControls.php:9248
 msgid "Opacity"
 msgstr ""
 
-#: includes/Charts/Elementor/GraphinaElementorControls.php:1358
-#: includes/Charts/Elementor/GraphinaElementorControls.php:4601
-#: includes/Charts/Elementor/GraphinaElementorControls.php:4877
-#: includes/Charts/Elementor/GraphinaElementorControls.php:8413
+#: includes/Charts/Elementor/GraphinaElementorControls.php:1381
+#: includes/Charts/Elementor/GraphinaElementorControls.php:4589
+#: includes/Charts/Elementor/GraphinaElementorControls.php:4865
+#: includes/Charts/Elementor/GraphinaElementorControls.php:8401
 #: includes/Charts/Elementor/GraphinaElementorControls.php:9215
 msgid "Second Color"
 msgstr ""
 
-#: includes/Charts/Elementor/GraphinaElementorControls.php:1368
-#: includes/Charts/Elementor/GraphinaElementorControls.php:4611
-#: includes/Charts/Elementor/GraphinaElementorControls.php:4889
-#: includes/Charts/Elementor/GraphinaElementorControls.php:8425
+#: includes/Charts/Elementor/GraphinaElementorControls.php:1391
+#: includes/Charts/Elementor/GraphinaElementorControls.php:4599
+#: includes/Charts/Elementor/GraphinaElementorControls.php:4877
+#: includes/Charts/Elementor/GraphinaElementorControls.php:8413
 msgid "Fill Pattern"
 msgstr ""
 
-#: includes/Charts/Elementor/GraphinaElementorControls.php:1424
-#: includes/Charts/Elementor/GraphinaElementorControls.php:1611
+#: includes/Charts/Elementor/GraphinaElementorControls.php:1447
+#: includes/Charts/Elementor/GraphinaElementorControls.php:1634
+#: includes/Charts/Elementor/GraphinaElementorControls.php:2072
 msgid "Get New Exciting Features"
 msgstr ""
 
-#: includes/Charts/Elementor/GraphinaElementorControls.php:1449
-#: includes/Charts/Elementor/GraphinaElementorControls.php:3392
+#: includes/Charts/Elementor/GraphinaElementorControls.php:1472
+#: includes/Charts/Elementor/GraphinaElementorControls.php:3311
 msgid "Set Number Of Columns and Rows"
 msgstr ""
 
-#: includes/Charts/Elementor/GraphinaElementorControls.php:1460
-#: includes/Charts/Elementor/GraphinaElementorControls.php:3404
+#: includes/Charts/Elementor/GraphinaElementorControls.php:1483
+#: includes/Charts/Elementor/GraphinaElementorControls.php:3323
 msgid "No of Rows"
 msgstr ""
 
-#: includes/Charts/Elementor/GraphinaElementorControls.php:1465
+#: includes/Charts/Elementor/GraphinaElementorControls.php:1488
 msgid "Note: If the data type is dynamic and pagination is enabled, then this option will not work."
 msgstr ""
 
-#: includes/Charts/Elementor/GraphinaElementorControls.php:1475
-#: includes/Charts/Elementor/GraphinaElementorControls.php:3419
+#: includes/Charts/Elementor/GraphinaElementorControls.php:1498
+#: includes/Charts/Elementor/GraphinaElementorControls.php:3338
 msgid "No of Columns"
 msgstr ""
 
-#: includes/Charts/Elementor/GraphinaElementorControls.php:1496
+#: includes/Charts/Elementor/GraphinaElementorControls.php:1519
 msgid "Header"
 msgstr ""
 
-#: includes/Charts/Elementor/GraphinaElementorControls.php:1514
+#: includes/Charts/Elementor/GraphinaElementorControls.php:1537
 msgid "Includes In Body"
 msgstr ""
 
-#: includes/Charts/Elementor/GraphinaElementorControls.php:1538
+#: includes/Charts/Elementor/GraphinaElementorControls.php:1561
 msgid "Show Index"
 msgstr ""
 
-#: includes/Charts/Elementor/GraphinaElementorControls.php:1549
+#: includes/Charts/Elementor/GraphinaElementorControls.php:1572
 msgid "Index Header"
 msgstr ""
 
-#: includes/Charts/Elementor/GraphinaElementorControls.php:1551
+#: includes/Charts/Elementor/GraphinaElementorControls.php:1574
 msgid "Index Title"
 msgstr ""
 
-#: includes/Charts/Elementor/GraphinaElementorControls.php:1562
+#: includes/Charts/Elementor/GraphinaElementorControls.php:1585
 msgid "Index Value Type"
 msgstr ""
 
-#: includes/Charts/Elementor/GraphinaElementorControls.php:1566
-#: includes/Charts/Elementor/GraphinaElementorControls.php:12592
+#: includes/Charts/Elementor/GraphinaElementorControls.php:1589
+#: includes/Charts/Elementor/GraphinaElementorControls.php:12587
 msgid "Number"
 msgstr ""
 
-#: includes/Charts/Elementor/GraphinaElementorControls.php:1567
-#: includes/Charts/Elementor/GraphinaElementorControls.php:12593
+#: includes/Charts/Elementor/GraphinaElementorControls.php:1590
+#: includes/Charts/Elementor/GraphinaElementorControls.php:12588
 msgid "Roman Number"
 msgstr ""
 
-#: includes/Charts/Elementor/GraphinaElementorControls.php:1635
-#: includes/Charts/Elementor/GraphinaElementorControls.php:4788
-#: includes/Charts/Elementor/GraphinaElementorControls.php:8351
+#: includes/Charts/Elementor/GraphinaElementorControls.php:1658
+#: includes/Charts/Elementor/GraphinaElementorControls.php:4776
+#: includes/Charts/Elementor/GraphinaElementorControls.php:8339
 msgid "Element"
 msgstr ""
 
-#: includes/Charts/Elementor/GraphinaElementorControls.php:1640
-#: includes/Charts/Elementor/GraphinaElementorControls.php:4457
-#: includes/Charts/Elementor/GraphinaElementorControls.php:4793
+#: includes/Charts/Elementor/GraphinaElementorControls.php:1663
+#: includes/Charts/Elementor/GraphinaElementorControls.php:4445
+#: includes/Charts/Elementor/GraphinaElementorControls.php:4781
 msgid "Elements Setting"
 msgstr ""
 
-#: includes/Charts/Elementor/GraphinaElementorControls.php:1687
+#: includes/Charts/Elementor/GraphinaElementorControls.php:1710
 msgid " LineWidth"
 msgstr ""
 
-#: includes/Charts/Elementor/GraphinaElementorControls.php:1699
+#: includes/Charts/Elementor/GraphinaElementorControls.php:1722
 msgid " Line Dash Style"
 msgstr ""
 
-#: includes/Charts/Elementor/GraphinaElementorControls.php:1703
+#: includes/Charts/Elementor/GraphinaElementorControls.php:1726
 msgid "Default"
 msgstr ""
 
-#: includes/Charts/Elementor/GraphinaElementorControls.php:1704
+#: includes/Charts/Elementor/GraphinaElementorControls.php:1727
 msgid "Style 1"
 msgstr ""
 
-#: includes/Charts/Elementor/GraphinaElementorControls.php:1705
+#: includes/Charts/Elementor/GraphinaElementorControls.php:1728
 msgid "Style 2"
 msgstr ""
 
-#: includes/Charts/Elementor/GraphinaElementorControls.php:1706
+#: includes/Charts/Elementor/GraphinaElementorControls.php:1729
 msgid "Style 3"
 msgstr ""
 
-#: includes/Charts/Elementor/GraphinaElementorControls.php:1707
+#: includes/Charts/Elementor/GraphinaElementorControls.php:1730
 msgid "Style 4"
 msgstr ""
 
-#: includes/Charts/Elementor/GraphinaElementorControls.php:1708
+#: includes/Charts/Elementor/GraphinaElementorControls.php:1731
 msgid "Style 5"
 msgstr ""
 
-#: includes/Charts/Elementor/GraphinaElementorControls.php:1709
+#: includes/Charts/Elementor/GraphinaElementorControls.php:1732
 msgid "Style 6"
 msgstr ""
 
-#: includes/Charts/Elementor/GraphinaElementorControls.php:1710
+#: includes/Charts/Elementor/GraphinaElementorControls.php:1733
 msgid "Style 7"
 msgstr ""
 
-#: includes/Charts/Elementor/GraphinaElementorControls.php:1711
+#: includes/Charts/Elementor/GraphinaElementorControls.php:1734
 msgid "Style 8"
 msgstr ""
 
-#: includes/Charts/Elementor/GraphinaElementorControls.php:1712
+#: includes/Charts/Elementor/GraphinaElementorControls.php:1735
 msgid "Style 9"
 msgstr ""
 
-#: includes/Charts/Elementor/GraphinaElementorControls.php:1766
-#: includes/Charts/Elementor/GraphinaElementorControls.php:5071
+#: includes/Charts/Elementor/GraphinaElementorControls.php:1789
+#: includes/Charts/Elementor/GraphinaElementorControls.php:5059
 msgid "Marker Settings"
 msgstr ""
 
-#: includes/Charts/Elementor/GraphinaElementorControls.php:1787
+#: includes/Charts/Elementor/GraphinaElementorControls.php:1810
 msgid "Point"
 msgstr ""
 
-#: includes/Charts/Elementor/GraphinaElementorControls.php:1791
-#: includes/Charts/Elementor/GraphinaElementorControls.php:5117
-#: includes/Charts/Elementor/GraphinaElementorControls.php:7629
+#: includes/Charts/Elementor/GraphinaElementorControls.php:1814
+#: includes/Charts/Elementor/GraphinaElementorControls.php:5105
+#: includes/Charts/Elementor/GraphinaElementorControls.php:7617
 msgid "Circle"
 msgstr ""
 
-#: includes/Charts/Elementor/GraphinaElementorControls.php:1792
+#: includes/Charts/Elementor/GraphinaElementorControls.php:1815
 msgid "Triangle"
 msgstr ""
 
-#: includes/Charts/Elementor/GraphinaElementorControls.php:1793
-#: includes/Charts/Elementor/GraphinaElementorControls.php:5118
-#: includes/Charts/Elementor/GraphinaElementorControls.php:8499
+#: includes/Charts/Elementor/GraphinaElementorControls.php:1816
+#: includes/Charts/Elementor/GraphinaElementorControls.php:5106
+#: includes/Charts/Elementor/GraphinaElementorControls.php:8487
+#: includes/GraphinaFunction.php:2629
 msgid "Square"
 msgstr ""
 
-#: includes/Charts/Elementor/GraphinaElementorControls.php:1794
+#: includes/Charts/Elementor/GraphinaElementorControls.php:1817
 msgid "Diamond"
 msgstr ""
 
-#: includes/Charts/Elementor/GraphinaElementorControls.php:1795
+#: includes/Charts/Elementor/GraphinaElementorControls.php:1818
 msgid "Star"
 msgstr ""
 
-#: includes/Charts/Elementor/GraphinaElementorControls.php:1796
+#: includes/Charts/Elementor/GraphinaElementorControls.php:1819
 msgid "Polygon"
 msgstr ""
 
-#: includes/Charts/Elementor/GraphinaElementorControls.php:1808
+#: includes/Charts/Elementor/GraphinaElementorControls.php:1831
 msgid " Size"
 msgstr ""
 
-#: includes/Charts/Elementor/GraphinaElementorControls.php:1833
+#: includes/Charts/Elementor/GraphinaElementorControls.php:1856
 msgid "Change Chart Type Style"
 msgstr ""
 
-#: includes/Charts/Elementor/GraphinaElementorControls.php:1845
+#: includes/Charts/Elementor/GraphinaElementorControls.php:1868
 msgid "Select Text Typography"
 msgstr ""
 
-#: includes/Charts/Elementor/GraphinaElementorControls.php:1894
+#: includes/Charts/Elementor/GraphinaElementorControls.php:1917
 msgid "Select Background Color"
 msgstr ""
 
-#: includes/Charts/Elementor/GraphinaElementorControls.php:1905
-#: includes/Charts/Elementor/GraphinaElementorControls.php:5814
-#: includes/Charts/Elementor/GraphinaElementorControls.php:6073
-#: includes/Charts/Elementor/GraphinaElementorControls.php:7681
+#: includes/Charts/Elementor/GraphinaElementorControls.php:1928
+#: includes/Charts/Elementor/GraphinaElementorControls.php:5802
+#: includes/Charts/Elementor/GraphinaElementorControls.php:6061
+#: includes/Charts/Elementor/GraphinaElementorControls.php:7669
 msgid "Height"
 msgstr ""
 
-#: includes/Charts/Elementor/GraphinaElementorControls.php:1971
+#: includes/Charts/Elementor/GraphinaElementorControls.php:1994
 msgid "Select Border Radius"
 msgstr ""
 
-#: includes/Charts/Elementor/GraphinaElementorControls.php:2033
-#: includes/Charts/Elementor/GraphinaElementorControls.php:2255
+#: includes/Charts/Elementor/GraphinaElementorControls.php:2056
+#: includes/Charts/Elementor/GraphinaElementorControls.php:2109
 msgid "Chart Filter"
 msgstr ""
 
-#: includes/Charts/Elementor/GraphinaElementorControls.php:2041
-msgid "Enable Filter"
-msgstr ""
-
-#: includes/Charts/Elementor/GraphinaElementorControls.php:2054
-#: includes/Charts/Elementor/GraphinaElementorControls.php:2295
-#: includes/Charts/Elementor/GraphinaElementorControls.php:3935
-#: includes/Charts/Elementor/GraphinaElementorControls.php:5919
-msgid "Label"
-msgstr ""
-
-#: includes/Charts/Elementor/GraphinaElementorControls.php:2056
-msgid "Choose Option"
-msgstr ""
-
-#: includes/Charts/Elementor/GraphinaElementorControls.php:2057
-#: includes/Charts/Elementor/GraphinaElementorControls.php:2070
-msgid "Note: This key is use where you want to use selected option value"
-msgstr ""
-
-#: includes/Charts/Elementor/GraphinaElementorControls.php:2067
-msgid "Add Filter Keys"
-msgstr ""
-
-#: includes/Charts/Elementor/GraphinaElementorControls.php:2069
-msgid "{{key_1}}"
-msgstr ""
-
-#: includes/Charts/Elementor/GraphinaElementorControls.php:2080
-msgid "Filter Type"
-msgstr ""
-
-#: includes/Charts/Elementor/GraphinaElementorControls.php:2085
-msgid "Select Dropdown"
-msgstr ""
-
-#: includes/Charts/Elementor/GraphinaElementorControls.php:2086
-msgid "Datepicker"
-msgstr ""
-
-#: includes/Charts/Elementor/GraphinaElementorControls.php:2097
-msgid "Date Type"
-msgstr ""
-
-#: includes/Charts/Elementor/GraphinaElementorControls.php:2102
-msgid "DateTime"
-msgstr ""
-
-#: includes/Charts/Elementor/GraphinaElementorControls.php:2103
-msgid "Date"
-msgstr ""
-
-#: includes/Charts/Elementor/GraphinaElementorControls.php:2119
-#: includes/Charts/Elementor/GraphinaElementorControls.php:2145
-msgid "Default Date"
-msgstr ""
-
-#: includes/Charts/Elementor/GraphinaElementorControls.php:2174
-msgid "Add Select Dropdown Filter Value"
-msgstr ""
-
-#: includes/Charts/Elementor/GraphinaElementorControls.php:2176
-msgid "Value,Value1"
-msgstr ""
-
-#: includes/Charts/Elementor/GraphinaElementorControls.php:2196
-msgid "Add Select Dropdown Filter Name"
-msgstr ""
-
-#: includes/Charts/Elementor/GraphinaElementorControls.php:2198
-msgid "Name1,Name2"
-msgstr ""
-
-#: includes/Charts/Elementor/GraphinaElementorControls.php:2218
-msgid "Filter Tab"
-msgstr ""
-
-#: includes/Charts/Elementor/GraphinaElementorControls.php:2244
+#: includes/Charts/Elementor/GraphinaElementorControls.php:2098
 msgid "Chart Filter Style"
 msgstr ""
 
-#: includes/Charts/Elementor/GraphinaElementorControls.php:2374
+#: includes/Charts/Elementor/GraphinaElementorControls.php:2149
+#: includes/Charts/Elementor/GraphinaElementorControls.php:3923
+#: includes/Charts/Elementor/GraphinaElementorControls.php:5907
+msgid "Label"
+msgstr ""
+
+#: includes/Charts/Elementor/GraphinaElementorControls.php:2228
 msgid "DropDown"
 msgstr ""
 
-#: includes/Charts/Elementor/GraphinaElementorControls.php:2383
-#: includes/Charts/Elementor/GraphinaElementorControls.php:2493
-#: includes/Charts/Elementor/GraphinaElementorControls.php:2603
+#: includes/Charts/Elementor/GraphinaElementorControls.php:2237
+#: includes/Charts/Elementor/GraphinaElementorControls.php:2347
+#: includes/Charts/Elementor/GraphinaElementorControls.php:2457
 msgid "Background Type"
 msgstr ""
 
-#: includes/Charts/Elementor/GraphinaElementorControls.php:2484
+#: includes/Charts/Elementor/GraphinaElementorControls.php:2338
 msgid "Apply Filter Button"
 msgstr ""
 
-#: includes/Charts/Elementor/GraphinaElementorControls.php:2594
+#: includes/Charts/Elementor/GraphinaElementorControls.php:2448
 msgid "Date Picker"
 msgstr ""
 
-#: includes/Charts/Elementor/GraphinaElementorControls.php:2710
-msgid "Note: Value are seperator by comma, value is use as option "
-msgstr ""
-
-#: includes/Charts/Elementor/GraphinaElementorControls.php:2712
-msgid "Name1"
-msgstr ""
-
-#: includes/Charts/Elementor/GraphinaElementorControls.php:2713
-msgid "Name2"
-msgstr ""
-
-#: includes/Charts/Elementor/GraphinaElementorControls.php:2715
-msgid "And first option will be default selected value "
-msgstr ""
-
-#: includes/Charts/Elementor/GraphinaElementorControls.php:2749
-#: includes/Charts/Elementor/GraphinaElementorControls.php:2780
+#: includes/Charts/Elementor/GraphinaElementorControls.php:2579
+#: includes/Charts/Elementor/GraphinaElementorControls.php:2610
 msgid "Categories"
 msgstr ""
 
-#: includes/Charts/Elementor/GraphinaElementorControls.php:2767
+#: includes/Charts/Elementor/GraphinaElementorControls.php:2597
 msgid "Category Value"
 msgstr ""
 
-#: includes/Charts/Elementor/GraphinaElementorControls.php:2769
-#: includes/Charts/Elementor/GraphinaElementorControls.php:2965
-#: includes/Charts/Elementor/GraphinaElementorControls.php:3104
-#: includes/Charts/Elementor/GraphinaElementorControls.php:3165
-#: includes/Charts/Elementor/GraphinaElementorControls.php:3497
-#: includes/Charts/Elementor/GraphinaElementorControls.php:3612
-#: includes/Charts/Elementor/GraphinaElementorControls.php:3702
-#: includes/Charts/Elementor/GraphinaElementorControls.php:3799
-#: includes/Charts/Elementor/GraphinaElementorControls.php:3994
-#: includes/Charts/Elementor/GraphinaElementorControls.php:4123
+#: includes/Charts/Elementor/GraphinaElementorControls.php:2599
+#: includes/Charts/Elementor/GraphinaElementorControls.php:2795
+#: includes/Charts/Elementor/GraphinaElementorControls.php:2934
+#: includes/Charts/Elementor/GraphinaElementorControls.php:3027
+#: includes/Charts/Elementor/GraphinaElementorControls.php:3083
+#: includes/Charts/Elementor/GraphinaElementorControls.php:3485
+#: includes/Charts/Elementor/GraphinaElementorControls.php:3600
+#: includes/Charts/Elementor/GraphinaElementorControls.php:3690
+#: includes/Charts/Elementor/GraphinaElementorControls.php:3787
+#: includes/Charts/Elementor/GraphinaElementorControls.php:3982
+#: includes/Charts/Elementor/GraphinaElementorControls.php:4111
+#: includes/Charts/Elementor/GraphinaElementorControls.php:4128
 #: includes/Charts/Elementor/GraphinaElementorControls.php:4140
-#: includes/Charts/Elementor/GraphinaElementorControls.php:4152
-#: includes/Charts/Elementor/GraphinaElementorControls.php:4206
+#: includes/Charts/Elementor/GraphinaElementorControls.php:4194
+#: includes/Charts/Elementor/GraphinaElementorControls.php:4220
 #: includes/Charts/Elementor/GraphinaElementorControls.php:4232
 #: includes/Charts/Elementor/GraphinaElementorControls.php:4244
 #: includes/Charts/Elementor/GraphinaElementorControls.php:4256
-#: includes/Charts/Elementor/GraphinaElementorControls.php:4268
-#: includes/Charts/Elementor/GraphinaElementorControls.php:4315
-#: includes/Charts/Elementor/GraphinaElementorControls.php:4360
-#: includes/Charts/Elementor/GraphinaElementorControls.php:6815
+#: includes/Charts/Elementor/GraphinaElementorControls.php:4303
+#: includes/Charts/Elementor/GraphinaElementorControls.php:4348
+#: includes/Charts/Elementor/GraphinaElementorControls.php:6803
 msgid "Add Value"
 msgstr ""
 
-#: includes/Charts/Elementor/GraphinaElementorControls.php:2773
+#: includes/Charts/Elementor/GraphinaElementorControls.php:2603
 msgid "Note: For multiline text seperate Text by comma(,) and Only work if Labels Prefix/Postfix in X-axis is disable "
 msgstr ""
 
-#: includes/Charts/Elementor/GraphinaElementorControls.php:2864
-#: includes/Charts/Elementor/GraphinaElementorControls.php:2873
-#: includes/Charts/Elementor/GraphinaElementorControls.php:2881
+#: includes/Charts/Elementor/GraphinaElementorControls.php:2694
+#: includes/Charts/Elementor/GraphinaElementorControls.php:2703
+#: includes/Charts/Elementor/GraphinaElementorControls.php:2711
 msgid "Color Axis"
 msgstr ""
 
-#: includes/Charts/Elementor/GraphinaElementorControls.php:2897
-#: includes/Charts/Elementor/GraphinaElementorControls.php:2909
+#: includes/Charts/Elementor/GraphinaElementorControls.php:2727
+#: includes/Charts/Elementor/GraphinaElementorControls.php:2739
 msgid "Color Axis Value"
 msgstr ""
 
-#: includes/Charts/Elementor/GraphinaElementorControls.php:2933
-#: includes/Charts/Elementor/GraphinaElementorControls.php:3010
+#: includes/Charts/Elementor/GraphinaElementorControls.php:2763
+#: includes/Charts/Elementor/GraphinaElementorControls.php:2840
 msgid "Chart Data"
 msgstr ""
 
-#: includes/Charts/Elementor/GraphinaElementorControls.php:2933
-#: includes/Charts/Elementor/GraphinaElementorControls.php:3010
+#: includes/Charts/Elementor/GraphinaElementorControls.php:2763
+#: includes/Charts/Elementor/GraphinaElementorControls.php:2840
 msgid "Table Data"
 msgstr ""
 
-#: includes/Charts/Elementor/GraphinaElementorControls.php:2946
-#: includes/Charts/Elementor/GraphinaElementorControls.php:3456
+#: includes/Charts/Elementor/GraphinaElementorControls.php:2776
+#: includes/Charts/Elementor/GraphinaElementorControls.php:3010
+#: includes/Charts/Elementor/GraphinaElementorControls.php:3375
 msgid "Add Title"
 msgstr ""
 
-#: includes/Charts/Elementor/GraphinaElementorControls.php:2963
-#: includes/Charts/Elementor/GraphinaElementorControls.php:3700
+#: includes/Charts/Elementor/GraphinaElementorControls.php:2793
+#: includes/Charts/Elementor/GraphinaElementorControls.php:3688
 msgid "Series Value"
 msgstr ""
 
-#: includes/Charts/Elementor/GraphinaElementorControls.php:2976
-#: includes/Charts/Elementor/GraphinaElementorControls.php:3713
+#: includes/Charts/Elementor/GraphinaElementorControls.php:2806
+#: includes/Charts/Elementor/GraphinaElementorControls.php:3701
 msgid "Values List"
 msgstr ""
 
-#: includes/Charts/Elementor/GraphinaElementorControls.php:3018
+#: includes/Charts/Elementor/GraphinaElementorControls.php:2848
 msgid "Set Data Elements"
 msgstr ""
 
-#: includes/Charts/Elementor/GraphinaElementorControls.php:3026
+#: includes/Charts/Elementor/GraphinaElementorControls.php:2856
+#: includes/Charts/Elementor/GraphinaElementorControls.php:2991
 msgid "Data Elements"
 msgstr ""
 
-#: includes/Charts/Elementor/GraphinaElementorControls.php:3028
+#: includes/Charts/Elementor/GraphinaElementorControls.php:2858
+#: includes/Charts/Elementor/GraphinaElementorControls.php:2993
 msgid "<strong>Notice:</strong> The minimum required value for data elements is <strong>1</strong>. To increase the maximum data element value, please refer to the <a href=\"https://documentation.iqonic.design/graphina/php-hooks/optimizing-element-sets-in-graphina-with-php-hooks\" target=\"_blank\">PHP Hooks Documentation</a>."
 msgstr ""
 
-#: includes/Charts/Elementor/GraphinaElementorControls.php:3087
-#: includes/Charts/Elementor/GraphinaElementorControls.php:3147
-#: includes/Charts/Elementor/GraphinaElementorControls.php:3644
-#: includes/Charts/Elementor/GraphinaElementorControls.php:3762
-#: includes/Charts/Elementor/GraphinaElementorControls.php:4073
-#: includes/Charts/Elementor/GraphinaElementorControls.php:4296
-#: includes/Charts/Elementor/GraphinaElementorControls.php:4343
+#: includes/Charts/Elementor/GraphinaElementorControls.php:2917
+#: includes/Charts/Elementor/GraphinaElementorControls.php:3064
+#: includes/Charts/Elementor/GraphinaElementorControls.php:3632
+#: includes/Charts/Elementor/GraphinaElementorControls.php:3750
+#: includes/Charts/Elementor/GraphinaElementorControls.php:4061
+#: includes/Charts/Elementor/GraphinaElementorControls.php:4284
+#: includes/Charts/Elementor/GraphinaElementorControls.php:4331
 msgid "Add Tile"
 msgstr ""
 
-#: includes/Charts/Elementor/GraphinaElementorControls.php:3102
-#: includes/Charts/Elementor/GraphinaElementorControls.php:3797
+#: includes/Charts/Elementor/GraphinaElementorControls.php:2932
+#: includes/Charts/Elementor/GraphinaElementorControls.php:3785
 msgid "Chart Value"
 msgstr ""
 
-#: includes/Charts/Elementor/GraphinaElementorControls.php:3115
-#: includes/Charts/Elementor/GraphinaElementorControls.php:3810
-#: includes/Charts/Elementor/GraphinaElementorControls.php:3835
-#: includes/Charts/Elementor/GraphinaElementorControls.php:4057
-#: includes/Charts/Elementor/GraphinaElementorControls.php:4279
+#: includes/Charts/Elementor/GraphinaElementorControls.php:2945
+#: includes/Charts/Elementor/GraphinaElementorControls.php:3798
+#: includes/Charts/Elementor/GraphinaElementorControls.php:3823
+#: includes/Charts/Elementor/GraphinaElementorControls.php:4045
+#: includes/Charts/Elementor/GraphinaElementorControls.php:4267
 msgid "Chart value list"
 msgstr ""
 
-#: includes/Charts/Elementor/GraphinaElementorControls.php:3163
-#: includes/Charts/Elementor/GraphinaElementorControls.php:4358
+#: includes/Charts/Elementor/GraphinaElementorControls.php:2976
+msgid "Multiple Element"
+msgstr ""
+
+#: includes/Charts/Elementor/GraphinaElementorControls.php:3011
+#: includes/Charts/Elementor/GraphinaElementorControls.php:3569
+#: includes/Charts/Elementor/GraphinaElementorControls.php:3847
+#: includes/Charts/Elementor/GraphinaElementorControls.php:3912
+msgid "Element "
+msgstr ""
+
+#: includes/Charts/Elementor/GraphinaElementorControls.php:3025
+#: includes/Charts/Elementor/GraphinaElementorControls.php:3081
+#: includes/Charts/Elementor/GraphinaElementorControls.php:4346
 msgid "Element Value"
 msgstr ""
 
-#: includes/Charts/Elementor/GraphinaElementorControls.php:3176
-#: includes/Charts/Elementor/GraphinaElementorControls.php:3291
-#: includes/Charts/Elementor/GraphinaElementorControls.php:3736
-#: includes/Charts/Elementor/GraphinaElementorControls.php:4325
-#: includes/Charts/Elementor/GraphinaElementorControls.php:4369
+#: includes/Charts/Elementor/GraphinaElementorControls.php:3038
+#: includes/Charts/Elementor/GraphinaElementorControls.php:3094
+#: includes/Charts/Elementor/GraphinaElementorControls.php:3210
+#: includes/Charts/Elementor/GraphinaElementorControls.php:3724
+#: includes/Charts/Elementor/GraphinaElementorControls.php:4313
+#: includes/Charts/Elementor/GraphinaElementorControls.php:4357
 msgid "Values"
 msgstr ""
 
-#: includes/Charts/Elementor/GraphinaElementorControls.php:3209
+#: includes/Charts/Elementor/GraphinaElementorControls.php:3128
 msgid "Add Element Name"
 msgstr ""
 
-#: includes/Charts/Elementor/GraphinaElementorControls.php:3219
+#: includes/Charts/Elementor/GraphinaElementorControls.php:3138
 msgid "Add Element Resource"
 msgstr ""
 
-#: includes/Charts/Elementor/GraphinaElementorControls.php:3232
+#: includes/Charts/Elementor/GraphinaElementorControls.php:3151
 msgid "Start Date"
 msgstr ""
 
-#: includes/Charts/Elementor/GraphinaElementorControls.php:3244
+#: includes/Charts/Elementor/GraphinaElementorControls.php:3163
 msgid "End Date"
 msgstr ""
 
-#: includes/Charts/Elementor/GraphinaElementorControls.php:3253
+#: includes/Charts/Elementor/GraphinaElementorControls.php:3172
 msgid "Percent Complete"
 msgstr ""
 
-#: includes/Charts/Elementor/GraphinaElementorControls.php:3272
+#: includes/Charts/Elementor/GraphinaElementorControls.php:3191
 msgid "Click if Dependencies column list is showing empty"
 msgstr ""
 
-#: includes/Charts/Elementor/GraphinaElementorControls.php:3283
+#: includes/Charts/Elementor/GraphinaElementorControls.php:3202
 msgid "Dependencies"
 msgstr ""
 
-#: includes/Charts/Elementor/GraphinaElementorControls.php:3350
+#: includes/Charts/Elementor/GraphinaElementorControls.php:3269
 msgid "Data Table Options"
 msgstr ""
 
-#: includes/Charts/Elementor/GraphinaElementorControls.php:3361
+#: includes/Charts/Elementor/GraphinaElementorControls.php:3280
 msgid "Label Title"
 msgstr ""
 
-#: includes/Charts/Elementor/GraphinaElementorControls.php:3363
+#: includes/Charts/Elementor/GraphinaElementorControls.php:3282
 msgid "Month"
 msgstr ""
 
-#: includes/Charts/Elementor/GraphinaElementorControls.php:3364
-#: includes/Charts/Elementor/GraphinaElementorControls.php:3374
+#: includes/Charts/Elementor/GraphinaElementorControls.php:3283
+#: includes/Charts/Elementor/GraphinaElementorControls.php:3293
 msgid "Data Values Title in DataTable"
 msgstr ""
 
-#: includes/Charts/Elementor/GraphinaElementorControls.php:3371
+#: includes/Charts/Elementor/GraphinaElementorControls.php:3290
 msgid "Value Title"
 msgstr ""
 
-#: includes/Charts/Elementor/GraphinaElementorControls.php:3373
+#: includes/Charts/Elementor/GraphinaElementorControls.php:3292
 msgid "Sales"
 msgstr ""
 
-#: includes/Charts/Elementor/GraphinaElementorControls.php:3443
+#: includes/Charts/Elementor/GraphinaElementorControls.php:3362
 msgid "Set Column Data"
 msgstr ""
 
-#: includes/Charts/Elementor/GraphinaElementorControls.php:3482
+#: includes/Charts/Elementor/GraphinaElementorControls.php:3373
+msgid "Column Header"
+msgstr ""
+
+#: includes/Charts/Elementor/GraphinaElementorControls.php:3389
+msgid "Add Column Width"
+msgstr ""
+
+#: includes/Charts/Elementor/GraphinaElementorControls.php:3403
+msgid "Column Width (px)"
+msgstr ""
+
+#: includes/Charts/Elementor/GraphinaElementorControls.php:3417
+msgid "Column wise alighment"
+msgstr ""
+
+#: includes/Charts/Elementor/GraphinaElementorControls.php:3431
+msgid "Table Alignment"
+msgstr ""
+
+#: includes/Charts/Elementor/GraphinaElementorControls.php:3470
 msgid "Set Row Data"
 msgstr ""
 
-#: includes/Charts/Elementor/GraphinaElementorControls.php:3495
+#: includes/Charts/Elementor/GraphinaElementorControls.php:3483
 msgid "Row Value"
 msgstr ""
 
-#: includes/Charts/Elementor/GraphinaElementorControls.php:3507
+#: includes/Charts/Elementor/GraphinaElementorControls.php:3495
 msgid "Row URL"
 msgstr ""
 
-#: includes/Charts/Elementor/GraphinaElementorControls.php:3520
+#: includes/Charts/Elementor/GraphinaElementorControls.php:3508
 msgid "Link Text"
 msgstr ""
 
-#: includes/Charts/Elementor/GraphinaElementorControls.php:3522
+#: includes/Charts/Elementor/GraphinaElementorControls.php:3510
 msgid "Add Link Text"
 msgstr ""
 
 #. translators: %d: 1
-#: includes/Charts/Elementor/GraphinaElementorControls.php:3534
+#: includes/Charts/Elementor/GraphinaElementorControls.php:3522
 msgid "Row Data %d"
 msgstr ""
 
-#: includes/Charts/Elementor/GraphinaElementorControls.php:3565
-#: includes/Charts/Elementor/GraphinaElementorControls.php:3683
+#: includes/Charts/Elementor/GraphinaElementorControls.php:3553
+#: includes/Charts/Elementor/GraphinaElementorControls.php:3671
 msgid "Default Negative"
 msgstr ""
 
-#: includes/Charts/Elementor/GraphinaElementorControls.php:3581
-#: includes/Charts/Elementor/GraphinaElementorControls.php:3859
-#: includes/Charts/Elementor/GraphinaElementorControls.php:3924
-msgid "Element "
-msgstr ""
-
-#: includes/Charts/Elementor/GraphinaElementorControls.php:3595
+#: includes/Charts/Elementor/GraphinaElementorControls.php:3583
 msgid "Add Label"
 msgstr ""
 
-#: includes/Charts/Elementor/GraphinaElementorControls.php:3671
+#: includes/Charts/Elementor/GraphinaElementorControls.php:3659
 msgid "Value Setting"
 msgstr ""
 
-#: includes/Charts/Elementor/GraphinaElementorControls.php:3760
+#: includes/Charts/Elementor/GraphinaElementorControls.php:3748
 msgid "Element Title"
 msgstr ""
 
-#: includes/Charts/Elementor/GraphinaElementorControls.php:3788
-#: includes/Charts/Elementor/GraphinaElementorControls.php:3980
+#: includes/Charts/Elementor/GraphinaElementorControls.php:3776
+#: includes/Charts/Elementor/GraphinaElementorControls.php:3968
 msgid "Warning: Each Y-axis must be associated with at least one series. Please ensure that all elements are not set with only the left or right axis."
 msgstr ""
 
-#: includes/Charts/Elementor/GraphinaElementorControls.php:3873
+#: includes/Charts/Elementor/GraphinaElementorControls.php:3861
 msgid "Add Child"
 msgstr ""
 
-#: includes/Charts/Elementor/GraphinaElementorControls.php:3891
+#: includes/Charts/Elementor/GraphinaElementorControls.php:3879
 msgid "Add Parent"
 msgstr ""
 
-#: includes/Charts/Elementor/GraphinaElementorControls.php:3908
+#: includes/Charts/Elementor/GraphinaElementorControls.php:3896
 msgid "Add Tooltip"
 msgstr ""
 
-#: includes/Charts/Elementor/GraphinaElementorControls.php:3951
-#: includes/Charts/Elementor/GraphinaElementorControls.php:5920
+#: includes/Charts/Elementor/GraphinaElementorControls.php:3939
+#: includes/Charts/Elementor/GraphinaElementorControls.php:5908
 #: includes/Charts/Elementor/GraphinaElementorControls.php:9107
 #: includes/Charts/Elementor/GraphinaElementorControls.php:10218
 #: includes/Charts/Elementor/GraphinaElementorControls.php:10641
 msgid "Value"
 msgstr ""
 
-#: includes/Charts/Elementor/GraphinaElementorControls.php:4011
+#: includes/Charts/Elementor/GraphinaElementorControls.php:3999
 msgid "Add X Value"
 msgstr ""
 
-#: includes/Charts/Elementor/GraphinaElementorControls.php:4023
+#: includes/Charts/Elementor/GraphinaElementorControls.php:4011
 msgid "Add Y Value"
 msgstr ""
 
-#: includes/Charts/Elementor/GraphinaElementorControls.php:4035
+#: includes/Charts/Elementor/GraphinaElementorControls.php:4023
 msgid "Add Z Value"
 msgstr ""
 
-#: includes/Charts/Elementor/GraphinaElementorControls.php:4087
+#: includes/Charts/Elementor/GraphinaElementorControls.php:4075
 msgid "From Date ( Y )"
 msgstr ""
 
-#: includes/Charts/Elementor/GraphinaElementorControls.php:4089
-#: includes/Charts/Elementor/GraphinaElementorControls.php:4098
-#: includes/Charts/Elementor/GraphinaElementorControls.php:4223
+#: includes/Charts/Elementor/GraphinaElementorControls.php:4077
+#: includes/Charts/Elementor/GraphinaElementorControls.php:4086
+#: includes/Charts/Elementor/GraphinaElementorControls.php:4211
 msgid "Select Date"
 msgstr ""
 
-#: includes/Charts/Elementor/GraphinaElementorControls.php:4096
+#: includes/Charts/Elementor/GraphinaElementorControls.php:4084
 msgid "To Date ( Y )"
 msgstr ""
 
-#: includes/Charts/Elementor/GraphinaElementorControls.php:4106
+#: includes/Charts/Elementor/GraphinaElementorControls.php:4094
 msgid "Chart Value list"
 msgstr ""
 
-#: includes/Charts/Elementor/GraphinaElementorControls.php:4163
+#: includes/Charts/Elementor/GraphinaElementorControls.php:4151
 msgid "Sub Data"
 msgstr ""
 
-#: includes/Charts/Elementor/GraphinaElementorControls.php:4221
+#: includes/Charts/Elementor/GraphinaElementorControls.php:4209
 msgid "Chart Date ( X ) Value"
 msgstr ""
 
-#: includes/Charts/Elementor/GraphinaElementorControls.php:4230
+#: includes/Charts/Elementor/GraphinaElementorControls.php:4218
 msgid "Open Value"
 msgstr ""
 
-#: includes/Charts/Elementor/GraphinaElementorControls.php:4242
+#: includes/Charts/Elementor/GraphinaElementorControls.php:4230
 msgid "High Value"
 msgstr ""
 
-#: includes/Charts/Elementor/GraphinaElementorControls.php:4254
+#: includes/Charts/Elementor/GraphinaElementorControls.php:4242
 msgid "Low Value"
 msgstr ""
 
-#: includes/Charts/Elementor/GraphinaElementorControls.php:4266
+#: includes/Charts/Elementor/GraphinaElementorControls.php:4254
 msgid "Close Value"
 msgstr ""
 
-#: includes/Charts/Elementor/GraphinaElementorControls.php:4514
+#: includes/Charts/Elementor/GraphinaElementorControls.php:4502
 msgid "Show Data Labels"
 msgstr ""
 
-#: includes/Charts/Elementor/GraphinaElementorControls.php:4534
+#: includes/Charts/Elementor/GraphinaElementorControls.php:4522
 #: includes/Charts/Elementor/GraphinaElementorControls.php:11406
 #: includes/Charts/Elementor/GraphinaElementorControls.php:11997
 msgid "Y-Axis Setting"
 msgstr ""
 
-#: includes/Charts/Elementor/GraphinaElementorControls.php:4543
+#: includes/Charts/Elementor/GraphinaElementorControls.php:4531
 msgid "Show Axis With Title"
 msgstr ""
 
-#: includes/Charts/Elementor/GraphinaElementorControls.php:4555
+#: includes/Charts/Elementor/GraphinaElementorControls.php:4543
 msgid "Yaxis Title"
 msgstr ""
 
-#: includes/Charts/Elementor/GraphinaElementorControls.php:4569
-#: includes/Charts/Elementor/GraphinaElementorControls.php:6827
-#: includes/Charts/Elementor/GraphinaElementorControls.php:7334
-#: includes/Charts/Elementor/GraphinaElementorControls.php:8031
+#: includes/Charts/Elementor/GraphinaElementorControls.php:4557
+#: includes/Charts/Elementor/GraphinaElementorControls.php:6815
+#: includes/Charts/Elementor/GraphinaElementorControls.php:7322
+#: includes/Charts/Elementor/GraphinaElementorControls.php:8019
 #: includes/Charts/Elementor/GraphinaElementorControls.php:10350
 #: includes/Charts/Elementor/GraphinaElementorControls.php:10854
 #: includes/Charts/Elementor/GraphinaElementorControls.php:12148
 msgid "Position"
 msgstr ""
 
-#: includes/Charts/Elementor/GraphinaElementorControls.php:4702
+#: includes/Charts/Elementor/GraphinaElementorControls.php:4690
 msgid "Drop Shadow Setting"
 msgstr ""
 
-#: includes/Charts/Elementor/GraphinaElementorControls.php:4711
-#: includes/Charts/Elementor/GraphinaElementorControls.php:4759
+#: includes/Charts/Elementor/GraphinaElementorControls.php:4699
+#: includes/Charts/Elementor/GraphinaElementorControls.php:4747
 msgid "Enabled"
 msgstr ""
 
-#: includes/Charts/Elementor/GraphinaElementorControls.php:4750
+#: includes/Charts/Elementor/GraphinaElementorControls.php:4738
 msgid "Tooltip Setting"
 msgstr ""
 
-#: includes/Charts/Elementor/GraphinaElementorControls.php:4848
+#: includes/Charts/Elementor/GraphinaElementorControls.php:4836
 msgid "Tooltip Enabled"
 msgstr ""
 
-#: includes/Charts/Elementor/GraphinaElementorControls.php:4961
+#: includes/Charts/Elementor/GraphinaElementorControls.php:4949
 msgid "Gradient Setting"
 msgstr ""
 
-#: includes/Charts/Elementor/GraphinaElementorControls.php:4977
+#: includes/Charts/Elementor/GraphinaElementorControls.php:4965
 msgid "Gradient Settings"
 msgstr ""
 
-#: includes/Charts/Elementor/GraphinaElementorControls.php:4992
-#: includes/Charts/Elementor/GraphinaElementorControls.php:8097
+#: includes/Charts/Elementor/GraphinaElementorControls.php:4980
+#: includes/Charts/Elementor/GraphinaElementorControls.php:8085
 #: includes/GraphinaFunction.php:657
 msgid "Vertical"
 msgstr ""
 
-#: includes/Charts/Elementor/GraphinaElementorControls.php:4993
-#: includes/Charts/Elementor/GraphinaElementorControls.php:6902
-#: includes/Charts/Elementor/GraphinaElementorControls.php:8096
+#: includes/Charts/Elementor/GraphinaElementorControls.php:4981
+#: includes/Charts/Elementor/GraphinaElementorControls.php:6890
+#: includes/Charts/Elementor/GraphinaElementorControls.php:8084
 #: includes/GraphinaFunction.php:656
 msgid "Horizontal"
 msgstr ""
 
-#: includes/Charts/Elementor/GraphinaElementorControls.php:5006
+#: includes/Charts/Elementor/GraphinaElementorControls.php:4994
 msgid "From Opacity"
 msgstr ""
 
-#: includes/Charts/Elementor/GraphinaElementorControls.php:5019
+#: includes/Charts/Elementor/GraphinaElementorControls.php:5007
 msgid "To Opacity"
 msgstr ""
 
-#: includes/Charts/Elementor/GraphinaElementorControls.php:5032
-#: includes/Charts/Elementor/GraphinaElementorControls.php:8077
+#: includes/Charts/Elementor/GraphinaElementorControls.php:5020
+#: includes/Charts/Elementor/GraphinaElementorControls.php:8065
 msgid "Inverse Color"
 msgstr ""
 
-#: includes/Charts/Elementor/GraphinaElementorControls.php:5080
+#: includes/Charts/Elementor/GraphinaElementorControls.php:5068
+#: includes/Charts/Elementor/GraphinaElementorControls.php:9754
 msgid "Size"
 msgstr ""
 
-#: includes/Charts/Elementor/GraphinaElementorControls.php:5085
+#: includes/Charts/Elementor/GraphinaElementorControls.php:5073
 msgid "Note : Marker are only show in Chart 1 "
 msgstr ""
 
-#: includes/Charts/Elementor/GraphinaElementorControls.php:5092
-#: includes/Charts/Elementor/GraphinaElementorControls.php:6123
+#: includes/Charts/Elementor/GraphinaElementorControls.php:5080
+#: includes/Charts/Elementor/GraphinaElementorControls.php:6111
 #: includes/Charts/Elementor/GraphinaElementorControls.php:12095
 msgid "Stroke Color"
 msgstr ""
 
-#: includes/Charts/Elementor/GraphinaElementorControls.php:5102
-#: includes/Charts/Elementor/GraphinaElementorControls.php:6131
+#: includes/Charts/Elementor/GraphinaElementorControls.php:5090
+#: includes/Charts/Elementor/GraphinaElementorControls.php:6119
 msgid "Stroke Width"
 msgstr ""
 
-#: includes/Charts/Elementor/GraphinaElementorControls.php:5113
+#: includes/Charts/Elementor/GraphinaElementorControls.php:5101
 msgid "Shape"
 msgstr ""
 
-#: includes/Charts/Elementor/GraphinaElementorControls.php:5121
+#: includes/Charts/Elementor/GraphinaElementorControls.php:5109
 msgid "Note: Hover will Not work in Square"
 msgstr ""
 
-#: includes/Charts/Elementor/GraphinaElementorControls.php:5139
-#: includes/GraphinaFunction.php:2597
+#: includes/Charts/Elementor/GraphinaElementorControls.php:5127
+#: includes/GraphinaFunction.php:2675
 msgid "VerticalLines"
 msgstr ""
 
-#: includes/Charts/Elementor/GraphinaElementorControls.php:5140
-#: includes/GraphinaFunction.php:2598
+#: includes/Charts/Elementor/GraphinaElementorControls.php:5128
+#: includes/GraphinaFunction.php:2676
 msgid "Squares"
 msgstr ""
 
-#: includes/Charts/Elementor/GraphinaElementorControls.php:5141
-#: includes/GraphinaFunction.php:2599
+#: includes/Charts/Elementor/GraphinaElementorControls.php:5129
+#: includes/GraphinaFunction.php:2677
 msgid "HorizontalLines"
 msgstr ""
 
-#: includes/Charts/Elementor/GraphinaElementorControls.php:5142
-#: includes/GraphinaFunction.php:2600
+#: includes/Charts/Elementor/GraphinaElementorControls.php:5130
+#: includes/GraphinaFunction.php:2678
 msgid "Circles"
 msgstr ""
 
-#: includes/Charts/Elementor/GraphinaElementorControls.php:5143
-#: includes/GraphinaFunction.php:2601
+#: includes/Charts/Elementor/GraphinaElementorControls.php:5131
+#: includes/GraphinaFunction.php:2679
 msgid "SlantedLines"
 msgstr ""
 
-#: includes/Charts/Elementor/GraphinaElementorControls.php:5196
-#: includes/Charts/Elementor/GraphinaElementorControls.php:5514
+#: includes/Charts/Elementor/GraphinaElementorControls.php:5184
+#: includes/Charts/Elementor/GraphinaElementorControls.php:5502
 #: includes/Charts/Elementor/GraphinaElementorControls.php:12046
+#: includes/GraphinaFunction.php:2612
 #: templates/apex-chart-options.php:27
 #: templates/google-chart-options.php:24
 msgid "Line"
 msgstr ""
 
-#: includes/Charts/Elementor/GraphinaElementorControls.php:5197
+#: includes/Charts/Elementor/GraphinaElementorControls.php:5185
+#: includes/GraphinaFunction.php:2613
 #: templates/apex-chart-options.php:25
 #: templates/google-chart-options.php:23
 msgid "Area"
 msgstr ""
 
-#: includes/Charts/Elementor/GraphinaElementorControls.php:5224
-#: includes/Charts/Elementor/GraphinaElementorControls.php:8148
+#: includes/Charts/Elementor/GraphinaElementorControls.php:5212
+#: includes/Charts/Elementor/GraphinaElementorControls.php:8136
 msgid "Fill Settings"
 msgstr ""
 
-#: includes/Charts/Elementor/GraphinaElementorControls.php:5230
+#: includes/Charts/Elementor/GraphinaElementorControls.php:5218
 msgid "Pattern will not eligible for the line chart. So if you select it, it will consider as Classic"
 msgstr ""
 
-#: includes/Charts/Elementor/GraphinaElementorControls.php:5284
-#: includes/GraphinaFunction.php:2576
+#: includes/Charts/Elementor/GraphinaElementorControls.php:5272
+#: includes/GraphinaFunction.php:2654
 msgid "Gradient"
 msgstr ""
 
-#: includes/Charts/Elementor/GraphinaElementorControls.php:5291
-#: includes/GraphinaFunction.php:2582
+#: includes/Charts/Elementor/GraphinaElementorControls.php:5279
+#: includes/GraphinaFunction.php:2660
 msgid "Pattern"
 msgstr ""
 
-#: includes/Charts/Elementor/GraphinaElementorControls.php:5458
-#: includes/Charts/Elementor/GraphinaElementorControls.php:5607
-#: includes/Charts/Elementor/GraphinaElementorControls.php:6059
-#: includes/Charts/Elementor/GraphinaElementorControls.php:6175
-#: includes/Charts/Elementor/GraphinaElementorControls.php:6585
+#: includes/Charts/Elementor/GraphinaElementorControls.php:5446
+#: includes/Charts/Elementor/GraphinaElementorControls.php:5595
+#: includes/Charts/Elementor/GraphinaElementorControls.php:6047
+#: includes/Charts/Elementor/GraphinaElementorControls.php:6163
+#: includes/Charts/Elementor/GraphinaElementorControls.php:6573
 msgid "Chart Setting"
 msgstr ""
 
-#: includes/Charts/Elementor/GraphinaElementorControls.php:5466
+#: includes/Charts/Elementor/GraphinaElementorControls.php:5454
 msgid "Chart Settings"
 msgstr ""
 
-#: includes/Charts/Elementor/GraphinaElementorControls.php:5482
+#: includes/Charts/Elementor/GraphinaElementorControls.php:5470
 msgid "Lebel Settings"
 msgstr ""
 
-#: includes/Charts/Elementor/GraphinaElementorControls.php:5491
+#: includes/Charts/Elementor/GraphinaElementorControls.php:5479
 msgid "Label Font Size (PX)"
 msgstr ""
 
-#: includes/Charts/Elementor/GraphinaElementorControls.php:5502
+#: includes/Charts/Elementor/GraphinaElementorControls.php:5490
 msgid "Arrow Settings"
 msgstr ""
 
-#: includes/Charts/Elementor/GraphinaElementorControls.php:5510
+#: includes/Charts/Elementor/GraphinaElementorControls.php:5498
 msgid "Arrow Style"
 msgstr ""
 
-#: includes/Charts/Elementor/GraphinaElementorControls.php:5513
+#: includes/Charts/Elementor/GraphinaElementorControls.php:5501
 msgid "Arrow"
 msgstr ""
 
-#: includes/Charts/Elementor/GraphinaElementorControls.php:5522
+#: includes/Charts/Elementor/GraphinaElementorControls.php:5510
 msgid "Arrow Width (PX)"
 msgstr ""
 
-#: includes/Charts/Elementor/GraphinaElementorControls.php:5531
+#: includes/Charts/Elementor/GraphinaElementorControls.php:5519
 msgid "Arrow Color"
 msgstr ""
 
-#: includes/Charts/Elementor/GraphinaElementorControls.php:5539
+#: includes/Charts/Elementor/GraphinaElementorControls.php:5527
 msgid "Arrow Radius"
 msgstr ""
 
-#: includes/Charts/Elementor/GraphinaElementorControls.php:5548
+#: includes/Charts/Elementor/GraphinaElementorControls.php:5536
 msgid "Additional Settings"
 msgstr ""
 
-#: includes/Charts/Elementor/GraphinaElementorControls.php:5557
+#: includes/Charts/Elementor/GraphinaElementorControls.php:5545
 msgid "Grid Lines"
 msgstr ""
 
-#: includes/Charts/Elementor/GraphinaElementorControls.php:5564
+#: includes/Charts/Elementor/GraphinaElementorControls.php:5552
 msgid "Grid Lines Show"
 msgstr ""
 
-#: includes/Charts/Elementor/GraphinaElementorControls.php:5574
+#: includes/Charts/Elementor/GraphinaElementorControls.php:5562
 msgid "Grid Stoke Size (PX)"
 msgstr ""
 
-#: includes/Charts/Elementor/GraphinaElementorControls.php:5586
+#: includes/Charts/Elementor/GraphinaElementorControls.php:5574
 msgid "Grid Stoke Color"
 msgstr ""
 
-#: includes/Charts/Elementor/GraphinaElementorControls.php:5613
+#: includes/Charts/Elementor/GraphinaElementorControls.php:5601
 msgid "Collapse Node"
 msgstr ""
 
-#: includes/Charts/Elementor/GraphinaElementorControls.php:5630
+#: includes/Charts/Elementor/GraphinaElementorControls.php:5618
 msgid "Node Settings"
 msgstr ""
 
-#: includes/Charts/Elementor/GraphinaElementorControls.php:5637
+#: includes/Charts/Elementor/GraphinaElementorControls.php:5625
 msgid "Node Size"
 msgstr ""
 
-#: includes/Charts/Elementor/GraphinaElementorControls.php:5641
+#: includes/Charts/Elementor/GraphinaElementorControls.php:5629
 msgid "small"
 msgstr ""
 
-#: includes/Charts/Elementor/GraphinaElementorControls.php:5642
+#: includes/Charts/Elementor/GraphinaElementorControls.php:5630
 msgid "medium"
 msgstr ""
 
-#: includes/Charts/Elementor/GraphinaElementorControls.php:5643
+#: includes/Charts/Elementor/GraphinaElementorControls.php:5631
 msgid "large"
 msgstr ""
 
-#: includes/Charts/Elementor/GraphinaElementorControls.php:5701
+#: includes/Charts/Elementor/GraphinaElementorControls.php:5689
 msgid "Node Shadow"
 msgstr ""
 
-#: includes/Charts/Elementor/GraphinaElementorControls.php:5751
+#: includes/Charts/Elementor/GraphinaElementorControls.php:5739
 msgid "Selected Node Settings"
 msgstr ""
 
-#: includes/Charts/Elementor/GraphinaElementorControls.php:5806
+#: includes/Charts/Elementor/GraphinaElementorControls.php:5794
 msgid "Connection"
 msgstr ""
 
-#: includes/Charts/Elementor/GraphinaElementorControls.php:5840
+#: includes/Charts/Elementor/GraphinaElementorControls.php:5828
 msgid "solid"
 msgstr ""
 
-#: includes/Charts/Elementor/GraphinaElementorControls.php:5841
+#: includes/Charts/Elementor/GraphinaElementorControls.php:5829
 msgid "dotted"
 msgstr ""
 
-#: includes/Charts/Elementor/GraphinaElementorControls.php:5842
+#: includes/Charts/Elementor/GraphinaElementorControls.php:5830
 msgid "dashed"
 msgstr ""
 
-#: includes/Charts/Elementor/GraphinaElementorControls.php:5843
+#: includes/Charts/Elementor/GraphinaElementorControls.php:5831
 msgid "groove"
 msgstr ""
 
-#: includes/Charts/Elementor/GraphinaElementorControls.php:5844
+#: includes/Charts/Elementor/GraphinaElementorControls.php:5832
 msgid "none"
 msgstr ""
 
-#: includes/Charts/Elementor/GraphinaElementorControls.php:5895
-#: includes/Charts/Elementor/GraphinaElementorControls.php:7047
+#: includes/Charts/Elementor/GraphinaElementorControls.php:5883
+#: includes/Charts/Elementor/GraphinaElementorControls.php:7035
 msgid "Label Settings"
 msgstr ""
 
-#: includes/Charts/Elementor/GraphinaElementorControls.php:5904
+#: includes/Charts/Elementor/GraphinaElementorControls.php:5892
 #: includes/Charts/Elementor/GraphinaElementorControls.php:11201
 #: includes/Charts/Elementor/GraphinaElementorControls.php:11456
 msgid "Label Show"
 msgstr ""
 
-#: includes/Charts/Elementor/GraphinaElementorControls.php:5907
-#: includes/Charts/Elementor/GraphinaElementorControls.php:6002
-#: includes/Charts/Elementor/GraphinaElementorControls.php:6019
+#: includes/Charts/Elementor/GraphinaElementorControls.php:5895
+#: includes/Charts/Elementor/GraphinaElementorControls.php:5990
+#: includes/Charts/Elementor/GraphinaElementorControls.php:6007
 msgid "no"
 msgstr ""
 
-#: includes/Charts/Elementor/GraphinaElementorControls.php:5914
+#: includes/Charts/Elementor/GraphinaElementorControls.php:5902
 msgid "Label Text"
 msgstr ""
 
-#: includes/Charts/Elementor/GraphinaElementorControls.php:5921
+#: includes/Charts/Elementor/GraphinaElementorControls.php:5909
 #: includes/Charts/Elementor/GraphinaElementorControls.php:9108
-#: includes/Charts/Elementor/GraphinaElementorControls.php:12587
+#: includes/Charts/Elementor/GraphinaElementorControls.php:12582
 msgid "Percentage"
 msgstr ""
 
-#: includes/Charts/Elementor/GraphinaElementorControls.php:5922
+#: includes/Charts/Elementor/GraphinaElementorControls.php:5910
 #: includes/Charts/Elementor/GraphinaElementorControls.php:9106
 #: includes/Charts/Elementor/GraphinaElementorControls.php:10216
 #: includes/Charts/Elementor/GraphinaElementorControls.php:10639
 msgid "Value And Percentage"
 msgstr ""
 
-#: includes/Charts/Elementor/GraphinaElementorControls.php:5934
+#: includes/Charts/Elementor/GraphinaElementorControls.php:5922
 #: includes/Charts/Elementor/GraphinaElementorControls.php:11224
 #: includes/Charts/Elementor/GraphinaElementorControls.php:11480
 msgid "Label Prefix/Postfix"
 msgstr ""
 
-#: includes/Charts/Elementor/GraphinaElementorControls.php:5948
-#: includes/Charts/Elementor/GraphinaElementorControls.php:6359
-#: includes/Charts/Elementor/GraphinaElementorControls.php:6521
+#: includes/Charts/Elementor/GraphinaElementorControls.php:5936
+#: includes/Charts/Elementor/GraphinaElementorControls.php:6347
+#: includes/Charts/Elementor/GraphinaElementorControls.php:6509
 #: includes/Charts/Elementor/GraphinaElementorControls.php:9273
 #: includes/Charts/Elementor/GraphinaElementorControls.php:11237
 #: includes/Charts/Elementor/GraphinaElementorControls.php:11493
 msgid "Prefix"
 msgstr ""
 
-#: includes/Charts/Elementor/GraphinaElementorControls.php:5960
-#: includes/Charts/Elementor/GraphinaElementorControls.php:6372
-#: includes/Charts/Elementor/GraphinaElementorControls.php:6533
+#: includes/Charts/Elementor/GraphinaElementorControls.php:5948
+#: includes/Charts/Elementor/GraphinaElementorControls.php:6360
+#: includes/Charts/Elementor/GraphinaElementorControls.php:6521
 #: includes/Charts/Elementor/GraphinaElementorControls.php:9285
 #: includes/Charts/Elementor/GraphinaElementorControls.php:11249
 #: includes/Charts/Elementor/GraphinaElementorControls.php:11505
 msgid "Postfix"
 msgstr ""
 
-#: includes/Charts/Elementor/GraphinaElementorControls.php:5972
+#: includes/Charts/Elementor/GraphinaElementorControls.php:5960
 msgid "Label Text Color"
 msgstr ""
 
-#: includes/Charts/Elementor/GraphinaElementorControls.php:5984
+#: includes/Charts/Elementor/GraphinaElementorControls.php:5972
 msgid "Label Text Fontsize"
 msgstr ""
 
-#: includes/Charts/Elementor/GraphinaElementorControls.php:5999
+#: includes/Charts/Elementor/GraphinaElementorControls.php:5987
 msgid "Reverse Categories"
 msgstr ""
 
-#: includes/Charts/Elementor/GraphinaElementorControls.php:6016
+#: includes/Charts/Elementor/GraphinaElementorControls.php:6004
 msgid "3D "
 msgstr ""
 
-#: includes/Charts/Elementor/GraphinaElementorControls.php:6028
+#: includes/Charts/Elementor/GraphinaElementorControls.php:6016
 msgid "Pieslice Border"
 msgstr ""
 
-#: includes/Charts/Elementor/GraphinaElementorControls.php:6038
+#: includes/Charts/Elementor/GraphinaElementorControls.php:6026
 msgid "pieHole"
 msgstr ""
 
-#: includes/Charts/Elementor/GraphinaElementorControls.php:6066
+#: includes/Charts/Elementor/GraphinaElementorControls.php:6054
 msgid "Chart Configuration"
 msgstr ""
 
-#: includes/Charts/Elementor/GraphinaElementorControls.php:6083
+#: includes/Charts/Elementor/GraphinaElementorControls.php:6071
 msgid "Show Region"
 msgstr ""
 
-#: includes/Charts/Elementor/GraphinaElementorControls.php:6087
+#: includes/Charts/Elementor/GraphinaElementorControls.php:6075
 msgid "Note: Enable it to highlight the region of the particular country, Click <strong><a href=\"https://developers.google.com/chart/interactive/docs/gallery/geochart#regions-mode-format\" target=\"_blank\">here</a></strong> for more information"
 msgstr ""
 
-#: includes/Charts/Elementor/GraphinaElementorControls.php:6094
+#: includes/Charts/Elementor/GraphinaElementorControls.php:6082
 msgid "label"
 msgstr ""
 
-#: includes/Charts/Elementor/GraphinaElementorControls.php:6096
+#: includes/Charts/Elementor/GraphinaElementorControls.php:6084
 msgid "Latitude"
 msgstr ""
 
-#: includes/Charts/Elementor/GraphinaElementorControls.php:6103
+#: includes/Charts/Elementor/GraphinaElementorControls.php:6091
 msgid "Region"
 msgstr ""
 
-#: includes/Charts/Elementor/GraphinaElementorControls.php:6141
+#: includes/Charts/Elementor/GraphinaElementorControls.php:6129
 msgid "Geo Default Color"
 msgstr ""
 
-#: includes/Charts/Elementor/GraphinaElementorControls.php:6149
+#: includes/Charts/Elementor/GraphinaElementorControls.php:6137
 msgid "Geo No Data Region"
 msgstr ""
 
-#: includes/Charts/Elementor/GraphinaElementorControls.php:6175
-#: includes/Charts/Elementor/GraphinaElementorControls.php:6585
+#: includes/Charts/Elementor/GraphinaElementorControls.php:6163
+#: includes/Charts/Elementor/GraphinaElementorControls.php:6573
 msgid "Table Setting"
 msgstr ""
 
-#: includes/Charts/Elementor/GraphinaElementorControls.php:6182
+#: includes/Charts/Elementor/GraphinaElementorControls.php:6170
 msgid "Start From"
 msgstr ""
 
-#: includes/Charts/Elementor/GraphinaElementorControls.php:6184
+#: includes/Charts/Elementor/GraphinaElementorControls.php:6172
 msgid "0"
 msgstr ""
 
-#: includes/Charts/Elementor/GraphinaElementorControls.php:6221
+#: includes/Charts/Elementor/GraphinaElementorControls.php:6209
 msgid "End At"
 msgstr ""
 
-#: includes/Charts/Elementor/GraphinaElementorControls.php:6223
-#: includes/Charts/Elementor/GraphinaElementorControls.php:6340
+#: includes/Charts/Elementor/GraphinaElementorControls.php:6211
+#: includes/Charts/Elementor/GraphinaElementorControls.php:6328
 msgid "1000"
 msgstr ""
 
-#: includes/Charts/Elementor/GraphinaElementorControls.php:6260
+#: includes/Charts/Elementor/GraphinaElementorControls.php:6248
 msgid "Operation"
 msgstr ""
 
-#: includes/Charts/Elementor/GraphinaElementorControls.php:6262
+#: includes/Charts/Elementor/GraphinaElementorControls.php:6250
 msgid "PLease select which operation needs to be performed on the selected column. If selected none, last value from selected column will be considered"
 msgstr ""
 
-#: includes/Charts/Elementor/GraphinaElementorControls.php:6299
+#: includes/Charts/Elementor/GraphinaElementorControls.php:6287
 msgid "Object Number"
 msgstr ""
 
-#: includes/Charts/Elementor/GraphinaElementorControls.php:6301
+#: includes/Charts/Elementor/GraphinaElementorControls.php:6289
 msgid "1"
 msgstr ""
 
-#: includes/Charts/Elementor/GraphinaElementorControls.php:6338
+#: includes/Charts/Elementor/GraphinaElementorControls.php:6326
 #: includes/Charts/Elementor/GraphinaElementorControls.php:9580
 #: includes/Charts/Elementor/GraphinaElementorControls.php:9621
 msgid "Speed"
 msgstr ""
 
-#: includes/Charts/Elementor/GraphinaElementorControls.php:6349
+#: includes/Charts/Elementor/GraphinaElementorControls.php:6337
 msgid "Decimal point"
 msgstr ""
 
-#: includes/Charts/Elementor/GraphinaElementorControls.php:6361
+#: includes/Charts/Elementor/GraphinaElementorControls.php:6349
 msgid "prefix"
 msgstr ""
 
-#: includes/Charts/Elementor/GraphinaElementorControls.php:6374
-#: includes/Charts/Elementor/GraphinaElementorControls.php:6388
+#: includes/Charts/Elementor/GraphinaElementorControls.php:6362
+#: includes/Charts/Elementor/GraphinaElementorControls.php:6376
 msgid "postfix"
 msgstr ""
 
-#: includes/Charts/Elementor/GraphinaElementorControls.php:6386
+#: includes/Charts/Elementor/GraphinaElementorControls.php:6374
 msgid "Counter Postfix"
 msgstr ""
 
-#: includes/Charts/Elementor/GraphinaElementorControls.php:6397
+#: includes/Charts/Elementor/GraphinaElementorControls.php:6385
 msgid "Number Separator"
 msgstr ""
 
-#: includes/Charts/Elementor/GraphinaElementorControls.php:6399
+#: includes/Charts/Elementor/GraphinaElementorControls.php:6387
 msgid "separator"
 msgstr ""
 
-#: includes/Charts/Elementor/GraphinaElementorControls.php:6407
+#: includes/Charts/Elementor/GraphinaElementorControls.php:6395
 msgid "Condition Based Color"
 msgstr ""
 
-#: includes/Charts/Elementor/GraphinaElementorControls.php:6416
+#: includes/Charts/Elementor/GraphinaElementorControls.php:6404
 msgid "Heading Condition Based Color"
 msgstr ""
 
-#: includes/Charts/Elementor/GraphinaElementorControls.php:6427
+#: includes/Charts/Elementor/GraphinaElementorControls.php:6415
 msgid "Subheading Condition Based Color"
 msgstr ""
 
-#: includes/Charts/Elementor/GraphinaElementorControls.php:6438
-#: includes/Charts/Elementor/GraphinaElementorControls.php:7740
+#: includes/Charts/Elementor/GraphinaElementorControls.php:6426
+#: includes/Charts/Elementor/GraphinaElementorControls.php:7728
 #: includes/Charts/Elementor/GraphinaElementorControls.php:10784
 #: includes/Charts/Elementor/GraphinaElementorControls.php:11819
 #: includes/Charts/Elementor/GraphinaElementorControls.php:12018
 msgid "Min Value"
 msgstr ""
 
-#: includes/Charts/Elementor/GraphinaElementorControls.php:6450
+#: includes/Charts/Elementor/GraphinaElementorControls.php:6438
 msgid "Min Value Color"
 msgstr ""
 
-#: includes/Charts/Elementor/GraphinaElementorControls.php:6462
-#: includes/Charts/Elementor/GraphinaElementorControls.php:7749
+#: includes/Charts/Elementor/GraphinaElementorControls.php:6450
+#: includes/Charts/Elementor/GraphinaElementorControls.php:7737
 #: includes/Charts/Elementor/GraphinaElementorControls.php:10799
 #: includes/Charts/Elementor/GraphinaElementorControls.php:11832
 #: includes/Charts/Elementor/GraphinaElementorControls.php:12031
 msgid "Max Value"
 msgstr ""
 
-#: includes/Charts/Elementor/GraphinaElementorControls.php:6474
+#: includes/Charts/Elementor/GraphinaElementorControls.php:6462
 msgid "Max Value Color"
 msgstr ""
 
-#: includes/Charts/Elementor/GraphinaElementorControls.php:6497
+#: includes/Charts/Elementor/GraphinaElementorControls.php:6485
 msgid "Number Formatter"
 msgstr ""
 
-#: includes/Charts/Elementor/GraphinaElementorControls.php:6508
+#: includes/Charts/Elementor/GraphinaElementorControls.php:6496
 msgid "Tooltip Prefix/Postfix"
 msgstr ""
 
-#: includes/Charts/Elementor/GraphinaElementorControls.php:6553
-#: includes/Charts/Elementor/GraphinaElementorControls.php:7548
+#: includes/Charts/Elementor/GraphinaElementorControls.php:6541
+#: includes/Charts/Elementor/GraphinaElementorControls.php:7536
 #: includes/Charts/Elementor/GraphinaElementorControls.php:8819
 #: includes/Charts/Elementor/GraphinaElementorControls.php:8870
 #: includes/Charts/Elementor/GraphinaElementorControls.php:8904
 msgid "Plot Settings"
 msgstr ""
 
-#: includes/Charts/Elementor/GraphinaElementorControls.php:6561
+#: includes/Charts/Elementor/GraphinaElementorControls.php:6549
 msgid "Matrix Radius"
 msgstr ""
 
-#: includes/Charts/Elementor/GraphinaElementorControls.php:6593
+#: includes/Charts/Elementor/GraphinaElementorControls.php:6581
 msgid "Chart-1 Type"
 msgstr ""
 
-#: includes/Charts/Elementor/GraphinaElementorControls.php:6608
-#: includes/Charts/Elementor/GraphinaElementorControls.php:6648
-#: includes/Charts/Elementor/GraphinaElementorControls.php:6704
-#: includes/Charts/Elementor/GraphinaElementorControls.php:6888
+#: includes/Charts/Elementor/GraphinaElementorControls.php:6596
+#: includes/Charts/Elementor/GraphinaElementorControls.php:6636
+#: includes/Charts/Elementor/GraphinaElementorControls.php:6692
+#: includes/Charts/Elementor/GraphinaElementorControls.php:6876
 msgid "Line Shape"
 msgstr ""
 
-#: includes/Charts/Elementor/GraphinaElementorControls.php:6617
+#: includes/Charts/Elementor/GraphinaElementorControls.php:6605
 msgid "X-axis Labels Color"
 msgstr ""
 
-#: includes/Charts/Elementor/GraphinaElementorControls.php:6625
+#: includes/Charts/Elementor/GraphinaElementorControls.php:6613
 msgid "Y-axis Labels Color"
 msgstr ""
 
-#: includes/Charts/Elementor/GraphinaElementorControls.php:6634
-#: includes/Charts/Elementor/GraphinaElementorControls.php:6691
-#: includes/Charts/Elementor/GraphinaElementorControls.php:6876
+#: includes/Charts/Elementor/GraphinaElementorControls.php:6622
+#: includes/Charts/Elementor/GraphinaElementorControls.php:6679
+#: includes/Charts/Elementor/GraphinaElementorControls.php:6864
 msgid "Area Shape"
 msgstr ""
 
-#: includes/Charts/Elementor/GraphinaElementorControls.php:6661
-#: includes/Charts/Elementor/GraphinaElementorControls.php:6717
-#: includes/Charts/Elementor/GraphinaElementorControls.php:6734
+#: includes/Charts/Elementor/GraphinaElementorControls.php:6649
+#: includes/Charts/Elementor/GraphinaElementorControls.php:6705
+#: includes/Charts/Elementor/GraphinaElementorControls.php:6722
 #: includes/Charts/Elementor/GraphinaElementorControls.php:9138
 msgid "Column Width"
 msgstr ""
 
-#: includes/Charts/Elementor/GraphinaElementorControls.php:6676
+#: includes/Charts/Elementor/GraphinaElementorControls.php:6664
 msgid "Chart-2 Type"
 msgstr ""
 
-#: includes/Charts/Elementor/GraphinaElementorControls.php:6759
+#: includes/Charts/Elementor/GraphinaElementorControls.php:6747
 msgid "Enable Semi-Circular Donut Chart?"
 msgstr ""
 
-#: includes/Charts/Elementor/GraphinaElementorControls.php:6769
-#: includes/Charts/Elementor/GraphinaElementorControls.php:7639
+#: includes/Charts/Elementor/GraphinaElementorControls.php:6757
+#: includes/Charts/Elementor/GraphinaElementorControls.php:7627
 msgid "Start Angle"
 msgstr ""
 
-#: includes/Charts/Elementor/GraphinaElementorControls.php:6780
-#: includes/Charts/Elementor/GraphinaElementorControls.php:7654
+#: includes/Charts/Elementor/GraphinaElementorControls.php:6768
+#: includes/Charts/Elementor/GraphinaElementorControls.php:7642
 msgid "End Angle"
 msgstr ""
 
-#: includes/Charts/Elementor/GraphinaElementorControls.php:6794
+#: includes/Charts/Elementor/GraphinaElementorControls.php:6782
 msgid "Chart Title Settings"
 msgstr ""
 
-#: includes/Charts/Elementor/GraphinaElementorControls.php:6802
+#: includes/Charts/Elementor/GraphinaElementorControls.php:6790
 msgid "Chart Title Show"
 msgstr ""
 
-#: includes/Charts/Elementor/GraphinaElementorControls.php:6813
-#: includes/Charts/Elementor/GraphinaElementorControls.php:6816
+#: includes/Charts/Elementor/GraphinaElementorControls.php:6801
+#: includes/Charts/Elementor/GraphinaElementorControls.php:6804
 msgid "Chart Title"
 msgstr ""
 
-#: includes/Charts/Elementor/GraphinaElementorControls.php:6830
+#: includes/Charts/Elementor/GraphinaElementorControls.php:6818
 #: includes/Charts/Elementor/GraphinaElementorControls.php:9596
 #: includes/GraphinaFunction.php:632
 msgid "In"
 msgstr ""
 
-#: includes/Charts/Elementor/GraphinaElementorControls.php:6831
+#: includes/Charts/Elementor/GraphinaElementorControls.php:6819
 #: includes/Charts/Elementor/GraphinaElementorControls.php:9597
 #: includes/GraphinaFunction.php:633
 msgid "Out"
 msgstr ""
 
-#: includes/Charts/Elementor/GraphinaElementorControls.php:6843
+#: includes/Charts/Elementor/GraphinaElementorControls.php:6831
 msgid "Title Font Color"
 msgstr ""
 
-#: includes/Charts/Elementor/GraphinaElementorControls.php:6855
+#: includes/Charts/Elementor/GraphinaElementorControls.php:6843
 msgid "Title Font Size"
 msgstr ""
 
-#: includes/Charts/Elementor/GraphinaElementorControls.php:6917
+#: includes/Charts/Elementor/GraphinaElementorControls.php:6905
 msgid "Change Chart Type "
 msgstr ""
 
-#: includes/Charts/Elementor/GraphinaElementorControls.php:6932
+#: includes/Charts/Elementor/GraphinaElementorControls.php:6920
 msgid "Toolbar"
 msgstr ""
 
-#: includes/Charts/Elementor/GraphinaElementorControls.php:6944
+#: includes/Charts/Elementor/GraphinaElementorControls.php:6932
 msgid "Download Option"
 msgstr ""
 
-#: includes/Charts/Elementor/GraphinaElementorControls.php:6956
-#: includes/Charts/Elementor/GraphinaElementorControls.php:7190
+#: includes/Charts/Elementor/GraphinaElementorControls.php:6944
+#: includes/Charts/Elementor/GraphinaElementorControls.php:7178
 #: includes/Charts/Elementor/GraphinaElementorControls.php:10917
 #: includes/Charts/Elementor/GraphinaElementorControls.php:12173
 msgid "Offset-Y"
 msgstr ""
 
-#: includes/Charts/Elementor/GraphinaElementorControls.php:6969
-#: includes/Charts/Elementor/GraphinaElementorControls.php:7203
+#: includes/Charts/Elementor/GraphinaElementorControls.php:6957
+#: includes/Charts/Elementor/GraphinaElementorControls.php:7191
 #: includes/Charts/Elementor/GraphinaElementorControls.php:10905
 #: includes/Charts/Elementor/GraphinaElementorControls.php:12161
 msgid "Offset-X"
 msgstr ""
 
-#: includes/Charts/Elementor/GraphinaElementorControls.php:6981
+#: includes/Charts/Elementor/GraphinaElementorControls.php:6969
 msgid "Export Filename"
 msgstr ""
 
-#: includes/Charts/Elementor/GraphinaElementorControls.php:6998
+#: includes/Charts/Elementor/GraphinaElementorControls.php:6986
 msgid "No Data Text"
 msgstr ""
 
-#: includes/Charts/Elementor/GraphinaElementorControls.php:7000
+#: includes/Charts/Elementor/GraphinaElementorControls.php:6988
+#: static/gcfe-i18n.php:29
 msgid "Loading..."
 msgstr ""
 
-#: includes/Charts/Elementor/GraphinaElementorControls.php:7002
+#: includes/Charts/Elementor/GraphinaElementorControls.php:6990
 msgid "When chart is empty, this text appears"
 msgstr ""
 
-#: includes/Charts/Elementor/GraphinaElementorControls.php:7014
+#: includes/Charts/Elementor/GraphinaElementorControls.php:7002
 msgid "Stacked "
 msgstr ""
 
-#: includes/Charts/Elementor/GraphinaElementorControls.php:7026
+#: includes/Charts/Elementor/GraphinaElementorControls.php:7014
 msgid "Stacked Show "
 msgstr ""
 
-#: includes/Charts/Elementor/GraphinaElementorControls.php:7068
+#: includes/Charts/Elementor/GraphinaElementorControls.php:7056
 msgid "Show Text"
 msgstr ""
 
-#: includes/Charts/Elementor/GraphinaElementorControls.php:7083
+#: includes/Charts/Elementor/GraphinaElementorControls.php:7071
 msgid "Show Center Label"
 msgstr ""
 
-#: includes/Charts/Elementor/GraphinaElementorControls.php:7098
+#: includes/Charts/Elementor/GraphinaElementorControls.php:7086
 msgid "Show Total Label"
 msgstr ""
 
-#: includes/Charts/Elementor/GraphinaElementorControls.php:7111
+#: includes/Charts/Elementor/GraphinaElementorControls.php:7099
 msgid "Show Total Value"
 msgstr ""
 
-#: includes/Charts/Elementor/GraphinaElementorControls.php:7133
+#: includes/Charts/Elementor/GraphinaElementorControls.php:7121
 msgid "Show Always Total"
 msgstr ""
 
-#: includes/Charts/Elementor/GraphinaElementorControls.php:7138
+#: includes/Charts/Elementor/GraphinaElementorControls.php:7126
 msgid "Note: Always show the total label and do not remove it even when  clicks/hovers over the slices."
 msgstr ""
 
-#: includes/Charts/Elementor/GraphinaElementorControls.php:7145
+#: includes/Charts/Elementor/GraphinaElementorControls.php:7133
 msgid "Total Text"
 msgstr ""
 
-#: includes/Charts/Elementor/GraphinaElementorControls.php:7158
-#: includes/Charts/Elementor/GraphinaElementorControls.php:7257
+#: includes/Charts/Elementor/GraphinaElementorControls.php:7146
+#: includes/Charts/Elementor/GraphinaElementorControls.php:7245
 #: includes/Charts/Elementor/GraphinaElementorControls.php:11069
 #: includes/Charts/Elementor/GraphinaElementorControls.php:11945
 msgid "Format Number to String"
 msgstr ""
 
-#: includes/Charts/Elementor/GraphinaElementorControls.php:7166
-#: includes/Charts/Elementor/GraphinaElementorControls.php:7266
+#: includes/Charts/Elementor/GraphinaElementorControls.php:7154
+#: includes/Charts/Elementor/GraphinaElementorControls.php:7254
 #: includes/Charts/Elementor/GraphinaElementorControls.php:11079
-#: includes/Charts/Elementor/GraphinaElementorControls.php:12295
+#: includes/Charts/Elementor/GraphinaElementorControls.php:12323
 msgid "Note: Convert 1,000  => 1k and 1,000,000 => 1m and if Format Number(Commas) is enable this will not work"
 msgstr ""
 
-#: includes/Charts/Elementor/GraphinaElementorControls.php:7173
-#: includes/Charts/Elementor/GraphinaElementorControls.php:7273
+#: includes/Charts/Elementor/GraphinaElementorControls.php:7161
+#: includes/Charts/Elementor/GraphinaElementorControls.php:7261
 #: includes/Charts/Elementor/GraphinaElementorControls.php:11086
 #: includes/Charts/Elementor/GraphinaElementorControls.php:11961
-#: includes/Charts/Elementor/GraphinaElementorControls.php:12302
+#: includes/Charts/Elementor/GraphinaElementorControls.php:12284
 msgid "Number of Decimal Want"
 msgstr ""
 
-#: includes/Charts/Elementor/GraphinaElementorControls.php:7218
+#: includes/Charts/Elementor/GraphinaElementorControls.php:7206
 msgid "Format(tooltip/label)"
 msgstr ""
 
-#: includes/Charts/Elementor/GraphinaElementorControls.php:7229
+#: includes/Charts/Elementor/GraphinaElementorControls.php:7217
 msgid "Show label"
 msgstr ""
 
-#: includes/Charts/Elementor/GraphinaElementorControls.php:7243
+#: includes/Charts/Elementor/GraphinaElementorControls.php:7231
 msgid "Show Value"
 msgstr ""
 
-#: includes/Charts/Elementor/GraphinaElementorControls.php:7287
-#: includes/Charts/Elementor/GraphinaElementorControls.php:7489
+#: includes/Charts/Elementor/GraphinaElementorControls.php:7275
+#: includes/Charts/Elementor/GraphinaElementorControls.php:7477
 #: includes/Charts/Elementor/GraphinaElementorControls.php:11899
 msgid "Label Prefix"
 msgstr ""
 
-#: includes/Charts/Elementor/GraphinaElementorControls.php:7301
-#: includes/Charts/Elementor/GraphinaElementorControls.php:7501
+#: includes/Charts/Elementor/GraphinaElementorControls.php:7289
+#: includes/Charts/Elementor/GraphinaElementorControls.php:7489
 #: includes/Charts/Elementor/GraphinaElementorControls.php:11914
 msgid "Label Postfix"
 msgstr ""
 
-#: includes/Charts/Elementor/GraphinaElementorControls.php:7345
+#: includes/Charts/Elementor/GraphinaElementorControls.php:7333
 msgid "Orientation Position"
 msgstr ""
 
-#: includes/Charts/Elementor/GraphinaElementorControls.php:7385
+#: includes/Charts/Elementor/GraphinaElementorControls.php:7373
 msgid "Show Background"
 msgstr ""
 
-#: includes/Charts/Elementor/GraphinaElementorControls.php:7428
+#: includes/Charts/Elementor/GraphinaElementorControls.php:7416
 msgid "Border Width"
 msgstr ""
 
-#: includes/Charts/Elementor/GraphinaElementorControls.php:7440
+#: includes/Charts/Elementor/GraphinaElementorControls.php:7428
 msgid "Border radius"
 msgstr ""
 
-#: includes/Charts/Elementor/GraphinaElementorControls.php:7450
+#: includes/Charts/Elementor/GraphinaElementorControls.php:7438
 msgid "Border Color"
 msgstr ""
 
-#: includes/Charts/Elementor/GraphinaElementorControls.php:7462
+#: includes/Charts/Elementor/GraphinaElementorControls.php:7450
 #: includes/Charts/Elementor/GraphinaElementorControls.php:11884
 msgid "Format Number(Commas)"
 msgstr ""
 
-#: includes/Charts/Elementor/GraphinaElementorControls.php:7473
+#: includes/Charts/Elementor/GraphinaElementorControls.php:7461
 #: includes/Charts/Elementor/GraphinaElementorControls.php:11052
 #: includes/Charts/Elementor/GraphinaElementorControls.php:11929
-#: includes/Charts/Elementor/GraphinaElementorControls.php:12335
+#: includes/Charts/Elementor/GraphinaElementorControls.php:12331
 msgid "Decimals In Float"
 msgstr ""
 
-#: includes/Charts/Elementor/GraphinaElementorControls.php:7556
+#: includes/Charts/Elementor/GraphinaElementorControls.php:7544
 msgid "Linecap Stroke Rounded"
 msgstr ""
 
-#: includes/Charts/Elementor/GraphinaElementorControls.php:7567
+#: includes/Charts/Elementor/GraphinaElementorControls.php:7555
 msgid "Line width (%)"
 msgstr ""
 
-#: includes/Charts/Elementor/GraphinaElementorControls.php:7590
+#: includes/Charts/Elementor/GraphinaElementorControls.php:7578
 msgid "Chart Track Background Color"
 msgstr ""
 
-#: includes/Charts/Elementor/GraphinaElementorControls.php:7625
+#: includes/Charts/Elementor/GraphinaElementorControls.php:7613
 msgid "Radial Shape"
 msgstr ""
 
-#: includes/Charts/Elementor/GraphinaElementorControls.php:7630
+#: includes/Charts/Elementor/GraphinaElementorControls.php:7618
 msgid "Semi Circle"
 msgstr ""
 
-#: includes/Charts/Elementor/GraphinaElementorControls.php:7631
+#: includes/Charts/Elementor/GraphinaElementorControls.php:7619
 #: includes/Charts/Elementor/GraphinaElementorControls.php:9610
 msgid "Custom"
 msgstr ""
 
-#: includes/Charts/Elementor/GraphinaElementorControls.php:7698
+#: includes/Charts/Elementor/GraphinaElementorControls.php:7686
 msgid "Value Prefix"
 msgstr ""
 
-#: includes/Charts/Elementor/GraphinaElementorControls.php:7710
+#: includes/Charts/Elementor/GraphinaElementorControls.php:7698
 msgid "Value Postfix"
 msgstr ""
 
-#: includes/Charts/Elementor/GraphinaElementorControls.php:7722
+#: includes/Charts/Elementor/GraphinaElementorControls.php:7710
 msgid "Decimal in float"
 msgstr ""
 
-#: includes/Charts/Elementor/GraphinaElementorControls.php:7766
+#: includes/Charts/Elementor/GraphinaElementorControls.php:7754
 msgid "Ticks Color From To"
 msgstr ""
 
-#: includes/Charts/Elementor/GraphinaElementorControls.php:7774
+#: includes/Charts/Elementor/GraphinaElementorControls.php:7762
 msgid "Green From"
 msgstr ""
 
-#: includes/Charts/Elementor/GraphinaElementorControls.php:7783
+#: includes/Charts/Elementor/GraphinaElementorControls.php:7771
 msgid "Green To"
 msgstr ""
 
-#: includes/Charts/Elementor/GraphinaElementorControls.php:7792
+#: includes/Charts/Elementor/GraphinaElementorControls.php:7780
 msgid "Yellow From"
 msgstr ""
 
-#: includes/Charts/Elementor/GraphinaElementorControls.php:7801
+#: includes/Charts/Elementor/GraphinaElementorControls.php:7789
 msgid "Yellow To"
 msgstr ""
 
-#: includes/Charts/Elementor/GraphinaElementorControls.php:7811
+#: includes/Charts/Elementor/GraphinaElementorControls.php:7799
 msgid "Red From"
 msgstr ""
 
-#: includes/Charts/Elementor/GraphinaElementorControls.php:7820
+#: includes/Charts/Elementor/GraphinaElementorControls.php:7808
 msgid "Red To"
 msgstr ""
 
-#: includes/Charts/Elementor/GraphinaElementorControls.php:7836
+#: includes/Charts/Elementor/GraphinaElementorControls.php:7824
 msgid "Ticks Color"
 msgstr ""
 
-#: includes/Charts/Elementor/GraphinaElementorControls.php:7844
+#: includes/Charts/Elementor/GraphinaElementorControls.php:7832
 msgid "Green Color"
 msgstr ""
 
-#: includes/Charts/Elementor/GraphinaElementorControls.php:7853
+#: includes/Charts/Elementor/GraphinaElementorControls.php:7841
 msgid "Yellow Color"
 msgstr ""
 
-#: includes/Charts/Elementor/GraphinaElementorControls.php:7862
+#: includes/Charts/Elementor/GraphinaElementorControls.php:7850
 msgid "Red Color"
 msgstr ""
 
-#: includes/Charts/Elementor/GraphinaElementorControls.php:7878
+#: includes/Charts/Elementor/GraphinaElementorControls.php:7866
 msgid "Ticks Settings"
 msgstr ""
 
-#: includes/Charts/Elementor/GraphinaElementorControls.php:7886
+#: includes/Charts/Elementor/GraphinaElementorControls.php:7874
 msgid "Minor Ticks"
 msgstr ""
 
-#: includes/Charts/Elementor/GraphinaElementorControls.php:7896
+#: includes/Charts/Elementor/GraphinaElementorControls.php:7884
 msgid "Major Ticks Show"
 msgstr ""
 
-#: includes/Charts/Elementor/GraphinaElementorControls.php:7909
+#: includes/Charts/Elementor/GraphinaElementorControls.php:7897
 msgid "Major Ticks"
 msgstr ""
 
-#: includes/Charts/Elementor/GraphinaElementorControls.php:7921
+#: includes/Charts/Elementor/GraphinaElementorControls.php:7909
 msgid "Ticks"
 msgstr ""
 
-#: includes/Charts/Elementor/GraphinaElementorControls.php:7947
+#: includes/Charts/Elementor/GraphinaElementorControls.php:7935
 msgid "Needle Color"
 msgstr ""
 
-#: includes/Charts/Elementor/GraphinaElementorControls.php:7956
+#: includes/Charts/Elementor/GraphinaElementorControls.php:7944
 msgid "Round Ball Color"
 msgstr ""
 
-#: includes/Charts/Elementor/GraphinaElementorControls.php:7965
+#: includes/Charts/Elementor/GraphinaElementorControls.php:7953
 msgid "Inner Circle Color"
 msgstr ""
 
-#: includes/Charts/Elementor/GraphinaElementorControls.php:7974
+#: includes/Charts/Elementor/GraphinaElementorControls.php:7962
 msgid "Outer Circle Color"
 msgstr ""
 
-#: includes/Charts/Elementor/GraphinaElementorControls.php:8009
+#: includes/Charts/Elementor/GraphinaElementorControls.php:7997
 msgid "Plot Option Settings ( Column )"
 msgstr ""
 
-#: includes/Charts/Elementor/GraphinaElementorControls.php:8092
+#: includes/Charts/Elementor/GraphinaElementorControls.php:8080
 msgid "Gradient Type"
 msgstr ""
 
-#: includes/Charts/Elementor/GraphinaElementorControls.php:8098
+#: includes/Charts/Elementor/GraphinaElementorControls.php:8086
 msgid "Diagonal1"
 msgstr ""
 
-#: includes/Charts/Elementor/GraphinaElementorControls.php:8099
+#: includes/Charts/Elementor/GraphinaElementorControls.php:8087
 msgid "Diagonal2"
 msgstr ""
 
-#: includes/Charts/Elementor/GraphinaElementorControls.php:8156
+#: includes/Charts/Elementor/GraphinaElementorControls.php:8144
 msgid "Color Show"
 msgstr ""
 
-#: includes/Charts/Elementor/GraphinaElementorControls.php:8179
+#: includes/Charts/Elementor/GraphinaElementorControls.php:8167
 msgid "Upward Color"
 msgstr ""
 
-#: includes/Charts/Elementor/GraphinaElementorControls.php:8188
+#: includes/Charts/Elementor/GraphinaElementorControls.php:8176
 msgid "Downward Color"
 msgstr ""
 
-#: includes/Charts/Elementor/GraphinaElementorControls.php:8216
+#: includes/Charts/Elementor/GraphinaElementorControls.php:8204
 msgid "Selection Setting"
 msgstr ""
 
-#: includes/Charts/Elementor/GraphinaElementorControls.php:8223
+#: includes/Charts/Elementor/GraphinaElementorControls.php:8211
 msgid "Xaxis"
 msgstr ""
 
-#: includes/Charts/Elementor/GraphinaElementorControls.php:8225
+#: includes/Charts/Elementor/GraphinaElementorControls.php:8213
 #: includes/Charts/Elementor/GraphinaElementorControls.php:8671
 msgid "Enable"
 msgstr ""
 
-#: includes/Charts/Elementor/GraphinaElementorControls.php:8234
+#: includes/Charts/Elementor/GraphinaElementorControls.php:8222
 msgid "Min"
 msgstr ""
 
-#: includes/Charts/Elementor/GraphinaElementorControls.php:8248
+#: includes/Charts/Elementor/GraphinaElementorControls.php:8236
 msgid "Max"
 msgstr ""
 
-#: includes/Charts/Elementor/GraphinaElementorControls.php:8262
+#: includes/Charts/Elementor/GraphinaElementorControls.php:8250
 msgid "Fill"
 msgstr ""
 
-#: includes/Charts/Elementor/GraphinaElementorControls.php:8291
+#: includes/Charts/Elementor/GraphinaElementorControls.php:8279
 msgid "Stroke"
 msgstr ""
 
-#: includes/Charts/Elementor/GraphinaElementorControls.php:8310
+#: includes/Charts/Elementor/GraphinaElementorControls.php:8298
 msgid "Dash"
 msgstr ""
 
-#: includes/Charts/Elementor/GraphinaElementorControls.php:8353
+#: includes/Charts/Elementor/GraphinaElementorControls.php:8341
 msgid "Chart-1 "
 msgstr ""
 
-#: includes/Charts/Elementor/GraphinaElementorControls.php:8353
+#: includes/Charts/Elementor/GraphinaElementorControls.php:8341
 msgid "Chart-2"
 msgstr ""
 
-#: includes/Charts/Elementor/GraphinaElementorControls.php:8360
+#: includes/Charts/Elementor/GraphinaElementorControls.php:8348
 msgid " Settings"
 msgstr ""
 
-#: includes/Charts/Elementor/GraphinaElementorControls.php:8449
-#: includes/Charts/Elementor/GraphinaElementorControls.php:8466
+#: includes/Charts/Elementor/GraphinaElementorControls.php:8437
+#: includes/Charts/Elementor/GraphinaElementorControls.php:8454
 msgid "Notice:This will not work in column chart"
 msgstr ""
 
-#: includes/Charts/Elementor/GraphinaElementorControls.php:8500
+#: includes/Charts/Elementor/GraphinaElementorControls.php:8488
+#: includes/GraphinaFunction.php:2630
 msgid "Butt"
 msgstr ""
 
-#: includes/Charts/Elementor/GraphinaElementorControls.php:8501
+#: includes/Charts/Elementor/GraphinaElementorControls.php:8489
+#: includes/GraphinaFunction.php:2631
 msgid "Round"
 msgstr ""
 
-#: includes/Charts/Elementor/GraphinaElementorControls.php:8532
+#: includes/Charts/Elementor/GraphinaElementorControls.php:8520
 msgid "Show Card"
 msgstr ""
 
-#: includes/Charts/Elementor/GraphinaElementorControls.php:8543
+#: includes/Charts/Elementor/GraphinaElementorControls.php:8531
 msgid "Responsive"
 msgstr ""
 
-#: includes/Charts/Elementor/GraphinaElementorControls.php:8554
+#: includes/Charts/Elementor/GraphinaElementorControls.php:8542
 msgid "Search"
 msgstr ""
 
-#: includes/Charts/Elementor/GraphinaElementorControls.php:8565
+#: includes/Charts/Elementor/GraphinaElementorControls.php:8553
 #: includes/Charts/Elementor/GraphinaElementorControls.php:8691
 msgid "Pagination Enabled"
 msgstr ""
 
-#: includes/Charts/Elementor/GraphinaElementorControls.php:8576
+#: includes/Charts/Elementor/GraphinaElementorControls.php:8564
 #: includes/Charts/Elementor/GraphinaElementorControls.php:8716
 msgid "Pagination Type"
 msgstr ""
 
-#: includes/Charts/Elementor/GraphinaElementorControls.php:8580
+#: includes/Charts/Elementor/GraphinaElementorControls.php:8568
 #: includes/Charts/Elementor/GraphinaElementorControls.php:8720
 msgid "Numbers"
 msgstr ""
 
-#: includes/Charts/Elementor/GraphinaElementorControls.php:8581
+#: includes/Charts/Elementor/GraphinaElementorControls.php:8569
 #: includes/Charts/Elementor/GraphinaElementorControls.php:8721
 msgid "Simple"
 msgstr ""
 
-#: includes/Charts/Elementor/GraphinaElementorControls.php:8582
+#: includes/Charts/Elementor/GraphinaElementorControls.php:8570
 #: includes/Charts/Elementor/GraphinaElementorControls.php:8722
 msgid "Simple Numbers"
 msgstr ""
 
-#: includes/Charts/Elementor/GraphinaElementorControls.php:8583
+#: includes/Charts/Elementor/GraphinaElementorControls.php:8571
 #: includes/Charts/Elementor/GraphinaElementorControls.php:8725
 msgid "First Last Numbers"
 msgstr ""
 
-#: includes/Charts/Elementor/GraphinaElementorControls.php:8594
+#: includes/Charts/Elementor/GraphinaElementorControls.php:8582
 msgid "Rows Per Page"
 msgstr ""
 
-#: includes/Charts/Elementor/GraphinaElementorControls.php:8607
+#: includes/Charts/Elementor/GraphinaElementorControls.php:8595
 msgid "Page Range"
 msgstr ""
 
-#: includes/Charts/Elementor/GraphinaElementorControls.php:8621
+#: includes/Charts/Elementor/GraphinaElementorControls.php:8609
 #: includes/Charts/Elementor/GraphinaElementorControls.php:8702
 msgid "Pagination Info"
 msgstr ""
 
-#: includes/Charts/Elementor/GraphinaElementorControls.php:8635
+#: includes/Charts/Elementor/GraphinaElementorControls.php:8623
 msgid "Use Cache For Development"
 msgstr ""
 
-#: includes/Charts/Elementor/GraphinaElementorControls.php:8639
+#: includes/Charts/Elementor/GraphinaElementorControls.php:8627
 msgid "It's create temporary cache of your file data and load from their for one hour in editor mode. It doesn't effect preview or live website"
 msgstr ""
 
-#: includes/Charts/Elementor/GraphinaElementorControls.php:8659
+#: includes/Charts/Elementor/GraphinaElementorControls.php:8647
 msgid "Footer Enable"
+msgstr ""
+
+#: includes/Charts/Elementor/GraphinaElementorControls.php:8658
+msgid "Header Enable"
 msgstr ""
 
 #: includes/Charts/Elementor/GraphinaElementorControls.php:8669
@@ -3294,22 +3292,22 @@ msgid "Column Visibilty"
 msgstr ""
 
 #: includes/Charts/Elementor/GraphinaElementorControls.php:8791
-#: includes/GraphinaFunction.php:1347
+#: includes/GraphinaFunction.php:1421
 msgid "Copy"
 msgstr ""
 
 #: includes/Charts/Elementor/GraphinaElementorControls.php:8792
-#: includes/GraphinaFunction.php:1350
+#: includes/GraphinaFunction.php:1424
 msgid "Excel"
 msgstr ""
 
 #: includes/Charts/Elementor/GraphinaElementorControls.php:8793
-#: includes/GraphinaFunction.php:1348
+#: includes/GraphinaFunction.php:1422
 msgid "PDF"
 msgstr ""
 
 #: includes/Charts/Elementor/GraphinaElementorControls.php:8794
-#: includes/GraphinaFunction.php:1349
+#: includes/GraphinaFunction.php:1423
 msgid "Print"
 msgstr ""
 
@@ -3463,10 +3461,6 @@ msgstr ""
 
 #: includes/Charts/Elementor/GraphinaElementorControls.php:9455
 msgid "Chart Background Color"
-msgstr ""
-
-#: includes/Charts/Elementor/GraphinaElementorControls.php:9467
-msgid "Height (px)"
 msgstr ""
 
 #: includes/Charts/Elementor/GraphinaElementorControls.php:9516
@@ -3725,7 +3719,7 @@ msgstr ""
 
 #: includes/Charts/Elementor/GraphinaElementorControls.php:10946
 #: includes/Charts/Elementor/GraphinaElementorControls.php:11856
-#: includes/Charts/Elementor/GraphinaElementorControls.php:12429
+#: includes/Charts/Elementor/GraphinaElementorControls.php:12424
 msgid "Tick Amount"
 msgstr ""
 
@@ -3752,19 +3746,19 @@ msgstr ""
 
 #: includes/Charts/Elementor/GraphinaElementorControls.php:11020
 #: includes/Charts/Elementor/GraphinaElementorControls.php:12253
-#: includes/Charts/Elementor/GraphinaElementorControls.php:12459
+#: includes/Charts/Elementor/GraphinaElementorControls.php:12454
 msgid "Labels Prefix"
 msgstr ""
 
 #: includes/Charts/Elementor/GraphinaElementorControls.php:11035
 #: includes/Charts/Elementor/GraphinaElementorControls.php:12268
-#: includes/Charts/Elementor/GraphinaElementorControls.php:12474
+#: includes/Charts/Elementor/GraphinaElementorControls.php:12469
 msgid "Labels Postfix"
 msgstr ""
 
 #: includes/Charts/Elementor/GraphinaElementorControls.php:11101
-#: includes/Charts/Elementor/GraphinaElementorControls.php:12490
-#: includes/Charts/Elementor/GraphinaElementorControls.php:12547
+#: includes/Charts/Elementor/GraphinaElementorControls.php:12485
+#: includes/Charts/Elementor/GraphinaElementorControls.php:12542
 msgid "Format Number"
 msgstr ""
 
@@ -3773,7 +3767,7 @@ msgid "Enabled Labels Prefix/Postfix "
 msgstr ""
 
 #: includes/Charts/Elementor/GraphinaElementorControls.php:11117
-#: includes/Charts/Elementor/GraphinaElementorControls.php:12350
+#: includes/Charts/Elementor/GraphinaElementorControls.php:12345
 msgid "Enable Title"
 msgstr ""
 
@@ -3979,103 +3973,103 @@ msgstr ""
 msgid "Chart-2 Tick Amount"
 msgstr ""
 
-#: includes/Charts/Elementor/GraphinaElementorControls.php:12284
-msgid "Format Number to Strings"
-msgstr ""
-
-#: includes/Charts/Elementor/GraphinaElementorControls.php:12318
+#: includes/Charts/Elementor/GraphinaElementorControls.php:12300
 msgid "Enable Number Formatting"
 msgstr ""
 
-#: includes/Charts/Elementor/GraphinaElementorControls.php:12361
+#: includes/Charts/Elementor/GraphinaElementorControls.php:12315
+msgid "Format Number to Strings"
+msgstr ""
+
+#: includes/Charts/Elementor/GraphinaElementorControls.php:12356
 msgid "Y-axis Title"
 msgstr ""
 
-#: includes/Charts/Elementor/GraphinaElementorControls.php:12399
-#: includes/Charts/Elementor/GraphinaElementorControls.php:12414
+#: includes/Charts/Elementor/GraphinaElementorControls.php:12394
+#: includes/Charts/Elementor/GraphinaElementorControls.php:12409
 msgid "Enable Opposite Title"
 msgstr ""
 
-#: includes/Charts/Elementor/GraphinaElementorControls.php:12444
+#: includes/Charts/Elementor/GraphinaElementorControls.php:12439
 msgid "Show Label"
 msgstr ""
 
-#: includes/Charts/Elementor/GraphinaElementorControls.php:12506
+#: includes/Charts/Elementor/GraphinaElementorControls.php:12501
 msgid "Max Width"
 msgstr ""
 
-#: includes/Charts/Elementor/GraphinaElementorControls.php:12517
+#: includes/Charts/Elementor/GraphinaElementorControls.php:12512
 msgid "Opposite Y-axis Title"
 msgstr ""
 
-#: includes/Charts/Elementor/GraphinaElementorControls.php:12572
-#: includes/Charts/Elementor/GraphinaElementorControls.php:12608
-#: includes/GraphinaFunction.php:1509
+#: includes/Charts/Elementor/GraphinaElementorControls.php:12567
+#: includes/Charts/Elementor/GraphinaElementorControls.php:12603
+#: includes/GraphinaFunction.php:1583
 msgid "CSV"
 msgstr ""
 
-#: includes/Charts/Elementor/GraphinaElementorControls.php:12573
-#: includes/Charts/Elementor/GraphinaElementorControls.php:12609
-#: includes/GraphinaFunction.php:1510
+#: includes/Charts/Elementor/GraphinaElementorControls.php:12568
+#: includes/Charts/Elementor/GraphinaElementorControls.php:12604
+#: includes/GraphinaFunction.php:1584
 msgid "Remote CSV"
+msgstr ""
+
+#: includes/Charts/Elementor/GraphinaElementorControls.php:12569
+#: includes/Charts/Elementor/GraphinaElementorControls.php:12605
+#: includes/GraphinaFunction.php:1585
+msgid "Google Sheet"
+msgstr ""
+
+#: includes/Charts/Elementor/GraphinaElementorControls.php:12570
+#: includes/Charts/Elementor/GraphinaElementorControls.php:12607
+#: includes/GraphinaFunction.php:1586
+msgid "API"
+msgstr ""
+
+#: includes/Charts/Elementor/GraphinaElementorControls.php:12571
+#: includes/Charts/Elementor/GraphinaElementorControls.php:12606
+msgid "Database"
 msgstr ""
 
 #: includes/Charts/Elementor/GraphinaElementorControls.php:12574
 #: includes/Charts/Elementor/GraphinaElementorControls.php:12610
-#: includes/GraphinaFunction.php:1511
-msgid "Google Sheet"
-msgstr ""
-
-#: includes/Charts/Elementor/GraphinaElementorControls.php:12575
-#: includes/Charts/Elementor/GraphinaElementorControls.php:12612
-#: includes/GraphinaFunction.php:1512
-msgid "API"
-msgstr ""
-
-#: includes/Charts/Elementor/GraphinaElementorControls.php:12576
-#: includes/Charts/Elementor/GraphinaElementorControls.php:12611
-msgid "Database"
-msgstr ""
-
-#: includes/Charts/Elementor/GraphinaElementorControls.php:12579
-#: includes/Charts/Elementor/GraphinaElementorControls.php:12615
-#: includes/GraphinaFunction.php:1516
+#: includes/GraphinaFunction.php:1590
 msgid "Data From Filter"
 msgstr ""
 
-#: includes/Charts/Elementor/GraphinaElementorControls.php:12584
+#: includes/Charts/Elementor/GraphinaElementorControls.php:12579
 msgid "None"
 msgstr ""
 
-#: includes/Charts/Elementor/GraphinaElementorControls.php:12585
+#: includes/Charts/Elementor/GraphinaElementorControls.php:12580
 msgid "Sum"
 msgstr ""
 
-#: includes/Charts/Elementor/GraphinaElementorControls.php:12586
+#: includes/Charts/Elementor/GraphinaElementorControls.php:12581
 msgid "Average"
 msgstr ""
 
-#: includes/Charts/Elementor/GraphinaElementorControls.php:12598
+#: includes/Charts/Elementor/GraphinaElementorControls.php:12593
 msgid "Layout 1"
 msgstr ""
 
-#: includes/Charts/Elementor/GraphinaElementorControls.php:12599
+#: includes/Charts/Elementor/GraphinaElementorControls.php:12594
 msgid "Layout 2"
 msgstr ""
 
-#: includes/Charts/Elementor/GraphinaElementorControls.php:12600
+#: includes/Charts/Elementor/GraphinaElementorControls.php:12595
 msgid "Layout 3"
 msgstr ""
 
-#: includes/Charts/Elementor/GraphinaElementorControls.php:12601
+#: includes/Charts/Elementor/GraphinaElementorControls.php:12596
 msgid "Layout 4"
 msgstr ""
 
-#: includes/Charts/Elementor/GraphinaElementorControls.php:12602
+#: includes/Charts/Elementor/GraphinaElementorControls.php:12597
 msgid "Layout 5"
 msgstr ""
 
-#: includes/Charts/Elementor/GraphinaElementorControls.php:12603
+#: includes/Charts/Elementor/GraphinaElementorControls.php:12598
 msgid "Layout 6"
 msgstr ""
 
@@ -4128,99 +4122,112 @@ msgstr ""
 msgid "Stepline"
 msgstr ""
 
-#: includes/GraphinaFunction.php:1333
-msgid "Showing "
+#: includes/GraphinaFunction.php:1407
+msgid "Showing"
 msgstr ""
 
-#: includes/GraphinaFunction.php:1334
-msgid " to "
+#: includes/GraphinaFunction.php:1408
+msgid "to"
 msgstr ""
 
-#: includes/GraphinaFunction.php:1335
-msgid " of "
+#: includes/GraphinaFunction.php:1409
+msgid "of"
 msgstr ""
 
-#: includes/GraphinaFunction.php:1336
-msgid " entries"
+#: includes/GraphinaFunction.php:1410
+msgid "entries"
 msgstr ""
 
-#: includes/GraphinaFunction.php:1337
+#: includes/GraphinaFunction.php:1411
 msgid "Search...."
 msgstr ""
 
-#: includes/GraphinaFunction.php:1338
+#: includes/GraphinaFunction.php:1412
 msgid "No data available in table"
 msgstr ""
 
-#: includes/GraphinaFunction.php:1339
+#: includes/GraphinaFunction.php:1413
 msgid "No matching records found"
 msgstr ""
 
-#: includes/GraphinaFunction.php:1341
+#: includes/GraphinaFunction.php:1415
 msgid "First"
 msgstr ""
 
-#: includes/GraphinaFunction.php:1342
+#: includes/GraphinaFunction.php:1416
 msgid "Last"
 msgstr ""
 
-#: includes/GraphinaFunction.php:1343
+#: includes/GraphinaFunction.php:1417
 msgid "Next"
 msgstr ""
 
-#: includes/GraphinaFunction.php:1344
+#: includes/GraphinaFunction.php:1418
 msgid "Previous"
 msgstr ""
 
-#: includes/GraphinaFunction.php:1352
+#: includes/GraphinaFunction.php:1426
 msgid "Show all rows"
 msgstr ""
 
-#: includes/GraphinaFunction.php:1353
+#: includes/GraphinaFunction.php:1427
 msgid "Show "
 msgstr ""
 
-#: includes/GraphinaFunction.php:1353
+#: includes/GraphinaFunction.php:1427
 msgid " rows"
 msgstr ""
 
-#: includes/GraphinaFunction.php:1521
+#: includes/GraphinaFunction.php:1595
+#: includes/GraphinaFunction.php:1598
 msgid "SQL Builder"
 msgstr ""
 
-#: includes/GraphinaFunction.php:1573
+#: includes/GraphinaFunction.php:1649
 msgid "Manual"
 msgstr ""
 
-#: includes/GraphinaFunction.php:1574
+#: includes/GraphinaFunction.php:1650
 msgid "Dynamic"
 msgstr ""
 
-#: includes/GraphinaFunction.php:2754
+#: includes/GraphinaFunction.php:2558
+msgid "Table"
+msgstr ""
+
+#: includes/GraphinaFunction.php:2559
+msgid "MySQL Query"
+msgstr ""
+
+#: includes/GraphinaFunction.php:2562
+msgid "External"
+msgstr ""
+
+#: includes/GraphinaFunction.php:2833
 msgid "Get Pro"
 msgstr ""
 
-#: includes/GraphinaFunction.php:2758
+#: includes/GraphinaFunction.php:2837
 msgid "Coming Soon..."
 msgstr ""
 
-#: includes/Public/GraphinaFrontend.php:119
+#: includes/Public/GraphinaFrontend.php:120
 msgid "Security error"
 msgstr ""
 
-#: includes/Public/GraphinaFrontend.php:135
+#: includes/Public/GraphinaFrontend.php:136
 msgid "Invalid password"
 msgstr ""
 
-#: includes/Public/GraphinaFrontend.php:193
+#: includes/Public/GraphinaFrontend.php:194
 msgid "Invalid nonce."
 msgstr ""
 
-#: includes/Public/GraphinaFrontend.php:272
+#: includes/Public/GraphinaFrontend.php:325
 msgid "Select Column"
 msgstr ""
 
-#: includes/Public/GraphinaFrontend.php:274
+#: includes/Public/GraphinaFrontend.php:327
 msgid "Empty"
 msgstr ""
 
@@ -4240,205 +4247,209 @@ msgstr ""
 msgid "OK"
 msgstr ""
 
-#: static/gcfe-i18n.php:43
-#: static/gcfe-i18n.php:102
-msgid "Jan"
-msgstr ""
-
-#: static/gcfe-i18n.php:44
-#: static/gcfe-i18n.php:103
-msgid "Feb"
-msgstr ""
-
-#: static/gcfe-i18n.php:45
-#: static/gcfe-i18n.php:104
-msgid "Mar"
-msgstr ""
-
-#: static/gcfe-i18n.php:46
-#: static/gcfe-i18n.php:105
-msgid "Apr"
-msgstr ""
-
-#: static/gcfe-i18n.php:47
-#: static/gcfe-i18n.php:92
-#: static/gcfe-i18n.php:106
-msgid "May"
-msgstr ""
-
-#: static/gcfe-i18n.php:48
-#: static/gcfe-i18n.php:107
-msgid "Jun"
+#: static/gcfe-i18n.php:30
+msgid "Connecting..."
 msgstr ""
 
 #: static/gcfe-i18n.php:49
-#: static/gcfe-i18n.php:94
-msgid "July"
+#: static/gcfe-i18n.php:108
+msgid "Jan"
 msgstr ""
 
 #: static/gcfe-i18n.php:50
 #: static/gcfe-i18n.php:109
-msgid "Aug"
+msgid "Feb"
 msgstr ""
 
 #: static/gcfe-i18n.php:51
 #: static/gcfe-i18n.php:110
-msgid "Sep"
+msgid "Mar"
 msgstr ""
 
 #: static/gcfe-i18n.php:52
 #: static/gcfe-i18n.php:111
-msgid "Oct"
+msgid "Apr"
 msgstr ""
 
 #: static/gcfe-i18n.php:53
+#: static/gcfe-i18n.php:98
 #: static/gcfe-i18n.php:112
-msgid "Nov"
+msgid "May"
 msgstr ""
 
 #: static/gcfe-i18n.php:54
 #: static/gcfe-i18n.php:113
+msgid "Jun"
+msgstr ""
+
+#: static/gcfe-i18n.php:55
+#: static/gcfe-i18n.php:100
+msgid "July"
+msgstr ""
+
+#: static/gcfe-i18n.php:56
+#: static/gcfe-i18n.php:115
+msgid "Aug"
+msgstr ""
+
+#: static/gcfe-i18n.php:57
+#: static/gcfe-i18n.php:116
+msgid "Sep"
+msgstr ""
+
+#: static/gcfe-i18n.php:58
+#: static/gcfe-i18n.php:117
+msgid "Oct"
+msgstr ""
+
+#: static/gcfe-i18n.php:59
+#: static/gcfe-i18n.php:118
+msgid "Nov"
+msgstr ""
+
+#: static/gcfe-i18n.php:60
+#: static/gcfe-i18n.php:119
 msgid "Dec"
 msgstr ""
 
-#: static/gcfe-i18n.php:75
-#: static/gcfe-i18n.php:83
+#: static/gcfe-i18n.php:81
+#: static/gcfe-i18n.php:89
 msgid "Download SVG"
 msgstr ""
 
-#: static/gcfe-i18n.php:76
+#: static/gcfe-i18n.php:82
 msgid "Selection"
 msgstr ""
 
-#: static/gcfe-i18n.php:77
+#: static/gcfe-i18n.php:83
 msgid "Selection Zoom"
 msgstr ""
 
-#: static/gcfe-i18n.php:78
+#: static/gcfe-i18n.php:84
 msgid "Zoom In"
 msgstr ""
 
-#: static/gcfe-i18n.php:79
+#: static/gcfe-i18n.php:85
 msgid "Zoom Out"
 msgstr ""
 
-#: static/gcfe-i18n.php:80
+#: static/gcfe-i18n.php:86
 msgid "Panning"
 msgstr ""
 
-#: static/gcfe-i18n.php:81
+#: static/gcfe-i18n.php:87
 msgid "Reset Zoom"
 msgstr ""
 
-#: static/gcfe-i18n.php:82
+#: static/gcfe-i18n.php:88
 msgid "Menu"
 msgstr ""
 
-#: static/gcfe-i18n.php:84
+#: static/gcfe-i18n.php:90
 msgid "Download PNG"
 msgstr ""
 
-#: static/gcfe-i18n.php:85
+#: static/gcfe-i18n.php:91
 msgid "Download CSV"
 msgstr ""
 
-#: static/gcfe-i18n.php:88
+#: static/gcfe-i18n.php:94
 msgid "January"
 msgstr ""
 
-#: static/gcfe-i18n.php:89
+#: static/gcfe-i18n.php:95
 msgid "February"
 msgstr ""
 
-#: static/gcfe-i18n.php:90
+#: static/gcfe-i18n.php:96
 msgid "March"
 msgstr ""
 
-#: static/gcfe-i18n.php:91
+#: static/gcfe-i18n.php:97
 msgid "April"
 msgstr ""
 
-#: static/gcfe-i18n.php:93
+#: static/gcfe-i18n.php:99
 msgid "June"
 msgstr ""
 
-#: static/gcfe-i18n.php:95
+#: static/gcfe-i18n.php:101
 msgid "August"
 msgstr ""
 
-#: static/gcfe-i18n.php:96
+#: static/gcfe-i18n.php:102
 msgid "September"
 msgstr ""
 
-#: static/gcfe-i18n.php:97
+#: static/gcfe-i18n.php:103
 msgid "October"
 msgstr ""
 
-#: static/gcfe-i18n.php:98
+#: static/gcfe-i18n.php:104
 msgid "November"
 msgstr ""
 
-#: static/gcfe-i18n.php:99
+#: static/gcfe-i18n.php:105
 msgid "December"
 msgstr ""
 
-#: static/gcfe-i18n.php:108
+#: static/gcfe-i18n.php:114
 msgid "Jul"
 msgstr ""
 
-#: static/gcfe-i18n.php:116
+#: static/gcfe-i18n.php:122
 msgid "Sunday"
 msgstr ""
 
-#: static/gcfe-i18n.php:117
+#: static/gcfe-i18n.php:123
 msgid "Monday"
 msgstr ""
 
-#: static/gcfe-i18n.php:118
+#: static/gcfe-i18n.php:124
 msgid "Tuesday"
 msgstr ""
 
-#: static/gcfe-i18n.php:119
+#: static/gcfe-i18n.php:125
 msgid "Wednesday"
 msgstr ""
 
-#: static/gcfe-i18n.php:120
+#: static/gcfe-i18n.php:126
 msgid "Thursday"
 msgstr ""
 
-#: static/gcfe-i18n.php:121
+#: static/gcfe-i18n.php:127
 msgid "Friday"
 msgstr ""
 
-#: static/gcfe-i18n.php:122
+#: static/gcfe-i18n.php:128
 msgid "Saturday"
 msgstr ""
 
-#: static/gcfe-i18n.php:125
+#: static/gcfe-i18n.php:131
 msgid "Sun"
 msgstr ""
 
-#: static/gcfe-i18n.php:126
+#: static/gcfe-i18n.php:132
 msgid "Mon"
 msgstr ""
 
-#: static/gcfe-i18n.php:127
+#: static/gcfe-i18n.php:133
 msgid "Tue"
 msgstr ""
 
-#: static/gcfe-i18n.php:128
+#: static/gcfe-i18n.php:134
 msgid "Wed"
 msgstr ""
 
-#: static/gcfe-i18n.php:129
+#: static/gcfe-i18n.php:135
 msgid "Thu"
 msgstr ""
 
-#: static/gcfe-i18n.php:130
+#: static/gcfe-i18n.php:136
 msgid "Fri"
 msgstr ""
 
-#: static/gcfe-i18n.php:131
+#: static/gcfe-i18n.php:137
 msgid "Sat"
 msgstr ""
 
@@ -4469,11 +4480,11 @@ msgstr ""
 msgid "Bar"
 msgstr ""
 
-#: templates/graphina-apex-charts/data_table_lite-table.php:37
+#: templates/graphina-apex-charts/data_table_lite-table.php:41
 msgid "Loading.........."
 msgstr ""
 
-#: templates/graphina-apex-charts/data_table_lite-table.php:40
+#: templates/graphina-apex-charts/data_table_lite-table.php:44
 msgid "The Data is Not Available"
 msgstr ""
 

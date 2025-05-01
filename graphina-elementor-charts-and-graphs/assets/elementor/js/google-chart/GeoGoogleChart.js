@@ -7,6 +7,22 @@ export default class GeoChart extends GraphinaGoogleChartBase {
         this.chart = null;
         this.data = null;
         this.options = {};
+        this.initFilter()
+        this.region = {}
+    }
+
+    initFilter(){
+        jQuery(document.body).off('click','.graphina-geo-filter-div-button')
+        jQuery(document.body).on('click', '.graphina-geo-filter-div-button', this.debounce(this.handleGeoChartFilter.bind(this),300));
+    }
+
+    handleGeoChartFilter(event){
+        const currentElement    = event.currentTarget
+        const elementId         = jQuery(currentElement).data('element_id');
+        const chartElement      = jQuery(`.graphina-google-chart[data-element_id="${elementId}"]`);
+        let chartType = jQuery(`#graphina-geo-drop_down_filter_${elementId}`).val()
+        this.setupChart(chartElement, 'GeoChart');
+        this.region[elementId] = chartType
     }
 
     /**
@@ -45,8 +61,13 @@ export default class GeoChart extends GraphinaGoogleChartBase {
 
 
     // Customize chart options for Gantt Charts (if needed)
-    getFinalChartOptions(chartOptions) {
+    getFinalChartOptions(chartOptions,elementId){
         // Customize options here if needed
+
+        if(this.region && this.region[elementId]){
+            chartOptions.region     = this.region[elementId]
+            chartOptions.resolution = gcfe_public_localize.provinceSupportedCountries.includes(this.region[elementId]) ? 'provinces' : 'countries';
+        }
         return chartOptions;
 
     }

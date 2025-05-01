@@ -32,7 +32,7 @@ export default class ColumnChart extends GraphinaGoogleChartBase {
 
    
     // Customize chart options for Bar Charts (if needed)
-    getFinalChartOptions(chartOptions) {
+    getFinalChartOptions(chartOptions,elementId){
         if(chartOptions.vAxis.format === 'percent'){
             chartOptions.vAxis.format = '#\'%\''
         }

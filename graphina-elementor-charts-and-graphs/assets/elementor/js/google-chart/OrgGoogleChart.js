@@ -31,7 +31,7 @@ export default class OrgChart extends GraphinaGoogleChartBase {
     }
 
     // Customize chart options for Org Charts (if needed)
-    getFinalChartOptions(chartOptions) {
+    getFinalChartOptions(chartOptions,elementId){
         // Customize options here if needed
         return chartOptions;
     }

@@ -25,8 +25,8 @@ export default {
                 counter: 'assets/elementor/js/apex-chart/CounterChart.js',
                 radial: 'assets/elementor/js/apex-chart/RadialChart.js',
                 pie: 'assets/elementor/js/apex-chart/PieChart.js',
-                pie_google: 'assets/elementor/js/google-chart/PieGoogleChart.js', //pie google js
-                geo_google: 'assets/elementor/js/google-chart/GeoGoogleChart.js', //pie google js
+                pie_google: 'assets/elementor/js/google-chart/PieGoogleChart.js',
+                geo_google: 'assets/elementor/js/google-chart/GeoGoogleChart.js',
                 Scatter: 'assets/elementor/js/apex-chart/ScatterChart.js',
                 distributed_column_chart: 'assets/elementor/js/apex-chart/DistributeColumnChart.js',
                 nestedcolumn: 'assets/elementor/js/apex-chart/NestedcolumnChart.js',

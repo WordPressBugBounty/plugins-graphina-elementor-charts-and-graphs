@@ -35,15 +35,12 @@ use Elementor\Icons_Manager;
 		<?php echo esc_html($postfix); ?>
 	</h2>
 
-	<?php if ( isset( $counter_title ) && ! empty( $counter_title ) ) : ?>
-		<h4 class="counter-title title counter-title-<?php echo esc_attr( $element_id ); ?>"><?php echo esc_html( $counter_title ); ?></h4>
-	<?php endif; ?>
+	<h2 class="counter-title title <?php echo esc_attr( 'counter-title-' . $element_id ); ?>"><?php echo esc_html( $counter_title ); ?></h2>
 
 	<?php if ( isset( $counter_description ) && ! empty( $counter_description ) ) : ?>
 		<p class="counter-description description counter-description-<?php echo esc_attr( $element_id ); ?>"><?php echo esc_html( $counter_description ); ?></p>
 	<?php endif; ?>
-
-	<div class="chart-box">
+	<div class= "<?php echo isset( $show_counter_chart ) && $show_counter_chart === true ? 'chart-box' : ''; ?>">
 		<div class="graphina-elementor-chart"
 			data-chart_type="<?php echo esc_html( $chart_type ); ?>"
 			data-element_id="<?php echo esc_html( $element_id ); ?>"

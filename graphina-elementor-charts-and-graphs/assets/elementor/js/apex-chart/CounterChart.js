@@ -51,6 +51,11 @@ export default class CounterChart extends GraphinaApexChartBase {
         let decimals = parseInt(counter.getAttribute('data-decimals'), 10) || 0;
         if (is_dynamic) {
             end = dynamicData.extra.end;
+            try {
+                document.querySelector(`.counter-title-${element_id}`).innerHTML = dynamicData.extra.title
+            } catch (error) {
+                console.warn(error);
+            }
         }
 
         const duration = speed || 2000;

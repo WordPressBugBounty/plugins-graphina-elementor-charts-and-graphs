@@ -262,7 +262,7 @@ export default class GraphinaGoogleChartBase {
 
             // Render the chart
             const chart = new google.visualization[chartType](element[0]);
-            const finalChartOptions = this.getFinalChartOptions(chartOptions)
+            const finalChartOptions = this.getFinalChartOptions(chartOptions,elementId)
 
             chart.draw(dataTable, finalChartOptions);
             this.afterSetupChart(element[0],extraData);

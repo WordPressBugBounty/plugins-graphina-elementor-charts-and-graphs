@@ -14,14 +14,6 @@
     font-weight: 500;
 }
 
-.graphina-btn-link {
-    background: transparent;
-    color: #C8175D;
-    text-decoration: underline;
-    padding: 0;
-    border: none;
-}
-
 .graphina-btn-primary {
     color: #ffffff;
     background: #C8175D;
@@ -83,6 +75,7 @@
     border: 1px solid #eee;
     color: #6a6969;
     width: 100%;
+    margin-bottom: 7px;
 }
 
 .graphina-chart-filter-date-time:focus,
@@ -96,6 +89,7 @@
     border: transparent;
     color: #fff;
     font-size: 14px;
+    margin-bottom: 7px;
 }
 
 .graphina-chart-loader {

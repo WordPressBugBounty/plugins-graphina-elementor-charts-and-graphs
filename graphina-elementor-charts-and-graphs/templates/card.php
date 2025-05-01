@@ -9,6 +9,10 @@ if ( ! defined( 'ABSPATH' ) ) {
 *   @link [https://codex.wordpress.org/Template\_Hierarchy](https://codex.wordpress.org/Template_Hierarchy) \*
 *   @package graphina
 **/
+
+// Fire action before chart template starts
+do_action( 'graphina_before_chart_template' );
+
 ?><div class="<?php echo esc_attr( $chart_card_class ); ?>">
 	<div>
 		<?php if ( $show_heading ) : ?>
@@ -37,10 +41,17 @@ if ( ! defined( 'ABSPATH' ) ) {
 		}
 	}
 
+
+    // Filter before chart template
+	do_action( 'graphina_before_chart_box_template', $chart_data );
+
 	// Handle Chart Filter
 	graphina_filter_common( $chart_data['settings'], $chart_data['chart_type'], $chart_data, $chart_data['element_id'] );
 	
 	graphina_get_template( $template_path, $chart_data );
+
+	// Filter before chart template
+	do_action( 'graphina_after_chart_box_template', $chart_data );
 
 	$is_dynamic = false;
 	if( ! empty( $settings[ GRAPHINA_PREFIX . $chart_type . '_chart_data_option' ] ) && $settings[ GRAPHINA_PREFIX . $chart_type . '_chart_data_option' ] === 'dynamic' ){

@@ -30,7 +30,10 @@ export default class ColumnChart extends GraphinaApexChartBase {
                     maximumFractionDigits: decimal,
                 }).format(val) + postfix;
             }
-            return prefix + val + postfix;
+            return prefix +  new Intl.NumberFormat(window.gcfe_public_localize.locale_with_hyphen, {
+                minimumFractionDigits: decimal,
+                maximumFractionDigits: decimal,
+            }).format(val) + postfix;
         };
 
         const updateYAxisLabels = (yaxis, prefix, postfix, decimal, axisIndex) => {

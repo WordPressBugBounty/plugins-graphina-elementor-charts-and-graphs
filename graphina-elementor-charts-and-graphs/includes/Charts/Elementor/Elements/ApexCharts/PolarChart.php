@@ -153,20 +153,7 @@ class PolarChart extends GraphinaApexChartBase {
 			generate_chart_locales(get_locale()),
 		);
 
-		$type_of_chart = '';
-
 		$type_of_chart = 'polarArea';
-
-		$color_setting_key = GRAPHINA_PREFIX . $chart_type . '_chart_datalabel_background_show';
-		$font_color_key    = GRAPHINA_PREFIX . $chart_type . '_chart_datalabel_font_color_1';
-		$default_color 	   = ! empty($settings[GRAPHINA_PREFIX . $chart_type . '_chart_font_color']) ? $settings[GRAPHINA_PREFIX . $chart_type . '_chart_font_color'] : '#000000';
-
-		$datalabel_font_color = ! empty($settings[$color_setting_key]) && 'yes' === $settings[$color_setting_key]
-			? $settings[$font_color_key]
-			: $default_color;
-
-		$color_array = array(esc_js($datalabel_font_color));
-
 
 		$chart_options = array(
 			'series'     => $series_temp,
@@ -284,6 +271,9 @@ class PolarChart extends GraphinaApexChartBase {
 					'borderWidth'  => ! empty($settings[GRAPHINA_PREFIX . $chart_type . '_chart_datalabel_border_width']) ? intval(esc_js($settings[GRAPHINA_PREFIX . $chart_type . '_chart_datalabel_border_width'])) : 1,
 					'borderColor'  => ! empty($settings[GRAPHINA_PREFIX . $chart_type . '_chart_datalabel_border_color']) ? esc_js($settings[GRAPHINA_PREFIX . $chart_type . '_chart_datalabel_border_color']) : '#ffffff',
 				),
+				'dropShadow' => array(
+					'enabled' => false,
+				)
 			),
 			'noData'     => array(
 				'text' => ! empty($settings[GRAPHINA_PREFIX . $chart_type . '_chart_no_data_text']) ? $settings[GRAPHINA_PREFIX . $chart_type . '_chart_no_data_text'] : esc_html__('No Data Available', 'graphina-charts-for-elementor'),
@@ -375,8 +365,8 @@ class PolarChart extends GraphinaApexChartBase {
 		$yaxis_enable_min_man = ! empty($settings[GRAPHINA_PREFIX . $chart_type . '_chart_yaxis_enable_min_max']) && $settings[GRAPHINA_PREFIX . $chart_type . '_chart_yaxis_enable_min_max'] === 'yes' ? true : false;
 
 		if ($yaxis_enable_min_man) {
-			$chart_options['yaxis']['min'] = intval($settings[GRAPHINA_PREFIX . $chart_type . '_chart_yaxis_min_value']) ?? 0;
-			$chart_options['yaxis']['max'] = intval($settings[GRAPHINA_PREFIX . $chart_type . '_chart_yaxis_max_value']) ?? 250;
+			$chart_options['yaxis']['min'] = floatval($settings[GRAPHINA_PREFIX . $chart_type . '_chart_yaxis_min_value']) ?? 0;
+			$chart_options['yaxis']['max'] = floatval($settings[GRAPHINA_PREFIX . $chart_type . '_chart_yaxis_max_value']) ?? 250;
 		}
 
 		if (! $legend_show) {

@@ -25,7 +25,7 @@ if ( ! class_exists( 'GraphinaAdminMenu' ) ) {
 			$current_tab = self::get_current_tab();
 
 			// Hook for additional actions at the start of the menu
-			do_action( 'wpbit_menu_start' );
+			do_action( 'graphina_menu_start' );
 
 			// Enqueue required admin CSS assets
 			self::load_assets();

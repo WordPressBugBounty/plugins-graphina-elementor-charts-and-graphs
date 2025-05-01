@@ -193,19 +193,7 @@ class LineChart extends GraphinaApexChartBase {
 
 
 
-		$type_of_chart = '';
-
 		$type_of_chart = $chart_type;
-
-		$color_setting_key = GRAPHINA_PREFIX . $chart_type . '_chart_datalabel_background_show';
-		$font_color_key    = GRAPHINA_PREFIX . $chart_type . '_chart_datalabel_font_color_1';
-		$default_color 	   = ! empty($settings[GRAPHINA_PREFIX . $chart_type . '_chart_font_color']) ? $settings[GRAPHINA_PREFIX . $chart_type . '_chart_font_color'] : '#000000';
-
-		$datalabel_font_color = ! empty($settings[$color_setting_key]) && 'yes' === $settings[$color_setting_key]
-			? $settings[$font_color_key]
-			: $default_color;
-
-		$color_array = array(esc_js($datalabel_font_color));
 
 
 		$chart_options = array(
@@ -506,8 +494,8 @@ class LineChart extends GraphinaApexChartBase {
 		$yaxis_enable_min_man = ! empty($settings[GRAPHINA_PREFIX . $chart_type . '_chart_yaxis_enable_min_max']) && $settings[GRAPHINA_PREFIX . $chart_type . '_chart_yaxis_enable_min_max'] === 'yes' ? true : false;
 
 		if ($yaxis_enable_min_man) {
-			$chart_options['yaxis']['min'] = intval($settings[GRAPHINA_PREFIX . $chart_type . '_chart_yaxis_min_value']) ?? 0;
-			$chart_options['yaxis']['max'] = intval($settings[GRAPHINA_PREFIX . $chart_type . '_chart_yaxis_max_value']) ?? 250;
+			$chart_options['yaxis']['min'] = floatval($settings[GRAPHINA_PREFIX . $chart_type . '_chart_yaxis_min_value']) ?? 0;
+			$chart_options['yaxis']['max'] = floatval($settings[GRAPHINA_PREFIX . $chart_type . '_chart_yaxis_max_value']) ?? 250;
 		}
 
 		if (! $legend_show) {

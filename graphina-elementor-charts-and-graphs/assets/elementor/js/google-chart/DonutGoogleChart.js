@@ -33,10 +33,10 @@ export default class DonutChart extends GraphinaGoogleChartBase {
 
 
      // Customize chart options for Gantt Charts (if needed)
-    getFinalChartOptions(chartOptions) {
+     getFinalChartOptions(chartOptions,elementId){
         // Customize options here if needed
         return chartOptions;
-        }
+    }
 
     getFinalChartData(chartData){
         return chartData;

@@ -346,6 +346,7 @@ class DistributeColumnChart extends GraphinaApexChartBase {
 		$chart_options['plotOptions'] = array(
 			'bar' => array(
 				'distributed'  => true,
+				'columnWidth'  => ! empty($settings[ GRAPHINA_PREFIX . $chart_type . '_is_chart_stroke_width' ]) ? $settings[ GRAPHINA_PREFIX . $chart_type . '_is_chart_stroke_width' ].'%' : '12%',
 				'borderRadius' => $settings[ GRAPHINA_PREFIX . $chart_type . '_chart_plot_border_radius' ] ?? 0, // Added fallback
 				'dataLabels'   => array( // Fixed assignment operator
 					'position'    => $settings[ GRAPHINA_PREFIX . $chart_type . '_chart_datalabel_position_show' ] ?? 'top', // Added fallback
@@ -426,8 +427,8 @@ class DistributeColumnChart extends GraphinaApexChartBase {
 		$yaxis_enable_min_man = ! empty( $settings[ GRAPHINA_PREFIX . $chart_type . '_chart_yaxis_enable_min_max' ] ) && $settings[ GRAPHINA_PREFIX . $chart_type . '_chart_yaxis_enable_min_max' ] === 'yes' ? true : false;
 
 		if ( $yaxis_enable_min_man ) {
-			$chart_options['yaxis']['min'] = intval( $settings[ GRAPHINA_PREFIX . $chart_type . '_chart_yaxis_min_value' ] ) ?? 0;
-			$chart_options['yaxis']['max'] = intval( $settings[ GRAPHINA_PREFIX . $chart_type . '_chart_yaxis_max_value' ] ) ?? 250;
+			$chart_options['yaxis']['min'] = floatval( $settings[ GRAPHINA_PREFIX . $chart_type . '_chart_yaxis_min_value' ] ) ?? 0;
+			$chart_options['yaxis']['max'] = floatval( $settings[ GRAPHINA_PREFIX . $chart_type . '_chart_yaxis_max_value' ] ) ?? 250;
 		}
 
 		if ( ! $legend_show ) {

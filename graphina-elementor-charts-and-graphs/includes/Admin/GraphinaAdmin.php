@@ -174,6 +174,17 @@ if ( ! class_exists( 'GraphinaAdmin' ) ) :
 		 * @return void Outputs a JSON response with the list of disabled widgets.
 		 */
 		public function graphina_get_disabled_widgets() {
+			
+			// Check if the current user has the 'manage_options' capability.
+			if ( ! current_user_can( 'manage_options' ) || ! isset( $_GET['nonce'] ) || ! wp_verify_nonce( sanitize_key( $_GET['nonce'] ), 'ajax-nonce-element' ) ) {
+				wp_send_json_error(
+					array(
+						'message' => __('Permission Denied', 'graphina-charts-for-elementor'),
+						'subMessage' => __('You do not have sufficient permissions to perform this action.', 'graphina-charts-for-elementor')
+					),
+					403
+				);
+			}
 			wp_send_json_success( Options::get_disabled_elements() );
 		}
 
@@ -191,6 +202,20 @@ if ( ! class_exists( 'GraphinaAdmin' ) ) :
 		 * @return void Outputs a JSON response indicating success or failure.
 		 */
 		public function graphina_save_enabled_widgets() {
+
+
+			// Check if the current user has the 'manage_options' capability.
+			if ( ! current_user_can( 'manage_options' ) || ! isset( $_POST['nonce'] ) || ! wp_verify_nonce( sanitize_key( $_POST['nonce'] ), 'ajax-nonce-element' ) ) {
+				wp_send_json_error(
+					array(
+						'message' => __('Permission Denied', 'graphina-charts-for-elementor'),
+						'subMessage' => __('You do not have sufficient permissions to perform this action.', 'graphina-charts-for-elementor')
+					),
+					403
+				);
+				return;
+			}
+
 			// Get the posted widgets data
 			$widgets = isset( $_POST['widgets'] ) ? json_decode( wp_unslash( $_POST['widgets'] ), true ) : array();
 
@@ -243,6 +268,19 @@ if ( ! class_exists( 'GraphinaAdmin' ) ) :
 		 * @return void Outputs a JSON response indicating success or failure.
 		 */
 		public function graphina_save_disabled_widgets() {
+
+			// Check if the current user has the 'manage_options' capability.
+			if ( ! current_user_can( 'manage_options' ) || ! isset( $_POST['nonce'] ) || ! wp_verify_nonce( sanitize_key( $_POST['nonce'] ), 'ajax-nonce-element' ) ) {
+				wp_send_json_error(
+					array(
+						'message' => __('Permission Denied', 'graphina-charts-for-elementor'),
+						'subMessage' => __('You do not have sufficient permissions to perform this action.', 'graphina-charts-for-elementor')
+					),
+					403
+				);
+				return;
+			}
+
 			// Get the posted widgets data
 			$widgets = isset( $_POST['widgets'] ) ? json_decode( wp_unslash( $_POST['widgets'] ), true ) : array();
 
@@ -293,7 +331,7 @@ if ( ! class_exists( 'GraphinaAdmin' ) ) :
 			$subMessage = esc_html__( 'Action not found', 'graphina-charts-for-elementor' );
 
 			// Check if the current user has the 'manage_options' capability
-			if ( ! current_user_can( 'manage_options' ) ) {
+			if ( ! current_user_can( 'manage_options' ) || ! isset( $_POST['nonce'] ) || ! wp_verify_nonce( sanitize_key( $_POST['nonce'] ), 'ajax-nonce' ) ) {
 				$subMessage = esc_html__( 'You don\'t have required permission or security error.', 'graphina-charts-for-elementor' );
 				wp_send_json(
 					array(
@@ -459,6 +497,16 @@ if ( ! class_exists( 'GraphinaAdmin' ) ) :
 				'message' => esc_html__( 'Connection details not found', 'graphina-charts-for-elementor' ),
 			);
 
+			if (! current_user_can( 'manage_options' ) ) {
+				wp_send_json_error(
+					array(
+						'message' => __('Permission Denied', 'graphina-charts-for-elementor'),
+						'subMessage' => __('You do not have sufficient permissions to perform this action.', 'graphina-charts-for-elementor')
+					),
+					403
+				);
+			}
+
 			// Validate required fields for connection
 			if ( empty( $data['host'] ) || empty( $data['user_name'] ) || empty( $data['pass'] ) || empty( $data['db_name'] ) || empty( $data['con_name'] ) ) {
 				return $response;
@@ -498,7 +546,7 @@ if ( ! class_exists( 'GraphinaAdmin' ) ) :
 			$subMessage = esc_html__( 'Action not found', 'graphina-charts-for-elementor' );
 
 			// Check if the current user has the 'manage_options' capability
-			if ( ! current_user_can( 'manage_options' ) ) {
+			if ( ! current_user_can( 'manage_options' ) || ! isset( $_POST['nonce'] ) || ! wp_verify_nonce( sanitize_key( $_POST['nonce'] ), 'ajax-nonce' ) ) {
 				$subMessage = esc_html__( 'You don\'t have required permission or security error.', 'graphina-charts-for-elementor' );
 				wp_send_json(
 					array(

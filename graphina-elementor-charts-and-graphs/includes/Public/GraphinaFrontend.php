@@ -91,13 +91,14 @@ if ( ! class_exists( 'GraphinaFrontend' ) ) {
 				'graphina-public',
 				'gcfe_public_localize',
 				array(
-					'ajaxurl'               => admin_url( 'admin-ajax.php' ),
-					'nonce'                 => wp_create_nonce( 'graphina_get_dynamic_data' ),
-					'table_nonce'           => wp_create_nonce( 'get_jquery_datatable_data' ),
-					'locale_with_hyphen'    => graphina_common_setting_get('thousand_seperator_local'),
-					'graphinaChartSettings' => array(), // Placeholder for chart settings.
-					'view_port'             => graphina_common_setting_get( 'view_port' ),
-					'no_data_available'     => esc_html__( 'No Data Available', 'graphina-charts-for-elementor' ),
+					'ajaxurl'               		=> admin_url( 'admin-ajax.php' ),
+					'nonce'                 		=> wp_create_nonce( 'graphina_get_dynamic_data' ),
+					'table_nonce'           		=> wp_create_nonce( 'get_jquery_datatable_data' ),
+					'locale_with_hyphen'    		=> graphina_common_setting_get('thousand_seperator_local'),
+					'graphinaChartSettings' 		=> array(), // Placeholder for chart settings.
+					'view_port'             		=> graphina_common_setting_get( 'view_port' ),
+					'no_data_available'     		=> esc_html__( 'No Data Available', 'graphina-charts-for-elementor' ),
+					'provinceSupportedCountries' 	=> array('US', 'CA', 'MX', 'BR', 'AR', 'DE', 'IT', 'ES', 'GB', 'AU', 'IN', 'CN', 'JP', 'RU', 'FR')
 				)
 			);
 		}
@@ -220,6 +221,20 @@ if ( ! class_exists( 'GraphinaFrontend' ) ) {
 				if( empty( $data_option ) ) {
 					$data_option = ! empty( $settings[ GRAPHINA_PREFIX . $table_type . '_chart_data_option' ] ) ? $settings[ GRAPHINA_PREFIX . $table_type . '_chart_data_option' ] : '';
 				}
+				$selected_item = array();
+				// Handle chart filter defaults if no field is selected in the request.
+				if ( empty( $request_data['selected_field'] ) && ! empty( $settings[ GRAPHINA_PREFIX . "{$table_type}_chart_filter_list" ] ) ) {
+					foreach ( $settings[ GRAPHINA_PREFIX . "{$table_type}_chart_filter_list" ] as $item ) {
+						if ( isset( $item[ GRAPHINA_PREFIX . "{$table_type}_chart_filter_type" ] ) && $item[ GRAPHINA_PREFIX . "{$table_type}_chart_filter_type" ] === 'date' ) {
+							list($first_value) = explode( ' ', $item[ GRAPHINA_PREFIX . "{$table_type}_chart_filter_datetime_default" ] );
+						} else {
+							$first_value = explode( ',', $item[ GRAPHINA_PREFIX . "{$table_type}_chart_filter_value" ] )[0];
+						}
+						$selected_item[] = $first_value;
+					}
+				} else {
+					$selected_item = $request_data['selected_field'] ?? array();
+				}
 
 				$data        = array();
 				$class       = esc_attr( apply_filters( 'graphina_widget_table_url_class', '', $settings, $id ) );
@@ -228,7 +243,7 @@ if ( ! class_exists( 'GraphinaFrontend' ) ) {
 				switch ( $data_option ) {
 					case 'dynamic':
 						if ( graphina_pro_active() ) {
-							$data = apply_filters( 'graphina_pro_datatable_content', $settings, $table_type, $id );
+							$data = apply_filters( 'graphina_pro_datatable_content', $settings, $table_type, $id, $selected_item );
 						}
 						break;
 					case 'forminator':
@@ -243,14 +258,52 @@ if ( ! class_exists( 'GraphinaFrontend' ) ) {
 					$operation = ! empty( $settings[ GRAPHINA_PREFIX . $table_type . '_element_counter_operation' ] )
 					? sanitize_text_field( $settings[ GRAPHINA_PREFIX . $table_type . '_element_counter_operation' ] )
 					: 'none';
-					$title     = $settings[ GRAPHINA_PREFIX . $table_type . '_element_column_no' ];
+
+					$column_no = $settings[ GRAPHINA_PREFIX . $table_type . '_element_column_no' ];
+					$title 	   = match ($settings[ GRAPHINA_PREFIX . $table_type . '_element_column_no' ]) {
+						'1' 	=> $data[intval($column_no) - 1 ]['title'],
+						'2' 	=> $data[intval($column_no) - 1 ]['title'],
+						'3' 	=> $data[intval($column_no) - 1 ]['title'],
+						'4' 	=> $data[intval($column_no) - 1 ]['title'],
+						'5' 	=> $data[intval($column_no) - 1 ]['title'],
+						'6' 	=> $data[intval($column_no) - 1 ]['title'],
+						'7' 	=> $data[intval($column_no) - 1 ]['title'],
+						'8' 	=> $data[intval($column_no) - 1 ]['title'],
+						'9' 	=> $data[intval($column_no) - 1 ]['title'],
+						'10' 	=> $data[intval($column_no) - 1 ]['title'],
+						'11' 	=> $data[intval($column_no) - 1 ]['title'],
+						'12' 	=> $data[intval($column_no) - 1 ]['title'],
+						'13' 	=> $data[intval($column_no) - 1 ]['title'],
+						'14' 	=> $data[intval($column_no) - 1 ]['title'],
+						'15' 	=> $data[intval($column_no) - 1 ]['title'],
+						'16' 	=> $data[intval($column_no) - 1 ]['title'],
+						'17' 	=> $data[intval($column_no) - 1 ]['title'],
+						'18' 	=> $data[intval($column_no) - 1 ]['title'],
+						'19' 	=> $data[intval($column_no) - 1 ]['title'],
+						'20' 	=> $data[intval($column_no) - 1 ]['title'],
+						'21' 	=> $data[intval($column_no) - 1 ]['title'],
+						'22' 	=> $data[intval($column_no) - 1 ]['title'],
+						'23' 	=> $data[intval($column_no) - 1 ]['title'],
+						'24' 	=> $data[intval($column_no) - 1 ]['title'],
+						'25' 	=> $data[intval($column_no) - 1 ]['title'],
+						'26' 	=> $data[intval($column_no) - 1 ]['title'],
+						default => $settings[ GRAPHINA_PREFIX . $table_type . '_element_column_no' ],
+					};
 					$series    = $columns = array();
 					$end       = '';
 					$i         = $j = 0;
+					$chart_title = '';
+					if(empty($title)){
+						$title = $data[0]['title'];
+					}
 					foreach ( $data as $key => $value ) {
 						$data_title    = strtolower( str_replace( ' ', '', $data[ $key ]['title'] ) );
 						$columns[ $j ] = $data_title;
+						if (empty($value['multi']) && count($value['multi']) === 0){
+							continue;
+						}
 						if ( $data_title === strtolower( str_replace( ' ', '', $title ) ) ) {
+							$chart_title = $data[ $key ]['title'];
 							$series[ $i ]['name'] = $data[ $key ]['title'];
 							$series[ $i ]['data'] = $data[ $key ]['multi'];
 							if ( $operation === 'sum' ) {
@@ -277,6 +330,7 @@ if ( ! class_exists( 'GraphinaFrontend' ) ) {
 						'series'  => $series,
 						'end'     => intval( $end ),
 						'columns' => $columns,
+						'title'	  => $chart_title
 					);
 
 					$response['status'] = true;
@@ -290,7 +344,7 @@ if ( ! class_exists( 'GraphinaFrontend' ) ) {
 
 				// Process table body data
 				$data['body'] = array_map(
-					function ( $row ) use ( $data, $class ) {
+					function ( $row ) use ( $data,$table_type, $class ) {
 						$header_count = count( $data['header'] );
 						$row_count    = count( $row );
 
@@ -302,6 +356,12 @@ if ( ! class_exists( 'GraphinaFrontend' ) ) {
 								: array_slice( $row, 0, $header_count );
 						}
 
+						if( 'data_table_lite' === $table_type ){
+							$row = array_map(function($row_value){
+								return apply_filters('graphina_jquery_row_value',$row_value);
+							},$row);
+						}
+
 						// Sanitize and format each row item
 						return array_map(
 							function ( $item ) use ( $class ) {
@@ -311,7 +371,18 @@ if ( ! class_exists( 'GraphinaFrontend' ) ) {
 									$text = esc_html( $matches[1] );
 									return "<a href='{$url}' target='_blank' class='{$class}'>{$text}</a>";
 								}
-								return esc_html( $item );
+								// Define allowed HTML tags
+								$allowed_html = array(
+									'div' => array(
+										'class' => array(),
+										'style' => array()
+									),
+									'span' => array(
+										'class' => array(),
+										'style' => array()
+									)
+								);
+								return wp_kses( $item, $allowed_html );
 							},
 							$row
 						);
@@ -401,8 +472,8 @@ if ( ! class_exists( 'GraphinaFrontend' ) ) {
 				$id         = $request_data['element_id'];
 
 				// Handle chart filter defaults if no field is selected in the request.
+				$selected_item = array();
 				if ( empty( $request_data['selected_field'] ) && ! empty( $settings[ GRAPHINA_PREFIX . "{$chart_type}_chart_filter_list" ] ) ) {
-					$selected_item = array();
 					foreach ( $settings[ GRAPHINA_PREFIX . "{$chart_type}_chart_filter_list" ] as $item ) {
 						if ( isset( $item[ GRAPHINA_PREFIX . "{$chart_type}_chart_filter_type" ] ) && $item[ GRAPHINA_PREFIX . "{$chart_type}_chart_filter_type" ] === 'date' ) {
 							list($first_value) = explode( ' ', $item[ GRAPHINA_PREFIX . "{$chart_type}_chart_filter_datetime_default" ] );
@@ -460,6 +531,13 @@ if ( ! class_exists( 'GraphinaFrontend' ) ) {
 					$response['chart_option'] = $this->graphina_apex_chart_data_format( $response, $settings, $chart_type );
 					if ( 'mixed' === $chart_type ) {
 						$response['data']['series'] = $response['chart_option']['series'];
+					}
+					if ( $chart_type === 'distributed_column' && isset( $response['data']['series'][0]['data'] ) ) {
+						$response['data']['series'] = array( $response['data']['series'][0] );
+						if ( is_array( $response['data']['series'][0]['data'] ) ) {
+							$response['data']['series'][0]['data'] = array_slice( $response['data']['series'][0]['data'], 0, $series_count );
+							$response['data']['category']          = array_slice( $response['data']['category'], 0, $series_count );
+						}
 					}
 				}
 
@@ -871,8 +949,8 @@ if ( ! class_exists( 'GraphinaFrontend' ) ) {
 			$yaxis_enable_min_man = ! empty( $settings[ GRAPHINA_PREFIX . $chart_type . '_chart_yaxis_enable_min_max' ] ) && $settings[ GRAPHINA_PREFIX . $chart_type . '_chart_yaxis_enable_min_max' ] === 'yes' ? true : false;
 
 			if ( $yaxis_enable_min_man ) {
-				$chart_options['yaxis']['min'] = intval( $settings[ GRAPHINA_PREFIX . $chart_type . '_chart_yaxis_min_value' ] ) ?? 0;
-				$chart_options['yaxis']['max'] = intval( $settings[ GRAPHINA_PREFIX . $chart_type . '_chart_yaxis_max_value' ] ) ?? 250;
+				$chart_options['yaxis']['min'] = floatval( $settings[ GRAPHINA_PREFIX . $chart_type . '_chart_yaxis_min_value' ] ) ?? 0;
+				$chart_options['yaxis']['max'] = floatval( $settings[ GRAPHINA_PREFIX . $chart_type . '_chart_yaxis_max_value' ] ) ?? 250;
 			}
 
 			if ( ! $legend_show ) {

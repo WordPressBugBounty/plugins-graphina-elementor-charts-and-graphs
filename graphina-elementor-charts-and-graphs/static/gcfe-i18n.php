@@ -22,6 +22,12 @@ add_filter(
 			'swal_revert_this_text'  => esc_html__( 'You would not be able to revert this!', 'graphina-charts-for-elementor' ),
 			'swal_delete_text'       => esc_html__( 'Yes, delete it!', 'graphina-charts-for-elementor' ),
 			'swal_ok_text'           => esc_html__( 'OK', 'graphina-charts-for-elementor' ),
+			'save_btn'           	 => esc_html__( 'Save Setting', 'graphina-charts-for-elementor' ),
+			'enable_all_btn'         => esc_html__( 'Enable All', 'graphina-charts-for-elementor' ),
+			'disable_all_btn'	     => esc_html__( 'Disable All', 'graphina-charts-for-elementor' ),
+			'test_btn'           	 => esc_html__( 'Test DB Setting', 'graphina-charts-for-elementor' ),
+			'loading_btn'          	 => esc_html__( 'Loading...', 'graphina-charts-for-elementor' ),
+			'connecting_btn'         => esc_html__( 'Connecting...', 'graphina-charts-for-elementor' ),
 		);
 		return $settings;
 	}

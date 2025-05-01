@@ -21,10 +21,7 @@ use Elementor\Icons_Manager;
 		</div>
 
 		<div class="part-2">
-			<?php if ( isset( $counter_title ) && ! empty( $counter_title ) ) : ?>
-				<h2 class="counter-title text-center title"><?php echo esc_html( $counter_title ); ?></h2>
-			<?php endif; ?>
-
+			<h2 class="counter-title title <?php echo esc_attr( 'counter-title-' . $element_id ); ?>"><?php echo esc_html( $counter_title ); ?></h2>
 			<div class="text-center" style="display: flex;justify-content: center;align-items: center;">
 				<h2 class="count_number myGraphinaCounter count_number-pre-postfix-<?php echo esc_attr( $element_id ); ?>">
 					<?php echo esc_html($prefix); ?>
@@ -48,7 +45,7 @@ use Elementor\Icons_Manager;
 	
 	</div>
 	
-	<div class="chart-box">
+	<div class= "<?php echo isset( $show_counter_chart ) && $show_counter_chart === true ? 'chart-box' : ''; ?>">
 		<div class="graphina-elementor-chart"
 			data-chart_type="<?php echo esc_html( $chart_type ); ?>"
 			data-element_id="<?php echo esc_html( $element_id ); ?>"

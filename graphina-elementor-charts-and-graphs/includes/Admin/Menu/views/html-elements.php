@@ -265,12 +265,13 @@ $all_fields  = array_merge( $all_fields, $table_field );
 ?>
 <div class="graphina-tab-detail">
 	<div class="chart-types">
+		<input type="hidden" name="graphina-element-nonce" id="graphina-element-nonce" value="<?php echo esc_html( wp_create_nonce( 'ajax-nonce-element' ) ); ?>">
 		<div class="">
 			<h1><?php echo esc_html__( 'Graphina Chart Blocks', 'graphina-charts-for-elementor' ); ?></h1>
 		</div>
 		<div class="actions">
-			<button class="graphina-btn graphina-btn-link graphina-enable-all-apex-chart"><?php echo esc_html__( 'Enable All', 'graphina-charts-for-elementor' ); ?></button>
-			<button class="graphina-btn graphina-btn-link graphina-disable-all-apex-chart"><?php echo esc_html__( 'Disable All', 'graphina-charts-for-elementor' ); ?></button>
+			<button class="graphina-btn graphina-btn-link graphina-btn-primary graphina-enable-all-apex-chart"><?php echo esc_html__( 'Enable All', 'graphina-charts-for-elementor' ); ?></button>
+			<button class="graphina-btn graphina-btn-link graphina-btn-primary graphina-disable-all-apex-chart"><?php echo esc_html__( 'Disable All', 'graphina-charts-for-elementor' ); ?></button>
 		</div>
 	</div>
 

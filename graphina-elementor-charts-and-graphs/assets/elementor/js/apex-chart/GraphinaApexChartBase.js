@@ -10,16 +10,50 @@ export default class GraphinaApexChartBase {
     init() {
         this.setUpChartsHandler();
         this.bindEventHandlers();
+        this.bindElementorInit(); // Bind Elementor hooks separately
     }
 
     // Bind event listeners
     bindEventHandlers() {
         jQuery(document.body).on('change', '.graphina-select-apex-chart-type', this.debounce(this.handleChartTypeChange.bind(this), 300));    
-        jQuery(window).on('elementor/frontend/init', this.handleElementorWidgetInit.bind(this));
-        jQuery(window).on('elementor/editor/init', this.handleElementorWidgetInit.bind(this));
         jQuery(document.body).off('click','.graphina-filter-div-button.apex')
         jQuery(document.body).on('click','.graphina-filter-div-button.apex', this.debounce(this.handleChartFilter.bind(this), 300));
     }
+
+    bindElementorInit() {
+        // Flag to track if our handler has been registered
+        let elementorHookCalled = false;
+        
+        const runOnElementorReady = () => {
+            // Prevent duplicate registrations
+            if (elementorHookCalled) return;
+            elementorHookCalled = true;
+            
+            // Elementor hook: fires after widget DOM is rendered
+            elementorFrontend.hooks.addAction('frontend/element_ready/global', ($scope) => {
+                const chartElement = $scope.find('.graphina-elementor-chart');
+                if (chartElement.length > 0) {
+                    this.initializeCharts(chartElement);
+                }
+            });
+        };
+        
+        // Case 1: Elementor is already loaded
+        if (typeof elementorFrontend !== 'undefined' && elementorFrontend.hooks) {
+            runOnElementorReady();
+        }
+        
+        // Case 2: Elementor hasn't loaded yet - listen for init event
+        jQuery(window).on('elementor/frontend/init', runOnElementorReady);
+        
+        // Case 3: Fallback - check again when document is ready
+        jQuery(document).ready(() => {
+            if (!elementorHookCalled && typeof elementorFrontend !== 'undefined' && elementorFrontend.hooks) {
+                runOnElementorReady();
+            }
+        });
+    }
+    
 
     debounce(func, wait) {
         let timeout;
@@ -90,16 +124,6 @@ export default class GraphinaApexChartBase {
     // Setup handlers for various chart types (to be implemented by child classes)
     setUpChartsHandler() {
         throw new Error('setUpChartsHandler method must be implemented by subclasses');
-    }
-
-    // Handle Elementor widget initialization
-    handleElementorWidgetInit() {
-        elementorFrontend.hooks.addAction('frontend/element_ready/widget', ($scope) => {
-            const chartElement = $scope.find('.graphina-elementor-chart');
-            if (chartElement.length > 0) {
-                this.initializeCharts(chartElement);
-            }
-        });
     }
 
     // Initialize charts for a given element
@@ -450,7 +474,11 @@ export default class GraphinaApexChartBase {
                 this.mainChart[elementId].destroy()
             }
             const chart = new ApexCharts(jQuery(element)[0], finalChartOptions);
-            await chart.render();
+            try {
+                await chart.render();
+            } catch (error) {
+                console.warn(error);
+            }
             this.mainChart[elementId] = chart
             this.afterRenderChart(chart,elementId,extraData)
             if (extraData.can_chart_reload_ajax) {

@@ -217,7 +217,6 @@ a:focus {
     background: transparent;
     color: var(--graphina-primary);
     text-decoration: underline;
-    padding: 0;
     border: none;
 }
 

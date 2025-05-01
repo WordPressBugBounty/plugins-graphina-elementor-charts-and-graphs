@@ -1016,14 +1016,14 @@ class GraphinaElementorControls {
 	protected function graphina_counter_chart_data_options( $widget, $chart_type ) {
 
 		$widget->add_control(
-			GRAPHINA_PRO_PREFIX . $chart_type . '_element_import_from_table_dynamic_key',
+			GRAPHINA_PREFIX . $chart_type . '_element_import_from_table_dynamic_key',
 			array(
-				'label'       => esc_html__( 'Dynamic Keys', 'graphina-pro-charts-for-elementor' ),
+				'label'       => esc_html__( 'Dynamic Keys', 'graphina-charts-for-elementor' ),
 				'type'        => Controls_Manager::SWITCHER,
-				'description' => __( 'Use dynamic key in  Query,it will replace key will dynamic value (example : column_name={{CURRENT_USER_ID}} <strong><a href="https://documentation.iqonic.design/graphina/graphina-pro/unlocking-the-power-of-dynamic-keys-in-wordpress" target="_blank">List of Dynamic key</a></strong> and If you using dynamic key then please use default value like <b>where id={{QUERY_PARAM_key=1}}</b>', 'graphina-pro-charts-for-elementor' ),
+				'description' => __( 'Use dynamic key in  Query,it will replace key will dynamic value (example : column_name={{CURRENT_USER_ID}} <strong><a href="https://documentation.iqonic.design/graphina/graphina-pro/unlocking-the-power-of-dynamic-keys-in-wordpress" target="_blank">List of Dynamic key</a></strong> and If you using dynamic key then please use default value like <b>where id={{QUERY_PARAM_key=1}}</b>', 'graphina-charts-for-elementor' ),
 				'condition'   => array(
-					GRAPHINA_PRO_PREFIX . $chart_type . '_element_data_option' => 'dynamic',
-					GRAPHINA_PRO_PREFIX . $chart_type . '_element_dynamic_data_option' => array( 'sql-builder', 'external_database'),
+					GRAPHINA_PREFIX . $chart_type . '_element_data_option' => 'dynamic',
+					GRAPHINA_PREFIX . $chart_type . '_element_dynamic_data_option' => array( 'sql-builder','database', 'external_database'),
 				),
 			)
 		);
@@ -1105,6 +1105,9 @@ class GraphinaElementorControls {
 				'placeholder' => esc_html__( 'Title', 'graphina-charts-for-elementor' ),
 				'label_block' => true,
 				'default'     => 'Title',
+				'condition' => [
+                    GRAPHINA_PREFIX . $chart_type . '_element_data_option' => 'manual'
+                ],
 				'dynamic'     => array(
 					'active' => true,
 				),
@@ -1119,6 +1122,9 @@ class GraphinaElementorControls {
 				'placeholder' => esc_html__( 'Description', 'graphina-charts-for-elementor' ),
 				'label_block' => true,
 				'default'     => 'Description',
+				'condition' => [
+                    GRAPHINA_PREFIX . $chart_type . '_element_data_option' => 'manual'
+                ],
 				'dynamic'     => array(
 					'active' => true,
 				),
@@ -1156,6 +1162,9 @@ class GraphinaElementorControls {
 			GRAPHINA_PREFIX . $chart_type . '_section_5_3',
 			array(
 				'label' => esc_html__( 'Counter Chart Options', 'graphina-charts-for-elementor' ),
+				'condition' => array(
+					GRAPHINA_PREFIX . $chart_type . '_element_show_chart' => 'yes'
+				)
 			)
 		);
 
@@ -1166,6 +1175,20 @@ class GraphinaElementorControls {
 				'type'    => Controls_Manager::SELECT,
 				'default' => graphina_mixed_chart_typeList( true, true ),
 				'options' => graphina_mixed_chart_typeList( false, true ),
+			)
+		);
+
+		$widget->add_control(
+			GRAPHINA_PREFIX . $chart_type . '_chart_height',
+			array(
+				'label'           => esc_html__( 'Height (px)', 'graphina-charts-for-elementor' ),
+				'type'            => Controls_Manager::NUMBER,
+				'default'         => $chart_type === 'brush' ? 175 : 350,
+				'step'            => 5,
+				'min'             => 10,
+				'desktop_default' => $chart_type === 'brush' ? 175 : 350,
+				'tablet_default'  => $chart_type === 'brush' ? 175 : 350,
+				'mobile_default'  => $chart_type === 'brush' ? 175 : 350,
 			)
 		);
 
@@ -1672,7 +1695,7 @@ class GraphinaElementorControls {
 					array(
 						'label'     => esc_html__( 'Color', 'graphina-charts-for-elementor' ),
 						'type'      => Controls_Manager::COLOR,
-						'default'   => $colors[ $i ],
+						'default'   => ! empty($colors[ $i ]) ? $colors[ $i ] : '',
 						'condition' => array(
 							GRAPHINA_PREFIX . $chart_type . '_chart_data_series_count' => range( 1 + $i, graphina_default_setting( 'max_series_value' ) ),
 						),
@@ -2035,194 +2058,25 @@ class GraphinaElementorControls {
 			)
 		);
 
-		$widget->add_control(
-			GRAPHINA_PREFIX . $chart_type . '_chart_filter_enable',
-			array(
-				'label'     => esc_html__( 'Enable Filter', 'graphina-charts-for-elementor' ),
-				'type'      => Controls_Manager::SWITCHER,
-				'label_on'  => esc_html__( 'Hide', 'graphina-charts-for-elementor' ),
-				'label_off' => esc_html__( 'Show', 'graphina-charts-for-elementor' ),
-				'default'   => false,
-			)
-		);
+		if ( graphina_pro_active() ) {
+			apply_filters( 'graphina_chart_filter_settings', $widget, $chart_type );
+		}
 
-		$repeater = new Repeater();
-
-		$repeater->add_control(
-			GRAPHINA_PREFIX . $chart_type . '_chart_filter_value_label',
-			array(
-				'label'       => esc_html__( 'Label', 'graphina-charts-for-elementor' ),
-				'type'        => Controls_Manager::TEXT,
-				'default'     => esc_html__( 'Choose Option', 'graphina-charts-for-elementor' ),
-				'description' => esc_html__( 'Note: This key is use where you want to use selected option value', 'graphina-charts-for-elementor' ),
-				'dynamic'     => array(
-					'active' => true,
-				),
-			)
-		);
-
-		$repeater->add_control(
-			GRAPHINA_PREFIX . $chart_type . '_chart_filter_value_key',
-			array(
-				'label'       => esc_html__( 'Add Filter Keys', 'graphina-charts-for-elementor' ),
-				'type'        => Controls_Manager::TEXT,
-				'placeholder' => esc_html__( '{{key_1}}', 'graphina-charts-for-elementor' ),
-				'description' => esc_html__( 'Note: This key is use where you want to use selected option value', 'graphina-charts-for-elementor' ),
-				'dynamic'     => array(
-					'active' => true,
-				),
-			)
-		);
-
-		$repeater->add_control(
-			GRAPHINA_PREFIX . $chart_type . '_chart_filter_type',
-			array(
-				'label'   => esc_html__( 'Filter Type', 'graphina-charts-for-elementor' ),
-				'type'    => Controls_Manager::SELECT,
-				'default' => 'select',
-				'block'   => true,
-				'options' => array(
-					'select' => esc_html__( 'Select Dropdown', 'graphina-charts-for-elementor' ),
-					'date'   => esc_html__( 'Datepicker', 'graphina-charts-for-elementor' ),
-				),
-				'dynamic' => array(
-					'active' => true,
-				),
-			)
-		);
-
-		$repeater->add_control(
-			GRAPHINA_PREFIX . $chart_type . '_chart_filter_date_type',
-			array(
-				'label'      => esc_html__( 'Date Type', 'graphina-charts-for-elementor' ),
-				'type'       => Controls_Manager::SELECT,
-				'default'    => 'date',
-				'block'      => true,
-				'options'    => array(
-					'datetime' => esc_html__( 'DateTime', 'graphina-charts-for-elementor' ),
-					'date'     => esc_html__( 'Date', 'graphina-charts-for-elementor' ),
-				),
-				'conditions' => array(
-					'terms' => array(
+		if ( ! graphina_pro_active() ) {
+			$widget->add_control(
+				GRAPHINA_PREFIX . $chart_type . 'get_pro_filter',
+				array(
+					'type' => Controls_Manager::RAW_HTML,
+					'raw'  => graphina_get_teaser_template(
 						array(
-							'name'  => GRAPHINA_PREFIX . $chart_type . '_chart_filter_type',
-							'value' => 'date',
-						),
-					),
-				),
-			)
-		);
-
-		$repeater->add_control(
-			GRAPHINA_PREFIX . $chart_type . '_chart_filter_datetime_default',
-			array(
-				'label'       => esc_html__( 'Default Date', 'graphina-charts-for-elementor' ),
-				'type'        => Controls_Manager::DATE_TIME,
-				'default'     => current_time( 'Y-m-d h:i:s' ),
-				'label_block' => true,
-				'dynamic'     => array(
-					'active' => true,
-				),
-				'conditions'  => array(
-					'relation' => 'and',
-					'terms'    => array(
-						array(
-							'name'  => GRAPHINA_PREFIX . $chart_type . '_chart_filter_type',
-							'value' => 'date',
-						),
-						array(
-							'name'  => GRAPHINA_PREFIX . $chart_type . '_chart_filter_date_type',
-							'value' => 'datetime',
-						),
-					),
-				),
-			)
-		);
-
-		$repeater->add_control(
-			GRAPHINA_PREFIX . $chart_type . '_chart_filter_date_default',
-			array(
-				'label'          => esc_html__( 'Default Date', 'graphina-charts-for-elementor' ),
-				'type'           => Controls_Manager::DATE_TIME,
-				'default'        => current_time( 'Y-m-d' ),
-				'label_block'    => true,
-				'dynamic'        => array(
-					'active' => true,
-				),
-				'picker_options' => array(
-					'enableTime' => false,
-				),
-				'conditions'     => array(
-					'relation' => 'and',
-					'terms'    => array(
-						array(
-							'name'  => GRAPHINA_PREFIX . $chart_type . '_chart_filter_type',
-							'value' => 'date',
-						),
-						array(
-							'name'  => GRAPHINA_PREFIX . $chart_type . '_chart_filter_date_type',
-							'value' => 'date',
-						),
-					),
-				),
-			)
-		);
-
-		$repeater->add_control(
-			GRAPHINA_PREFIX . $chart_type . '_chart_filter_value',
-			array(
-				'label'       => esc_html__( 'Add Select Dropdown Filter Value', 'graphina-charts-for-elementor' ),
-				'type'        => Controls_Manager::TEXTAREA,
-				'placeholder' => esc_html__( 'Value,Value1', 'graphina-charts-for-elementor' ),
-				'description' => wp_kses_post( $this->graphina_chart_filter_controller_description() ),
-				'label_block' => true,
-				'dynamic'     => array(
-					'active' => true,
-				),
-				'conditions'  => array(
-					'terms' => array(
-						array(
-							'name'  => GRAPHINA_PREFIX . $chart_type . '_chart_filter_type',
-							'value' => 'select',
-						),
-					),
-				),
-			)
-		);
-
-		$repeater->add_control(
-			GRAPHINA_PREFIX . $chart_type . '_chart_filter_option',
-			array(
-				'label'       => esc_html__( 'Add Select Dropdown Filter Name', 'graphina-charts-for-elementor' ),
-				'type'        => Controls_Manager::TEXTAREA,
-				'placeholder' => esc_html__( 'Name1,Name2', 'graphina-charts-for-elementor' ),
-				'description' => wp_kses_post( $this->graphina_chart_filter_controller_description() ),
-				'label_block' => true,
-				'dynamic'     => array(
-					'active' => true,
-				),
-				'conditions'  => array(
-					'terms' => array(
-						array(
-							'name'  => GRAPHINA_PREFIX . $chart_type . '_chart_filter_type',
-							'value' => 'select',
-						),
-					),
-				),
-			)
-		);
-
-		$widget->add_control(
-			GRAPHINA_PREFIX . $chart_type . '_chart_filter_list',
-			array(
-				'label'     => esc_html__( 'Filter Tab', 'graphina-charts-for-elementor' ),
-				'type'      => Controls_Manager::REPEATER,
-				'fields'    => $repeater->get_controls(),
-				'condition' => array(
-					GRAPHINA_PREFIX . $chart_type . '_chart_filter_enable' => 'yes',
-				),
-			)
-		);
+							'title'    => esc_html__( 'Get New Exciting Features', 'graphina-charts-for-elementor' ),
+							'messages' => array( 'Get Graphina Pro for above exciting features and more.' ),
+							'link'     => 'https://codecanyon.net/item/graphinapro-elementor-dynamic-charts-datatable/28654061',
+						)
+					)
+				)
+			);
+		}
 
 		$widget->end_controls_section();
 	}
@@ -2695,30 +2549,6 @@ class GraphinaElementorControls {
 	}
 
 	/**
-	 * Register Chart Filter Controls Description
-	 *
-	 * Adds a standardized set of controls to a given widget, based on
-	 * the specified chart type. These controls allow users to configure
-	 *
-	 * @param \Elementor\Widget_Base $widget The widget instance to which controls are added.
-	 * @param string                 $chart_type The type of chart for which controls are being registered.
-	 */
-	private function graphina_chart_filter_controller_description() {
-		ob_start();
-		?>
-		<strong>
-			<?php echo esc_html__( 'Note: Value are seperator by comma, value is use as option ', 'graphina-charts-for-elementor' ); ?>
-			<u>
-				<span> <?php echo esc_html__( 'Name1', 'graphina-charts-for-elementor' ); ?> </span>
-				<span> <?php echo esc_html__( 'Name2', 'graphina-charts-for-elementor' ); ?> </span>
-			</u>
-			<?php echo esc_html__( 'And first option will be default selected value ', 'graphina-charts-for-elementor' ); ?>
-		</strong>
-		<?php
-		return ob_get_clean();
-	}
-
-	/**
 	 * Register Chart Restriction Controls
 	 *
 	 * Adds a standardized set of controls to a given widget, based on
@@ -3139,58 +2969,147 @@ class GraphinaElementorControls {
 	 * @param string                 $chart_type The type of chart for which controls are being registered.
 	 */
 	protected function graphina_geo_google_chart_data_settings( $widget, $chart_type ) {
-		$widget->add_control(
-			GRAPHINA_PREFIX . $chart_type . '_chart_title_3_element_setting',
-			array(
-				'label'       => esc_html__( 'Title', 'graphina-charts-for-elementor' ),
-				'type'        => Controls_Manager::TEXT,
-				'placeholder' => esc_html__( 'Add Tile', 'graphina-charts-for-elementor' ),
-				'default'     => 'Element',
-				'dynamic'     => array(
-					'active' => true,
-				),
-				'condition'   => array(
-					GRAPHINA_PREFIX . $chart_type . '_chart_data_option' => 'manual',
-				),
-			)
-		);
+        $max_row = graphina_default_setting( 'max_series_value' );
+        $widget->add_control(
+            GRAPHINA_PREFIX . $chart_type . '_can_geo_have_more_element',
+            array(
+                'label'     => esc_html__( 'Multiple Element', 'graphina-charts-for-elementor' ),
+                'type'      => Controls_Manager::SWITCHER,
+                'label_on'  => esc_html__( 'Yes', 'graphina-charts-for-elementor' ),
+                'label_off' => esc_html__( 'No', 'graphina-charts-for-elementor' ),
+                'default'   => false,
+				'condition' => array(
+					GRAPHINA_PREFIX . $chart_type . '_chart_data_option'	=> 'manual',
+                ),
+            )
+        );
 
-		$repeater = new Repeater();
 
-		$repeater->add_control(
-			GRAPHINA_PREFIX . $chart_type . '_chart_value_3_element_setting',
-			array(
-				'label'       => esc_html__( 'Element Value', 'graphina-charts-for-elementor' ),
-				'type'        => Controls_Manager::NUMBER,
-				'placeholder' => esc_html__( 'Add Value', 'graphina-charts-for-elementor' ),
-				'dynamic'     => array(
-					'active' => true,
-				),
-			)
-		);
+        $widget->add_control(
+            GRAPHINA_PREFIX . $chart_type . '_chart_data_series_count',
+            array(
+                'label'   => esc_html__( 'Data Elements', 'graphina-charts-for-elementor' ),
+                'type'    => Controls_Manager::NUMBER,
+                'description' => __( '<strong>Notice:</strong> The minimum required value for data elements is <strong>1</strong>. To increase the maximum data element value, please refer to the <a href="https://documentation.iqonic.design/graphina/php-hooks/optimizing-element-sets-in-graphina-with-php-hooks" target="_blank">PHP Hooks Documentation</a>.', 'graphina-charts-for-elementor' ),
+                'default' => 1,
+                'min'     => 1,
+                'max'     => graphina_default_setting( 'max_series_value' ),
+                'condition' => array(
+                    GRAPHINA_PREFIX . $chart_type . '_can_geo_have_more_element' 		=> 'yes',
+					GRAPHINA_PREFIX . $chart_type . '_chart_data_option' 				=> 'manual',
+                ),
+            )
+        );
 
-		/** Chart value list. */
-		$widget->add_control(
-			GRAPHINA_PREFIX . $chart_type . '_value_list_3_1_element_setting',
-			array(
-				'label'       => esc_html__( 'Values', 'graphina-charts-for-elementor' ),
-				'type'        => Controls_Manager::REPEATER,
-				'fields'      => $repeater->get_controls(),
-				'default'     => array(
-					array( GRAPHINA_PREFIX . $chart_type . '_chart_value_3_element_setting' => rand( 10, 200 ) ),
-					array( GRAPHINA_PREFIX . $chart_type . '_chart_value_3_element_setting' => rand( 10, 200 ) ),
-					array( GRAPHINA_PREFIX . $chart_type . '_chart_value_3_element_setting' => rand( 10, 200 ) ),
-					array( GRAPHINA_PREFIX . $chart_type . '_chart_value_3_element_setting' => rand( 10, 200 ) ),
-					array( GRAPHINA_PREFIX . $chart_type . '_chart_value_3_element_setting' => rand( 10, 200 ) ),
-					array( GRAPHINA_PREFIX . $chart_type . '_chart_value_3_element_setting' => rand( 10, 200 ) ),
-				),
-				'title_field' => '{{{ ' . GRAPHINA_PREFIX . $chart_type . '_chart_value_3_element_setting }}}',
-				'condition'   => array(
-					GRAPHINA_PREFIX . $chart_type . '_chart_data_option' => 'manual',
-				),
-			)
-		);
-	}
+        for ( $i = 0; $i <= $max_row; $i++ ) {
+            $widget->add_control(
+                GRAPHINA_PREFIX . $chart_type . '_chart_title_3_element_setting_' . $i,
+                array(
+                    'label'       => esc_html__( 'Title', 'graphina-charts-for-elementor' ),
+                    'type'        => Controls_Manager::TEXT,
+                    'placeholder' => esc_html__( 'Add Title', 'graphina-charts-for-elementor' ),
+                    'default'     => esc_html__( 'Element ', 'graphina-charts-for-elementor' ) . ( $i + 1 ),
+                    'condition'   => array(
+                        GRAPHINA_PREFIX . $chart_type . '_can_geo_have_more_element'    	=> 'yes',
+						GRAPHINA_PREFIX . $chart_type . '_chart_data_option' 				=> 'manual',
+                        GRAPHINA_PREFIX . $chart_type . '_chart_data_series_count'         	=> range( 1 + $i, graphina_default_setting( 'max_series_value' ) ),
+                    ),
+                )
+            );
+
+            $repeater = new Repeater();
+
+            $repeater->add_control(
+                GRAPHINA_PREFIX . $chart_type . '_chart_value_3_element_setting_' . $i,
+                array(
+                    'label'       => esc_html__( 'Element Value', 'graphina-charts-for-elementor' ),
+                    'type'        => Controls_Manager::NUMBER,
+                    'placeholder' => esc_html__( 'Add Value', 'graphina-charts-for-elementor' ),
+                    'dynamic'     => array(
+                        'active' => true,
+                    ),
+                )
+            );
+
+            /** Chart value list. */
+            $widget->add_control(
+                GRAPHINA_PREFIX . $chart_type . '_value_list_3_1_element_setting_' . $i,
+                array(
+                    'label'       => esc_html__( 'Values', 'graphina-charts-for-elementor' ),
+                    'type'        => Controls_Manager::REPEATER,
+                    'fields'      => $repeater->get_controls(),
+                    'default'     => array(
+                        array( GRAPHINA_PREFIX . $chart_type . '_chart_value_3_element_setting_' . $i => rand( 10, 200 ) ),
+                        array( GRAPHINA_PREFIX . $chart_type . '_chart_value_3_element_setting_' . $i => rand( 10, 200 ) ),
+                        array( GRAPHINA_PREFIX . $chart_type . '_chart_value_3_element_setting_' . $i => rand( 10, 200 ) ),
+                        array( GRAPHINA_PREFIX . $chart_type . '_chart_value_3_element_setting_' . $i => rand( 10, 200 ) ),
+                        array( GRAPHINA_PREFIX . $chart_type . '_chart_value_3_element_setting_' . $i => rand( 10, 200 ) ),
+                        array( GRAPHINA_PREFIX . $chart_type . '_chart_value_3_element_setting_' . $i => rand( 10, 200 ) ),
+                    ),
+                    'title_field' => '{{{ ' . GRAPHINA_PREFIX . $chart_type . '_chart_value_3_element_setting_' . $i . ' }}}',
+                    'condition'   => array(
+                        GRAPHINA_PREFIX . $chart_type . '_chart_data_series_count'         	=> range( 1 + $i, graphina_default_setting( 'max_series_value' ) ),
+                        GRAPHINA_PREFIX . $chart_type . '_can_geo_have_more_element'    	=> 'yes',
+                        GRAPHINA_PREFIX . $chart_type . '_chart_data_option' 				=> 'manual',
+                    ),
+                )
+            );
+        }
+        
+        $widget->add_control(
+            GRAPHINA_PREFIX . $chart_type . '_chart_title_3_element_setting',
+            array(
+                'label'       => esc_html__( 'Title', 'graphina-charts-for-elementor' ),
+                'type'        => Controls_Manager::TEXT,
+                'placeholder' => esc_html__( 'Add Tile', 'graphina-charts-for-elementor' ),
+                'default'     => 'Element',
+                'dynamic'     => array(
+                    'active' => true,
+                ),
+                'condition'   => array(
+                    GRAPHINA_PREFIX . $chart_type . '_can_geo_have_more_element!'    => 'yes',
+                    GRAPHINA_PREFIX . $chart_type . '_chart_data_option'             => 'manual',
+                ),
+            )
+        );
+
+        $repeater = new Repeater();
+
+        $repeater->add_control(
+            GRAPHINA_PREFIX . $chart_type . '_chart_value_3_element_setting',
+            array(
+                'label'       => esc_html__( 'Element Value', 'graphina-charts-for-elementor' ),
+                'type'        => Controls_Manager::NUMBER,
+                'placeholder' => esc_html__( 'Add Value', 'graphina-charts-for-elementor' ),
+                'dynamic'     => array(
+                    'active' => true,
+                ),
+            )
+        );
+
+        /** Chart value list. */
+        $widget->add_control(
+            GRAPHINA_PREFIX . $chart_type . '_value_list_3_1_element_setting',
+            array(
+                'label'       => esc_html__( 'Values', 'graphina-charts-for-elementor' ),
+                'type'        => Controls_Manager::REPEATER,
+                'fields'      => $repeater->get_controls(),
+                'default'     => array(
+                    array( GRAPHINA_PREFIX . $chart_type . '_chart_value_3_element_setting' => rand( 10, 200 ) ),
+                    array( GRAPHINA_PREFIX . $chart_type . '_chart_value_3_element_setting' => rand( 10, 200 ) ),
+                    array( GRAPHINA_PREFIX . $chart_type . '_chart_value_3_element_setting' => rand( 10, 200 ) ),
+                    array( GRAPHINA_PREFIX . $chart_type . '_chart_value_3_element_setting' => rand( 10, 200 ) ),
+                    array( GRAPHINA_PREFIX . $chart_type . '_chart_value_3_element_setting' => rand( 10, 200 ) ),
+                    array( GRAPHINA_PREFIX . $chart_type . '_chart_value_3_element_setting' => rand( 10, 200 ) ),
+                ),
+                'title_field' => '{{{ ' . GRAPHINA_PREFIX . $chart_type . '_chart_value_3_element_setting }}}',
+                'condition'   => array(
+                    GRAPHINA_PREFIX . $chart_type . '_can_geo_have_more_element!'    => 'yes',
+                    GRAPHINA_PREFIX . $chart_type . '_chart_data_option' => 'manual',
+                ),
+            )
+        );
+    }
 
 	/**
 	 * Registers Gantt Chart Data for Graphina widget.
@@ -3451,16 +3370,85 @@ class GraphinaElementorControls {
 			$widget->add_control(
 				GRAPHINA_PREFIX . $chart_type . '_chart_header_title_' . $i,
 				array(
-					'label'       => 'Column Header',
+					'label'       => esc_html__( 'Column Header', 'graphina-charts-for-elementor' ),
 					'type'        => Controls_Manager::TEXT,
 					'placeholder' => esc_html__( 'Add Title', 'graphina-charts-for-elementor' ),
 					'default'     => 'Column ' . ( $i + 1 ),
 					'condition'   => array(
-						GRAPHINA_PREFIX . $chart_type . '_element_columns' => range( 1 + $i, 25 ),
+						GRAPHINA_PREFIX . $chart_type . '_element_columns' => range( 1 + $i, $max_column ),
 						GRAPHINA_PREFIX . $chart_type . '_chart_data_option' => 'manual',
 					),
 					'dynamic'     => array(
 						'active' => true,
+					),
+				)
+			);
+			$widget->add_control(
+				GRAPHINA_PREFIX . $chart_type . 'has_column_width' . $i,
+				array(
+					'label'       => esc_html__( 'Add Column Width', 'graphina-charts-for-elementor' ),
+					'type'        => Controls_Manager::SWITCHER,
+					'label_on'  => esc_html__( 'Yes', 'graphina-charts-for-elementor' ),
+					'label_off' => esc_html__( 'No', 'graphina-charts-for-elementor' ),
+					'default'   => false,
+					'condition' => array(
+						GRAPHINA_PREFIX . $chart_type . '_element_columns' => range( 1 + $i, $max_column ),
+						GRAPHINA_PREFIX . $chart_type . '_chart_data_option'	=> 'manual',
+					),
+				)
+			);
+			$widget->add_control(
+				GRAPHINA_PREFIX . $chart_type . '_table_column_width_' . $i,
+				array(
+					'label'   => esc_html__( 'Column Width (px)', 'graphina-charts-for-elementor' ),
+					'type'    => Controls_Manager::NUMBER,
+					'min'     => 20,
+					'default' => '150',
+					'condition'   => array(
+						GRAPHINA_PREFIX . $chart_type . '_element_columns' => range( 1 + $i, $max_column ),
+						GRAPHINA_PREFIX . $chart_type . '_chart_data_option' => 'manual',
+						GRAPHINA_PREFIX . $chart_type . 'has_column_width'.$i => 'yes',
+					),
+				)
+			);
+			$widget->add_control(
+				GRAPHINA_PREFIX . $chart_type . '_jquery_manual_column_wise_alignment' . $i,
+				array(
+					'label'     => esc_html__( 'Column wise alighment', 'graphina-charts-for-elementor' ) . ' ' . $i+1,
+					'type'      => Controls_Manager::SWITCHER,
+					'label_on'  => esc_html__( 'Yes', 'graphina-charts-for-elementor' ),
+					'label_off' => esc_html__( 'No', 'graphina-charts-for-elementor' ),
+					'default'   => false,
+					'condition' => array(
+						GRAPHINA_PREFIX . $chart_type . '_chart_data_option' => 'manual',
+						GRAPHINA_PREFIX . $chart_type . '_element_columns' => range( 1 + $i, $max_column ),
+					),
+				)
+			);
+			$widget->add_control(
+				GRAPHINA_PREFIX . $chart_type . '_table_manual_body_align' . $i,
+				array(
+					'label'     => esc_html__( 'Table Alignment', 'graphina-charts-for-elementor' ),
+					'type'      => Controls_Manager::CHOOSE,
+					'default'   => 'center',
+					'options'   => array(
+						'left'   => array(
+							'title' => esc_html__( 'Left', 'graphina-charts-for-elementor' ),
+							'icon'  => 'eicon-text-align-left',
+						),
+						'center' => array(
+							'title' => esc_html__( 'Center', 'graphina-charts-for-elementor' ),
+							'icon'  => 'eicon-text-align-center',
+						),
+						'right'  => array(
+							'title' => esc_html__( 'Right', 'graphina-charts-for-elementor' ),
+							'icon'  => 'eicon-text-align-right',
+						),
+					),
+					'condition'   => array(
+						GRAPHINA_PREFIX . $chart_type . '_chart_data_option' => 'manual',
+						GRAPHINA_PREFIX . $chart_type . '_element_columns' => range( 1 + $i, $max_column ),
+						GRAPHINA_PREFIX . $chart_type . '_jquery_manual_column_wise_alignment'.$i => 'yes',
 					),
 				)
 			);
@@ -3540,7 +3528,7 @@ class GraphinaElementorControls {
 						array( GRAPHINA_PREFIX . $chart_type . '_row_value' => 'Data 3' ),
 					),
 					'condition' => array(
-						GRAPHINA_PREFIX . $chart_type . '_element_rows' => range( 1 + $i, 25 ),
+						GRAPHINA_PREFIX . $chart_type . '_element_rows' => range( 1 + $i, $max_row ),
 						GRAPHINA_PREFIX . $chart_type . '_chart_data_option' => 'manual',
 					),
 				)
@@ -3627,7 +3615,7 @@ class GraphinaElementorControls {
 						array(
 							'label'     => esc_html__( 'Color', 'graphina-charts-for-elementor' ),
 							'type'      => Controls_Manager::COLOR,
-							'default'   => $colors[ $i ],
+							'default'   => ! empty($colors[ $i ]) ? $colors[ $i ] : '',
 							'condition' => array(
 								GRAPHINA_PREFIX . $chart_type . '_chart_data_series_count' => range( 1 + $i, graphina_default_setting( 'max_series_value' ) ),
 							),
@@ -4591,7 +4579,7 @@ class GraphinaElementorControls {
 					array(
 						'label'     => esc_html__( 'Color', 'graphina-charts-for-elementor' ),
 						'type'      => Controls_Manager::COLOR,
-						'default'   => $colors[ $i ],
+						'default'   => ! empty( $colors[ $i ] ) ? $colors[ $i ] : '',
 						'condition' => $condition,
 					)
 				);
@@ -4600,7 +4588,7 @@ class GraphinaElementorControls {
 					array(
 						'label'     => esc_html__( 'Second Color', 'graphina-charts-for-elementor' ),
 						'type'      => Controls_Manager::COLOR,
-						'default'   => $gradientColor[ $i ],
+						'default'   => ! empty( $gradientColor[ $i ] ) ? $gradientColor[ $i ] : '',
 						'condition' => array_merge( array( GRAPHINA_PREFIX . $chart_type . '_chart_fill_style_type_' . $i => 'gradient' ), $condition ),
 					)
 				);
@@ -4876,7 +4864,7 @@ class GraphinaElementorControls {
 					array(
 						'label'     => esc_html__( 'Second Color', 'graphina-charts-for-elementor' ),
 						'type'      => Controls_Manager::COLOR,
-						'default'   => $gradient_color[ $i ],
+						'default'   => ! empty( $gradient_color[ $i ] ) ? $gradient_color[ $i ] : '',
 						'condition' => array(
 							GRAPHINA_PREFIX . $chart_type . '_chart_fill_style_type' => 'gradient',
 							GRAPHINA_PREFIX . $chart_type . '_chart_data_series_count' => range( 1 + $i, graphina_default_setting( 'max_series_value' ) ),
@@ -6727,7 +6715,7 @@ class GraphinaElementorControls {
 			);
 		}
 		
-		if( 'column' === $chart_type ) {
+		if( in_array($chart_type, ['column','distributed_column'])  ) {
 			$widget->add_control(
 				GRAPHINA_PREFIX . $chart_type . '_is_chart_stroke_width',
 				array(
@@ -7455,7 +7443,7 @@ class GraphinaElementorControls {
 					);
 			}
 
-			if ( in_array( $chart_type, array( 'area', 'line' ), true ) ) {
+			if ( in_array( $chart_type, array( 'area', 'line', 'column', 'mixed' ), true ) ) {
 				$widget->add_control(
 					GRAPHINA_PREFIX . $chart_type . '_chart_number_format_commas',
 					array(
@@ -8401,7 +8389,7 @@ class GraphinaElementorControls {
 					array(
 						'label'     => esc_html__( 'Color', 'graphina-charts-for-elementor' ),
 						'type'      => Controls_Manager::COLOR,
-						'default'   => $colors[ $i ],
+						'default'   => ! empty( $colors[ $i ] ) ? $colors[ $i ] : '',
 						'condition' => array(
 							GRAPHINA_PREFIX . $chart_type1 . '_chart_data_series_count' => range( 1 + $i, graphina_default_setting( 'max_series_value' ) ),
 						),
@@ -8412,7 +8400,7 @@ class GraphinaElementorControls {
 					array(
 						'label'     => esc_html__( 'Second Color', 'graphina-charts-for-elementor' ),
 						'type'      => Controls_Manager::COLOR,
-						'default'   => $gradient_color[ $i ],
+						'default'   => ! empty( $gradient_color[ $i ] ) ? $gradient_color[ $i ] : '',
 						'condition' => array(
 							GRAPHINA_PREFIX . $chart_type . '_chart_fill_style_type' => 'gradient',
 							GRAPHINA_PREFIX . $chart_type1 . '_chart_data_series_count' => range( 1 + $i, graphina_default_setting( 'max_series_value' ) ),
@@ -8663,6 +8651,18 @@ class GraphinaElementorControls {
 				'default'   => 'yes',
 			)
 		);
+
+		$widget->add_control(
+			GRAPHINA_PREFIX . $chart_type . '_hide_table_header',
+			array(
+				'label'     => esc_html__( 'Header Enable', 'graphina-charts-for-elementor' ),
+				'type'      => Controls_Manager::SWITCHER,
+				'label_on'  => esc_html__( 'Hide', 'graphina-charts-for-elementor' ),
+				'label_off' => esc_html__( 'Show', 'graphina-charts-for-elementor' ),
+				'default'   => 'yes',
+			)
+		);
+
 		$widget->add_control(
 			GRAPHINA_PREFIX . $chart_type . 'table_data_direct',
 			array(
@@ -9751,7 +9751,7 @@ class GraphinaElementorControls {
 			$widget->add_control(
 				GRAPHINA_PREFIX . $chart_type . '_element_counter_icon_size',
 				array(
-					'label'      => esc_html__( 'Size', 'graphina-pro-charts-for-elementor' ),
+					'label'      => esc_html__( 'Size', 'graphina-charts-for-elementor' ),
 					'type'       => Controls_Manager::SLIDER,
 					'size_units' => array( 'px' ),
 					'range'      => array(
@@ -12279,29 +12279,11 @@ class GraphinaElementorControls {
 			}
 
 			$widget->add_control(
-				GRAPHINA_PREFIX . $chart_type . '_chart_yaxis_label_pointer',
-				array(
-					'label'       => esc_html__( 'Format Number to Strings', 'graphina-charts-for-elementor' ),
-					'type'        => Controls_Manager::SWITCHER,
-					'condition'   => array(
-						GRAPHINA_PREFIX . $chart_type . '_chart_yaxis_datalabel_show' => 'yes',
-						GRAPHINA_PREFIX . $chart_type . '_chart_yaxis_label_show' => 'yes',
-						GRAPHINA_PREFIX . $chart_type . '_chart_yaxis_number_format!' => 'yes',
-						GRAPHINA_PREFIX . $chart_type . '_chart_yaxis_format_number!' => 'yes',
-					),
-					'label_on'    => esc_html__( 'Hide', 'graphina-charts-for-elementor' ),
-					'label_off'   => esc_html__( 'Show', 'graphina-charts-for-elementor' ),
-					'default'     => false,
-					'description' => esc_html__( 'Note: Convert 1,000  => 1k and 1,000,000 => 1m and if Format Number(Commas) is enable this will not work', 'graphina-charts-for-elementor' ),
-				)
-			);
-
-			$widget->add_control(
 				GRAPHINA_PREFIX . $chart_type . '_chart_yaxis_label_pointer_number',
 				array(
 					'label'     => esc_html__( 'Number of Decimal Want', 'graphina-charts-for-elementor' ),
 					'type'      => Controls_Manager::NUMBER,
-					'default'   => 0,
+					'default'   => 1,
 					'min'       => 0,
 					'condition' => array(
 						GRAPHINA_PREFIX . $chart_type . '_chart_yaxis_datalabel_show' => 'yes',
@@ -12327,6 +12309,20 @@ class GraphinaElementorControls {
 					)
 				);
 			}
+			$widget->add_control(
+				GRAPHINA_PREFIX . $chart_type . '_chart_yaxis_label_pointer',
+				array(
+					'label'       => esc_html__( 'Format Number to Strings', 'graphina-charts-for-elementor' ),
+					'type'        => Controls_Manager::SWITCHER,
+					'condition'   => array(
+						GRAPHINA_PREFIX . $chart_type . '_chart_yaxis_number_format' => 'yes',
+					),
+					'label_on'    => esc_html__( 'Hide', 'graphina-charts-for-elementor' ),
+					'label_off'   => esc_html__( 'Show', 'graphina-charts-for-elementor' ),
+					'default'     => false,
+					'description' => esc_html__( 'Note: Convert 1,000  => 1k and 1,000,000 => 1m and if Format Number(Commas) is enable this will not work', 'graphina-charts-for-elementor' ),
+				)
+			);
 		}
 
 		$widget->add_control(
@@ -12334,12 +12330,11 @@ class GraphinaElementorControls {
 			array(
 				'label'     => esc_html__( 'Decimals In Float', 'graphina-charts-for-elementor' ),
 				'type'      => Controls_Manager::NUMBER,
-				'default'   => 0,
+				'default'   => do_action('graphina_default_decimals_float_value',2),
 				'max'       => 6,
 				'min'       => 0,
 				'condition' => array(
 					GRAPHINA_PREFIX . $chart_type . '_chart_yaxis_datalabel_show' => 'yes',
-					GRAPHINA_PREFIX . $chart_type . '_chart_yaxis_number_format'  => 'yes',
 				),
 			)
 		);

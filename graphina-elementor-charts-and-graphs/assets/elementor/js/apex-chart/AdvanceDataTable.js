@@ -141,7 +141,7 @@ export default class DataTable {
                     inputEle.value = table_data.header[i] || `Column ${i + 1}`;
                     th.append(inputEle);
                 } else {
-                    th.textContent = table_data.header[i] || `Column ${i + 1}`;
+                    th.innerHTML = table_data.header[i] || `Column ${i + 1}`;
                 }
                 headerRow.appendChild(th);
             }
@@ -167,7 +167,7 @@ export default class DataTable {
                         inputEle.value = paginatedRows[rowIndex]?.[colIndex] || "";
                         td.append(inputEle);
                     } else {
-                        td.textContent = paginatedRows[rowIndex]?.[colIndex] || "";
+                        td.innerHTML = paginatedRows[rowIndex]?.[colIndex] || "";
                     }
                     row.appendChild(td);
                 }

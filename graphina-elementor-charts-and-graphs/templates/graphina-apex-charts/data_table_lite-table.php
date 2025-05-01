@@ -30,6 +30,10 @@ if ( ! defined( 'ABSPATH' ) ) {
 		<?php } ?>
 	</div>
 
+	<?php  
+		graphina_filter_common( $settings, $chart_type, $chart_data, $element_id );
+	?>
+
 	<table id="data_table_lite_<?php echo esc_attr( $element_id ); ?>"
 		class="chart-texture display wrap data_table_lite_<?php echo esc_attr( $element_id ); ?>">
 	</table>

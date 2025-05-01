@@ -33,7 +33,7 @@ export default class PieChart extends GraphinaGoogleChartBase {
 
 
      // Customize chart options for Pie Charts (if needed)
-     getFinalChartOptions(chartOptions) {
+    getFinalChartOptions(chartOptions,elementId){
         // Customize options here if needed
         return chartOptions;
         
