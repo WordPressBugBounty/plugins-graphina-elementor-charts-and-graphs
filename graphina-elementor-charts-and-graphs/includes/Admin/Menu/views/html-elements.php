@@ -16,6 +16,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 $pro_active = apply_filters( 'graphina_is_pro_active', false );
 
 $apex_charts       = graphina_get_chart_name( 'apex' );
+$apex_tree_charts  = graphina_get_chart_name('apex-tree');
 $google_charts     = graphina_get_chart_name( 'google' );
 $table_charts      = graphina_get_chart_name( 'table' );
 $all_fields        = array();
@@ -169,6 +170,17 @@ $apex_charts_field = array(
 
 $all_fields = $apex_charts_field;
 
+$apex_tree_charts = array(
+	array(
+			'chart_name'  => __( 'Tree Chart', 'graphina-charts-for-elementor' ),
+			'icon_url'    => GRAPHINA_URL . 'assets/admin/images/tree-chart.svg',
+			'widget'      => '["tree_chart"]',
+			'pro_field'   => 'no',
+			'chart_class' => '',
+	),
+);
+$all_fields = array_merge( $all_fields, $apex_tree_charts );
+
 $google_charts_field = array(
 	array(
 		'chart_name'  => __( 'Area Chart', 'graphina-charts-for-elementor' ),
@@ -270,8 +282,8 @@ $all_fields  = array_merge( $all_fields, $table_field );
 			<h1><?php echo esc_html__( 'Graphina Chart Blocks', 'graphina-charts-for-elementor' ); ?></h1>
 		</div>
 		<div class="actions">
-			<button class="graphina-btn graphina-btn-link graphina-btn-primary graphina-enable-all-apex-chart"><?php echo esc_html__( 'Enable All', 'graphina-charts-for-elementor' ); ?></button>
-			<button class="graphina-btn graphina-btn-link graphina-btn-primary graphina-disable-all-apex-chart"><?php echo esc_html__( 'Disable All', 'graphina-charts-for-elementor' ); ?></button>
+			<button class="graphina-btn graphina-btn-link graphina-enable-all-apex-chart"><?php echo esc_html__( 'Enable All', 'graphina-charts-for-elementor' ); ?></button>
+			<button class="graphina-btn graphina-btn-link graphina-disable-all-apex-chart"><?php echo esc_html__( 'Disable All', 'graphina-charts-for-elementor' ); ?></button>
 		</div>
 	</div>
 
@@ -286,6 +298,38 @@ $all_fields  = array_merge( $all_fields, $table_field );
 
 		<div class="chart-grid">
 			<?php foreach ( $apex_charts_field as $value ) : ?>
+				<?php
+				if ( $pro_active === false && $value['pro_field'] === 'yes' ) {
+					continue;}
+				?>
+				<div class="chart-item">
+					<div class="chart-info">
+						<div class="chart-icon">
+							<img src="<?php echo esc_url( $value['icon_url'] ); ?>" />
+						</div>
+						<div class="chart-name">
+							<?php echo esc_html( $value['chart_name'] ); ?>
+							<?php if ( $value['pro_field'] === 'yes' ) : ?>
+								<span class="pro-badge"><?php echo esc_html__( 'Pro', 'graphina-charts-for-elementor' ); ?></span>
+							<?php endif; ?>
+						</div>
+					</div>
+					<label class="toggle graphina-apex-toggle" data-widget="<?php echo esc_attr( $value['widget'] ); ?>">
+						<input type="checkbox" checked>
+						<span class="toggle-slider"></span>
+					</label>
+				</div>
+			<?php endforeach; ?>
+		</div>
+	</div>
+
+	<div id="graphina-apex-tree-charts">
+		<div class="grapgine-title-section">
+			<h2 class="title"><?php echo esc_html__( 'Apex Tree Charts', 'graphina-charts-for-elementor' ); ?></h2>
+		</div>
+
+		<div class="chart-grid">
+			<?php foreach ( $apex_tree_charts as $value ) : ?>
 				<?php
 				if ( $pro_active === false && $value['pro_field'] === 'yes' ) {
 					continue;}

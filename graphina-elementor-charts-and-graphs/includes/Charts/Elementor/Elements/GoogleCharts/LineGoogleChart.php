@@ -139,8 +139,8 @@ class LineGoogleChart extends GraphinaGoogleChartBase {
 	 */
 	protected function graphina_prepare_google_chart_options($settings, $chart_type, $element_id)
 	{
-		$series_count   = $settings[GRAPHINA_PREFIX . $chart_type . '_chart_data_series_count'] ?? 0;
-		$legend_position = ! empty( $settings[ GRAPHINA_PREFIX . $chart_type . '_google_chart_legend_show' ] ) && $settings[ GRAPHINA_PREFIX . $chart_type . '_google_chart_legend_show' ] === 'yes' ? $settings[ GRAPHINA_PREFIX . $chart_type . '_google_chart_legend_position' ] : 'none';
+		$series_count   = isset($settings[GRAPHINA_PREFIX . $chart_type . '_chart_data_series_count']) && $settings[GRAPHINA_PREFIX . $chart_type . '_chart_data_series_count'] !== null ? $settings[GRAPHINA_PREFIX . $chart_type . '_chart_data_series_count'] : 0;
+		$legend_position = ! empty( $settings[ GRAPHINA_PREFIX . $chart_type . '_google_chart_legend_show' ] ) && $settings[ GRAPHINA_PREFIX . $chart_type . '_google_chart_legend_show' ] === 'yes' && isset($settings[ GRAPHINA_PREFIX . $chart_type . '_google_chart_legend_position' ]) ? $settings[ GRAPHINA_PREFIX . $chart_type . '_google_chart_legend_position' ] : 'none';
 		$chartArea       = array(
 			'left'  => '10%',
 			'right' => '5%',
@@ -161,13 +161,13 @@ class LineGoogleChart extends GraphinaGoogleChartBase {
 		$element_colors = $element_title_array = $series_style_array = array();
 
 		for ($j = 0; $j < $series_count; $j++) {
-			$element_colors[]      = esc_html($settings[GRAPHINA_PREFIX . $chart_type . '_chart_element_color_' . $j]);
-			$element_title_array[] = esc_html($settings[GRAPHINA_PREFIX . $chart_type . '_chart_title_3_' . $j]);
-			$point_show = ! empty($settings[GRAPHINA_PREFIX . $chart_type . '_chart_point_show' . $j]) ? $settings[GRAPHINA_PREFIX . $chart_type . '_chart_point_show' . $j] : false;
+			$element_colors[]      = isset($settings[GRAPHINA_PREFIX . $chart_type . '_chart_element_color_' . $j]) && $settings[GRAPHINA_PREFIX . $chart_type . '_chart_element_color_' . $j] !== null ? esc_html($settings[GRAPHINA_PREFIX . $chart_type . '_chart_element_color_' . $j]) : '';
+			$element_title_array[] = isset($settings[GRAPHINA_PREFIX . $chart_type . '_chart_title_3_' . $j]) && $settings[GRAPHINA_PREFIX . $chart_type . '_chart_title_3_' . $j] !== null ? esc_html($settings[GRAPHINA_PREFIX . $chart_type . '_chart_title_3_' . $j]) : '';
+			$point_show = isset($settings[GRAPHINA_PREFIX . $chart_type . '_chart_point_show' . $j]) && ! empty($settings[GRAPHINA_PREFIX . $chart_type . '_chart_point_show' . $j]) ? $settings[GRAPHINA_PREFIX . $chart_type . '_chart_point_show' . $j] : false;
 
 			if ($point_show) {
-				$point_size  = $settings[GRAPHINA_PREFIX . $chart_type . '_chart_line_point_size' . $j];
-				$point_shape = $settings[GRAPHINA_PREFIX . $chart_type . '_chart_line_point' . $j];
+				$point_size  = isset($settings[GRAPHINA_PREFIX . $chart_type . '_chart_line_point_size' . $j]) && $settings[GRAPHINA_PREFIX . $chart_type . '_chart_line_point_size' . $j] !== null ? $settings[GRAPHINA_PREFIX . $chart_type . '_chart_line_point_size' . $j] : 2;
+				$point_shape = isset($settings[GRAPHINA_PREFIX . $chart_type . '_chart_line_point' . $j]) && $settings[GRAPHINA_PREFIX . $chart_type . '_chart_line_point' . $j] !== null ? $settings[GRAPHINA_PREFIX . $chart_type . '_chart_line_point' . $j] : 'circle';
 			} else {
 				$point_size  = null;
 				$point_shape = null;
@@ -186,7 +186,7 @@ class LineGoogleChart extends GraphinaGoogleChartBase {
 				default => null,
 			};
 			$series_style_array[] = array(
-				'lineWidth'       => ! empty($settings[GRAPHINA_PREFIX . $chart_type . '_chart_element_linewidth' . $j]) ? $settings[GRAPHINA_PREFIX . $chart_type . '_chart_element_linewidth' . $j] : 2,
+				'lineWidth'       => isset($settings[GRAPHINA_PREFIX . $chart_type . '_chart_element_linewidth' . $j]) && $settings[GRAPHINA_PREFIX . $chart_type . '_chart_element_linewidth' . $j] !== null ? $settings[GRAPHINA_PREFIX . $chart_type . '_chart_element_linewidth' . $j] : 2,
 				'lineDashStyle'   => $line_dash,
 				'pointShow'       => $point_show,
 				'pointSize'       => $point_size,
@@ -196,23 +196,23 @@ class LineGoogleChart extends GraphinaGoogleChartBase {
 		}
 
 		$response = array(
-			'title'           => ! empty($settings[GRAPHINA_PREFIX . $chart_type . '_chart_title']) ? $settings[GRAPHINA_PREFIX . $chart_type . '_chart_title'] : '',
-			'titlePosition'   => ! empty($settings[GRAPHINA_PREFIX . $chart_type . '_chart_title_show']) && $settings[GRAPHINA_PREFIX . $chart_type . '_chart_title_show'] === 'yes' ? $settings[GRAPHINA_PREFIX . $chart_type . '_chart_title_position'] : 'none', // in, out, none
+			'title'           => isset($settings[GRAPHINA_PREFIX . $chart_type . '_chart_title']) && ! empty($settings[GRAPHINA_PREFIX . $chart_type . '_chart_title']) ? $settings[GRAPHINA_PREFIX . $chart_type . '_chart_title'] : '',
+			'titlePosition'   => isset($settings[GRAPHINA_PREFIX . $chart_type . '_chart_title_show']) && ! empty($settings[GRAPHINA_PREFIX . $chart_type . '_chart_title_show']) && $settings[GRAPHINA_PREFIX . $chart_type . '_chart_title_show'] === 'yes' && isset($settings[GRAPHINA_PREFIX . $chart_type . '_chart_title_position']) ? $settings[GRAPHINA_PREFIX . $chart_type . '_chart_title_position'] : 'none', // in, out, none
 			'titleTextStyle'  => array(
-				'fontName' 	=> ! empty($settings[GRAPHINA_PREFIX . $chart_type . '_chart_font_family']) ? $settings[GRAPHINA_PREFIX . $chart_type . '_chart_font_family'] : 'poppins',
-				'color'    => ! empty($settings[GRAPHINA_PREFIX . $chart_type . '_chart_title_color']) ? $settings[GRAPHINA_PREFIX . $chart_type . '_chart_title_color'] : '',
-				'fontSize' => ! empty($settings[GRAPHINA_PREFIX . $chart_type . '_chart_title_font_size']) ? $settings[GRAPHINA_PREFIX . $chart_type . '_chart_title_font_size'] : '',
+				'fontName' 	=> isset($settings[GRAPHINA_PREFIX . $chart_type . '_chart_font_family']) && ! empty($settings[GRAPHINA_PREFIX . $chart_type . '_chart_font_family']) ? $settings[GRAPHINA_PREFIX . $chart_type . '_chart_font_family'] : 'poppins',
+				'color'    => isset($settings[GRAPHINA_PREFIX . $chart_type . '_chart_title_color']) && ! empty($settings[GRAPHINA_PREFIX . $chart_type . '_chart_title_color']) ? $settings[GRAPHINA_PREFIX . $chart_type . '_chart_title_color'] : '',
+				'fontSize' => isset($settings[GRAPHINA_PREFIX . $chart_type . '_chart_title_font_size']) && ! empty($settings[GRAPHINA_PREFIX . $chart_type . '_chart_title_font_size']) ? $settings[GRAPHINA_PREFIX . $chart_type . '_chart_title_font_size'] : '',
 			),
 			'chartArea'       => $chartArea,
-			'height'          => $settings[GRAPHINA_PREFIX . $chart_type . '_chart_height'],
+			'height'          => isset($settings[GRAPHINA_PREFIX . $chart_type . '_chart_height']) && $settings[GRAPHINA_PREFIX . $chart_type . '_chart_height'] !== null ? $settings[GRAPHINA_PREFIX . $chart_type . '_chart_height'] : '',
 			'series'          => $series_style_array,
 			'tooltip'         => array(
 				'showColorCode' => true,
-				'textStyle'     => array('color' => ! empty($settings[GRAPHINA_PREFIX . $chart_type . '_chart_tooltip_color']) ? $settings[GRAPHINA_PREFIX . $chart_type . '_chart_tooltip_color'] : ''),
-				'trigger'       => ! empty($settings[GRAPHINA_PREFIX . $chart_type . '_chart_tooltip_show']) && $settings[GRAPHINA_PREFIX . $chart_type . '_chart_tooltip_show'] === 'yes' ? $settings[GRAPHINA_PREFIX . $chart_type . '_chart_tooltip_trigger'] : 'none',
+				'textStyle'     => array('color' => isset($settings[GRAPHINA_PREFIX . $chart_type . '_chart_tooltip_color']) && ! empty($settings[GRAPHINA_PREFIX . $chart_type . '_chart_tooltip_color']) ? $settings[GRAPHINA_PREFIX . $chart_type . '_chart_tooltip_color'] : ''),
+				'trigger'       => isset($settings[GRAPHINA_PREFIX . $chart_type . '_chart_tooltip_show']) && ! empty($settings[GRAPHINA_PREFIX . $chart_type . '_chart_tooltip_show']) && $settings[GRAPHINA_PREFIX . $chart_type . '_chart_tooltip_show'] === 'yes' && isset($settings[GRAPHINA_PREFIX . $chart_type . '_chart_tooltip_trigger']) ? $settings[GRAPHINA_PREFIX . $chart_type . '_chart_tooltip_trigger'] : 'none',
 			),
 
-			'backgroundColor' => ! empty($settings[GRAPHINA_PREFIX . $chart_type . '_chart_background_color1']) ? $settings[GRAPHINA_PREFIX . $chart_type . '_chart_background_color1'] : '',
+			'backgroundColor' => isset($settings[GRAPHINA_PREFIX . $chart_type . '_chart_background_color1']) && ! empty($settings[GRAPHINA_PREFIX . $chart_type . '_chart_background_color1']) ? $settings[GRAPHINA_PREFIX . $chart_type . '_chart_background_color1'] : '',
 			'colors'          => $element_colors,
 			'legend' => [
 				'position' => $legend_position,

@@ -139,34 +139,50 @@ class TimelineChart extends GraphinaApexChartBase {
 		// Prepare series data
 		for ($i = 0; $i < $series_count; $i++) {
 			$value = array();
-			$value_list = $settings[GRAPHINA_PREFIX . $chart_type . '_value_list_' . $i];
-			if (gettype($value_list) === 'NULL') {
-				$value_list = array();
-			}
-			foreach ($value_list as $key => $val) {
-				$categories_list = ! empty($settings[GRAPHINA_PREFIX . $chart_type . '_category_list']) ? $settings[GRAPHINA_PREFIX . $chart_type . '_category_list'] : array();
-				if (count($categories_list) > $key) {
-					$value[] = array(
-						'x' => esc_html(graphina_get_dynamic_tag_data($settings[GRAPHINA_PREFIX . $chart_type . '_category_list'][$key], GRAPHINA_PREFIX . $chart_type . '_chart_category')),
-						'y' => array(
-							strtotime(graphina_get_dynamic_tag_data($val, GRAPHINA_PREFIX . $chart_type . '_chart_from_date_' . $i)) * 1000,
-							strtotime(graphina_get_dynamic_tag_data($val, GRAPHINA_PREFIX . $chart_type . '_chart_to_date_' . $i)) * 1000,
-						),
-					);
-				}
-			}
-			$series_temp[] = array(
-				'name' => esc_html(graphina_get_dynamic_tag_data($settings, GRAPHINA_PREFIX . $chart_type . '_chart_title_3_' . $i)),
-				'data' => $value,
-			);
+			if('manual' === $settings[GRAPHINA_PREFIX . $chart_type . '_chart_data_option']){
 
+				$value_list = $settings[GRAPHINA_PREFIX . $chart_type . '_value_list_' . $i];
+				if (gettype($value_list) === 'NULL') {
+					$value_list = array();
+				}
+				foreach ($value_list as $key => $val) {
+					$categories_list = ! empty($settings[GRAPHINA_PREFIX . $chart_type . '_category_list']) ? $settings[GRAPHINA_PREFIX . $chart_type . '_category_list'] : array();
+					if (count($categories_list) > $key) {
+						$value[] = array(
+							'x' => esc_html(graphina_get_dynamic_tag_data($settings[GRAPHINA_PREFIX . $chart_type . '_category_list'][$key], GRAPHINA_PREFIX . $chart_type . '_chart_category')),
+							'y' => array(
+								strtotime(graphina_get_dynamic_tag_data($val, GRAPHINA_PREFIX . $chart_type . '_chart_from_date_' . $i)) * 1000,
+								strtotime(graphina_get_dynamic_tag_data($val, GRAPHINA_PREFIX . $chart_type . '_chart_to_date_' . $i)) * 1000,
+							),
+						);
+					}
+				}
+				$series_temp[] = array(
+					'name' => esc_html(graphina_get_dynamic_tag_data($settings, GRAPHINA_PREFIX . $chart_type . '_chart_title_3_' . $i)),
+					'data' => $value,
+				);
+			}
 			$gradient[]        = esc_html($settings[GRAPHINA_PREFIX . $chart_type . '_chart_gradient_1_' . $i]);
 			$second_gradient[] = esc_html(isset($settings[GRAPHINA_PREFIX . $chart_type . '_chart_gradient_2_' . $i]) ? $settings[GRAPHINA_PREFIX . $chart_type . '_chart_gradient_2_' . $i] : $settings[GRAPHINA_PREFIX . $chart_type . '_chart_gradient_1_' . $i]);
 			$fill_pattern[]    = esc_html($settings[GRAPHINA_PREFIX . $chart_type . '_chart_bg_pattern_' . $i] !== '' ? $settings[GRAPHINA_PREFIX . $chart_type . '_chart_bg_pattern_' . $i] : 'verticalLines');
 		}
 		$category_list = $settings[GRAPHINA_PREFIX . $chart_type . '_category_list'] ?? array();
-		$categories    = array_map(
-			fn($v) => $chart_type === 'brush' ? intval(htmlspecialchars_decode(esc_html(graphina_get_dynamic_tag_data($v, GRAPHINA_PREFIX . $chart_type . '_chart_category')))) : htmlspecialchars_decode(esc_html(graphina_get_dynamic_tag_data($v, GRAPHINA_PREFIX . $chart_type . '_chart_category'))),
+
+		$categories = array_map(
+			function ($v) use ($chart_type) {
+				$value = htmlspecialchars_decode(esc_html(graphina_get_dynamic_tag_data($v, GRAPHINA_PREFIX . $chart_type . '_chart_category')));
+				if ($chart_type === 'brush') {
+					$value = intval($value);
+				}
+
+				// Check for comma and split into array if present
+				if (strpos($value, ',') !== false) {
+					// Split by comma and trim spaces
+					return array_map('trim', explode(',', $value));
+				}
+
+				return $value;
+			},
 			$category_list
 		);
 
@@ -182,15 +198,11 @@ class TimelineChart extends GraphinaApexChartBase {
 		$type_of_chart = 'rangeBar';
 
 
-		$color_setting_key = GRAPHINA_PREFIX . $chart_type . '_chart_datalabel_background_show';
-		$font_color_key    = GRAPHINA_PREFIX . $chart_type . '_chart_datalabel_font_color_1';
-		$default_color 	   = ! empty($settings[GRAPHINA_PREFIX . $chart_type . '_chart_font_color']) ? $settings[GRAPHINA_PREFIX . $chart_type . '_chart_font_color'] : '#000000';
+		$loading_text 	= esc_html( ( isset( $settings[ GRAPHINA_PREFIX . $chart_type . '_chart_no_data_text' ] ) ? $settings[ GRAPHINA_PREFIX . $chart_type . '_chart_no_data_text' ] : '' ) );
 
-		$datalabel_font_color = ! empty($settings[$color_setting_key]) && 'yes' === $settings[$color_setting_key]
-			? $settings[$font_color_key]
-			: $default_color;
-
-		$color_array = array(esc_js($datalabel_font_color));
+		if(graphina_pro_active() && $settings[GRAPHINA_PREFIX . $chart_type . '_chart_data_option'] !== 'manual'){
+			$loading_text    = esc_html__( 'Loading...', 'graphina-charts-for-elementor' );
+		}
 
 		$chart_options = array(
 			'series'     => $series_temp,
@@ -235,6 +247,7 @@ class TimelineChart extends GraphinaApexChartBase {
 				'locales'       => $locales,
 				'defaultLocale' => get_locale(),
 			),
+			'colors'   => $gradient,
 			'xaxis'      => array(
 				'tickAmount'    => ! empty($settings[GRAPHINA_PREFIX . $chart_type . '_chart_xaxis_datalabel_tick_amount']) ? intval($settings[GRAPHINA_PREFIX . $chart_type . '_chart_xaxis_datalabel_tick_amount']) : 6,
 				'tickPlacement' => ! empty($settings[GRAPHINA_PREFIX . $chart_type . '_chart_xaxis_datalabel_tick_placement']) ? $settings[GRAPHINA_PREFIX . $chart_type . '_chart_xaxis_datalabel_tick_placement'] : '',
@@ -310,9 +323,16 @@ class TimelineChart extends GraphinaApexChartBase {
 					'borderColor'  => ! empty($settings[GRAPHINA_PREFIX . $chart_type . '_chart_datalabel_border_color']) ? esc_js($settings[GRAPHINA_PREFIX . $chart_type . '_chart_datalabel_border_color']) : '#ffffff',
 				),
 			),
-			'noData'     => array(
-				'text' => ! empty($settings[GRAPHINA_PREFIX . $chart_type . '_chart_no_data_text']) ? $settings[GRAPHINA_PREFIX . $chart_type . '_chart_no_data_text'] : esc_html__('No Data Available', 'graphina-charts-for-elementor'),
-			),
+			'noData' => [
+				'text' => $loading_text,
+				'align' => 'center',
+				'verticalAlign' => 'middle',
+				'style' => [
+					'fontSize'   => ! empty($settings[GRAPHINA_PREFIX . $chart_type . '_chart_font_size']['size']) ? $settings[GRAPHINA_PREFIX . $chart_type . '_chart_font_size']['size'] . $settings[GRAPHINA_PREFIX . $chart_type . '_chart_font_size']['unit'] : '12px',
+					'fontFamily' => ! empty($settings[GRAPHINA_PREFIX . $chart_type . '_chart_font_family']) ? $settings[GRAPHINA_PREFIX . $chart_type . '_chart_font_family'] : 'poppins',
+					'color' => $settings[GRAPHINA_PREFIX . $chart_type .'_chart_font_color']
+				]
+			],
 			'tooltip'    => array(
 				'enabled' => ! empty($settings[GRAPHINA_PREFIX . $chart_type . '_chart_tooltip']) && $settings[GRAPHINA_PREFIX . $chart_type . '_chart_tooltip'] === 'yes' ? true : false,
 				'theme'   => ! empty($settings[GRAPHINA_PREFIX . $chart_type . '_chart_tooltip_theme']) ? $settings[GRAPHINA_PREFIX . $chart_type . '_chart_tooltip_theme'] : 'light',

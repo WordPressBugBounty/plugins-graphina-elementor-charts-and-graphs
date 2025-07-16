@@ -94,7 +94,7 @@ export default class GeoChart extends GraphinaGoogleChartBase {
         }
     }
     
-    afterSetupChart(element, extraData) {
+    afterSetupChart(element, extraData,chart,dataTable,finalChartOptions) {
         // Define color mappings
         const circleColors = {
             "#4684ee": extraData.ballColor ?? "#4684ee",
@@ -117,6 +117,12 @@ export default class GeoChart extends GraphinaGoogleChartBase {
                 path.setAttribute("fill", needleColor);
             }
         });
+        
+        window.addEventListener('resize', () => {
+            if (chart && dataTable && finalChartOptions) {
+                chart.draw(dataTable, finalChartOptions);
+            }
+        });
     }
     
 
@@ -124,4 +130,4 @@ export default class GeoChart extends GraphinaGoogleChartBase {
 }
 
 // Initialize Geo Chart
-new GeoChart();
+window.graphinaGoogleGeoChart = new GeoChart();

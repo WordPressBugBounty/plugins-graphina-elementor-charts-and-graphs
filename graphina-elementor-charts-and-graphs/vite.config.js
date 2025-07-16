@@ -25,8 +25,8 @@ export default {
                 counter: 'assets/elementor/js/apex-chart/CounterChart.js',
                 radial: 'assets/elementor/js/apex-chart/RadialChart.js',
                 pie: 'assets/elementor/js/apex-chart/PieChart.js',
-                pie_google: 'assets/elementor/js/google-chart/PieGoogleChart.js',
-                geo_google: 'assets/elementor/js/google-chart/GeoGoogleChart.js',
+                pie_google: 'assets/elementor/js/google-chart/PieGoogleChart.js', //pie google js
+                geo_google: 'assets/elementor/js/google-chart/GeoGoogleChart.js', //pie google js
                 Scatter: 'assets/elementor/js/apex-chart/ScatterChart.js',
                 distributed_column_chart: 'assets/elementor/js/apex-chart/DistributeColumnChart.js',
                 nestedcolumn: 'assets/elementor/js/apex-chart/NestedcolumnChart.js',
@@ -36,6 +36,8 @@ export default {
                 mixed: 'assets/elementor/js/apex-chart/MixedChart.js',
                 data_table: 'assets/elementor/js/apex-chart/DataTable.js',
                 advance_data_table: 'assets/elementor/js/apex-chart/AdvanceDataTable.js',
+                tree: 'assets/elementor/js/apex-tree/TreeChart.js',
+                common_filter: 'assets/elementor/js/common-filter/CommonFilter.js',
             },
             outDir: 'dist', // Output directory for production
         }),

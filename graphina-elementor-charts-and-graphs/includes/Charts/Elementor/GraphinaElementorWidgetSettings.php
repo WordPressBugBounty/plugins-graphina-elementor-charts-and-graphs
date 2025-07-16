@@ -60,11 +60,10 @@ class GraphinaElementorWidgetSettings {
 	 * @param string $widget_id The widget ID.
 	 * @param array  $default_settings Default widget settings.
 	 */
-	public function __construct( int $post_id, string $widget_id, array $default_settings ) {
+	public function __construct( int $post_id, string $widget_id, array $default_settings) {
 		$this->post_id          = $post_id;
 		$this->widget_id        = $widget_id;
 		$this->default_settings = $default_settings;
-
 		// Initialize widget data.
 		$this->set_widget_data();
 	}

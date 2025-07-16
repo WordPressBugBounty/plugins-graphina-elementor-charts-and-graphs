@@ -946,7 +946,7 @@ class GraphinaElementorControls {
 			);
 		}
 
-		if ( ! in_array( $chart_type, array( 'nested_column', 'brush', 'gantt_google', 'advance-datatable', 'counter' ), true ) ) {
+		if ( ! in_array( $chart_type, array( 'nested_column', 'brush', 'gantt_google', 'advance-datatable', 'counter', 'tree' ), true ) ) {
 			$widget->add_control(
 				GRAPHINA_PREFIX . $chart_type . '_can_chart_reload_ajax',
 				array(
@@ -957,6 +957,20 @@ class GraphinaElementorControls {
 					'default'   => false,
 					'condition' => array(
 						GRAPHINA_PREFIX . $chart_type . '_chart_data_option!' => array( 'manual' ),
+					),
+				)
+			);
+			$widget->add_control(
+				GRAPHINA_PREFIX . $chart_type . '_interval_data_refresh',
+				array(
+					'label'     => __( 'Set Interval(sec)', 'graphina-charts-for-elementor' ),
+					'type'      => Controls_Manager::NUMBER,
+					'min'       => 5,
+					'step'      => 5,
+					'default'   => 15,
+					'condition' => array(
+						GRAPHINA_PREFIX . $chart_type . '_can_chart_reload_ajax' => 'yes',
+						GRAPHINA_PREFIX . $chart_type . '_chart_data_option!'    => array( 'manual' ),
 					),
 				)
 			);
@@ -974,22 +988,23 @@ class GraphinaElementorControls {
 					),
 				)
 			);
+			$widget->add_control(
+				GRAPHINA_PREFIX . $chart_type . '_interval_data_refresh',
+				array(
+					'label'     => __( 'Set Interval(sec)', 'graphina-charts-for-elementor' ),
+					'type'      => Controls_Manager::NUMBER,
+					'min'       => 5,
+					'step'      => 5,
+					'default'   => 15,
+					'condition' => array(
+						GRAPHINA_PREFIX . $chart_type . '_can_chart_reload_ajax' => 'yes',
+						GRAPHINA_PREFIX . $chart_type . '_element_data_option!'    => array( 'manual' ),
+					),
+				)
+			);
 		}
 
-		$widget->add_control(
-			GRAPHINA_PREFIX . $chart_type . '_interval_data_refresh',
-			array(
-				'label'     => __( 'Set Interval(sec)', 'graphina-charts-for-elementor' ),
-				'type'      => Controls_Manager::NUMBER,
-				'min'       => 5,
-				'step'      => 5,
-				'default'   => 15,
-				'condition' => array(
-					GRAPHINA_PREFIX . $chart_type . '_can_chart_reload_ajax' => 'yes',
-					GRAPHINA_PREFIX . $chart_type . '_chart_data_option!'    => array( 'manual' ),
-				),
-			)
-		);
+		
 
 		if ( 'advance-datatable' === $chart_type ) {
 			$this->graphina_dynamic_table_data_settings( $widget, $chart_type );
@@ -1145,6 +1160,512 @@ class GraphinaElementorControls {
 				),
 			)
 		);
+	}
+
+	/**
+	 * Registers Tree Chart settings for Graphina widget.
+	 *
+	 * @param \Elementor\Widget_Base $widget The widget instance to which controls are added.
+	 * @param string                 $chart_type The type of chart for which controls are being registered.
+	 */
+	public function graphina_tree_chart_setting($widget, $chart_type)
+	{
+		$widget->start_controls_section(
+			GRAPHINA_PREFIX . $chart_type . '_section_2',
+			array(
+				'label' => esc_html__('Chart Setting', 'graphina-charts-for-elementor'),
+			)
+		);
+
+		$widget->add_control(
+			GRAPHINA_PREFIX . $chart_type . '_chart_tree_setting',
+			array(
+				'type' => Controls_Manager::DIVIDER,
+			)
+		);
+		$widget->add_control(
+			GRAPHINA_PREFIX . $chart_type . '_chart_coman_setting',
+			array(
+				'label' => esc_html__(' Settings', 'graphina-charts-for-elementor'),
+				'type'  => Controls_Manager::HEADING,
+			)
+		);
+
+		$widget->add_control(
+			GRAPHINA_PREFIX . $chart_type . '_chart_tooltip',
+			array(
+				'label'       => esc_html__('Tooltip', 'graphina-charts-for-elementor'),
+				'type'        => Controls_Manager::SWITCHER,
+				'label_on'    => esc_html__('Yes', 'graphina-charts-for-elementor'),
+				'label_off'   => esc_html__('No', 'graphina-charts-for-elementor'),
+				'default'     => 'yes',
+			)
+		);
+
+		$widget->add_control(
+			GRAPHINA_PREFIX . $chart_type . '_chart_show_toolbar',
+			array(
+				'label'     => esc_html__('Toolbar', 'graphina-charts-for-elementor'),
+				'type'      => Controls_Manager::SWITCHER,
+				'label_on'  => esc_html__('Hide', 'graphina-charts-for-elementor'),
+				'label_off' => esc_html__('Show', 'graphina-charts-for-elementor'),
+				'default'   => true,
+			)
+		);
+
+		$widget->add_responsive_control(
+			GRAPHINA_PREFIX . $chart_type . '_chart_div_width',
+			array(
+				'label'   => esc_html__('Width', 'graphina-charts-for-elementor'),
+				'type'    => Controls_Manager::NUMBER,
+				'default'   => 1000,
+
+			)
+		);
+
+		$widget->add_responsive_control(
+			GRAPHINA_PREFIX . $chart_type . '_chart_div_height',
+			array(
+				'label'     => esc_html__('Height', 'graphina-charts-for-elementor'),
+				'type'      => Controls_Manager::NUMBER,
+				'default'   => 350,
+			)
+		);
+
+		$widget->add_control(
+			GRAPHINA_PREFIX . $chart_type . '_chart_node_collapse',
+			array(
+				'label'     => esc_html__('Collapse Node', 'graphina-charts-for-elementor'),
+				'type'      => Controls_Manager::SWITCHER,
+				'label_on'  => esc_html__('Yes', 'graphina-charts-for-elementor'),
+				'label_off' => esc_html__('No', 'graphina-charts-for-elementor'),
+				'default'   => 'yes',
+			)
+		);
+
+		$widget->add_responsive_control(
+			GRAPHINA_PREFIX . $chart_type . '_chart_flow_direction',
+			array(
+				'label'     => esc_html__('Chart Flow Direction', 'graphina-charts-for-elementor'),
+				'type'      => Controls_Manager::CHOOSE,
+				'default'   => 'top',
+				'options'   => array(
+					'top'    => array(
+						'title' => esc_html__('Top', 'graphina-charts-for-elementor'),
+						'icon'  => 'eicon-arrow-up',
+					),
+					'right'  => array(
+						'title' => esc_html__('Right', 'graphina-charts-for-elementor'),
+						'icon'  => 'eicon-arrow-right',
+					),
+					'bottom' => array(
+						'title' => esc_html__('Bottom', 'graphina-charts-for-elementor'),
+						'icon'  => 'eicon-arrow-down',
+					),
+					'left'   => array(
+						'title' => esc_html__('Left', 'graphina-charts-for-elementor'),
+						'icon'  => 'eicon-arrow-left',
+					),
+				),
+			)
+		);
+
+		$widget->add_control(
+			GRAPHINA_PREFIX . $chart_type . '_chart_sibling_spacing',
+			array(
+				'label'     => esc_html__('Sibling Spacing', 'graphina-charts-for-elementor'),
+				'type'      => Controls_Manager::NUMBER,
+				'default'   => 50,
+
+			)
+		);
+
+		$widget->add_control(
+			GRAPHINA_PREFIX . $chart_type . '_chart_title_setting',
+			array(
+				'type' => Controls_Manager::DIVIDER,
+			)
+		);
+		$widget->add_control(
+			GRAPHINA_PREFIX . $chart_type . '_chart_node_setting',
+			array(
+				'label' => esc_html__('Node Settings', 'graphina-charts-for-elementor'),
+				'type'  => Controls_Manager::HEADING,
+			)
+		);
+
+		$widget->add_responsive_control(
+			GRAPHINA_PREFIX . $chart_type . '_chart_node_width',
+			array(
+				'label'     => esc_html__('Node Width', 'graphina-charts-for-elementor'),
+				'type'      => Controls_Manager::NUMBER,
+				'default'   => 150,
+
+			)
+		);
+
+		$widget->add_responsive_control(
+			GRAPHINA_PREFIX . $chart_type . '_chart_node_height',
+			array(
+				'label'     => esc_html__('Node Height', 'graphina-charts-for-elementor'),
+				'type'      => Controls_Manager::NUMBER,
+				'default'   => 130,
+
+			)
+		);
+
+		$widget->add_control(
+			GRAPHINA_PREFIX . $chart_type . '_chart_node_style',
+			array(
+				'label'     => esc_html__('Style', 'graphina-charts-for-elementor'),
+				'type'      => Controls_Manager::SELECT,
+				'default'   => 'solid',
+				'options'   => array(
+					'solid'  => esc_html__('solid', 'graphina-charts-for-elementor'),
+					'dotted' => esc_html__('dotted', 'graphina-charts-for-elementor'),
+					'dashed' => esc_html__('dashed', 'graphina-charts-for-elementor'),
+					'groove' => esc_html__('groove', 'graphina-charts-for-elementor'),
+					'none'   => esc_html__('none', 'graphina-charts-for-elementor'),
+				),
+
+			)
+		);
+
+		$widget->add_control(
+			GRAPHINA_PREFIX . $chart_type . '_chart_node_font_family',
+			array(
+				'label'       => esc_html__('Font Family', 'graphina-charts-for-elementor'),
+				'type'        => Controls_Manager::FONT,
+				'default'     => 'Poppins',
+			)
+		);
+
+		$widget->add_control(
+			GRAPHINA_PREFIX . $chart_type . '_chart_node_border_radius',
+			array(
+				'label'      => esc_html__('Border radius', 'graphina-charts-for-elementor'),
+				'type'       => Controls_Manager::NUMBER,
+				'default'    => 5,
+
+			)
+		);
+
+		$widget->add_control(
+			GRAPHINA_PREFIX . $chart_type . '_chart_node_border_width',
+			array(
+				'label'      => esc_html__('Border Width', 'graphina-charts-for-elementor'),
+				'type'       => Controls_Manager::NUMBER,
+				'default'    => 2,
+			)
+		);
+
+		$widget->add_control(
+			GRAPHINA_PREFIX . $chart_type . '_chart_sel_node_setting_divider',
+			array(
+				'type' => Controls_Manager::DIVIDER,
+			)
+		);
+
+		$widget->add_control(
+			GRAPHINA_PREFIX . $chart_type . '_chart_node_edge_Setting',
+			array(
+				'label' => esc_html__('Edge Connection', 'graphina-charts-for-elementor'),
+				'type'  => Controls_Manager::HEADING,
+			)
+		);
+
+		$widget->add_control(
+			GRAPHINA_PREFIX . $chart_type . '_chart_node_edge_color',
+			array(
+				'label'     => esc_html__('Color', 'graphina-charts-for-elementor'),
+				'type'      => Controls_Manager::COLOR,
+				'default'   => '#FF0000',
+			)
+		);
+
+		$widget->add_control(
+			GRAPHINA_PREFIX . $chart_type . '_chart_node_hover_edge_color',
+			array(
+				'label'     => esc_html__('Hover Color', 'graphina-charts-for-elementor'),
+				'type'      => Controls_Manager::COLOR,
+				'default'   => '#5C6BC0',
+			)
+		);
+
+		$widget->add_control(
+			GRAPHINA_PREFIX . $chart_type . '_chart_node_edge_Setting_divider',
+			array(
+				'type' => Controls_Manager::DIVIDER,
+			)
+		);
+
+		$widget->add_control(
+			GRAPHINA_PREFIX . $chart_type . '_tree_refresh_btn',
+			array(
+				'label'       => esc_html__('Refresh', 'graphina-charts-for-elementor'),
+				'type'        => Controls_Manager::CHOOSE,
+				'default'     => 'refresh',
+				'options'     => array(
+					'refresh' => array(
+						'title' => esc_html__('Classic', 'graphina-charts-for-elementor'),
+						'icon'  => 'fas fa-sync',
+					),
+				),
+				'description' => esc_html__('Click if list is showing empty', 'graphina-charts-for-elementor'),
+				'condition'  => array(
+					GRAPHINA_PREFIX . $chart_type . '_chart_data_option'	=>	'dynamic'
+				),
+			)
+		);
+
+		$widget->add_control(
+			GRAPHINA_PREFIX . $chart_type . '_available_tree_columns',
+			array(
+				'label'       => esc_html__('Available Content', 'graphina-charts-for-elementor'),
+				'type'        => Controls_Manager::TEXTAREA,
+				'default'     => esc_html__('', 'graphina-charts-for-elementor'),
+				'condition'  => array(
+					GRAPHINA_PREFIX . $chart_type . '_chart_data_option'	=>	'dynamic'
+				),
+			)
+		);
+
+		$widget->add_control(
+			GRAPHINA_PREFIX . $chart_type . '_tree_chart_template',
+			array(
+				'label'     => __('Tree Chart Template', 'graphina-charts-for-elementor'),
+				'type'      => Controls_Manager::CODE,
+				'default'   => graphina_tree_chart_template(),
+			)
+		);
+
+
+		$widget->end_controls_section();
+
+		$widget->start_controls_section(
+			GRAPHINA_PREFIX . $chart_type . '_section_2_node',
+			array(
+				'label' => esc_html__('Elements Setting', 'graphina-charts-for-elementor'),
+			)
+		);
+
+		$series_name = esc_html__('Element', 'graphina-charts-for-elementor');
+		$max_series = graphina_default_setting('max_series_value');
+
+		for ($i = 0; $i < $max_series; $i++) {
+
+			if ($i !== 0) {
+				$widget->add_control(
+					GRAPHINA_PREFIX . $chart_type . '_chart_hr_series_count_' . $i,
+					array(
+						'type'      => Controls_Manager::DIVIDER,
+						'condition' => array(
+							GRAPHINA_PREFIX . $chart_type . '_chart_data_series_count' => range(1 + $i, graphina_default_setting('max_series_value')),
+						),
+					)
+				);
+			}
+
+			$widget->add_control(
+				GRAPHINA_PREFIX . $chart_type . '_chart_series_title_' . $i,
+				array(
+					'label'     => $series_name . ' ' . ($i + 1),
+					'type'      => Controls_Manager::HEADING,
+					'condition' => array(
+						GRAPHINA_PREFIX . $chart_type . '_chart_data_series_count' => range(1 + $i, graphina_default_setting('max_series_value')),
+					),
+				)
+			);
+
+
+			$widget->add_control(
+				GRAPHINA_PREFIX . $chart_type . '_chart_node_element_color' . $i,
+				array(
+					'label'     => esc_html__('Node Border Color', 'graphina-charts-for-elementor'),
+					'type'      => Controls_Manager::COLOR,
+					'default'   => '#000000',
+					'condition' => array(
+						GRAPHINA_PREFIX . $chart_type . '_chart_data_series_count' => range(1 + $i, graphina_default_setting('max_series_value')),
+					),
+				)
+			);
+
+			$widget->add_control(
+				GRAPHINA_PREFIX . $chart_type . '_chart_node_element_color_hover' . $i,
+				array(
+					'label'     => esc_html__('Hover Color', 'graphina-charts-for-elementor'),
+					'type'      => Controls_Manager::COLOR,
+					'default'   => '#8396FF',
+					'condition' => array(
+						GRAPHINA_PREFIX . $chart_type . '_chart_data_series_count' => range(1 + $i, graphina_default_setting('max_series_value')),
+					),
+				)
+			);
+
+			$widget->add_control(
+				GRAPHINA_PREFIX . $chart_type . '_chart_node_element_bgcolor' . $i,
+				array(
+					'label'     => esc_html__('Background Color', 'graphina-charts-for-elementor'),
+					'type'      => Controls_Manager::COLOR,
+					'default'   => '#FFFFFF',
+					'condition' => array(
+						GRAPHINA_PREFIX . $chart_type . '_chart_data_series_count' => range(1 + $i, graphina_default_setting('max_series_value')),
+					),
+				)
+			);
+
+			$widget->add_control(
+				GRAPHINA_PREFIX . $chart_type . '_chart_node_element_bgcolor_hover' . $i,
+				array(
+					'label'     => esc_html__('Background Color Hover', 'graphina-charts-for-elementor'),
+					'type'      => Controls_Manager::COLOR,
+					'default'   => '#FFCDCD',
+					'condition' => array(
+						GRAPHINA_PREFIX . $chart_type . '_chart_data_series_count' => range(1 + $i, graphina_default_setting('max_series_value')),
+					),
+				)
+			);
+
+			$widget->add_responsive_control(
+				GRAPHINA_PREFIX . $chart_type . '_chart_sel_node_font_size' . $i,
+				array(
+					'label'     => esc_html__('Font Size', 'graphina-charts-for-elementor'),
+					'type'      => Controls_Manager::NUMBER,
+					'default'   => 15,
+					'condition' => array(
+						GRAPHINA_PREFIX . $chart_type . '_chart_data_series_count' => range(1 + $i, graphina_default_setting('max_series_value')),
+					),
+				)
+			);
+
+			$widget->add_control(
+				GRAPHINA_PREFIX . $chart_type . '_chart_sel_node_font_color' . $i,
+				array(
+					'label'     => esc_html__('Font Color', 'graphina-charts-for-elementor'),
+					'type'      => Controls_Manager::COLOR,
+					'default'   => '#000000',
+					'condition' => array(
+						GRAPHINA_PREFIX . $chart_type . '_chart_data_series_count' => range(1 + $i, graphina_default_setting('max_series_value')),
+					),
+				)
+			);
+		}
+		$widget->end_controls_section();
+	}
+
+	public function tree_data_settings($widget, $chart_type)
+	{
+		$max_series    = graphina_default_setting('max_series_value');
+
+		for ($i = 0; $i < $max_series; $i++) {
+			$widget->add_control(
+				GRAPHINA_PREFIX . $chart_type . 'section_series' . $i,
+				array(
+					'label'     => esc_html__('Element ', 'graphina-charts-for-elementor') . ($i + 1),
+					'type'      => Controls_Manager::HEADING,
+					'condition' => array(
+						GRAPHINA_PREFIX . $chart_type . '_chart_data_option' => 'manual',
+						GRAPHINA_PREFIX . $chart_type . '_chart_data_series_count' => range(1 + $i, graphina_default_setting('max_series_value')),
+					),
+				)
+			);
+			$widget->add_control(
+				GRAPHINA_PREFIX . $chart_type . '_add_image' . $i,
+				[
+					'label' => __('Image Settings', 'text-domain'),
+					'type'        => Controls_Manager::SWITCHER,
+					'label_on'    => esc_html__('Show', 'graphina-charts-for-elementor'),
+					'label_off'   => esc_html__('Hide', 'graphina-charts-for-elementor'),
+					'default'     => false,
+					'condition'   => array(
+						GRAPHINA_PREFIX . $chart_type . '_chart_data_option'        => 'manual',
+						GRAPHINA_PREFIX . $chart_type . '_chart_data_series_count'  => range(1 + $i, graphina_default_setting('max_series_value')),
+					),
+				]
+			);
+
+			$widget->add_control(
+				GRAPHINA_PREFIX . $chart_type . '_chart_image' . $i,
+				array(
+
+					'label' => __('Choose Image', 'text-domain'),
+					'type' => Controls_Manager::MEDIA,
+					'default' => [
+						'url' => \Elementor\Utils::get_placeholder_image_src(),
+					],
+					'dynamic'     => array(
+						'active'  => true,
+					),
+					'condition'   => array(
+						GRAPHINA_PREFIX . $chart_type . '_chart_data_option'        => 'manual',
+						GRAPHINA_PREFIX . $chart_type . '_add_image' . $i => 'yes',
+						GRAPHINA_PREFIX . $chart_type . '_chart_data_series_count'  => range(1 + $i, graphina_default_setting('max_series_value')),
+					),
+				)
+			);
+
+			$widget->add_control(
+				GRAPHINA_PREFIX . $chart_type . '_chart_child' . $i,
+				array(
+					'label'       => 'Child',
+					'type'        => Controls_Manager::TEXT,
+					'placeholder' => esc_html__('Add Child', 'graphina-charts-for-elementor'),
+					'default'     => 'Node ' . ($i + 1),
+					'dynamic'     => array(
+						'active'  => true,
+					),
+					'condition'   => array(
+						GRAPHINA_PREFIX . $chart_type . '_chart_data_option'        => 'manual',
+						GRAPHINA_PREFIX . $chart_type . '_chart_data_series_count'  => range(1 + $i, graphina_default_setting('max_series_value')),
+					),
+
+				)
+			);
+
+			$widget->add_control(
+				GRAPHINA_PREFIX . $chart_type . '_chart_parent' . $i,
+				array(
+					'label'       => 'Parent Node',
+					'type'        => Controls_Manager::TEXT,
+					'placeholder' => esc_html__('Add Parent', 'graphina-charts-for-elementor'),
+					'dynamic'     => array(
+						'active'  => true,
+					),
+					'default'     => 'Node 1',
+					'condition'   => array(
+						GRAPHINA_PREFIX . $chart_type . '_chart_data_option'        => 'manual',
+						GRAPHINA_PREFIX . $chart_type . '_chart_data_series_count'  => range(1 + $i, graphina_default_setting('max_series_value')),
+					),
+
+				)
+			);
+			$widget->add_control(
+				GRAPHINA_PREFIX . $chart_type . '_chart_node_category' . $i,
+				array(
+					'label'       => 'Node Category',
+					'type'        => Controls_Manager::TEXT,
+					'placeholder' => esc_html__('Add Node Category', 'graphina-charts-for-elementor'),
+					'dynamic'     => array(
+						'active'  => true,
+					),
+					'condition'   => array(
+						GRAPHINA_PREFIX . $chart_type . '_chart_data_option'        => 'manual',
+						GRAPHINA_PREFIX . $chart_type . '_chart_data_series_count'  => range(1 + $i, graphina_default_setting('max_series_value')),
+					),
+				)
+			);
+
+			$widget->add_control(
+				GRAPHINA_PREFIX . $chart_type . '_chart_data_divider_tree' . $i,
+				array(
+					'type'      => Controls_Manager::DIVIDER,
+					'condition' => array(
+						GRAPHINA_PREFIX . $chart_type . '_chart_data_option'        => 'manual',
+						GRAPHINA_PREFIX . $chart_type . '_chart_data_series_count'  => range(1 + $i, graphina_default_setting('max_series_value')),
+					),
+				)
+			);
+		}
 	}
 	/**
 	 * Adds configuration controls for the Counter Chart in the Elementor widget.
@@ -2044,7 +2565,7 @@ class GraphinaElementorControls {
 			GRAPHINA_PREFIX . $chart_type . '_chart_data_option'         => 'dynamic',
 			GRAPHINA_PREFIX . $chart_type . '_chart_dynamic_data_option' => array( 'sql-builder', 'api' ),
 		);
-		if ( in_array( $chart_type, array( 'counter', 'advance-datatable' ), true ) ) {
+		if ( in_array( $chart_type, array( 'counter', 'tree', 'advance-datatable' ), true ) ) {
 			$condition = array(
 				GRAPHINA_PREFIX . $chart_type . '_element_data_option'         => 'dynamic',
 				GRAPHINA_PREFIX . $chart_type . '_element_dynamic_data_option' => array( 'database', 'api' ),
@@ -2091,461 +2612,7 @@ class GraphinaElementorControls {
 	 * @param string                 $chart_type The type of chart for which controls are being registered.
 	 */
 	public function graphina_chart_filter_style( $widget, $chart_type ) {
-
-		$widget->start_controls_section(
-			GRAPHINA_PREFIX . $chart_type . '_chart_filter_style',
-			array(
-				'label'     => esc_html__( 'Chart Filter Style', 'graphina-charts-for-elementor' ),
-				'tab'       => Controls_Manager::TAB_STYLE,
-				'condition' => array(
-					GRAPHINA_PREFIX . $chart_type . '_chart_filter_enable' => 'yes',
-				),
-			)
-		);
-
-		$widget->add_control(
-			GRAPHINA_PREFIX . $chart_type . '_chart_filter_align_heading',
-			array(
-				'label' => esc_html__( 'Chart Filter', 'graphina-charts-for-elementor' ),
-				'type'  => Controls_Manager::HEADING,
-			)
-		);
-
-		$widget->add_control(
-			GRAPHINA_PREFIX . $chart_type . '_chart_filter_align',
-			array(
-				'label'     => esc_html__( 'Alignment', 'graphina-charts-for-elementor' ),
-				'type'      => Controls_Manager::CHOOSE,
-				'options'   => array(
-					'left'   => array(
-						'title' => esc_html__( 'Left', 'graphina-charts-for-elementor' ),
-						'icon'  => 'eicon-text-align-left',
-					),
-					'center' => array(
-						'title' => esc_html__( 'Center', 'graphina-charts-for-elementor' ),
-						'icon'  => 'eicon-text-align-center',
-					),
-					'right'  => array(
-						'title' => esc_html__( 'Right', 'graphina-charts-for-elementor' ),
-						'icon'  => 'eicon-text-align-right',
-					),
-				),
-				'selectors' => array(
-					'{{WRAPPER}} .graphina_chart_filter' => 'justify-content: {{VALUE}}',
-				),
-			)
-		);
-
-		$widget->add_control(
-			GRAPHINA_PREFIX . $chart_type . '_chart_filter_hr_label',
-			array(
-				'type' => Controls_Manager::DIVIDER,
-			)
-		);
-
-		$widget->add_control(
-			GRAPHINA_PREFIX . $chart_type . '_chart_filter_label_heading',
-			array(
-				'label' => esc_html__( 'Label', 'graphina-charts-for-elementor' ),
-				'type'  => Controls_Manager::HEADING,
-			)
-		);
-
-		$widget->add_control(
-			GRAPHINA_PREFIX . $chart_type . '_chart_filter_label_font_color',
-			array(
-				'label'     => esc_html__( 'Font Color', 'graphina-charts-for-elementor' ),
-				'type'      => Controls_Manager::COLOR,
-				'selectors' => array( '{{WRAPPER}} .graphina-filter-div label' => 'color:{{VALUE}}' ),
-			)
-		);
-
-		$widget->add_control(
-			GRAPHINA_PREFIX . $chart_type . '_chart_filter_label_font_size',
-			array(
-				'label'      => esc_html__( 'Font Size', 'graphina-charts-for-elementor' ),
-				'type'       => Controls_Manager::SLIDER,
-				'size_units' => array( 'px', 'em', 'rem', 'vw' ),
-				'range'      => array(
-					'px'  => array(
-						'min' => 1,
-						'max' => 200,
-					),
-					'em'  => array(
-						'min' => 1,
-						'max' => 200,
-					),
-					'rem' => array(
-						'min' => 1,
-						'max' => 200,
-					),
-					'vw'  => array(
-						'min'  => 0.1,
-						'max'  => 10,
-						'step' => 0.1,
-					),
-				),
-				'selectors'  => array(
-					'{{WRAPPER}} .graphina-filter-div label' => 'font-size: {{SIZE}}{{UNIT}}',
-				),
-			)
-		);
-
-		$widget->add_control(
-			GRAPHINA_PREFIX . $chart_type . '_chart_filter_label_margin',
-			array(
-				'label'      => esc_html__( 'Margin', 'graphina-charts-for-elementor' ),
-				'size_units' => array( 'px', '%', 'em' ),
-				'type'       => Controls_Manager::DIMENSIONS,
-				'selectors'  => array(
-					'{{WRAPPER}} .graphina-filter-div label' => 'margin: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};overflow:hidden;',
-				),
-			)
-		);
-
-		$widget->add_control(
-			GRAPHINA_PREFIX . $chart_type . '_chart_filter_label_padding',
-			array(
-				'label'      => esc_html__( 'Padding', 'graphina-charts-for-elementor' ),
-				'size_units' => array( 'px', '%', 'em' ),
-				'type'       => Controls_Manager::DIMENSIONS,
-				'selectors'  => array(
-					'{{WRAPPER}} .graphina-filter-div label' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};overflow:hidden;',
-				),
-			)
-		);
-
-		$widget->add_control(
-			GRAPHINA_PREFIX . $chart_type . '_chart_filter_hr_select',
-			array(
-				'type' => Controls_Manager::DIVIDER,
-			)
-		);
-
-		$widget->add_control(
-			GRAPHINA_PREFIX . $chart_type . '_chart_filter_select_heading',
-			array(
-				'label' => esc_html__( 'DropDown', 'graphina-charts-for-elementor' ),
-				'type'  => Controls_Manager::HEADING,
-			)
-		);
-
-		$widget->add_group_control(
-			Group_Control_Background::get_type(),
-			array(
-				'name'     => GRAPHINA_PREFIX . $chart_type . '_chart_filter_select_background',
-				'label'    => esc_html__( 'Background Type', 'graphina-charts-for-elementor' ),
-				'types'    => array( 'classic', 'gradient' ),
-				'selector' => '{{WRAPPER}} .graphina-filter-div select',
-			)
-		);
-
-		$widget->add_control(
-			GRAPHINA_PREFIX . $chart_type . '_chart_filter_select_font_color',
-			array(
-				'label'     => esc_html__( 'Font Color', 'graphina-charts-for-elementor' ),
-				'type'      => Controls_Manager::COLOR,
-				'selectors' => array( '{{WRAPPER}} .graphina-filter-div select' => 'color:{{VALUE}}' ),
-			)
-		);
-
-		$widget->add_control(
-			GRAPHINA_PREFIX . $chart_type . '_chart_filter_select_font_size',
-			array(
-				'label'      => esc_html__( 'Font Size', 'graphina-charts-for-elementor' ),
-				'type'       => Controls_Manager::SLIDER,
-				'size_units' => array( 'px', 'em', 'rem', 'vw' ),
-				'range'      => array(
-					'px'  => array(
-						'min' => 1,
-						'max' => 200,
-					),
-					'em'  => array(
-						'min' => 1,
-						'max' => 200,
-					),
-					'rem' => array(
-						'min' => 1,
-						'max' => 200,
-					),
-					'vw'  => array(
-						'min'  => 0.1,
-						'max'  => 10,
-						'step' => 0.1,
-					),
-				),
-				'selectors'  => array(
-					'{{WRAPPER}} .graphina-filter-div select' => 'font-size: {{SIZE}}{{UNIT}}',
-				),
-			)
-		);
-
-		$widget->add_control(
-			GRAPHINA_PREFIX . $chart_type . '_chart_filter_select_margin',
-			array(
-				'label'      => esc_html__( 'Margin', 'graphina-charts-for-elementor' ),
-				'size_units' => array( 'px', '%', 'em' ),
-				'type'       => Controls_Manager::DIMENSIONS,
-				'selectors'  => array(
-					'{{WRAPPER}} .graphina-filter-div select' => 'margin: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};overflow:hidden;',
-				),
-			)
-		);
-
-		$widget->add_control(
-			GRAPHINA_PREFIX . $chart_type . '_chart_filter_select_padding',
-			array(
-				'label'      => esc_html__( 'Padding', 'graphina-charts-for-elementor' ),
-				'size_units' => array( 'px', '%', 'em' ),
-				'type'       => Controls_Manager::DIMENSIONS,
-				'selectors'  => array(
-					'{{WRAPPER}} .graphina-filter-div select' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};overflow:hidden;',
-				),
-			)
-		);
-
-		$widget->add_group_control(
-			Group_Control_Border::get_type(),
-			array(
-				'name'     => GRAPHINA_PREFIX . $chart_type . '_chart_filter_select_border',
-				'label'    => esc_html__( 'Border', 'graphina-charts-for-elementor' ),
-				'selector' => '{{WRAPPER}} .graphina-filter-div select',
-			)
-		);
-
-		$widget->add_control(
-			GRAPHINA_PREFIX . $chart_type . '_chart_filter_select_border_radius',
-			array(
-				'label'      => esc_html__( 'Border Radius', 'graphina-charts-for-elementor' ),
-				'size_units' => array( 'px', '%', 'em' ),
-				'type'       => Controls_Manager::DIMENSIONS,
-				'selectors'  => array(
-					'{{WRAPPER}} .graphina-filter-div select' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};overflow:hidden;',
-				),
-			)
-		);
-
-		$widget->add_control(
-			GRAPHINA_PREFIX . $chart_type . '_chart_filter_hr_button',
-			array(
-				'type' => Controls_Manager::DIVIDER,
-			)
-		);
-
-		$widget->add_control(
-			GRAPHINA_PREFIX . $chart_type . '_chart_filter_button_heading',
-			array(
-				'label' => esc_html__( 'Apply Filter Button', 'graphina-charts-for-elementor' ),
-				'type'  => Controls_Manager::HEADING,
-			)
-		);
-
-		$widget->add_group_control(
-			Group_Control_Background::get_type(),
-			array(
-				'name'     => GRAPHINA_PREFIX . $chart_type . '_chart_filter_button_background',
-				'label'    => esc_html__( 'Background Type', 'graphina-charts-for-elementor' ),
-				'types'    => array( 'classic', 'gradient' ),
-				'selector' => '{{WRAPPER}} .graphina-filter-div button[type=button]',
-			)
-		);
-
-		$widget->add_control(
-			GRAPHINA_PREFIX . $chart_type . '_chart_filter_button_font_color',
-			array(
-				'label'     => esc_html__( 'Font Color', 'graphina-charts-for-elementor' ),
-				'type'      => Controls_Manager::COLOR,
-				'selectors' => array( '{{WRAPPER}} .graphina-filter-div button[type=button]' => 'color:{{VALUE}}' ),
-			)
-		);
-
-		$widget->add_control(
-			GRAPHINA_PREFIX . $chart_type . '_chart_filter_button_font_size',
-			array(
-				'label'      => esc_html__( 'Font Size', 'graphina-charts-for-elementor' ),
-				'type'       => Controls_Manager::SLIDER,
-				'size_units' => array( 'px', 'em', 'rem', 'vw' ),
-				'range'      => array(
-					'px'  => array(
-						'min' => 1,
-						'max' => 200,
-					),
-					'em'  => array(
-						'min' => 1,
-						'max' => 200,
-					),
-					'rem' => array(
-						'min' => 1,
-						'max' => 200,
-					),
-					'vw'  => array(
-						'min'  => 0.1,
-						'max'  => 10,
-						'step' => 0.1,
-					),
-				),
-				'selectors'  => array(
-					'{{WRAPPER}} .graphina-filter-div .graphina-filter-div-button' => 'font-size: {{SIZE}}{{UNIT}}',
-				),
-			)
-		);
-
-		$widget->add_control(
-			GRAPHINA_PREFIX . $chart_type . '_chart_filter_button_margin',
-			array(
-				'label'      => esc_html__( 'Margin', 'graphina-charts-for-elementor' ),
-				'size_units' => array( 'px', '%', 'em' ),
-				'type'       => Controls_Manager::DIMENSIONS,
-				'selectors'  => array(
-					'{{WRAPPER}} .graphina-filter-div button[type=button]' => 'margin: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};overflow:hidden;',
-				),
-			)
-		);
-
-		$widget->add_control(
-			GRAPHINA_PREFIX . $chart_type . '_chart_filter_button_padding',
-			array(
-				'label'      => esc_html__( 'Padding', 'graphina-charts-for-elementor' ),
-				'size_units' => array( 'px', '%', 'em' ),
-				'type'       => Controls_Manager::DIMENSIONS,
-				'selectors'  => array(
-					'{{WRAPPER}} .graphina-filter-div button[type=button]' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};overflow:hidden;',
-				),
-			)
-		);
-
-		$widget->add_group_control(
-			Group_Control_Border::get_type(),
-			array(
-				'name'     => GRAPHINA_PREFIX . $chart_type . '_chart_filter_button_border',
-				'label'    => esc_html__( 'Border', 'graphina-charts-for-elementor' ),
-				'selector' => '{{WRAPPER}} .graphina-filter-div button[type=button]',
-			)
-		);
-
-		$widget->add_control(
-			GRAPHINA_PREFIX . $chart_type . '_chart_filter_button_border_radius',
-			array(
-				'label'      => esc_html__( 'Border Radius', 'graphina-charts-for-elementor' ),
-				'size_units' => array( 'px', '%', 'em' ),
-				'type'       => Controls_Manager::DIMENSIONS,
-				'selectors'  => array(
-					'{{WRAPPER}} .graphina-filter-div button[type=button]' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};overflow:hidden;',
-				),
-			)
-		);
-
-		$widget->add_control(
-			GRAPHINA_PREFIX . $chart_type . '_chart_hr_date_picker',
-			array(
-				'type' => Controls_Manager::DIVIDER,
-			)
-		);
-
-		$widget->add_control(
-			GRAPHINA_PREFIX . $chart_type . '_chart_hr_date_picker_header',
-			array(
-				'label' => esc_html__( 'Date Picker', 'graphina-charts-for-elementor' ),
-				'type'  => Controls_Manager::HEADING,
-			)
-		);
-
-		$widget->add_group_control(
-			Group_Control_Background::get_type(),
-			array(
-				'name'     => GRAPHINA_PREFIX . $chart_type . '_chart_filter_date_background',
-				'label'    => esc_html__( 'Background Type', 'graphina-charts-for-elementor' ),
-				'types'    => array( 'classic', 'gradient' ),
-				'selector' => '{{WRAPPER}} .graphina-filter-div .graphina-chart-filter-date-time',
-			)
-		);
-
-		$widget->add_control(
-			GRAPHINA_PREFIX . $chart_type . '_chart_filter_date_font_color',
-			array(
-				'label'     => esc_html__( 'Font Color', 'graphina-charts-for-elementor' ),
-				'type'      => Controls_Manager::COLOR,
-				'selectors' => array( '{{WRAPPER}} .graphina-filter-div .graphina-chart-filter-date-time' => 'color:{{VALUE}}' ),
-			)
-		);
-
-		$widget->add_control(
-			GRAPHINA_PREFIX . $chart_type . '_chart_filter_date_font_size',
-			array(
-				'label'      => esc_html__( 'Font Size', 'graphina-charts-for-elementor' ),
-				'type'       => Controls_Manager::SLIDER,
-				'size_units' => array( 'px', 'em', 'rem', 'vw' ),
-				'range'      => array(
-					'px'  => array(
-						'min' => 1,
-						'max' => 200,
-					),
-					'em'  => array(
-						'min' => 1,
-						'max' => 200,
-					),
-					'rem' => array(
-						'min' => 1,
-						'max' => 200,
-					),
-					'vw'  => array(
-						'min'  => 0.1,
-						'max'  => 10,
-						'step' => 0.1,
-					),
-				),
-				'selectors'  => array(
-					'{{WRAPPER}} .graphina-filter-div .graphina-chart-filter-date-time' => 'font-size: {{SIZE}}{{UNIT}}',
-				),
-			)
-		);
-
-		$widget->add_control(
-			GRAPHINA_PREFIX . $chart_type . '_chart_filter_date_margin',
-			array(
-				'label'      => esc_html__( 'Margin', 'graphina-charts-for-elementor' ),
-				'size_units' => array( 'px', '%', 'em' ),
-				'type'       => Controls_Manager::DIMENSIONS,
-				'selectors'  => array(
-					'{{WRAPPER}} .graphina-filter-div .graphina-chart-filter-date-time' => 'margin: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};overflow:hidden;',
-				),
-			)
-		);
-
-		$widget->add_control(
-			GRAPHINA_PREFIX . $chart_type . '_chart_filter_date_padding',
-			array(
-				'label'      => esc_html__( 'Padding', 'graphina-charts-for-elementor' ),
-				'size_units' => array( 'px', '%', 'em' ),
-				'type'       => Controls_Manager::DIMENSIONS,
-				'selectors'  => array(
-					'{{WRAPPER}} .graphina-filter-div .graphina-chart-filter-date-time' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};overflow:hidden;',
-				),
-			)
-		);
-
-		$widget->add_group_control(
-			Group_Control_Border::get_type(),
-			array(
-				'name'     => GRAPHINA_PREFIX . $chart_type . '_chart_filter_date_border',
-				'label'    => esc_html__( 'Border', 'graphina-charts-for-elementor' ),
-				'selector' => '{{WRAPPER}} .graphina-filter-div .graphina-chart-filter-date-time',
-			)
-		);
-
-		$widget->add_control(
-			GRAPHINA_PREFIX . $chart_type . '_chart_filter_date_border_radius',
-			array(
-				'label'      => esc_html__( 'Border Radius', 'graphina-charts-for-elementor' ),
-				'size_units' => array( 'px', '%', 'em' ),
-				'type'       => Controls_Manager::DIMENSIONS,
-				'selectors'  => array(
-					'{{WRAPPER}} .graphina-filter-div .graphina-chart-filter-date-time' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};overflow:hidden;',
-				),
-			)
-		);
-
-		$widget->end_controls_section();
+		apply_filters('graphina_chart_filter_style',$widget,$chart_type);
 	}
 
 	/**
@@ -2856,7 +2923,7 @@ class GraphinaElementorControls {
 					'label'   => esc_html__( 'Data Elements', 'graphina-charts-for-elementor' ),
 					'type'    => Controls_Manager::NUMBER,
 					'description' => __( '<strong>Notice:</strong> The minimum required value for data elements is <strong>1</strong>. To increase the maximum data element value, please refer to the <a href="https://documentation.iqonic.design/graphina/php-hooks/optimizing-element-sets-in-graphina-with-php-hooks" target="_blank">PHP Hooks Documentation</a>.', 'graphina-charts-for-elementor' ),
-					'default' => $default_count !== 0 ? $default_count : ( in_array( $chart_type, array( 'pie', 'polar', 'donut', 'radial', 'bubble', 'pie_google', 'donut_google', 'org_google', 'gauge_google', 'distributed_column', 'nested_column' ), true ) ? 6 : 1 ),
+					'default' => $default_count !== 0 ? $default_count : ( in_array( $chart_type, array( 'pie', 'polar', 'donut', 'radial', 'bubble', 'pie_google', 'donut_google', 'tree','org_google', 'gauge_google', 'distributed_column', 'nested_column' ), true ) ? 6 : 1 ),
 					'min'     => 1,
 					'max'     => $chart_type === 'gantt_google' ? 1 : graphina_default_setting( 'max_series_value' ),
 				)
@@ -2881,7 +2948,9 @@ class GraphinaElementorControls {
 			}
 			if ( $chart_type === 'distributed_column' ) {
 				$this->graphina_distributed_column_chart_data( $widget, $chart_type );
-			} else {
+			} elseif ( 'tree' === $chart_type ) {
+				$this->tree_data_settings($widget, $chart_type);
+			}else{
 				$this->graphina_manual_chart_data_series( $widget, $chart_type );
 			}
 		} elseif ( 'data_table_lite' === $chart_type ) {
@@ -3536,6 +3605,7 @@ class GraphinaElementorControls {
 		}
 	}
 
+
 	/**
 	 * Registers Data Series for Graphina widget.
 	 *
@@ -3905,7 +3975,8 @@ class GraphinaElementorControls {
 
 					)
 				);
-			} elseif ( 'gauge_google' === $chart_type ) {
+			} 
+			elseif ( 'gauge_google' === $chart_type ) {
 				$widget->add_control(
 					GRAPHINA_PREFIX . $chart_type . '_section_series_1' . $i,
 					array(
@@ -5067,7 +5138,7 @@ class GraphinaElementorControls {
 			array(
 				'label'       => esc_html__( 'Size', 'graphina-charts-for-elementor' ),
 				'type'        => Controls_Manager::NUMBER,
-				'default'     => in_array( $chart_type, array( 'radar', 'mixed', 'brush' ), true ) ? 3 : 1,
+				'default'     => in_array( $chart_type, array( 'radar', 'mixed', 'brush' ), true ) ? 3 : 0,
 				'min'         => 0,
 				'condition'   => $condition,
 				'description' => $chart_type === 'brush' ? esc_html__( 'Note : Marker are only show in Chart 1 ', 'graphina-charts-for-elementor' ) : '',
@@ -5206,6 +5277,9 @@ class GraphinaElementorControls {
 	 * @return void
 	 */
 	protected function graphina_fill_style_setting( $widget, string $chart_type = 'chart_id', array $fill_styles = array( 'classic', 'gradient', 'pattern' ), bool $show_opacity = false, int $i = -1, array $condition = array(), bool $show_note_fill_style = false ): void {
+		if ( $chart_type === 'heatmap' ) {
+    		return;
+		}
 		$widget->add_control(
 			GRAPHINA_PREFIX . $chart_type . '_chart_fill_setting_title' . ( $i > -1 ? '_' . $i : '' ),
 			array(
@@ -5928,6 +6002,7 @@ class GraphinaElementorControls {
 						GRAPHINA_PREFIX . $chart_type . '_chart_pieSliceText_show' => 'yes',
 
 					),
+					'description' => esc_html__( 'Prefix/Postfix will not be applied when label type is set to Percentage.', 'graphina-charts-for-elementor' ),
 				)
 			);
 			$widget->add_control(
@@ -7037,7 +7112,7 @@ class GraphinaElementorControls {
 				)
 			);
 
-			$widget->add_control(
+			$widget->add_responsive_control(
 				GRAPHINA_PREFIX . $chart_type . '_chart_datalabel_show',
 				array(
 					'label'     => esc_html__( 'Show', 'graphina-charts-for-elementor' ),
@@ -7164,6 +7239,7 @@ class GraphinaElementorControls {
 						'min'       => 0,
 						'condition' => array(
 							GRAPHINA_PREFIX . $chart_type . '_chart_datalabel_show' => 'yes',
+							GRAPHINA_PREFIX . $chart_type . '_chart_label_pointer_for_label' => 'yes',
 						),
 					)
 				);
@@ -7358,7 +7434,7 @@ class GraphinaElementorControls {
 				$widget->add_control(
 					GRAPHINA_PREFIX . $chart_type . '_chart_datalabel_font_color',
 					array(
-						'label'      => esc_html__( 'Font Color', 'graphina-charts-for-elementor' ),
+						'label'      => esc_html__( 'Label Font Color', 'graphina-charts-for-elementor' ),
 						'type'       => Controls_Manager::COLOR,
 						'default'    => '#000000',
 						'conditions' => $data_label_font_setting,
@@ -7366,84 +7442,99 @@ class GraphinaElementorControls {
 				);
 			}
 
-			if ( $show_label_background ) {
-					$widget->add_control(
-						GRAPHINA_PREFIX . $chart_type . '_chart_datalabel_background_show',
-						array(
-							'label'      => esc_html__( 'Show Background', 'graphina-charts-for-elementor' ),
-							'type'       => Controls_Manager::SWITCHER,
-							'label_on'   => esc_html__( 'Hide', 'graphina-charts-for-elementor' ),
-							'label_off'  => esc_html__( 'Show', 'graphina-charts-for-elementor' ),
-							'default'    => false,
-							'conditions' => $data_label_font_color_condition,
-						)
-					);
+			if ( $show_label_background && $chart_type !== 'heatmap' ) {
 
-					$data_label_background['terms'][] = array(
-						'relation' => 'and',
-						'terms'    => array(
-							array(
-								'name'     => GRAPHINA_PREFIX . $chart_type . '_chart_datalabel_background_show',
-								'operator' => '==',
-								'value'    => 'yes',
-							),
+				$widget->add_control(
+				GRAPHINA_PREFIX . $chart_type . '_chart_datalabel_background_show',
+				array(
+					'label'      => esc_html__( 'Show Background', 'graphina-charts-for-elementor' ),
+					'type'       => Controls_Manager::SWITCHER,
+					'label_on'   => esc_html__( 'Hide', 'graphina-charts-for-elementor' ),
+					'label_off'  => esc_html__( 'Show', 'graphina-charts-for-elementor' ),
+					'default'    => false,
+					'conditions' => $data_label_font_color_condition,
+					)
+				);
+
+				$data_label_background['terms'][] = array(
+					'relation' => 'and',
+					'terms'    => array(
+						array(
+							'name'     => GRAPHINA_PREFIX . $chart_type . '_chart_datalabel_background_show',
+							'operator' => '==',
+							'value'    => 'yes',
 						),
-					);
+					),
+				);
 
-					$widget->add_control(
-						GRAPHINA_PREFIX . $chart_type . '_chart_datalabel_background_color',
-						array(
-							'label'      => esc_html__( 'Font Color', 'graphina-charts-for-elementor' ),
-							'type'       => Controls_Manager::COLOR,
-							'default'    => '#FFFFFF',
-							'conditions' => $data_label_background,
-						)
-					);
+				$widget->add_control(
+					GRAPHINA_PREFIX . $chart_type . '_chart_datalabel_background_color',
+					array(
+						'label'      => esc_html__( 'Font Color', 'graphina-charts-for-elementor' ),
+						'type'       => Controls_Manager::COLOR,
+						'default'    => '#FFFFFF',
+						'conditions' => $data_label_background,
+					)
+				);
 
-					$widget->add_control(
-						GRAPHINA_PREFIX . $chart_type . '_chart_datalabel_font_color_1',
-						array(
-							'label'      => esc_html__( 'Background Color', 'graphina-charts-for-elementor' ),
-							'type'       => Controls_Manager::COLOR,
-							'default'    => '#000000',
-							'conditions' => $data_label_background,
-						)
-					);
+				$widget->add_control(
+					GRAPHINA_PREFIX . $chart_type . '_chart_datalabel_font_color_1',
+					array(
+						'label'      => esc_html__( 'Background Color', 'graphina-charts-for-elementor' ),
+						'type'       => Controls_Manager::COLOR,
+						'default'    => '#000000',
+						'conditions' => $data_label_background,
+					)
+				);
 
-					$widget->add_control(
-						GRAPHINA_PREFIX . $chart_type . '_chart_datalabel_border_width',
-						array(
-							'label'      => esc_html__( 'Border Width', 'graphina-charts-for-elementor' ),
-							'type'       => Controls_Manager::NUMBER,
-							'default'    => 1,
-							'min'        => 0,
-							'max'        => 20,
-							'conditions' => $data_label_background,
-						)
-					);
+				$widget->add_control(
+					GRAPHINA_PREFIX . $chart_type . '_chart_datalabel_border_width',
+					array(
+						'label'      => esc_html__( 'Border Width', 'graphina-charts-for-elementor' ),
+						'type'       => Controls_Manager::NUMBER,
+						'default'    => 1,
+						'min'        => 0,
+						'max'        => 20,
+						'conditions' => $data_label_background,
+					)
+				);
 
-					$widget->add_control(
-						GRAPHINA_PREFIX . $chart_type . '_chart_datalabel_border_radius',
-						array(
-							'label'      => esc_html__( 'Border radius', 'graphina-charts-for-elementor' ),
-							'type'       => Controls_Manager::NUMBER,
-							'default'    => 0,
-							'conditions' => $data_label_background,
-						)
-					);
+				$widget->add_control(
+					GRAPHINA_PREFIX . $chart_type . '_chart_datalabel_border_radius',
+					array(
+						'label'      => esc_html__( 'Border radius', 'graphina-charts-for-elementor' ),
+						'type'       => Controls_Manager::NUMBER,
+						'default'    => 0,
+						'conditions' => $data_label_background,
+					)
+				);
 
-					$widget->add_control(
-						GRAPHINA_PREFIX . $chart_type . '_chart_datalabel_border_color',
-						array(
-							'label'      => esc_html__( 'Border Color', 'graphina-charts-for-elementor' ),
-							'type'       => Controls_Manager::COLOR,
-							'default'    => '#FFFFFF',
-							'conditions' => $data_label_background,
-						)
-					);
+				$widget->add_control(
+					GRAPHINA_PREFIX . $chart_type . '_chart_datalabel_border_color',
+					array(
+						'label'      => esc_html__( 'Border Color', 'graphina-charts-for-elementor' ),
+						'type'       => Controls_Manager::COLOR,
+						'default'    => '#FFFFFF',
+						'conditions' => $data_label_background,
+					)
+				);
+
 			}
 
-			if ( in_array( $chart_type, array( 'area', 'line', 'column', 'mixed' ), true ) ) {
+			if ( $chart_type === 'heatmap' ) {
+				$widget->add_control(
+					GRAPHINA_PREFIX . $chart_type . '_chart_datalabel_color',
+					array(
+						'label'   => esc_html__( 'Font Color', 'graphina-charts-for-elementor' ),
+						'type'    => Controls_Manager::COLOR,
+						'default' => '#FFFFFF',
+					)
+				);
+			}
+
+
+
+			if ( in_array( $chart_type, array( 'area', 'line', 'column', 'mixed','radial' ), true ) ) {
 				$widget->add_control(
 					GRAPHINA_PREFIX . $chart_type . '_chart_number_format_commas',
 					array(
@@ -8796,6 +8887,8 @@ class GraphinaElementorControls {
 				),
 			)
 		);
+
+		
 	}
 
 	/**
@@ -9318,7 +9411,7 @@ class GraphinaElementorControls {
 					$notice = esc_html__( 'If tooltip shared off ,Elements setting -> Marker settings -> size value should be greater then 0 to work properly', 'graphina-charts-for-elementor' );
 				}
 
-				if ( ! in_array( $chart_type, array( 'donut', 'polar', 'pie', 'timeline', 'bubble', 'radar' ,' heatmap', 'radial') ) ) {
+				if ( ! in_array( $chart_type, array( 'donut', 'polar', 'pie', 'timeline', 'bubble', 'radar' ,' heatmap', 'radial','distributed_column') ) ) {
 					$widget->add_control(
 						GRAPHINA_PREFIX . $chart_type . '_chart_tooltip_shared',
 						array(
@@ -9477,7 +9570,7 @@ class GraphinaElementorControls {
 		}
 
 		if(! in_array( $chart_type, graphina_google_chart_lists() )){
-			$widget->add_control(
+			$widget->$responsive(
 				GRAPHINA_PREFIX . $chart_type . '_chart_font_size',
 				array(
 					'label'      => esc_html__( 'Font Size', 'graphina-charts-for-elementor' ),
@@ -9525,7 +9618,7 @@ class GraphinaElementorControls {
 		}
 
 		if(! in_array( $chart_type, graphina_google_chart_lists() )){
-			$widget->add_control(
+			$widget->$responsive(
 				GRAPHINA_PREFIX . $chart_type . '_chart_font_weight',
 				array(
 					'label'     => esc_html__( 'Font Weight', 'graphina-charts-for-elementor' ),
@@ -9535,7 +9628,7 @@ class GraphinaElementorControls {
 				)
 			);
 	
-			$widget->add_control(
+			$widget->$responsive(
 				GRAPHINA_PREFIX . $chart_type . '_chart_font_color',
 				array(
 					'label'     => esc_html__( 'Font Color', 'graphina-charts-for-elementor' ),
@@ -9545,7 +9638,7 @@ class GraphinaElementorControls {
 			);
 		}
 
-		if( 'geo_google' != $chart_type ){
+		if(  ! in_array( $chart_type, array( 'geo_google', 'gauge_google' ), true )  ){
 			$widget->add_control(
 				GRAPHINA_PREFIX . $chart_type . '_chart_hr_animation_setting',
 				array(
@@ -9562,7 +9655,7 @@ class GraphinaElementorControls {
 			);
 		}
 
-		if ( in_array( $chart_type, array( 'area_google', 'line_google', 'bar_google', 'column_google', 'gauge_google' ), true ) ) {
+		if ( in_array( $chart_type, array( 'area_google', 'line_google', 'bar_google', 'column_google' ), true ) ) {
 
 			$widget->add_control(
 				GRAPHINA_PREFIX . $chart_type . '_chart_animation_show',
@@ -9603,7 +9696,7 @@ class GraphinaElementorControls {
 				)
 			);
 		} else {
-			if( 'geo_google' != $chart_type ){
+			if( ! in_array( $chart_type, array( 'geo_google', 'gauge_google' ), true )  ){
 				$widget->add_control(
 					GRAPHINA_PREFIX . $chart_type . '_chart_animation',
 					array(
@@ -9651,7 +9744,7 @@ class GraphinaElementorControls {
 		$widget->add_control(
 			GRAPHINA_PREFIX . $chart_type . '_chart_box_settings_heading',
 			array(
-				'label' => esc_html__( 'Box Stlye', 'graphina-charts-for-elementor' ),
+				'label' => esc_html__( 'Box Style', 'graphina-charts-for-elementor' ),
 				'type'  => Controls_Manager::HEADING,
 			)
 		);
@@ -10332,7 +10425,7 @@ class GraphinaElementorControls {
 			)
 		);
 
-		$widget->add_control(
+		$widget->add_responsive_control(
 			GRAPHINA_PREFIX . $chart_type . '_chart_legend_show',
 			array(
 				'label'     => esc_html__( 'Legend', 'graphina-charts-for-elementor' ),
@@ -10837,7 +10930,7 @@ class GraphinaElementorControls {
 			}
 		}
 
-		$widget->add_control(
+		$widget->add_responsive_control(
 			GRAPHINA_PREFIX . $chart_type . '_chart_xaxis_datalabel_show',
 			array(
 				'label'     => esc_html__( 'Labels', 'graphina-charts-for-elementor' ),
@@ -10954,7 +11047,7 @@ class GraphinaElementorControls {
 				)
 			);
 		}
-		if ( ! in_array( $chart_type, array( 'brush', 'candle', 'timeline' ), true ) ) {
+		if ( ! in_array( $chart_type, array( 'brush', 'candle', 'timeline', 'heatmap' ), true ) ) {
 			$widget->add_control(
 				GRAPHINA_PREFIX . $chart_type . '_chart_xaxis_datalabel_tick_placement',
 				array(
@@ -11298,12 +11391,11 @@ class GraphinaElementorControls {
 				array(
 					'label'     => esc_html__( 'Label Rotate Angle', 'graphina-charts-for-elementor' ),
 					'type'      => Controls_Manager::NUMBER,
-					'min'       => 11,
-					'max'       => 349,
 					'default'   => 50,
 					'condition' => array(
 						GRAPHINA_PREFIX . $chart_type . '_chart_xaxis_rotate' => 'yes',
 					),
+					'description' => esc_html__( 'Label rotation works only when position is set to "out".', 'graphina-charts-for-elementor' ),
 				)
 			);
 		}
@@ -11685,10 +11777,11 @@ class GraphinaElementorControls {
 		$widget->add_control(
 			GRAPHINA_PREFIX . $chart_type . '_chart_gridline_count',
 			array(
-				'label'     => esc_html__( 'Gridline Count', 'graphina-charts-for-elementor' ),
-				'type'      => Controls_Manager::NUMBER,
-				'default'   => 5,
-				'condition' => array(
+				'label'       => esc_html__( 'Gridline Count', 'graphina-charts-for-elementor' ),
+				'type'        => Controls_Manager::NUMBER,
+				'default'     => 5,
+				'description' => esc_html__( 'Note: This setting only works when Logarithmic Axis is disabled.', 'graphina-charts-for-elementor' ),
+				'condition'   => array(
 					GRAPHINA_PREFIX . $chart_type . '_chart_gridline_count_show' => 'yes',
 				),
 
@@ -11839,7 +11932,7 @@ class GraphinaElementorControls {
 			)
 		);
 
-		$widget->add_control(
+		$widget->add_responsive_control (
 			GRAPHINA_PREFIX . $chart_type . '_chart_yaxis_datalabel_show',
 			array(
 				'label'     => esc_html__( 'Labels', 'graphina-charts-for-elementor' ),
@@ -11961,6 +12054,7 @@ class GraphinaElementorControls {
 				'label'     => esc_html__( 'Number of Decimal Want', 'graphina-charts-for-elementor' ),
 				'type'      => Controls_Manager::NUMBER,
 				'default'   => 0,
+				'max'       => 6,
 				'min'       => 0,
 				'condition' => array(
 					GRAPHINA_PREFIX . $chart_type . '_chart_yaxis_label_pointer' => 'yes',
@@ -12131,7 +12225,7 @@ class GraphinaElementorControls {
 			}
 		}
 
-		$widget->add_control(
+		$widget->add_responsive_control(
 			GRAPHINA_PREFIX . $chart_type . '_chart_yaxis_datalabel_show',
 			array(
 				'label'     => esc_html__( 'Labels', 'graphina-charts-for-elementor' ),
@@ -12283,7 +12377,7 @@ class GraphinaElementorControls {
 				array(
 					'label'     => esc_html__( 'Number of Decimal Want', 'graphina-charts-for-elementor' ),
 					'type'      => Controls_Manager::NUMBER,
-					'default'   => 1,
+					'default'   => 0,
 					'min'       => 0,
 					'condition' => array(
 						GRAPHINA_PREFIX . $chart_type . '_chart_yaxis_datalabel_show' => 'yes',
@@ -12293,7 +12387,7 @@ class GraphinaElementorControls {
 					),
 				)
 			);
-			if ( in_array( $chart_type, array( 'column', 'line', 'area', 'bubble', 'heatmap', 'distributed_column', 'scatter', 'brush' ), true ) ) {
+			if ( in_array( $chart_type, array( 'column', 'line', 'area', 'bubble', 'distributed_column', 'scatter', 'brush' ), true ) ) {
 				$widget->add_control(
 					GRAPHINA_PREFIX . $chart_type . '_chart_yaxis_number_format',
 					array(
@@ -12320,7 +12414,7 @@ class GraphinaElementorControls {
 					'label_on'    => esc_html__( 'Hide', 'graphina-charts-for-elementor' ),
 					'label_off'   => esc_html__( 'Show', 'graphina-charts-for-elementor' ),
 					'default'     => false,
-					'description' => esc_html__( 'Note: Convert 1,000  => 1k and 1,000,000 => 1m and if Format Number(Commas) is enable this will not work', 'graphina-charts-for-elementor' ),
+					'description' => esc_html__( 'Note: Convert 1,000 to 1k and 1,000,000 to 1m. You can also set the number of decimal places for the number-to-string conversion, and enable label prefix or postfix if needed.', 'graphina-charts-for-elementor' ),
 				)
 			);
 		}
@@ -12330,12 +12424,13 @@ class GraphinaElementorControls {
 			array(
 				'label'     => esc_html__( 'Decimals In Float', 'graphina-charts-for-elementor' ),
 				'type'      => Controls_Manager::NUMBER,
-				'default'   => do_action('graphina_default_decimals_float_value',2),
+				'default'   => apply_filters('graphina_default_decimals_float_value', 2),
 				'max'       => 6,
 				'min'       => 0,
 				'condition' => array(
 					GRAPHINA_PREFIX . $chart_type . '_chart_yaxis_datalabel_show' => 'yes',
 				),
+				'description' => ( isset( $chart_type ) && $chart_type !== 'mixed' ) ? esc_html__( 'Note: Not work when Format Number to Strings enable', 'graphina-charts-for-elementor' ): '',
 			)
 		);
 
@@ -12544,9 +12639,12 @@ class GraphinaElementorControls {
 					'label_on'  => esc_html__( 'Hide', 'graphina-charts-for-elementor' ),
 					'label_off' => esc_html__( 'Show', 'graphina-charts-for-elementor' ),
 					'default'   => 'no',
+					'condition' => array(
+						GRAPHINA_PREFIX . $chart_type . '_chart_opposite_yaxis_title_enable' => 'yes',
+						GRAPHINA_PREFIX . $chart_type . '_chart_data_series_count!' => 1,
+					),
 				)
 			);
-
 		}
 
 		$widget->end_controls_section();

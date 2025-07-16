@@ -10,13 +10,59 @@ export default class GraphinaGoogleChartBase {
     init() {
         this.setUpChartsHandler();
         this.bindEventHandlers();
+        this.bindElementorInit(); // Bind Elementor hooks separately
     }
+
+    bindElementorInit() {
+        // Flag to track if our handler has been registered
+        let elementorHookCalled = false;
+        
+        const runOnElementorReady = () => {
+            if (elementorHookCalled) return;
+            
+            // Wait for Elementor modules to be ready
+            if (window.elementorFrontend && window.elementorFrontend.elementsHandler) {
+                elementorHookCalled = true;
+                
+                // Register the widget handler
+                window.elementorFrontend.hooks.addAction('frontend/element_ready/widget', ($scope) => {
+                    const chartElement = $scope.find('.graphina-google-chart');
+                    if (chartElement.length > 0) {
+                        this.initializeCharts(chartElement);
+                    }
+                });
+            }
+        };
+
+        // Case 1: Check if Elementor is already initialized
+        if (window.elementorFrontend && window.elementorFrontend.elementsHandler) {
+            
+            runOnElementorReady();
+        }
+
+        // Case 2: Wait for Elementor to initialize
+        jQuery(window).on('elementor/frontend/init', () => {
+            // Add a small delay to ensure modules are loaded
+            setTimeout(runOnElementorReady, 50);
+        });
+
+        // Case 3: Fallback for non-Elementor pages
+        jQuery(document).ready(() => {
+            if (!elementorHookCalled) {
+                const chartElements = jQuery('.graphina-google-chart');
+                if (chartElements.length > 0) {
+                    chartElements.each((index, element) => {
+                        this.initializeCharts(jQuery(element));
+                    });
+                }
+            }
+        });
+    }
+    
 
     // Bind event listeners (e.g., Elementor events)
     bindEventHandlers() {
-        jQuery(document.body).off('change', '.graphina-select-google-chart-type').on('change', '.graphina-select-google-chart-type', this.debounce(this.handleChartTypeChange.bind(this), 300));
-        jQuery(window).on('elementor/frontend/init', this.handleElementorWidgetInit.bind(this));
-        jQuery(window).on('elementor/editor/init', this.handleElementorWidgetInit.bind(this));
+        jQuery(document.body).on('change','.graphina-select-google-chart-type',this.debounce(this.handleChartTypeChange.bind(this), 300));
         jQuery(document.body).off('click','.graphina-filter-div-button.google')
         jQuery(document.body).on('click', '.graphina-filter-div-button.google', this.handleChartFilter.bind(this));
     }
@@ -37,7 +83,6 @@ export default class GraphinaGoogleChartBase {
         const newChartType = dropdown.val();
         const elementId = dropdown.data('element_id');
         const chartElement = jQuery(`.graphina-google-chart[data-element_id="${elementId}"]`);
-
         if (chartElement.length > 0) {
             this.updateChartType(chartElement, newChartType);
         }
@@ -46,14 +91,29 @@ export default class GraphinaGoogleChartBase {
     updateChartType(chartElement, newChartType) {
         this.setupChart(chartElement, newChartType)
     }
+    getGoogleChartTypeFromAlias(chartTypeAlias) {
+        const typeMap = {
+            'area_google': 'AreaChart',
+            'bar_google': 'BarChart',
+            'column_google': 'ColumnChart',
+            'line_google': 'LineChart',
+            'pie_google': 'PieChart',
+            'donut_google': 'PieChart', 
+            'geo_google': 'GeoChart',
+            'gauge_google': 'Gauge',
+            'gantt_google': 'Gantt',
+            'org_google': 'OrgChart',
+        };
+        return typeMap[chartTypeAlias] || chartTypeAlias; 
+    }
 
     handleChartFilter(event) {
         const currentElement = event.currentTarget
         const elementId = jQuery(currentElement).data('element_id');
         const chartElement = jQuery(`.graphina-google-chart[data-element_id="${elementId}"]`);
-        let chartType = jQuery(chartElement).data('chart_type');
-        chartType = chartType === 'area_google' ? 'AreaChart' : 'AreaChart'
-        if(chartElement.length > 0){
+        const chartTypeAlias = chartElement.data('chart_type'); 
+        const chartType = this.getGoogleChartTypeFromAlias(chartTypeAlias); 
+        if (chartElement.length > 0) {
             this.setupChart(chartElement, chartType)
         }
     }
@@ -74,8 +134,27 @@ export default class GraphinaGoogleChartBase {
         });
     }
 
-    setupTableData() {
-        throw new Error('setupTableData method must be implemented by subclasses');
+    setupTableData(dynamicData,dataTable,googleChart,googleChartTexture,extraData){
+        if(dynamicData?.google_chart_data?.title_array.length > 0 && dynamicData?.google_chart_data?.data.length > 0){
+            dataTable.addColumn('string',dynamicData.google_chart_data.title)
+            dynamicData.google_chart_data.title_array.forEach((col) => {
+                dataTable.addColumn('number',col);
+                if(dynamicData.google_chart_data.annotation_show){
+                    dataTable.addColumn({type:'string',role:'annotation'});
+                }
+            });
+            dynamicData.google_chart_data.data.forEach(row => dataTable.addRow(row));
+            googleChart.show()
+            googleChartTexture.hide()
+        } else if(dynamicData?.columns.length > 0 && dynamicData.rows.length > 0){
+            dynamicData.columns.forEach((col, index) => {
+                dataTable.addColumn(col);
+            });
+            dynamicData.rows.forEach(row => dataTable.addRow(row));
+        } else{
+            googleChart.hide()
+            googleChartTexture.show()
+        }
     }
 
     // Initialize charts for a given element
@@ -206,7 +285,7 @@ export default class GraphinaGoogleChartBase {
         });
     }
 
-    afterSetupChart(element,extraData){
+    afterSetupChart(element, extraData,chart,dataTable,finalChartOptions){
         return true
     }
 
@@ -218,12 +297,13 @@ export default class GraphinaGoogleChartBase {
         const googleChart = chartBox ? chartBox.find('.graphina-google-chart') : null;
 
         try {
-            const elementId     = element.data('element_id'); // Chart Element ID
-            const chart_type    = element.data('chart_type'); // Chart Type
-            const chartData     = element.data('chart_data'); // Chart data from element attributes
-            const extraData     = element.data('extra_data'); // Chart data from element attributes
-            const settings      = element.data('settings');   // Chart settings
-            const chartOptions  = element.data('chart_options') || {}; // Chart options
+            const elementId = element.data('element_id'); // Chart Element ID
+            const chart_type = element.data('chart_type'); // Chart Type
+            const chartData = element.data('chart_data'); // Chart data from element attributes
+            const extraData = element.data('extra_data'); // Chart data from element attributes
+            const settings = element.data('settings');   // Chart settings
+            const chartOptions = element.data('chart_options') || {}; // Chart options
+
 
             // Ensure that Google Charts is loaded and only once
             await this.loadGoogleCharts();
@@ -239,11 +319,13 @@ export default class GraphinaGoogleChartBase {
                     let filterValue = []
                     const totalFilter = jQuery(`#graphina_chart_filter_${elementId}`).data('total_filter');
                     for (let index = 0; index < totalFilter; index++) {
-                        filterValue[index] = jQuery(`#graphina-start-date_${index}${elementId}`).val() ?? jQuery(`#graphina-drop_down_filter_${index}${elementId}`).val()
+                        filterValue[index] = jQuery(`#graphina-start-date_${index}${elementId}`).val() ?? jQuery(`#graphina-drop_down_filter_${index}${elementId}`).val();
+
                     }
-                    const dynamicData = await this.getDynamicData(settings, extraData, chart_type, elementId,filterValue);
-                    this.setupTableData(dynamicData,dataTable,googleChart,googleChartTexture,extraData);
-                
+                    const dynamicData = await this.getDynamicData(settings, extraData, chart_type, elementId, filterValue);
+                    this.setupTableData(dynamicData, dataTable, googleChart, googleChartTexture, extraData);
+
+
                 } catch (error) {
                     googleChart.hide()
                     googleChartTexture.show()
@@ -256,19 +338,46 @@ export default class GraphinaGoogleChartBase {
                 this.setupTableData(finalChartData, dataTable, googleChart, googleChartTexture, extraData);
             }
 
-            if ( 'Gantt' === chartType ) {
+            if ('Gantt' === chartType) {
                 this.setDependField(settings, extraData)
             }
 
             // Render the chart
             const chart = new google.visualization[chartType](element[0]);
-            const finalChartOptions = this.getFinalChartOptions(chartOptions,elementId)
+            const finalChartOptions = this.getFinalChartOptions(chartOptions, elementId)
 
             chart.draw(dataTable, finalChartOptions);
-            this.afterSetupChart(element[0],extraData);
+            this.afterSetupChart(element[0], extraData, chart, dataTable, finalChartOptions);
+            if (extraData.can_chart_reload_ajax && !jQuery('body').hasClass('elementor-editor-active')) {
+                setInterval(async () => {
+                    try {
+                        let filterValue = []
+                        const totalFilter = jQuery(`#graphina_chart_filter_${elementId}`).data('total_filter');
+                        for (let index = 0; index < totalFilter; index++) {
+                            filterValue[index] = jQuery(`#graphina-start-date_${index}${elementId}`).val() ?? jQuery(`#graphina-drop_down_filter_${index}${elementId}`).val();
+                        }
+
+                        const updatedData = await this.getDynamicData(settings, extraData, chart_type, elementId, filterValue);
+
+                        if (updatedData) {
+                            const newDataTable = new google.visualization.DataTable();
+                            this.setupTableData(updatedData, newDataTable, googleChart, googleChartTexture, extraData);
+
+                            const finalChartOptions = this.getFinalChartOptions(chartOptions, elementId);
+                            chart.draw(newDataTable, finalChartOptions);
+                        } else {
+                            console.warn(`No data returned for ${chart_type} chart with ID ${elementId}.`);
+                        }
+
+                    } catch (error) {
+                        console.warn(`Error fetching dynamic data for ${chart_type} chart with ID ${elementId}:`, error);
+                    }
+                }, extraData.interval_data_refresh * 1000);
+            }
+
         } catch (error) {
-            googleChart.hide()
-            googleChartTexture.show()
+            // googleChart.hide()
+            // googleChartTexture.show()
             console.error(`Error initializing ${chartType} chart:`, error);
         }
     }

@@ -17,7 +17,11 @@ export default class DataTable {
     // Bind event listeners
     bindEventHandlers() {
         jQuery(window).on('elementor/frontend/init', this.handleElementorWidgetInit.bind(this));
-        jQuery(window).on('elementor/editor/init', this.handleElementorWidgetInit.bind(this));
+        jQuery(window).on('load', () => {
+        jQuery('.graphina-jquery-data-table').each((i, el) => {
+            this.initializeTables(jQuery(el));
+        });
+        });
         jQuery(document.body).off('click','.graphina-filter-div-button')
         jQuery(document.body).on('click','.graphina-filter-div-button', this.debounce(this.handleChartFilterTable.bind(this), 300));
  
@@ -43,13 +47,16 @@ export default class DataTable {
     }
 
     handleElementorWidgetInit() {
-        elementorFrontend.hooks.addAction('frontend/element_ready/widget', ($scope) => {
-            const chartElement = $scope.find('.graphina-jquery-data-table');
-            if (chartElement.length > 0) {
-                this.initializeTables(chartElement);
-            }
-        });
-    }
+    elementorFrontend.hooks.addAction('frontend/element_ready/data_table_lite.default', ($scope) => {
+        console.log('Initializing jQuery Data Table...');
+        
+        const chartElement = $scope.find('.graphina-jquery-data-table');
+        if (chartElement.length > 0) {
+            this.initializeTables(chartElement);
+        }
+    });
+}
+
 
     initializeTables(chartElement) {
         const chartType = chartElement.data('chart_type');
@@ -224,4 +231,4 @@ export default class DataTable {
 
 }
 // Initialize Data Table
-new DataTable();
+window.graphinaDataTable = new DataTable();

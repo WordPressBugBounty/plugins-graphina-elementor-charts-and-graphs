@@ -37,10 +37,12 @@ export default class GanttChart extends GraphinaGoogleChartBase {
     // Customize chart options for Gantt Charts (if needed)
     getFinalChartOptions(chartOptions,elementId){
         // Customize options here if needed
+        
         return chartOptions;
     }
 
     getFinalChartData(chartData) {
+        
         return chartData;
     }
 
@@ -106,4 +108,4 @@ export default class GanttChart extends GraphinaGoogleChartBase {
     }
 }
 // Initialize Gantt Chart
-new GanttChart();
+window.graphinaGoogleGanttChart = new GanttChart();

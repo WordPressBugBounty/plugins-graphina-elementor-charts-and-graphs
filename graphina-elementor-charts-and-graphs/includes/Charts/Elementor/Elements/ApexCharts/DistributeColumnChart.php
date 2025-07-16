@@ -137,20 +137,20 @@ class DistributeColumnChart extends GraphinaApexChartBase {
 		$gradient         = '';
 
 		$categories = $tooltip_series = $second_gradient = $fill_pattern = $gradient = array();
-		
-		$value_lists = isset( $settings[ GRAPHINA_PREFIX . $chart_type . '_value_list_4_1_' ] ) ? $settings[ GRAPHINA_PREFIX . $chart_type . '_value_list_4_1_' ] : array();
-		$chart_data  = array();
-		foreach ( $value_lists as $index => $item ) {
-			$chart_value = isset( $item[ GRAPHINA_PREFIX . $chart_type . '_chart_value_4_' ] ) ? $item[ GRAPHINA_PREFIX . $chart_type . '_chart_value_4_' ] : null;
-			if ( $chart_value !== null ) {
-				$chart_data[] = $chart_value; // Add value to the chart data array
+		if('manual' === $settings[GRAPHINA_PREFIX . $chart_type . '_chart_data_option']){
+			$value_lists = isset( $settings[ GRAPHINA_PREFIX . $chart_type . '_value_list_4_1_' ] ) ? $settings[ GRAPHINA_PREFIX . $chart_type . '_value_list_4_1_' ] : array();
+			$chart_data  = array();
+			foreach ( $value_lists as $index => $item ) {
+				$chart_value = isset( $item[ GRAPHINA_PREFIX . $chart_type . '_chart_value_4_' ] ) ? $item[ GRAPHINA_PREFIX . $chart_type . '_chart_value_4_' ] : null;
+				if ( $chart_value !== null ) {
+					$chart_data[] = $chart_value; // Add value to the chart data array
+				}
 			}
+			$series_temp[] = array(
+				'name' => ! empty( $settings[ GRAPHINA_PREFIX . $chart_type . '_chart_title_3_' ] ) ? $settings[ GRAPHINA_PREFIX . $chart_type . '_chart_title_3_' ] : '',
+				'data' => $chart_data,
+			);
 		}
-		$series_temp[] = array(
-			'name' => ! empty( $settings[ GRAPHINA_PREFIX . $chart_type . '_chart_title_3_' ] ) ? $settings[ GRAPHINA_PREFIX . $chart_type . '_chart_title_3_' ] : '',
-			'data' => $chart_data,
-		);
-
 		$series_count = isset( $settings[ GRAPHINA_PREFIX . $chart_type . '_chart_data_series_count' ] ) ? $settings[ GRAPHINA_PREFIX . $chart_type . '_chart_data_series_count' ] : 0;
 		for ( $i = 0; $i < $series_count; $i++ ) {
 			$dropshadow_series[] = $i;
@@ -171,10 +171,24 @@ class DistributeColumnChart extends GraphinaApexChartBase {
 		}
 
 		// Prepare categories
-		if ( ! in_array( $chart_type, array( 'candle', 'donut', 'pie', 'polar', 'radial' ) ) ) {
-			$category_list = $settings[ GRAPHINA_PREFIX . $chart_type . '_category_list' ] ?? array();
-			$categories    = array_map(
-				fn( $v ) => $chart_type === 'brush' ? intval( htmlspecialchars_decode( esc_html( graphina_get_dynamic_tag_data( $v, GRAPHINA_PREFIX . $chart_type . '_chart_category' ) ) ) ) : htmlspecialchars_decode( esc_html( graphina_get_dynamic_tag_data( $v, GRAPHINA_PREFIX . $chart_type . '_chart_category' ) ) ),
+		if (! in_array($chart_type, array('candle', 'donut', 'pie', 'polar', 'radial'))) {
+			$category_list = $settings[GRAPHINA_PREFIX . $chart_type . '_category_list'] ?? array();
+
+			$categories = array_map(
+				function ($v) use ($chart_type) {
+					$value = htmlspecialchars_decode(esc_html(graphina_get_dynamic_tag_data($v, GRAPHINA_PREFIX . $chart_type . '_chart_category')));
+					if ($chart_type === 'brush') {
+						$value = intval($value);
+					}
+
+					// Check for comma and split into array if present
+					if (strpos($value, ',') !== false) {
+						// Split by comma and trim spaces
+						return array_map('trim', explode(',', $value));
+					}
+
+					return $value;
+				},
 				$category_list
 			);
 		}
@@ -190,16 +204,11 @@ class DistributeColumnChart extends GraphinaApexChartBase {
 		$type_of_chart = '';
 		$type_of_chart = $chart_type;
 
-		$color_setting_key = GRAPHINA_PREFIX . $chart_type . '_chart_datalabel_background_show';
-		$font_color_key    = GRAPHINA_PREFIX . $chart_type . '_chart_datalabel_font_color_1';
-		$default_color 	   = ! empty( $settings[ GRAPHINA_PREFIX . $chart_type . '_chart_font_color' ] ) ? $settings[ GRAPHINA_PREFIX . $chart_type . '_chart_font_color' ] : '#000000';
+		$loading_text 	= esc_html( ( isset( $settings[ GRAPHINA_PREFIX . $chart_type . '_chart_no_data_text' ] ) ? $settings[ GRAPHINA_PREFIX . $chart_type . '_chart_no_data_text' ] : '' ) );
 
-		$datalabel_font_color = ! empty( $settings[ $color_setting_key ] ) && 'yes' === $settings[ $color_setting_key ]
-			? $settings[ $font_color_key ]
-			: $default_color;
-
-		$color_array = array( esc_js( $datalabel_font_color ) );
-
+		if(graphina_pro_active() && $settings[GRAPHINA_PREFIX . $chart_type . '_chart_data_option'] !== 'manual'){
+			$loading_text    = esc_html__( 'Loading...', 'graphina-charts-for-elementor' );
+		}
 
 		$chart_options = array(
 			'series'     => $series_temp,
@@ -320,31 +329,27 @@ class DistributeColumnChart extends GraphinaApexChartBase {
 					'borderColor'  => ! empty( $settings[ GRAPHINA_PREFIX . $chart_type . '_chart_datalabel_border_color' ] ) ? esc_js( $settings[ GRAPHINA_PREFIX . $chart_type . '_chart_datalabel_border_color' ] ) : '#ffffff',
 				),
 			),
-			'noData'     => array(
-				'text' => ! empty( $settings[ GRAPHINA_PREFIX . $chart_type . '_chart_no_data_text' ] ) ? $settings[ GRAPHINA_PREFIX . $chart_type . '_chart_no_data_text' ] : esc_html__('No Data Available','graphina-charts-for-elementor'),
+			'noData'	=> array(
+				'text'	=> $loading_text,
+				'align' => 'center',
+				'verticalAlign'	=> 'middle',
+				'style'	=> [
+					'colors'     => ! empty($settings[GRAPHINA_PREFIX . $chart_type . '_chart_font_color']) ? strval($settings[GRAPHINA_PREFIX . $chart_type . '_chart_font_color']) : '#000000',
+					'fontSize'   => ! empty($settings[GRAPHINA_PREFIX . $chart_type . '_chart_font_size']['size']) ? $settings[GRAPHINA_PREFIX . $chart_type . '_chart_font_size']['size'] . $settings[GRAPHINA_PREFIX . $chart_type . '_chart_font_size']['unit'] : '12px',
+					'fontFamily' => ! empty($settings[GRAPHINA_PREFIX . $chart_type . '_chart_font_family']) ? $settings[GRAPHINA_PREFIX . $chart_type . '_chart_font_family'] : 'poppins',
+					'fontWeight' => ! empty($settings[GRAPHINA_PREFIX . $chart_type . '_chart_font_weight']) ? $settings[GRAPHINA_PREFIX . $chart_type . '_chart_font_weight'] : '',
+				]
 			),
 			'tooltip'    => array(
 				'enabled' => ! empty( $settings[ GRAPHINA_PREFIX . $chart_type . '_chart_tooltip' ] ) && $settings[ GRAPHINA_PREFIX . $chart_type . '_chart_tooltip' ] === 'yes' ? true : false,
 				'theme'   => ! empty( $settings[ GRAPHINA_PREFIX . $chart_type . '_chart_tooltip_theme' ] ) ? $settings[ GRAPHINA_PREFIX . $chart_type . '_chart_tooltip_theme' ] : 'light',
 			),
 		);
-	
-		$chart_options['dataLabels']  = array(
-			'enabled' => $settings[ GRAPHINA_PREFIX . $chart_type . '_chart_datalabel_show' ] === 'yes',
-			'offsetX' => $settings[ GRAPHINA_PREFIX . $chart_type . '_chart_datalabel_offsetx' ],
-			'offsetY' => $settings[ GRAPHINA_PREFIX . $chart_type . '_chart_datalabel_offsety' ],
-			'background' => array(
-				'enabled'      => ! empty( $settings[ GRAPHINA_PREFIX . $chart_type . '_chart_datalabel_background_show' ] ) && $settings[ GRAPHINA_PREFIX . $chart_type . '_chart_datalabel_background_show' ] === 'yes' ? true : false,
-				'borderRadius' => intval( ! empty( $settings[ GRAPHINA_PREFIX . $chart_type . '_chart_datalabel_border_radius' ] ) ? esc_js( $settings[ GRAPHINA_PREFIX . $chart_type . '_chart_datalabel_border_radius' ] ) : 0 ),
-				'foreColor'    => ! empty( $settings[ GRAPHINA_PREFIX . $chart_type . '_chart_datalabel_background_color' ] ) ? array( esc_js( $settings[ GRAPHINA_PREFIX . $chart_type . '_chart_datalabel_background_color' ] ) ) : '#ffffff',
-				'borderWidth'  => ! empty( $settings[ GRAPHINA_PREFIX . $chart_type . '_chart_datalabel_border_width' ] ) ? intval( esc_js( $settings[ GRAPHINA_PREFIX . $chart_type . '_chart_datalabel_border_width' ] ) ) : 1,
-				'borderColor'  => ! empty( $settings[ GRAPHINA_PREFIX . $chart_type . '_chart_datalabel_border_color' ] ) ? esc_js( $settings[ GRAPHINA_PREFIX . $chart_type . '_chart_datalabel_border_color' ] ) : '#ffffff',
-			),
-		);
-		$chart_options['dataLabels']['style']['colors'] = $color_array;
+		
 		$chart_options['colors']      = $gradient;
 		$chart_options['plotOptions'] = array(
 			'bar' => array(
+				'columnWidth' => ! empty( $settings[ GRAPHINA_PREFIX . $chart_type . '_is_chart_stroke_width' ] ) ? $settings[ GRAPHINA_PREFIX . $chart_type . '_is_chart_stroke_width' ].'%' : '12%',
 				'distributed'  => true,
 				'columnWidth'  => ! empty($settings[ GRAPHINA_PREFIX . $chart_type . '_is_chart_stroke_width' ]) ? $settings[ GRAPHINA_PREFIX . $chart_type . '_is_chart_stroke_width' ].'%' : '12%',
 				'borderRadius' => $settings[ GRAPHINA_PREFIX . $chart_type . '_chart_plot_border_radius' ] ?? 0, // Added fallback
@@ -399,8 +404,6 @@ class DistributeColumnChart extends GraphinaApexChartBase {
 
 			$chart_options['xaxis']['title'] = array(
 				'text'    => $settings[ GRAPHINA_PREFIX . $chart_type . '_chart_xaxis_title' ],
-				'offsetX' => $settings[ GRAPHINA_PREFIX . $chart_type . '_chart_xaxis_title_offset_x' ],
-				'offsetY' => $settings[ GRAPHINA_PREFIX . $chart_type . '_chart_xaxis_title_offset_y' ],
 				'style'   => array(
 					'color'      => $settings[ GRAPHINA_PREFIX . $chart_type . '_chart_font_color' ],
 					'fontSize'   => ! empty( $settings[ GRAPHINA_PREFIX . $chart_type . '_chart_font_size' ]['size'] ) ? $settings[ GRAPHINA_PREFIX . $chart_type . '_chart_font_size' ]['size'] . $settings[ GRAPHINA_PREFIX . $chart_type . '_chart_font_size' ]['unit'] : '12px',

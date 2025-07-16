@@ -75,7 +75,7 @@ export default class GaugeChart extends GraphinaGoogleChartBase {
         formatter.format(dataTable, 1);;
     }
     
-    afterSetupChart(element, extraData) {
+    afterSetupChart(element, extraData,chart,dataTable,finalChartOptions) {
         // Define color mappings
         const circleColors = {
             "#4684ee": extraData.ballColor ?? "#4684ee",
@@ -104,4 +104,4 @@ export default class GaugeChart extends GraphinaGoogleChartBase {
 
 }
 // Initialize Gauge Chart
-new GaugeChart();
+window.graphinaGoogleGaugeChart = new GaugeChart();

@@ -153,6 +153,11 @@ class GraphinaGoogleChartBase extends GraphinaElementorWidgetBase {
 	 */
 	protected function render_chart( $chart_data ) {
 		$chart_data['is_google']		  = true;	
+		$chart_data['common_filter_class'] = ''; 
+		if ( isset($chart_data['settings'][GRAPHINA_PREFIX . $chart_data['chart_type'] . '_chart_common_filter_enable']) && $chart_data['settings'][GRAPHINA_PREFIX . $chart_data['chart_type'] . '_chart_common_filter_enable'] === 'yes' ) {
+			$chart_data['common_filter_class'] = 'common-filter-google-chart';
+		}
+
 		graphina_get_card( $chart_data['settings'], $chart_data['chart_type'], 'graphina-google-charts/' . $chart_data['chart_type'] . '-chart.php', $chart_data);
 	}
 }

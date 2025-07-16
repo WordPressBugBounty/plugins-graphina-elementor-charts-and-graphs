@@ -49,6 +49,55 @@ if ( ! class_exists( 'GraphinaAdmin' ) ) :
 			add_action( 'admin_enqueue_scripts', array( $this, 'enqueue_assets' ) );
 			add_action( 'wp_ajax_graphina_dismiss_notice', array( $this, 'graphina_dismiss_notice' ) );
 			add_action( 'admin_notices', array( $this, 'iqonic_sale_banner_notice' ) );
+			add_action( 'wp_ajax_graphina_clear_db_cache', array( $this, 'graphina_pro_handle_cache_clear_ajax' ) );
+		}
+
+
+		/**
+		 * Function to delete/clear the database schema cache
+		 * 
+		 * @return bool True if cache was successfully deleted, false otherwise
+		 */
+		public function graphina_pro_clear_database_cache() {
+			$internal_deleted = delete_transient( 'graphina_pro_db_tables' );
+			$external_deleted = delete_transient( 'graphina_pro_external_db_tables' );
+			
+			// Return true if at least one cache was deleted successfully
+			return $internal_deleted || $external_deleted;
+		}
+
+		/**
+		 * Function to refresh the database schema cache
+		 * This deletes the existing cache and forces a fresh retrieval on next access
+		 * 
+		 * @return bool True if cache was successfully cleared
+		 */
+		public function graphina_pro_refresh_database_cache() {
+			return $this->graphina_pro_clear_database_cache();
+		}
+
+		/**
+		 * AJAX handler for clearing database cache (admin only)
+		 */
+		public function graphina_pro_handle_cache_clear_ajax() {
+			// Check user permissions
+			if ( ! current_user_can( 'manage_options' ) || ! isset( $_GET['nonce'] ) || ! wp_verify_nonce( sanitize_key( $_GET['nonce'] ), 'cache-nonce' ) ) {
+				wp_send_json_error(
+					array(
+						'message' => __('Permission Denied', 'graphina-charts-for-elementor'),
+						'subMessage' => __('You do not have sufficient permissions to perform this action.', 'graphina-charts-for-elementor')
+					),
+					403
+				);
+				return;
+			}
+			$result = $this->graphina_pro_clear_database_cache();
+			
+			if ( $result ) {
+				wp_send_json_success( array( 'message' => 'Database cache cleared successfully' ) );
+			} else {
+				wp_send_json_error( array( 'message' => 'Failed to clear database cache' ) );
+			}
 		}
 
 		/**

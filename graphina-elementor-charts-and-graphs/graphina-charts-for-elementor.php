@@ -1,12 +1,12 @@
 <?php
 /**
  * Plugin Name:         Graphina - Elementor Charts and Graphs
- * Plugin URI:          https://iqonicthemes.com
+ * Plugin URI:          https://graphina.iqonic.design
  * Description:         Your ultimate charts and graphs solution to enhance visual effects. Create versatile, advanced and interactive charts on your website.
  * Author:              Iqonic Design
  * Author URI:          https://iqonic.design/
- * Version:             3.0.5
- * Elementor tested up to: 3.28.4
+ * Version:             3.1.0
+ * Elementor tested up to: 3.30.2
  * Elementor Pro tested up to: 3.20.2
  * Requires PHP:        8.0
  * Requires Plugins     elementor
@@ -31,7 +31,7 @@ endif;
 
 // Plugin Version.
 if ( ! defined( 'GRAPHINA_VERSION' ) ) :
-	define( 'GRAPHINA_VERSION', '3.0.5' );
+	define( 'GRAPHINA_VERSION', '3.1.0' );
 endif;
 
 // Plugin Prefix.
@@ -56,18 +56,14 @@ endif;
 
 // Plugin Version.
 if ( ! defined( 'GRAPHINA_CHARTS_FOR_ELEMENTOR_VERSION' ) ) :
-	define( 'GRAPHINA_CHARTS_FOR_ELEMENTOR_VERSION', '3.0.5' );
+	define( 'GRAPHINA_CHARTS_FOR_ELEMENTOR_VERSION', '3.1.0' );
 endif;
 
 // Pro Version.
 if ( ! defined( 'GRAPHINA_CHARTS_DEPENDENT_PRO_VERSION' ) ) :
-	define( 'GRAPHINA_CHARTS_DEPENDENT_PRO_VERSION', '3.0.0' );
+	define( 'GRAPHINA_CHARTS_DEPENDENT_PRO_VERSION', '3.1.0' );
 endif;
 
-// Pro Version.
-if ( ! defined( 'GRAPHINA_PRO_CURRENT_VERSION' ) ) :
-	define( 'GRAPHINA_PRO_CURRENT_VERSION', '3.0.3' );
-endif;
 
 
 if ( ! function_exists( 'is_plugin_active' ) ) {
@@ -208,7 +204,7 @@ if ( ! function_exists( 'graphina_fail_load_out_of_date_pro' ) ) {
         if ( ! current_user_can( 'update_plugins' ) ) {
             return;
         }
-        $message  = '<p>' . esc_html__( 'Graphina Pro has been deactivated because you are using an old version of GraphinaPro – Elementor Dynamic Charts & Datatable. Please update it to latest version ', 'graphina-charts-for-elementor' ) . GRAPHINA_PRO_CURRENT_VERSION . '</p>';
+        $message  = '<p>' . esc_html__( 'Graphina Pro has been deactivated because you are using an old version of GraphinaPro – Elementor Dynamic Charts & Datatable. Please update it to latest version ', 'graphina-charts-for-elementor' ) . GRAPHINA_CHARTS_DEPENDENT_PRO_VERSION . '</p>';
         gcfe_print_error( $message );
     }
 }

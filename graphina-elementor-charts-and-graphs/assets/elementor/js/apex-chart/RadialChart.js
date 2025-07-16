@@ -66,6 +66,18 @@ export default class RadialChart extends GraphinaApexChartBase {
         if (chartType === 'radial') {
             finalChartOptions.labels = finalChartOptions.xaxis.categories
             finalChartOptions.responsive = responsive_options
+             // Add loaded event to remove fixed height
+             finalChartOptions.chart.events = {
+                mounted: (chartContext, config) => {
+                    // More specific selector targeting only the chart container
+                    const chartElement = document.querySelector(`.graphina-elementor-chart[data-element_id="${elementId}"]`);
+                    if (chartElement) {
+                        // Remove fixed height but keep min-height for proper rendering
+                        chartElement.style.height = '';
+                    }
+                },
+               
+            };
         }
         this.RadialChartDatalabelsFormat(finalChartOptions,extraData)
         return finalChartOptions;
@@ -73,4 +85,4 @@ export default class RadialChart extends GraphinaApexChartBase {
 }
 
 // Initialize RadialChart
-new RadialChart();
+window.graphinaRadialChart = new RadialChart();

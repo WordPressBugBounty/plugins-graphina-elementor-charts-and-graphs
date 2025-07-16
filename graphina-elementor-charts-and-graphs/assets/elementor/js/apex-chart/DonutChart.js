@@ -86,7 +86,7 @@ export default class DonutChart extends GraphinaApexChartBase {
                     return label + "-" + datalabelPreFix + new Intl.NumberFormat(window.gcfe_public_localize.locale_with_hyphen, {
                         minimumFractionDigits: extraData.chart_datalabel_decimals_in_float,
                         maximumFractionDigits: extraData.chart_datalabel_decimals_in_float,
-                    }).format(val) + datalabelPostFix ;
+                    }).format(val) + "%" + datalabelPostFix ;
                 }
                 return datalabelPreFix + new Intl.NumberFormat(window.gcfe_public_localize.locale_with_hyphen, {
                     minimumFractionDigits: extraData.chart_datalabel_decimals_in_float,
@@ -116,14 +116,42 @@ export default class DonutChart extends GraphinaApexChartBase {
     
     }
     
+    // Apply legend tooltip formatting
+    applyLegendTooltip(chartOptions, extraData,chart_type) {
+        if (extraData.legend_show_series_value) {
+            chartOptions.legend.formatter = (seriesName, opts) => {
+                try {
+                    seriesName = decodeURIComponent(seriesName);
+                } catch (e) {
+                    console.error('Invalid URI component:', seriesName);
+                    seriesName = seriesName;
+                }                
+                let value = opts.w.globals.series[opts.seriesIndex];
+                return `<div class="legend-info"><span>${seriesName}</span>:${value}</div>`;
+            };
+        }
+    }
+
     getChartOptions(finalChartOptions, chartType, extraData, responsive_options, elementId) {
         if (chartType === 'donut') {
             finalChartOptions.labels = finalChartOptions.xaxis.categories
             finalChartOptions.responsive = responsive_options
+            // Add loaded event to remove fixed height
+            finalChartOptions.chart.events = {
+                mounted: (chartContext, config) => {
+                    // More specific selector targeting only the chart container
+                    const chartElement = document.querySelector(`.graphina-elementor-chart[data-element_id="${elementId}"]`);
+                    if (chartElement) {
+                        // Remove fixed height but keep min-height for proper rendering
+                        chartElement.style.height = '';
+                    }
+                },
+               
+            };
         }
         return finalChartOptions;
     }
 }
 
 // Initialize DonutChart
-new DonutChart();
+window.graphinaDonutChart = new DonutChart();

@@ -68,4 +68,4 @@ export default class PieChart extends GraphinaGoogleChartBase {
     }
 }
 // Initialize PieChart
-new PieChart();
+window.graphinaGooglePieChart = new PieChart();

@@ -1,0 +1,2 @@
+import{G as n}from"./GraphinaApexChartBase-C6CaGAL8.js";class c extends n{constructor(){super(),this.observer={}}setUpChartsHandler(){this.chartHandlers={scatter:t=>this.observeChartElement(t,"scatter")}}getChartOptions(t,r,o,a,s){return r==="scatter"&&(t.responsive=a,t.chart.events={mounted:(i,d)=>{const e=document.querySelector(`.graphina-elementor-chart[data-element_id="${s}"]`);e&&(e.style.height="")}}),t}}window.graphinaScatterChart=new c;
+//# sourceMappingURL=Scatter-B6q8sDxL.js.map

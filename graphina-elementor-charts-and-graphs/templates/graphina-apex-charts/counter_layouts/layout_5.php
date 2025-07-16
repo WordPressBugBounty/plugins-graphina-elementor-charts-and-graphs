@@ -16,15 +16,17 @@ use Elementor\Icons_Manager;
 <div class="graphina-card counter layout_5">
 	<div class="main-counter">
 		<?php if ( isset( $counter_icon ) && ! empty( $counter_icon ) ) : ?>
-			<div class="counter-icon part-1">
+			<h2 class="counter-icon part-1">
 				<?php Icons_Manager::render_icon( $settings[ GRAPHINA_PREFIX . $chart_type . '_element_counter_icon' ], array( 'aria-hidden' => 'true' ) ); ?>
-			</div>
+			</h2>
 		<?php endif; ?>
 		<div class="part-2">
 			<div class="text-center" style="display: flex;justify-content: center;align-items: center;">
-				<h2 class="count_number myGraphinaCounter count_number-pre-postfix-<?php echo esc_attr( $element_id ); ?>">
-					<?php echo esc_html($prefix); ?>
-				</h2>
+				<?php if (!empty($prefix)): ?>
+					<h2 class="count_number myGraphinaCounter count_number-pre-postfix-<?php echo esc_attr($element_id); ?>">
+						<?php echo esc_html($prefix); ?>
+					</h2>
+				<?php endif; ?>
 
 				<h2 class="count_number myGraphinaCounter count_number-<?php echo esc_attr( $element_id ); ?>" 
 					data-start="<?php echo esc_attr( $counter_start ); ?>" 
@@ -33,14 +35,18 @@ use Elementor\Icons_Manager;
 					data-decimals="<?php echo esc_attr( $counter_decimal ); ?>"><?php echo number_format( floatval( $counter_start ), $counter_decimal ); ?>
 				</h2>
 
-				<h2 class="count_number myGraphinaCounter count_number-pre-postfix-<?php echo esc_attr( $element_id ); ?>">
-					<?php echo esc_html($postfix); ?>
-				</h2>
+				<?php if (!empty($postfix)): ?>
+					<h2 class="count_number myGraphinaCounter count_number-pre-postfix-<?php echo esc_attr($element_id); ?>">
+						<?php echo esc_html($postfix); ?>
+					</h2>
+				<?php endif; ?>
 			</div>
 
 
-			<h2 class="counter-title title <?php echo esc_attr( 'counter-title-' . $element_id ); ?>"><?php echo esc_html( $counter_title ); ?></h2>
-
+			<?php if (!empty($counter_title)): ?>
+				<h2 class="counter-title title <?php echo esc_attr( 'counter-title-' . $element_id ); ?>"><?php echo esc_html( $counter_title ); ?></h2>
+			<?php endif; ?>
+			
 			<?php if ( isset( $counter_description ) && ! empty( $counter_description ) ) : ?>
 				<p class="counter-description description"><?php echo esc_html( $counter_description ); ?></p>
 			<?php endif; ?>

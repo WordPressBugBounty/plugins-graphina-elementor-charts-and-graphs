@@ -61,4 +61,4 @@ export default class OrgChart extends GraphinaGoogleChartBase {
     }
 }
 // Initialize Org Chart
-new OrgChart();
+window.graphinaGoogleOrgChart = new OrgChart();

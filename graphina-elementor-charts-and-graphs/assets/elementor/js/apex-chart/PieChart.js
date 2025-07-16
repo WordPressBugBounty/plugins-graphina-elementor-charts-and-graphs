@@ -115,15 +115,48 @@ export default class PieChart extends GraphinaApexChartBase {
         }
     
     }
+
+    // Apply legend tooltip formatting
+    applyLegendTooltip(chartOptions, extraData, chart_type) {
+    if (extraData.legend_show_series_value) {
+        const prefix = extraData.chart_legend_show_series_prefix === 'yes' ? (extraData.chart_datalabel_prefix ?? '') : '';
+        const postfix = extraData.chart_legend_show_series_postfix === 'yes' ? (extraData.chart_datalabel_postfix ?? '') : '';
+
+        chartOptions.legend.formatter = (seriesName, opts) => {
+            seriesName = decodeURIComponent(seriesName);
+            let value = opts.w.globals.series[opts.seriesIndex];
+
+            // Format number if needed
+            value = new Intl.NumberFormat(window.gcfe_public_localize.locale_with_hyphen, {
+                minimumFractionDigits: extraData.chart_datalabel_decimals_in_float,
+                maximumFractionDigits: extraData.chart_datalabel_decimals_in_float,
+            }).format(value);
+
+            return `<div class="legend-info"><span>${seriesName}</span>: ${prefix}${value}${postfix}</div>`;
+        };
+    }
+}
+
     
     getChartOptions(finalChartOptions, chartType, extraData, responsive_options, elementId) {
         if (chartType === 'pie') {
-            finalChartOptions.responsive = responsive_options
             finalChartOptions.labels = finalChartOptions.xaxis.categories
+             // Add loaded event to remove fixed height
+             finalChartOptions.chart.events = {
+                mounted: (chartContext, config) => {
+                    // More specific selector targeting only the chart container
+                    const chartElement = document.querySelector(`.graphina-elementor-chart[data-element_id="${elementId}"]`);
+                    if (chartElement) {
+                        // Remove fixed height but keep min-height for proper rendering
+                        chartElement.style.height = '';
+                    }
+                },
+               
+            };
         }
         return finalChartOptions;
     }
 }
 
 // Initialize PieChart
-new PieChart();
+window.graphinaPieChart = new PieChart();

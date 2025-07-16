@@ -28,8 +28,9 @@ export default class BarChart extends GraphinaGoogleChartBase {
         } else {
             this.setupChart(element, chartType);
         }
+        this.setupChartTypeSwitcher(element);
     }
-
+    
     // Customize chart options for Bar Charts (if needed)
     getFinalChartOptions(chartOptions,elementId){
         if( chartOptions.vAxis && chartOptions.vAxis.format === 'percent'){
@@ -38,29 +39,43 @@ export default class BarChart extends GraphinaGoogleChartBase {
         return chartOptions
     }
 
-    setupTableData(dynamicData,dataTable,googleChart,googleChartTexture,extraData){
-        if(dynamicData?.google_chart_data?.title_array.length > 0 && dynamicData?.google_chart_data?.data.length > 0){
-            dataTable.addColumn('string',dynamicData.google_chart_data.title)
-            dynamicData.google_chart_data.title_array.forEach((col) => {
-                dataTable.addColumn('number',col);
-                if(dynamicData.google_chart_data.annotation_show){
-                    dataTable.addColumn({type:'string',role:'annotation'});
-                }
-            });
-            dynamicData.google_chart_data.data.forEach(row => dataTable.addRow(row));
-            googleChart.show()
-            googleChartTexture.hide()
-        }else if(dynamicData.columns.length > 0 && dynamicData.rows.length > 0){
-            dynamicData.columns.forEach((col, index) => {
-                dataTable.addColumn(col);
-            });
+    setupTableData(dynamicData, dataTable, googleChart, googleChartTexture, extraData) {
+    const googleData = dynamicData?.google_chart_data;
+    const hasGoogleData = googleData && Array.isArray(googleData.title_array) && Array.isArray(googleData.data);
 
-            dynamicData.rows.forEach(row => dataTable.addRow(row));
-        }else{
-            googleChart.hide()
-            googleChartTexture.show()
-        }
+    if (hasGoogleData && googleData.title_array.length > 0 && googleData.data.length > 0) {
+        // First column: string label
+        dataTable.addColumn('string', googleData.title);
+
+        // Add number columns for data series
+        googleData.title_array.forEach(() => {
+            dataTable.addColumn('number', '');
+            if (googleData.annotation_show) {
+                dataTable.addColumn({ type: 'string', role: 'annotation' });
+            }
+        });
+
+        // Add rows
+        googleData.data.forEach((row) => {
+            dataTable.addRow(row);
+        });
+
+        googleChart.show();
+        googleChartTexture.hide();
+    } else if (Array.isArray(dynamicData.columns) && dynamicData.columns.length > 0 &&
+               Array.isArray(dynamicData.rows) && dynamicData.rows.length > 0) {
+
+        dynamicData.columns.forEach((col) => dataTable.addColumn(col));
+        dynamicData.rows.forEach((row) => dataTable.addRow(row));
+
+        googleChart.show();
+        googleChartTexture.hide();
+    } else {
+        googleChart.hide();
+        googleChartTexture.show();
     }
 }
+
+}
 // Initialize Bar Chart
-new BarChart();
+window.graphinaGoogleBarChart = new BarChart();

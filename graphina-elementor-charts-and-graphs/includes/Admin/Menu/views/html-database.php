@@ -21,9 +21,10 @@ if ( ! empty( $all_db_connections[ $edit_id ] ) ) {
 
 ?>
 <div id="database" class="graphina-tab-detail <?php echo $pro_active === false ? esc_attr( 'graphina-pro-module' ) : ''; ?>">
-	<div class="grapgine-title-section">
-		<h3 class="head-border"><?php echo esc_html__( 'Connection Detail', 'graphina-charts-for-elementor' ); ?>
-		</h3>
+	<div class="grapgine-title-section graphina-element-flex">
+		<h1 class="head-border"><?php echo esc_html__( 'Connection Detail', 'graphina-charts-for-elementor' ); ?>
+		</h1>
+		<button type="submit" name="save" data-nonce="<?php echo esc_html( wp_create_nonce( 'cache-nonce' ) ); ?>" id="graphina-clear-cache-button" class="graphina-btn graphina-btn-primary graphina-clear-cache btn-submit" <?php echo esc_html( $pro_active ? '' : 'disabled' ); ?>><?php echo esc_html__( 'Clear Database Cache', 'graphina-charts-for-elementor' ); ?></button>
 	</div>
 
 	<form id="graphina-settings-db-tab">

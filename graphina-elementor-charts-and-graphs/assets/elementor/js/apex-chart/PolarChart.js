@@ -83,8 +83,19 @@ export default class PolarChart extends GraphinaApexChartBase {
     }
     getChartOptions(finalChartOptions, chartType, extraData, responsive_options, elementId) {
         if (chartType === 'polar') {
-            finalChartOptions.responsive = responsive_options
             finalChartOptions.labels = finalChartOptions.xaxis.categories
+             // Add loaded event to remove fixed height
+             finalChartOptions.chart.events = {
+                mounted: (chartContext, config) => {
+                    // More specific selector targeting only the chart container
+                    const chartElement = document.querySelector(`.graphina-elementor-chart[data-element_id="${elementId}"]`);
+                    if (chartElement) {
+                        // Remove fixed height but keep min-height for proper rendering
+                        chartElement.style.height = '';
+                    }
+                },
+               
+            };
 
         }
         return finalChartOptions;
@@ -92,4 +103,4 @@ export default class PolarChart extends GraphinaApexChartBase {
 }
 
 // Initialize PolarChart
-new PolarChart();
+window.graphinaPolarChart = new PolarChart();

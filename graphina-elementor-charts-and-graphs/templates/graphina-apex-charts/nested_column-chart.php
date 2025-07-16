@@ -26,3 +26,13 @@ if ( ! defined( 'ABSPATH' ) ) {
 	</div>
 
 </div>
+<script>
+    (function($) {
+        'use strict';
+        $(document).ready(function() {
+            if (window.graphinaNestedcolumnChart && typeof window.graphinaNestedcolumnChart.observeChartElement === 'function') {
+                window.graphinaNestedcolumnChart.observeChartElement($('.graphina-elementor-chart[data-element_id="<?php echo esc_js( $element_id ); ?>"]'), 'bar');
+            }
+        });
+    })(jQuery);
+</script>

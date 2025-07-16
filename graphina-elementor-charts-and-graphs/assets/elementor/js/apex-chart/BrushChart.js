@@ -24,9 +24,38 @@ export default class BrushChart extends GraphinaApexChartBase {
         this.initSChart(elementId,extra_data);
     }
 
+    applyDataLabelFormatter(chartOptions, extraData, chart_type = 'brush') {
+        let datalabelPreFix  = extraData.chart_datalabel_prefix ?? '';
+        let datalabelPostFix = extraData.chart_datalabel_postfix ?? '';
+        let useCommas        = extraData.string_format === true || extraData.string_format === 'yes';
+
+        // Parse and sanitize decimal value
+        let decimal = parseInt(extraData.chart_label_pointer_number_for_label);
+        if (isNaN(decimal) || decimal < 0 || decimal > 20) {
+            decimal = 0;
+        }
+
+        // Ensure dataLabels object exists
+        if (!chartOptions.dataLabels) {
+            chartOptions.dataLabels = {};
+        }
+
+        // Apply formatter
+        chartOptions.dataLabels.formatter = (val) => {
+            let formattedVal = val;
+
+            if (useCommas) {
+                // Use formatNumber from GraphinaApexChartBase (assuming "this" is bound to correct class)
+                formattedVal = this.formatNumber(val, decimal);
+            }
+
+            return datalabelPreFix + formattedVal + datalabelPostFix;
+        };
+    }
+
+
     getChartOptions(finalChartOptions, chartType, extraData, responsive_options, elementId) {
         if (chartType === 'brush') {
-            finalChartOptions.responsive = responsive_options
         }
         return finalChartOptions;
     }
@@ -65,4 +94,4 @@ export default class BrushChart extends GraphinaApexChartBase {
 }
 
 // Initialize BrushChart
-new BrushChart();
+window.graphinaBrushChart = new BrushChart();

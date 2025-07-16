@@ -64,4 +64,4 @@ export default class LineChart extends GraphinaGoogleChartBase {
     }
 }
 // Initialize Line Chart
-new LineChart();
+window.graphinaGoogleLineChart = new LineChart();

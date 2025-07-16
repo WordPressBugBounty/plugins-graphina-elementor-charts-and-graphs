@@ -29,11 +29,10 @@ if ( ! function_exists( 'graphina_get_template' ) ) {
 		if ( empty( $default_path ) ) {
 			$default_path = GRAPHINA_PATH . 'templates/';
 		}
-
 		// Locate the template in the child theme or fallback to default path
 		$template = locate_template(
 			array(
-				trailingslashit( 'graphina-charts-for-elementor' ) . $template_name,
+				trailingslashit( 'graphina-elementor-charts-and-graphs' ) . $template_name,
 				$template_name,
 			)
 		);
@@ -49,7 +48,7 @@ if ( ! function_exists( 'graphina_get_template' ) ) {
 				'error',
 				sprintf(
 					/* translators: %s: template name */
-					__( '%s does not exist.', 'graphina-charts-for-elementor' ),
+					__( '%s does not exist.', 'graphina-elementor-charts-and-graphs' ),
 					'<code>' . $template . '</code>'
 				)
 			);
@@ -736,16 +735,93 @@ if ( ! function_exists( 'graphina_prepare_chart_responsive_options' ) ) {
 				'breakpoint' => 1024,
 				'options'    => array(
 					'chart' => array(
-						'height' => ! empty( $settings[ GRAPHINA_PREFIX . $chart_type . '_chart_height_tablet' ] ) ? $settings[ GRAPHINA_PREFIX . $chart_type . '_chart_height_tablet' ] : 350,
+						'height' => !empty($settings[GRAPHINA_PREFIX . $chart_type . '_chart_height_tablet']) ? $settings[GRAPHINA_PREFIX . $chart_type . '_chart_height_tablet'] : 350,
 					),
+					'xaxis' => array(
+						'title' => array(
+							'style' => array(
+								'fontSize'   => ! empty($settings[GRAPHINA_PREFIX . $chart_type . '_chart_font_size_tablet']['size']) ? $settings[GRAPHINA_PREFIX . $chart_type . '_chart_font_size_tablet']['size'] . $settings[GRAPHINA_PREFIX . $chart_type . '_chart_font_size_tablet']['unit'] : '12px',
+
+							)
+						),
+						'labels' => array(
+							'style' => array(
+								'fontSize'   => ! empty($settings[GRAPHINA_PREFIX . $chart_type . '_chart_font_size_tablet']['size']) ? $settings[GRAPHINA_PREFIX . $chart_type . '_chart_font_size_tablet']['size'] . $settings[GRAPHINA_PREFIX . $chart_type . '_chart_font_size_tablet']['unit'] : '12px',
+
+							)
+						)
+					),
+					'yaxis' => array(
+						'title' => array(
+							'style' => array(
+								'fontSize'   => ! empty($settings[GRAPHINA_PREFIX . $chart_type . '_chart_font_size_tablet']['size']) ? $settings[GRAPHINA_PREFIX . $chart_type . '_chart_font_size_tablet']['size'] . $settings[GRAPHINA_PREFIX . $chart_type . '_chart_font_size_tablet']['unit'] : '12px',
+
+							)
+						),
+						'labels' => array(
+							'style' => array(
+								'fontSize'   => ! empty($settings[GRAPHINA_PREFIX . $chart_type . '_chart_font_size_tablet']['size']) ? $settings[GRAPHINA_PREFIX . $chart_type . '_chart_font_size_tablet']['size'] . $settings[GRAPHINA_PREFIX . $chart_type . '_chart_font_size_tablet']['unit'] : '12px',
+
+							)
+						)
+					),
+					'legend' => array(
+						'fontSize'   => ! empty($settings[GRAPHINA_PREFIX . $chart_type . '_chart_font_size_tablet']['size']) ? $settings[GRAPHINA_PREFIX . $chart_type . '_chart_font_size_tablet']['size'] . $settings[GRAPHINA_PREFIX . $chart_type . '_chart_font_size_tablet']['unit'] : '12px',
+
+					),
+					'dataLabels' => array(
+						'style' => array(
+							'fontSize'   => ! empty($settings[GRAPHINA_PREFIX . $chart_type . '_chart_font_size_tablet']['size']) ? $settings[GRAPHINA_PREFIX . $chart_type . '_chart_font_size_tablet']['size'] . $settings[GRAPHINA_PREFIX . $chart_type . '_chart_font_size_tablet']['unit'] : '12px',
+
+						)
+					)
 				),
 			),
+
 			array(
 				'breakpoint' => 674,
 				'options'    => array(
 					'chart' => array(
-						'height' => ! empty( $settings[ GRAPHINA_PREFIX . $chart_type . '_chart_height_mobile' ] ) ? $settings[ GRAPHINA_PREFIX . $chart_type . '_chart_height_mobile' ] : 350,
+						'height' => !empty($settings[GRAPHINA_PREFIX . $chart_type . '_chart_height_mobile']) ? $settings[GRAPHINA_PREFIX . $chart_type . '_chart_height_mobile'] : 350,
 					),
+					'xaxis' => array(
+						'title' => array(
+							'style' => array(
+								'fontSize'   => ! empty($settings[GRAPHINA_PREFIX . $chart_type . '_chart_font_size_mobile']['size']) ? $settings[GRAPHINA_PREFIX . $chart_type . '_chart_font_size_mobile']['size'] . $settings[GRAPHINA_PREFIX . $chart_type . '_chart_font_size_mobile']['unit'] : '12px',
+
+							)
+						),
+						'labels' => array(
+							'style' => array(
+								'fontSize'   => ! empty($settings[GRAPHINA_PREFIX . $chart_type . '_chart_font_size_mobile']['size']) ? $settings[GRAPHINA_PREFIX . $chart_type . '_chart_font_size_mobile']['size'] . $settings[GRAPHINA_PREFIX . $chart_type . '_chart_font_size_mobile']['unit'] : '12px',
+
+							)
+						)
+					),
+					'yaxis' => array(
+						'title' => array(
+							'style' => array(
+								'fontSize'   => ! empty($settings[GRAPHINA_PREFIX . $chart_type . '_chart_font_size_mobile']['size']) ? $settings[GRAPHINA_PREFIX . $chart_type . '_chart_font_size_mobile']['size'] . $settings[GRAPHINA_PREFIX . $chart_type . '_chart_font_size_mobile']['unit'] : '12px',
+
+							)
+						),
+						'labels' => array(
+							'style' => array(
+								'fontSize'   => ! empty($settings[GRAPHINA_PREFIX . $chart_type . '_chart_font_size_mobile']['size']) ? $settings[GRAPHINA_PREFIX . $chart_type . '_chart_font_size_mobile']['size'] . $settings[GRAPHINA_PREFIX . $chart_type . '_chart_font_size_mobile']['unit'] : '12px',
+
+							)
+						)
+					),
+					'legend' => array(
+						'fontSize'   => ! empty($settings[GRAPHINA_PREFIX . $chart_type . '_chart_font_size_mobile']['size']) ? $settings[GRAPHINA_PREFIX . $chart_type . '_chart_font_size_mobile']['size'] . $settings[GRAPHINA_PREFIX . $chart_type . '_chart_font_size_mobile']['unit'] : '12px',
+
+					),
+					'dataLabels' => array(
+						'style' => array(
+							'fontSize'   => ! empty($settings[GRAPHINA_PREFIX . $chart_type . '_chart_font_size_mobile']['size']) ? $settings[GRAPHINA_PREFIX . $chart_type . '_chart_font_size_mobile']['size'] . $settings[GRAPHINA_PREFIX . $chart_type . '_chart_font_size_mobile']['unit'] : '12px',
+
+						)
+					)
 				),
 			),
 		);
@@ -803,6 +879,9 @@ if ( ! function_exists( 'graphina_prepare_extra_data_for_google_chart' ) ) {
 			'element_import_from_table_dynamic_key' => ! empty( $settings[ GRAPHINA_PREFIX . $chart_type . '_element_import_from_table_dynamic_key' ] ) ? $settings[ GRAPHINA_PREFIX . $chart_type . '_element_import_from_table_dynamic_key' ] : '',
 			'current_post_id'                       => get_the_ID(),
 			'graphina_prefix'                       => GRAPHINA_PREFIX,
+			'can_chart_reload_ajax'              => ! empty( $settings[ GRAPHINA_PREFIX . $chart_type . '_can_chart_reload_ajax' ] ) && $settings[ GRAPHINA_PREFIX . $chart_type . '_can_chart_reload_ajax' ] === 'yes' ? true : false,
+			'interval_data_refresh'              => ! empty( $settings[ GRAPHINA_PREFIX . $chart_type . '_interval_data_refresh' ] ) ? intval( $settings[ GRAPHINA_PREFIX . $chart_type . '_interval_data_refresh' ] ) : 15,
+			'is_chart_horizontal'                => ! empty( $settings[ GRAPHINA_PREFIX . $chart_type . '_is_chart_horizontal' ] ) && $settings[ GRAPHINA_PREFIX . $chart_type . '_is_chart_horizontal' ] === 'yes' ? true : false,
 		);
 		if ( $chart_type === 'gauge_google' ) {
 			$response['ballColor']        = ! empty( $settings[ GRAPHINA_PREFIX . $chart_type . '_google_chart_round_ball_color' ] ) ? $settings[ GRAPHINA_PREFIX . $chart_type . '_google_chart_round_ball_color' ] : '';
@@ -1190,8 +1269,9 @@ if ( ! function_exists( 'graphina_prepare_table_data' ) ) {
 		if ( $settings[ $prefix . '_can_show_header' ] !== 'yes' ) {
 			$table_data['header'] = array();
 		}
-
+		
 		return $table_data;
+
 	}
 }
 
@@ -1268,8 +1348,6 @@ if ( ! function_exists( 'graphina_prepare_jqeury_table_data' ) ) {
 	 * @return array  The options to configure the jQuery DataTable.
 	 */
 	function graphina_prepare_jqeury_table_data( $settings, $chart_type, $element_id ) {
-
-		
 		// Ensure necessary settings exist before proceeding
 		if ( empty( $settings ) || empty( $chart_type ) ) {
 			return array();
@@ -1350,7 +1428,6 @@ if ( ! function_exists( 'graphina_prepare_jqeury_table_data' ) ) {
 						esc_html( $row_value )
 					);
 				}
-
 				$row_value  = apply_filters('graphina_jquery_row_value',$row_value);
 				$row_data[] = $row_value;
 			}
@@ -1429,7 +1506,6 @@ if ( ! function_exists( 'graphina_prepare_jqeury_table_data' ) ) {
 				),
 			),
 		);
-
 		return $table_options;
 	}
 }
@@ -1448,7 +1524,9 @@ if ( ! function_exists( 'graphina_prepare_extra_data' ) ) {
 	 * @return array An associative array of prepared settings ready to be used in the Apex Chart.
 	 */
 	function graphina_prepare_extra_data( $settings, $chart_type ) {
+		$loading_text        = esc_html( ( isset( $settings[ GRAPHINA_PREFIX . $chart_type . '_chart_no_data_text' ] ) ? $settings[ GRAPHINA_PREFIX . $chart_type . '_chart_no_data_text' ] : '' ) );
 		$extra_data = array(
+			'no_data_text'						 => $loading_text,
 			'legend_show_series_value'           => ! empty( $settings[ GRAPHINA_PREFIX . $chart_type . '_chart_legend_show_series_value' ] ) && $settings[ GRAPHINA_PREFIX . $chart_type . '_chart_legend_show_series_value' ] === 'yes' ? true : false,
 			'xaxis_label_prefix_show'            => ! empty( $settings[ GRAPHINA_PREFIX . $chart_type . '_chart_xaxis_label_show' ] ) && $settings[ GRAPHINA_PREFIX . $chart_type . '_chart_xaxis_label_show' ] === 'yes' ? true : false,
 			'xaxis_label_prefix'                 => ! empty( $settings[ GRAPHINA_PREFIX . $chart_type . '_chart_xaxis_label_prefix' ] ) ? $settings[ GRAPHINA_PREFIX . $chart_type . '_chart_xaxis_label_prefix' ] : '',
@@ -1463,14 +1541,16 @@ if ( ! function_exists( 'graphina_prepare_extra_data' ) ) {
 			'chart_datalabel_decimals_in_float'  => ! empty( $settings[ GRAPHINA_PREFIX . $chart_type . '_chart_datalabel_decimals_in_float' ] ) ? intval( $settings[ GRAPHINA_PREFIX . $chart_type . '_chart_datalabel_decimals_in_float' ] ) : 0,
 			'chart_number_format_commas'         => ! empty( $settings[ GRAPHINA_PREFIX . $chart_type . '_chart_number_format_commas' ] ) && $settings[ GRAPHINA_PREFIX . $chart_type . '_chart_number_format_commas' ] === 'yes' ? true : false,
 			'chart_yaxis_label_pointer'          => ! empty( $settings[ GRAPHINA_PREFIX . $chart_type . '_chart_yaxis_label_pointer' ] ) && $settings[ GRAPHINA_PREFIX . $chart_type . '_chart_yaxis_label_pointer' ] === 'yes' ? true : false,
-			'chart_yaxis_label_pointer_number'   => ! empty( $settings[ GRAPHINA_PREFIX . $chart_type . '_chart_yaxis_label_pointer_number' ] ) ? intval( $settings[ GRAPHINA_PREFIX . $chart_type . '_chart_yaxis_label_pointer_number' ] ) : 1,
+			'chart_yaxis_label_pointer_number'   => ! empty( $settings[ GRAPHINA_PREFIX . $chart_type . '_chart_yaxis_label_pointer_number' ] ) ? intval( $settings[ GRAPHINA_PREFIX . $chart_type . '_chart_yaxis_label_pointer_number' ] ) : 0,
 			'chart_opposite_yaxis_title_enable'  => ! empty( $settings[ GRAPHINA_PREFIX . $chart_type . '_chart_opposite_yaxis_title_enable' ] ) && $settings[ GRAPHINA_PREFIX . $chart_type . '_chart_opposite_yaxis_title_enable' ] === 'yes' ? true : false,
 			'chart_opposite_yaxis_format_number' => ! empty( $settings[ GRAPHINA_PREFIX . $chart_type . '_chart_opposite_yaxis_format_number' ] ) && $settings[ GRAPHINA_PREFIX . $chart_type . '_chart_opposite_yaxis_format_number' ] === 'yes' ? true : false,
 			'chart_opposite_yaxis_label_show'    => ! empty( $settings[ GRAPHINA_PREFIX . $chart_type . '_chart_opposite_yaxis_label_show' ] ) && $settings[ GRAPHINA_PREFIX . $chart_type . '_chart_opposite_yaxis_label_show' ] === 'yes' ? true : false,
 			'chart_opposite_yaxis_label_prefix'  => ! empty( $settings[ GRAPHINA_PREFIX . $chart_type . '_chart_opposite_yaxis_label_prefix' ] ) ? $settings[ GRAPHINA_PREFIX . $chart_type . '_chart_opposite_yaxis_label_prefix' ] : '',
 			'chart_opposite_yaxis_label_postfix' => ! empty( $settings[ GRAPHINA_PREFIX . $chart_type . '_chart_opposite_yaxis_label_postfix' ] ) ? $settings[ GRAPHINA_PREFIX . $chart_type . '_chart_opposite_yaxis_label_postfix' ] : '',
 			'chart_datalabel_prefix'             => ! empty( $settings[ GRAPHINA_PREFIX . $chart_type . '_chart_datalabel_prefix' ] ) ? $settings[ GRAPHINA_PREFIX . $chart_type . '_chart_datalabel_prefix' ] : '',
+			'chart_tooltip_prefix_val'           => ! empty( $settings[ GRAPHINA_PREFIX . $chart_type . '_chart_tooltip_prefix_val' ] ) ? $settings[ GRAPHINA_PREFIX . $chart_type . '_chart_tooltip_prefix_val' ] : '',
 			'chart_datalabel_postfix'            => ! empty( $settings[ GRAPHINA_PREFIX . $chart_type . '_chart_datalabel_postfix' ] ) ? $settings[ GRAPHINA_PREFIX . $chart_type . '_chart_datalabel_postfix' ] : '',
+			'chart_tooltip_postfix_val'          => ! empty( $settings[ GRAPHINA_PREFIX . $chart_type . '_chart_tooltip_postfix_val' ] ) ? $settings[ GRAPHINA_PREFIX . $chart_type . '_chart_tooltip_postfix_val' ] : '',
 			'chart_data_option'                  => ! empty( $settings[ GRAPHINA_PREFIX . $chart_type . '_chart_data_option' ] ) && $settings[ GRAPHINA_PREFIX . $chart_type . '_chart_data_option' ] === 'dynamic' ? true : false,
 			'dynamic_type'                       => ! empty( $settings[ GRAPHINA_PREFIX . $chart_type . '_chart_data_option' ] ) ? $settings[ GRAPHINA_PREFIX . $chart_type . '_chart_data_option' ] : ',manual',
 			'chart_dynamic_data_option'          => ! empty( $settings[ GRAPHINA_PREFIX . $chart_type . '_chart_dynamic_data_option' ] ) ? $settings[ GRAPHINA_PREFIX . $chart_type . '_chart_dynamic_data_option' ] : '',
@@ -1532,6 +1612,8 @@ if ( ! function_exists( 'graphina_prepare_extra_data' ) ) {
 			$extra_data['chart_data_label_pointer']				= ! empty( $settings[ GRAPHINA_PREFIX . $chart_type . '_chart_label_pointer' ] ) && $settings[ GRAPHINA_PREFIX . $chart_type . '_chart_label_pointer' ] === 'yes' ? true : false;
 			$extra_data['chart_datalabel_prefix']				= ! empty( $settings[ GRAPHINA_PREFIX . $chart_type . '_chart_datalabel_format_prefix' ] ) ? $settings[ GRAPHINA_PREFIX . $chart_type . '_chart_datalabel_format_prefix' ] : '';
 			$extra_data['chart_datalabel_postfix']				= ! empty( $settings[ GRAPHINA_PREFIX . $chart_type . '_chart_datalabel_format_postfix' ] ) ? $settings[ GRAPHINA_PREFIX . $chart_type . '_chart_datalabel_format_postfix' ] : '';
+			$extra_data['chart_legend_show_series_postfix']				= ! empty( $settings[ GRAPHINA_PREFIX . $chart_type . '_chart_legend_show_series_postfix' ] ) ? $settings[ GRAPHINA_PREFIX . $chart_type . '_chart_legend_show_series_postfix' ] : '';
+			$extra_data['chart_legend_show_series_prefix']				= ! empty( $settings[ GRAPHINA_PREFIX . $chart_type . '_chart_legend_show_series_prefix' ] ) ? $settings[ GRAPHINA_PREFIX . $chart_type . '_chart_legend_show_series_prefix' ] : '';
 			$extra_data['chart_datalabels_format_showValue']     = ! empty( $settings[ GRAPHINA_PREFIX . $chart_type . '_chart_datalabels_format_showValue' ] ) && $settings[ GRAPHINA_PREFIX . $chart_type . '_chart_datalabels_format_showValue' ] === 'yes' ? true : false;
             $extra_data['chart_datalabels_format_showlabel']     = ! empty( $settings[ GRAPHINA_PREFIX . $chart_type . '_chart_datalabels_format_showlabel' ] ) && $settings[ GRAPHINA_PREFIX . $chart_type . '_chart_datalabels_format_showlabel' ] === 'yes' ? true : false;    
 		}
@@ -1544,7 +1626,7 @@ if ( ! function_exists( 'graphina_prepare_extra_data' ) ) {
 			$extra_data['yaxis_label_postfix']  = ! empty( $settings[ GRAPHINA_PREFIX . $chart_type . '_chart_yaxis_format_postfix' ] ) ? $settings[ GRAPHINA_PREFIX . $chart_type . '_chart_yaxis_format_postfix' ] : '';
 		}
 		
-		if( in_array( $chart_type , ['heatmap', 'radial','radar'])) {
+		if( in_array( $chart_type , ['heatmap', 'radial','radar','brush','distributed_column'])) {
 			$extra_data['chart_label_pointer_number_for_label']	= ! empty( $settings[ GRAPHINA_PREFIX . $chart_type . '_chart_label_pointer_number_for_label' ] ) ? $settings[ GRAPHINA_PREFIX . $chart_type . '_chart_label_pointer_number_for_label' ] : 0;
 			$extra_data['string_format']						= ! empty( $settings[ GRAPHINA_PREFIX . $chart_type . '_chart_label_pointer_for_label' ] ) && $settings[ GRAPHINA_PREFIX . $chart_type . '_chart_label_pointer_for_label' ] === 'yes' ? true : false;
 		}
@@ -1564,6 +1646,9 @@ if ( ! function_exists( 'graphina_prepare_extra_data' ) ) {
 
 		}
 
+		if( 'tree' === $chart_type ){
+			$extra_data['tree_template']	=	$settings[ GRAPHINA_PREFIX . $chart_type . '_tree_chart_template' ];
+		}
 		return $extra_data;
 	}
 }
@@ -1591,7 +1676,7 @@ if ( ! function_exists( 'graphina_chart_data_enter_options' ) ) {
 		}
 
 		// Conditionally add the SQL Builder option for non-bubble charts
-		if ( ! in_array( $chart_type, array( 'bubble', 'timeline', 'candle', 'nested_column', 'gantt_google', 'org_google', 'counter' ) ) ) {
+		if ( ! in_array( $chart_type, array( ' bubble', 'timeline', 'candle', 'nested_column', 'gantt_google', 'org_google', 'counter' ) ) ) {
 			$options['sql-builder'] = esc_html__( 'SQL Builder', 'graphina-charts-for-elementor' );
 		}
 		if('counter' === $chart_type){
@@ -1738,6 +1823,9 @@ if ( ! function_exists( 'graphina_get_sheet' ) ) {
 			case 'gantt_google':
 				$sheet = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vSp0m7C4UftLCn_eUgEBstLpEe29NK43ZA9q-VlMqQVOh3K3lrIXPVHnt5kIbJkZG6yPmketLY8oS3Q/pub?gid=0&single=true&output=csv';
 				break;
+			case 'tree':
+				$sheet = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vTlZ0es19GnP-b7z12CIMfYnD4MblkNNXbDKyAuPhS4eUlXnjKRRKJ_345wVjVxg7xiIiLg_xy5zAGn/pub?gid=0&single=true&output=csv';
+				break;
 		}
 
 		return $sheet;
@@ -1791,7 +1879,7 @@ if ( ! function_exists( 'graphina_get_spreadsheet_column_wise' ) ) {
 	 */
 	function graphina_get_spreadsheet_column_wise( $type = 'area' ) {
 
-		$sheet = 'https://docs.google.com/spreadsheets/d/11oF-ibtQzwLs8TH_9RcpPBorDmRgSrksFpoV_PLCtYw/edit?usp=sharing';
+		$sheet = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vQkRrVoxIkQ1yv1B16OvDRe8pey4wKM04lnPKoaOLbaf8NFOjf7gO_C1AJMJ5LK2uIz90SbIQ81LmHh/pub?gid=0&single=true&output=csv';
 
 		switch ( $type ) {
 
@@ -1808,10 +1896,10 @@ if ( ! function_exists( 'graphina_get_spreadsheet_column_wise' ) ) {
 				$sheet = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vQM-_3q7LO5aFHrKx1oEZQTDzAgzGjtmKZLTEi6LH7pcG4xRjp4swLjTd-BOlPpi_KKJ5nBUnqdZLfJ/pub?gid=0&single=true&output=csv';
 				break;
 			case 'brush':
-				$sheet = 'https://docs.google.com/spreadsheets/d/1hqU7y4neCt1GAKEubhvNF_wrbLYUEhGZphLPpUAfrKw/edit?usp=sharing';
+				$sheet = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vQkRrVoxIkQ1yv1B16OvDRe8pey4wKM04lnPKoaOLbaf8NFOjf7gO_C1AJMJ5LK2uIz90SbIQ81LmHh/pub?gid=0&single=true&output=csv';
 				break;
 			case 'geo_google':
-				$sheet = 'https://docs.google.com/spreadsheets/d/1s2QobC0PlcW6kaod94DMv2jmhiJNG0scVAiMcvUgqII/edit?usp=sharing';
+				$sheet = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vQkRrVoxIkQ1yv1B16OvDRe8pey4wKM04lnPKoaOLbaf8NFOjf7gO_C1AJMJ5LK2uIz90SbIQ81LmHh/pub?gid=872716505&single=true&output=csv';
 				break;
 		}
 
@@ -1819,66 +1907,6 @@ if ( ! function_exists( 'graphina_get_spreadsheet_column_wise' ) ) {
 	}
 }
 
-// Check if the function graphinaReplaceDynamicFilterKeyChange already exists to avoid redeclaration errors.
-if ( ! function_exists( 'graphinaReplaceDynamicFilterKeyChange' ) ) {
-	/**
-	 * Replaces dynamic filter keys in a SQL query with selected filter values.
-	 *
-	 * This function processes dynamic filter settings and selected items to replace placeholders
-	 * in a SQL query with actual filter values. It ensures compatibility with date formats,
-	 * checks for duplicate items, and handles different dynamic data options like SQL builder.
-	 *
-	 * @param array  $settings         The settings for the chart, including filters and dynamic data options.
-	 * @param string $chart_type       The type of chart being processed.
-	 * @param array  $selected_item    The selected filter values for the chart.
-	 * @param string $sql_custom_query The custom SQL query to process and update.
-	 *
-	 * @return string Updated SQL query with placeholders replaced by selected filter values.
-	 */
-	function graphinaReplaceDynamicFilterKeyChange( $settings, $chart_type, $selected_item, $sql_custom_query ) {
-		if ( ! empty( $settings[ GRAPHINA_PREFIX . $chart_type . '_chart_filter_enable' ] ) && $settings[ GRAPHINA_PREFIX . $chart_type . '_chart_filter_enable' ] == 'yes' && ! empty( $selected_item ) && is_array( $selected_item ) ) {
-			$matches = [];
-			$pattern = '/{{QUERY_PARAM_([^=]+)=([^}]+)}}/';
-			
-			preg_match_all($pattern, $sql_custom_query, $matches, PREG_SET_ORDER);
-			
-			$extractedParams = [];
-			foreach ($matches as $match) {
-				$extractedParams[] = [
-					'full_match' => $match[0],
-					'param_name' => $match[1],
-					'param_value' => $match[2]
-				];
-			}
-			foreach ( $settings[ GRAPHINA_PREFIX . $chart_type . '_chart_filter_list' ] as $key => $value ) {
-				if ( ! empty( $value[ GRAPHINA_PREFIX . $chart_type . '_chart_filter_value_key' ] ) && $selected_item[ $key ] != null && $selected_item[ $key ] != '' ) {
-					$selected_key = trim($value[ GRAPHINA_PREFIX . $chart_type . '_chart_filter_value_key' ],'{}');
-					if( empty( $selected_key ) && $value[ GRAPHINA_PREFIX . $chart_type . '_chart_filter_type' ] !== 'date' ) {
-						return preg_replace_callback($pattern, function($matches) {
-							return $matches[2];
-						}, $sql_custom_query);
-					}else{
-						if( ! empty( $selected_key ) && $value[ GRAPHINA_PREFIX . $chart_type . '_chart_filter_type' ] !== 'date' ){
-							foreach ($extractedParams as $key => $value) {
-								if ( $value['param_name'] === $selected_key ){
-									$sql_custom_query = preg_replace("/{{QUERY_PARAM_$selected_key+=[^}]+}}/", $selected_item[ $key ], $sql_custom_query);
-								}
-							}
-						}
-					}
-					if ( ! empty( $settings[ GRAPHINA_PREFIX . $chart_type . '_chart_dynamic_data_option' ] ) && $settings[ GRAPHINA_PREFIX . $chart_type . '_chart_dynamic_data_option' ] === 'sql-builder' && strstr( $sql_custom_query, trim( $selected_item[ $key ] ) ) && count( $selected_item ) === count( array_unique( $selected_item ) ) ) {
-						$sql_custom_query = str_replace( array( "'" . $value[ GRAPHINA_PREFIX . $chart_type . '_chart_filter_value_key' ] . "'", '"' . $value[ GRAPHINA_PREFIX . $chart_type . '_chart_filter_value_key' ] . '"', $value[ GRAPHINA_PREFIX . $chart_type . '_chart_filter_value_key' ] ), $selected_item[ $key ], $sql_custom_query );
-					} elseif ( $value[ GRAPHINA_PREFIX . $chart_type . '_chart_filter_type' ] === 'date' ) {
-							$sql_custom_query = str_replace( $value[ GRAPHINA_PREFIX . $chart_type . '_chart_filter_value_key' ], sprintf( '"%s"', trim( $selected_item[ $key ] ) ), $sql_custom_query );
-					} else {
-						$sql_custom_query = str_replace( $value[ GRAPHINA_PREFIX . $chart_type . '_chart_filter_value_key' ], trim( $selected_item[ $key ] ), $sql_custom_query );
-					}
-				}
-			}
-		}
-		return $sql_custom_query;
-	}
-}
 
 // Check if the function graphina_google_chart_lists already exists to avoid redeclaration errors.
 if ( ! function_exists( 'graphina_google_chart_lists' ) ) {
@@ -2511,6 +2539,9 @@ if ( ! function_exists( 'graphina_get_chart_name' ) ) {
 				'scatter_chart',
 				'timeline_chart',
 			),
+			'apex-tree' => array(
+				'tree',
+			),
 			'google' => array(
 				'area_google_chart',
 				'bar_google_chart',
@@ -2534,7 +2565,165 @@ if ( ! function_exists( 'graphina_get_chart_name' ) ) {
 	}
 }
 
+/**
+ * Tree Chart Data Preparation Functions
+ * 
+ * This file contains functions to prepare hierarchical tree chart data from manual settings.
+ */
 
+ if (!function_exists('graphina_prepare_tree_chart_data')) {
+    /**
+     * Prepares tree chart data from Elementor settings
+     *
+     * Processes manual input data and converts it into a hierarchical tree structure
+     * with associated styling options for each node.
+     *
+     * @param array $settings The Elementor widget settings array
+     * @param string $chart_type The type of chart being processed
+     * @return array|null Hierarchical tree data structure or null if no root node found
+     */	
+	function graphina_prepare_tree_chart_data($settings,$chart_type){
+		$treeData = array();
+		if ( $settings[ GRAPHINA_PREFIX . $chart_type . '_chart_data_option' ] === 'manual' ) {
+			for ( $j = 0; $j < $settings[ GRAPHINA_PREFIX . $chart_type . '_chart_data_series_count' ]; $j++ ) {
+				
+				$treeData[] = array(
+					$settings[ GRAPHINA_PREFIX . $chart_type . '_chart_child' . $j ],
+					$settings[ GRAPHINA_PREFIX . $chart_type . '_chart_parent' . $j ],
+					$settings[GRAPHINA_PREFIX . $chart_type . '_chart_node_category' . $j],
+					!empty($settings[GRAPHINA_PREFIX . $chart_type . '_chart_image' . $j]['url'])
+						? $settings[GRAPHINA_PREFIX . $chart_type . '_chart_image' . $j]['url']
+						: ''
+				);
+				$chart_options[] = array(
+					'nodeBGColor'     		 	=> ! empty($settings[GRAPHINA_PREFIX . $chart_type . '_chart_node_element_bgcolor' . $j ]) ? esc_html($settings[GRAPHINA_PREFIX . $chart_type . '_chart_node_element_bgcolor'. $j ]) : '#000000' ,
+					'nodeBGColorHover'      	=> ! empty($settings[GRAPHINA_PREFIX . $chart_type . '_chart_node_element_bgcolor_hover'. $j ]) ? esc_html($settings[GRAPHINA_PREFIX . $chart_type . '_chart_node_element_bgcolor_hover'. $j ]) : '#FFFFFF',
+					'fontColor'					=> ! empty($settings[GRAPHINA_PREFIX . $chart_type . '_chart_sel_node_font_color'. $j ]) ? esc_html($settings[GRAPHINA_PREFIX . $chart_type . '_chart_sel_node_font_color'. $j ]) : '#FFFFFF',
+					'fontSize'        			=> ! empty($settings[GRAPHINA_PREFIX . $chart_type . '_chart_sel_node_font_size' . $j ]) ? $settings[GRAPHINA_PREFIX . $chart_type . '_chart_sel_node_font_size' . $j ] : '12px',
+					'borderColorHover'      	=> ! empty($settings[GRAPHINA_PREFIX . $chart_type . '_chart_node_element_color_hover'. $j ]) ? esc_html($settings[GRAPHINA_PREFIX . $chart_type . '_chart_node_element_color_hover' . $j ]) : '#FFFFFF' ,
+					'borderColor'      			=> ! empty($settings[GRAPHINA_PREFIX . $chart_type . '_chart_node_element_color'. $j ]) ? esc_html($settings[GRAPHINA_PREFIX . $chart_type . '_chart_node_element_color' . $j ]) : '#FFFFFF',
+			
+				);
+			}
+		}
+
+		// Build the hierarchical structure
+		$hierarchicalData = buildTreeStructure($treeData, $chart_options);
+
+		return $hierarchicalData;
+
+	}
+}
+
+// Check if the function buildTreeStructure already exists to avoid redeclaration errors.
+
+if (!function_exists('buildTreeStructure')) {
+    /**
+     * Builds hierarchical tree structure from flat data
+     *
+     * Identifies the root node and constructs a tree with children nodes
+     *
+     * @param array $flatData Array of node data in [child, parent, category, image] format
+     * @param array $options Array of styling options for each node
+     * @return array|null The root node with children hierarchy or null if no root found
+     */
+	function buildTreeStructure($flatData, $options) {
+		// First, identify the root node (a node that is its own parent)
+		$rootNode = null;
+		foreach ($flatData as $index => $node) {
+			if ($node[0] === $node[1]) {
+				$rootNode = $node;
+				$rootOptions = $options[$index];
+				break;
+			}
+		}
+
+		if (!$rootNode) {
+			return null; // No root node found
+		}
+
+		// Create the root object
+		$root = [
+			'id' => strtolower(str_replace(' ', '_', $rootNode[0])),
+			'data' => [
+				'name' => $rootNode[0],
+				'category' => $rootNode[2],
+				'imageURL' => $rootNode[3], // Example placeholder,
+			],
+			'options' => $rootOptions,
+			'children' => []
+		];
+
+		// Add children to the root
+		$root['children'] = findChildren($rootNode[0], $flatData, $options);
+
+		return $root;
+	}
+}
+
+// Check if the function findChildren already exists to avoid redeclaration errors.
+if (!function_exists('findChildren')) {
+    /**
+     * Recursively finds and builds children nodes for a parent
+     *
+     * @param string $parentName The name of the parent node to find children for
+     * @param array $flatData Array of all node data
+     * @param array $options Array of styling options for each node
+     * @return array Array of child nodes (with their own children if any)
+     */
+	function findChildren($parentName, $flatData, $options) {
+		$children = [];
+
+		foreach ($flatData as $index => $node) {
+			// Skip the node if it's a root node (parent of itself)
+			if ($node[0] === $node[1]) {
+				continue;
+			}
+
+			// If this node's parent matches the parent we're looking for
+			if ($node[1] === $parentName) {
+				$child = [
+					'id' => strtolower(str_replace(' ', '_', $node[0])),
+					'data' => [
+						'name' => $node[0],
+						'category' => $node[2],
+						'imageURL' => $node[3], // Example placeholder,// Example dynamic placeholder
+					],
+					'options' => $options[$index]
+				];
+
+				// Find children of this child recursively
+				$childChildren = findChildren($node[0], $flatData, $options);
+				if (!empty($childChildren)) {
+					$child['children'] = $childChildren;
+				}
+
+				$children[] = $child;
+			}
+		}
+
+		return $children;
+	}
+}
+
+// Check if the function graphina_pro_tree_chart_template already exists to avoid redeclaration.
+if ( ! function_exists( 'graphina_tree_chart_template' ) ) {
+
+	/**
+	 * Loads and returns the default restrict content template.
+	 *
+	 * This function uses output buffering to capture the contents of
+	 * the 'tree-template.php' template and return it as a string.
+	 *
+	 * @return string The HTML content of the restrict content template.
+	 */
+	function graphina_tree_chart_template() {
+		ob_start();
+		// Load the tree-template.php template.
+		graphina_get_template( 'tree-template.php' );
+		return ob_get_clean();
+	}
+}
 // counter chart functions
 /**
  * Get the difference between two arrays and return re-indexed values.

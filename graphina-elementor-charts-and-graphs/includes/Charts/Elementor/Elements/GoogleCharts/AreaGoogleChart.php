@@ -80,7 +80,7 @@ class AreaGoogleChart extends GraphinaGoogleChartBase {
 	 * @return array List of script handles.
 	 */
 	public function get_script_depends() {
-		return array( 'area-google-chart' );
+		 return ['googlechart-js', 'area-google-chart'];
 	}
 
 	/**
@@ -133,10 +133,10 @@ class AreaGoogleChart extends GraphinaGoogleChartBase {
 
 	/**
 
-     * Render widget output on the frontend
-     *
-     * Retrieves and processes the necessary settings for the Area Google Chart widget,
-     * then renders the Google Charts JavaScript code to create and display the chart.
+	 * Render widget output on the frontend
+	 *
+	 * Retrieves and processes the necessary settings for the Area Google Chart widget,
+	 * then renders the Google Charts JavaScript code to create and display the chart.
 	 * The chart will then be rendered on the frontend
 	 */
 	protected function graphina_prepare_google_chart_options($settings, $chart_type, $element_id)
@@ -162,13 +162,13 @@ class AreaGoogleChart extends GraphinaGoogleChartBase {
 		$element_colors = $element_title_array = $series_style_array = array();
 
 		for ($j = 0; $j < $series_count; $j++) {
-			$element_colors[]      = esc_html($settings[GRAPHINA_PREFIX . $chart_type . '_chart_element_color_' . $j]);
-			$element_title_array[] = esc_html($settings[GRAPHINA_PREFIX . $chart_type . '_chart_title_3_' . $j]);
+			$element_colors[]      = isset($settings[GRAPHINA_PREFIX . $chart_type . '_chart_element_color_' . $j]) ? esc_html($settings[GRAPHINA_PREFIX . $chart_type . '_chart_element_color_' . $j]) : '';
+			$element_title_array[] = isset($settings[GRAPHINA_PREFIX . $chart_type . '_chart_title_3_' . $j]) ? esc_html($settings[GRAPHINA_PREFIX . $chart_type . '_chart_title_3_' . $j]) : '';
 			$point_show = ! empty($settings[GRAPHINA_PREFIX . $chart_type . '_chart_point_show' . $j]) ? $settings[GRAPHINA_PREFIX . $chart_type . '_chart_point_show' . $j] : false;
 
 			if ($point_show) {
-				$point_size  = $settings[GRAPHINA_PREFIX . $chart_type . '_chart_line_point_size' . $j];
-				$point_shape = $settings[GRAPHINA_PREFIX . $chart_type . '_chart_line_point' . $j];
+				$point_size  = isset($settings[GRAPHINA_PREFIX . $chart_type . '_chart_line_point_size' . $j]) ? $settings[GRAPHINA_PREFIX . $chart_type . '_chart_line_point_size' . $j] : null;
+				$point_shape = isset($settings[GRAPHINA_PREFIX . $chart_type . '_chart_line_point' . $j]) ? $settings[GRAPHINA_PREFIX . $chart_type . '_chart_line_point' . $j] : null;
 			} else {
 				$point_size  = null;
 				$point_shape = null;
@@ -195,6 +195,7 @@ class AreaGoogleChart extends GraphinaGoogleChartBase {
 				'targetAxisIndex' => $legend_position === 'left' ? 1 : 0,
 			);
 		}
+		$type_of_chart = isset($settings[GRAPHINA_PREFIX . $chart_type . '_chart_title']) ? $settings[GRAPHINA_PREFIX . $chart_type . '_chart_title'] : '';
 
 		$response = array(
 			'title'           => ! empty($settings[GRAPHINA_PREFIX . $chart_type . '_chart_title']) ? $settings[GRAPHINA_PREFIX . $chart_type . '_chart_title'] : '',
@@ -206,6 +207,7 @@ class AreaGoogleChart extends GraphinaGoogleChartBase {
 			),
 			'chartArea'       => $chartArea,
 			'height'          => $settings[GRAPHINA_PREFIX . $chart_type . '_chart_height'],
+			'chartType'	   => $type_of_chart,
 			'series'          => $series_style_array,
 			'tooltip'         => array(
 				'showColorCode' => true,
@@ -236,7 +238,7 @@ class AreaGoogleChart extends GraphinaGoogleChartBase {
 				'opacity'   => ! empty($settings[GRAPHINA_PREFIX . $chart_type . '_chart_annotation_opacity']) ? $settings[GRAPHINA_PREFIX . $chart_type . '_chart_annotation_opacity'] : '',
 			),
 		);
-		$response['isStacked']   = ! empty($settings[GRAPHINA_PREFIX . $chart_type . '_chart_area_stacked']) && $settings[GRAPHINA_PREFIX . $chart_type . '_chart_area_stacked'] === 'yes' ? true : false;
+		$response['isStacked']   = ! empty($settings[GRAPHINA_PREFIX . $chart_type . '_chart_stacked_show']) && $settings[GRAPHINA_PREFIX . $chart_type . '_chart_stacked_show'] === 'yes' ? true : false;
 		$response['animation']   = array(
 			'startup'  => ! empty($settings[GRAPHINA_PREFIX . $chart_type . '_chart_animation_show']) && $settings[GRAPHINA_PREFIX . $chart_type . '_chart_animation_show'] === 'yes' ? true : false,
 			'duration' => ! empty($settings[GRAPHINA_PREFIX . $chart_type . '_chart_animation_speed']) ? $settings[GRAPHINA_PREFIX . $chart_type . '_chart_animation_speed'] : '',
@@ -287,6 +289,9 @@ class AreaGoogleChart extends GraphinaGoogleChartBase {
 				'color' => ! empty($settings[GRAPHINA_PREFIX . $chart_type . '_chart_gridline_color']) ? $settings[GRAPHINA_PREFIX . $chart_type . '_chart_gridline_color'] : '',
 				'count' => ! empty($settings[GRAPHINA_PREFIX . $chart_type . '_chart_gridline_count']) ? $settings[GRAPHINA_PREFIX . $chart_type . '_chart_gridline_count'] : '',
 			),
+			'minorGridlines' => array(
+				'count'	=> 0,
+			)
 		);
 
 		if (! empty($settings[GRAPHINA_PREFIX . $chart_type . '_google_chart_major_ticks_show']) && $settings[GRAPHINA_PREFIX . $chart_type . '_google_chart_major_ticks_show'] == 'yes') {

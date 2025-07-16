@@ -14,15 +14,18 @@ use Elementor\Icons_Manager;
 ?>
 <div class="graphina-card counter layout_1">
 	<?php if ( isset( $counter_icon ) && ! empty( $counter_icon ) ) : ?>
-		<div class="counter-icon part-1">
+		<h2 class="counter-icon part-1">
 			<?php Icons_Manager::render_icon( $settings[ GRAPHINA_PREFIX . $chart_type . '_element_counter_icon' ], array( 'aria-hidden' => 'true' ) ); ?>
-		</div>
+		</h2>
 	<?php endif; ?>
 
-	<h2 class="count_number myGraphinaCounter count_number-pre-postfix-<?php echo esc_attr( $element_id ); ?>">
-		<?php echo esc_html($prefix); ?>
-	</h2>
+	<?php if (!empty($prefix)): ?>
+		<h2 class="count_number myGraphinaCounter count_number-pre-postfix-<?php echo esc_attr($element_id); ?>">
+			<?php echo esc_html($prefix); ?>
+		</h2>
+	<?php endif; ?>
 
+	
 	<h2 class="count_number myGraphinaCounter count_number-<?php echo esc_attr( $element_id ); ?>" 
 		data-start="<?php echo esc_attr( $counter_start ); ?>" 
 		data-end="<?php echo esc_attr( $counter_end ); ?>" 
@@ -31,11 +34,15 @@ use Elementor\Icons_Manager;
 		<?php echo number_format( floatval( $counter_start ), $counter_decimal ); ?>
 	</h2>
 
-	<h2 class="count_number myGraphinaCounter count_number-pre-postfix-<?php echo esc_attr( $element_id ); ?>">
-		<?php echo esc_html($postfix); ?>
-	</h2>
+	<?php if (!empty($postfix)): ?>
+		<h2 class="count_number myGraphinaCounter count_number-pre-postfix-<?php echo esc_attr($element_id); ?>">
+			<?php echo esc_html($postfix); ?>
+		</h2>
+	<?php endif; ?>
 
-	<h2 class="counter-title title <?php echo esc_attr( 'counter-title-' . $element_id ); ?>"><?php echo esc_html( $counter_title ); ?></h2>
+	<?php if (!empty($counter_title)): ?>
+		<h2 class="counter-title title <?php echo esc_attr( 'counter-title-' . $element_id ); ?>"><?php echo esc_html( $counter_title ); ?></h2>
+	<?php endif; ?>
 
 	<?php if ( isset( $counter_description ) && ! empty( $counter_description ) ) : ?>
 		<p class="counter-description description counter-description-<?php echo esc_attr( $element_id ); ?>"><?php echo esc_html( $counter_description ); ?></p>
@@ -48,6 +55,7 @@ use Elementor\Icons_Manager;
 			data-responsive_options='<?php echo wp_json_encode( $responsive_options ); ?>'
 			data-extra_data='<?php echo wp_json_encode( $extra_data ); ?>'
 			data-settings='<?php echo esc_attr(wp_json_encode($element_settings)); ?>'>
+			
 		</div>
 	</div>
 	

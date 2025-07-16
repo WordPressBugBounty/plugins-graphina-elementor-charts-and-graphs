@@ -22,12 +22,12 @@ if ( ! empty( $chart_data['is_google'] ) && $chart_data['is_google'] ){
 
 if ( ! empty( $settings[ GRAPHINA_PREFIX . $chart_type . '_chart_filter_list' ] ) ) {
 	?>
-	<div class="graphina_chart_filter" id="graphina_chart_filter_<?php echo esc_attr( $element_id ); ?>" data-total_filter="<?php echo esc_attr( count( $settings[ GRAPHINA_PREFIX . $chart_type . '_chart_filter_list' ] ) ); ?>" style="display: flex; flex-wrap: wrap; align-items: end; gap: 16px;">
+	<div class="graphina_chart_filter" id="graphina_chart_filter_<?php echo esc_attr( $element_id ); ?>" data-total_filter="<?php echo esc_attr( count( $settings[ GRAPHINA_PREFIX . $chart_type . '_chart_filter_list' ] ) ); ?>">
 		<?php
 		foreach ( $settings[ GRAPHINA_PREFIX . $chart_type . '_chart_filter_list' ] as $key => $value ) {
 			if ( ! empty( $value[ GRAPHINA_PREFIX . $chart_type . '_chart_filter_type' ] ) && $value[ GRAPHINA_PREFIX . $chart_type . '_chart_filter_type' ] === 'date' ) {
 				?>
-				<div class="graphina-filter-div">
+				<div class="">
 					<div>
 						<label for="graphina-start-date_<?php echo esc_html( $key . $element_id ); ?>">
 							<?php echo esc_html( ! empty( $value[ GRAPHINA_PREFIX . $chart_type . '_chart_filter_value_label' ] ) ? $value[ GRAPHINA_PREFIX . $chart_type . '_chart_filter_value_label' ] : '' ); ?>
@@ -38,29 +38,22 @@ if ( ! empty( $settings[ GRAPHINA_PREFIX . $chart_type . '_chart_filter_list' ] 
 						$default_date = ! empty( $value[ GRAPHINA_PREFIX . $chart_type . '_chart_filter_date_default' ] ) ? $value[ GRAPHINA_PREFIX . $chart_type . '_chart_filter_date_default' ] : current_time( 'Y-m-d h:i:s' );
 						?>
 						<div>
-							<input type="date" id="graphina-start-date_<?php echo esc_html( $key . $element_id ); ?>"
-								class="graphina-chart-filter-date-time graphina_datepicker_<?php echo esc_html( $element_id ); ?>
-										graphina_filter_select<?php echo esc_html( $element_id ); ?>"
-								value="
-								<?php
-								echo esc_html( date( 'Y-m-d', strtotime( $default_date ) ) );
-								?>
-										">
+							<input type="date" id="graphina-start-date_<?php echo esc_html($key . $element_id); ?>" 
+	   							class="graphina-chart-filter-date-time graphina_datepicker_<?php echo esc_html($element_id); ?> graphina_filter_select<?php echo esc_html($element_id); ?>" 
+	   							value="<?php
+									 echo esc_html(date('Y-m-d', strtotime($default_date)));
+						 		?>">
 						</div>
 						<?php
 					} else {
 						$default_date = ! empty( $value[ GRAPHINA_PREFIX . $chart_type . '_chart_filter_datetime_default' ] ) ? $value[ GRAPHINA_PREFIX . $chart_type . '_chart_filter_datetime_default' ] : current_time( 'Y-m-d h:i:s' );
 						?>
 						<div>
-							<input type="datetime-local" id="graphina-start-date_<?php echo esc_html( $key . $element_id ); ?>"
-								class="graphina-chart-filter-date-time graphina_datepicker_<?php echo esc_html( $element_id ); ?>
-										graphina_filter_select<?php echo esc_html( $element_id ); ?>" step="1"
-								value="
-								<?php
-								echo esc_html( date( 'Y-m-d\TH:i', strtotime( $default_date ) ) )
-								?>
-										">
-						</div>
+								<input type="datetime-local" id="graphina-start-date_<?php echo esc_html($key . $element_id); ?>" 
+		   								class="graphina-chart-filter-date-time graphina_datepicker_<?php echo esc_html($element_id); ?> graphina_filter_select<?php echo esc_html($element_id); ?>" 
+		   								step="1"
+		   								value="<?php echo esc_html(date('Y-m-d\TH:i:s', strtotime($default_date))); ?>">
+							</div>
 						<?php
 					}
 					?>

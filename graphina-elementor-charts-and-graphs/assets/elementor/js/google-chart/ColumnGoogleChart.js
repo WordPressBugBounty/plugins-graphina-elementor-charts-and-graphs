@@ -64,4 +64,4 @@ export default class ColumnChart extends GraphinaGoogleChartBase {
     }
 }
 // Initialize ColumnChart
-new ColumnChart();
+window.graphinaGoogleColumnChart = new ColumnChart();

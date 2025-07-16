@@ -1,27 +1,37 @@
 import GraphinaApexChartBase from './GraphinaApexChartBase';
 
-// Child class specifically for Line Charts
 export default class LineChart extends GraphinaApexChartBase {
     constructor() {
         super();
-        this.observer = {}; // For IntersectionObserver
+        this.observer = {};
     }
     
-    // Setup handlers for Line chart type
     setUpChartsHandler() {
         this.chartHandlers = {
             line: (element) => this.observeChartElement(element, 'line'),
         };
     }
 
-   
-    getChartOptions(finalChartOptions, chartType,extraData,responsive_options,elementId) {
+    getChartOptions(finalChartOptions, chartType, extraData, responsive_options, elementId) {
         if (chartType === 'line') {
-            // finalChartOptions.chart.zoom = { enabled: false }; 
-            finalChartOptions.responsive = responsive_options
+            finalChartOptions.responsive = responsive_options;
+            
+            // Add loaded event to remove fixed height
+            finalChartOptions.chart.events = {
+                mounted: (chartContext, config) => {
+                    // More specific selector targeting only the chart container
+                    const chartElement = document.querySelector(`.graphina-elementor-chart[data-element_id="${elementId}"]`);
+                    if (chartElement) {
+                        // Remove fixed height but keep min-height for proper rendering
+                        chartElement.style.height = '';
+                    }
+                },
+               
+            };
         }
         return finalChartOptions;
     }
+    
+   
 }
-// Initialize Line Chart
-new LineChart();
+window.graphinaLineChart = new LineChart();

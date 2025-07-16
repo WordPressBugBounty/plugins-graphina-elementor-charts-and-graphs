@@ -28,6 +28,7 @@ add_filter(
 			'test_btn'           	 => esc_html__( 'Test DB Setting', 'graphina-charts-for-elementor' ),
 			'loading_btn'          	 => esc_html__( 'Loading...', 'graphina-charts-for-elementor' ),
 			'connecting_btn'         => esc_html__( 'Connecting...', 'graphina-charts-for-elementor' ),
+
 		);
 		return $settings;
 	}

@@ -98,6 +98,14 @@ a:focus {
     margin-bottom: 32px;
 }
 
+.graphina-element-flex{
+    display: flex;
+    justify-content: space-between;
+}
+.graphina-clear-cache{
+    height: 40px;
+}
+
 /* general setting */
 .graphina-admin-charts-setting {
     display: flex;
@@ -217,6 +225,7 @@ a:focus {
     background: transparent;
     color: var(--graphina-primary);
     text-decoration: underline;
+    padding: 0;
     border: none;
 }
 
@@ -500,6 +509,9 @@ select.graphina-form-control {
 #graphina-apex-chart{
     display: none;
 }
+#graphina-apex-tree-charts{
+    display: none;
+}
 #graphina-google-chart{
     display: none;
 } 
@@ -554,6 +566,13 @@ select.graphina-form-control {
 
 .graphina-area-chart-svg{
     background-image: url('../images/area-chart.svg');
+    background-size: contain;
+    background-repeat: no-repeat;
+    height: 30px;
+    width: 100px;
+}
+.graphina-tree-chart-svg{
+    background-image: url('../images/tree-chart.svg');
     background-size: contain;
     background-repeat: no-repeat;
     height: 30px;

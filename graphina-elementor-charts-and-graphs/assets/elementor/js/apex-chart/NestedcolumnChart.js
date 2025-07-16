@@ -113,4 +113,4 @@ export default class NestedcolumnChart extends GraphinaApexChartBase {
 }
 
 // Initialize NestedcolumnChart
-new NestedcolumnChart();
+window.graphinaNestedcolumnChart = new NestedcolumnChart();

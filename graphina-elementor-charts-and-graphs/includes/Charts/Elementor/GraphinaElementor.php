@@ -24,6 +24,7 @@ use Graphina\Elementor\Widget\Google\ColumnGoogleChart;
 use Graphina\Elementor\Widget\Google\PieGoogleChart;
 use Graphina\Elementor\Widget\CandleChart;
 use Graphina\Elementor\Widget\HeatmapChart;
+use Graphina\Elementor\Widget\Tree\TreeChart;
 
 // Exit if accessed directly.
 if ( ! defined( 'ABSPATH' ) ) {
@@ -72,6 +73,13 @@ class GraphinaElementor {
 			'graphina-apex',
 			array(
 				'title' => esc_html__( 'Graphina ApexCharts', 'graphina-charts-for-elementor' ),
+				'icon'  => 'fa fa-plug',
+			)
+		);
+		Plugin::$instance->elements_manager->add_category(
+			'graphina-apex-tree',
+			array(
+				'title' => esc_html__( 'Graphina ApexTree Charts', 'graphina-charts-for-elementor' ),
 				'icon'  => 'fa fa-plug',
 			)
 		);
@@ -154,6 +162,10 @@ class GraphinaElementor {
 
 		require_once __DIR__ . '/Elements/GoogleCharts/PieGoogleChart.php';
 		Plugin::instance()->widgets_manager->register( new PieGoogleChart() ); // pie google chart
+
+		//Apex Tree Charts
+		require_once __DIR__ . '/Elements/ApexTree/TreeChart.php';
+		Plugin::instance()->widgets_manager->register( new TreeChart() );
 	}
 
 	/**
@@ -194,6 +206,20 @@ class GraphinaElementor {
 		wp_register_script( 'data-table-colvis-print-js', GRAPHINA_URL . 'assets/js/buttons.colVis.min.js', array( 'jquery' ), GRAPHINA_VERSION  );
 		wp_register_script( 'data-table-jszip-js', GRAPHINA_URL . 'assets/js/jszip.min.js', array(), GRAPHINA_VERSION  );
 		wp_register_script( 'data-table-pdfmake-js', GRAPHINA_URL . 'assets/js/pdfmake.min.js', array(), GRAPHINA_VERSION  );
+		wp_register_script( 'apextree-js', GRAPHINA_URL . 'assets/js/apextree.min.js', array(), GRAPHINA_VERSION );
+
+
+		//Apex Tree Charts
+		\Kucrut\Vite\register_asset(
+			GRAPHINA_PATH . 'dist',
+			'assets/elementor/js/apex-tree/TreeChart.js',
+			array(
+				'handle'           => 'tree-chart',
+				'dependencies'     => array( 'apextree-js' ),
+				'css-dependencies' => array( 'apexchart-css' ),
+				'in-footer'        => true,
+			)
+		);
 
 		// Apex Charts Assets
 		\Kucrut\Vite\register_asset(
@@ -538,6 +564,12 @@ class GraphinaElementor {
 					'title'      => esc_html__( 'Nested Column', 'graphina-charts-for-elementor' ),
 					'icon'       => 'fas fa-wave-square',
 					'categories' => '["graphina-apex"]',
+				),
+				array(
+					'name'       => 'tree_chart',
+					'title'      => esc_html__( 'Tree Chart', 'graphina-charts-for-elementor' ),
+					'icon'       => 'fas fa-solid fa-sitemap',
+					'categories' => '["graphina-apex-tree"]',
 				),
 				array(
 					'name'       => 'mixed_chart',

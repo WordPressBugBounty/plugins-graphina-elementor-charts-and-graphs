@@ -28,6 +28,7 @@ export default class Graphina_Admin_Dashboard{
             .on('click', '.graphina-apex-toggle', this.debounce(this.handleDisableChart.bind(this), 300))
             // Chart type switching
             .on('click', '.graphina-chart-type', this.handleChartTypeSwitch.bind(this))
+            .on('click', '#graphina-clear-cache-button', this.debounce(this.handleDatabaseCache.bind(this), 300))
     }
 
     debounce = (func, delay) => {
@@ -37,6 +38,34 @@ export default class Graphina_Admin_Dashboard{
             timer = setTimeout(() => func.apply(this, args), delay);
         };
     };
+
+    handleDatabaseCache(e) {
+        e.preventDefault()
+        const nonce = jQuery(e.currentTarget).data('nonce')
+        jQuery.ajax({
+            url: gcfe_localize.ajaxurl,
+            type: "GET",
+            data: {
+                action: 'graphina_clear_db_cache',
+                nonce: nonce,
+            },
+            success: function (response) {
+                if (response.success === true || response.success === 'true') {
+                    Swal.fire({
+                        text: response.data.message,
+                        confirmButtonText: gcfe_localize.i18n.swal_ok_text
+                    })
+                    window.location.reload()
+                } else {
+                    Swal.fire({
+                        text: response.data.message,
+                        confirmButtonText: gcfe_localize.i18n.swal_ok_text
+                    })
+                }
+            }
+        })
+
+    }
 
     handleIqonicNotice(e){
         e.preventDefault()
@@ -78,6 +107,7 @@ export default class Graphina_Admin_Dashboard{
                 });
                 jQuery('.graphina-admin-loader').hide()
                 jQuery('#graphina-apex-chart').show()
+                jQuery('#graphina-apex-tree-charts').show()
                 jQuery('#graphina-google-chart').show()
                 jQuery('#graphina-table').show()
                 if(gcfe_localize.pro_active == '0'){

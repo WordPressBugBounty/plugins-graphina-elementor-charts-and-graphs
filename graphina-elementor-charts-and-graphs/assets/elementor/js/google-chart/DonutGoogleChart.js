@@ -66,4 +66,4 @@ export default class DonutChart extends GraphinaGoogleChartBase {
     }
 }
 // Initialize DonutChart
-new DonutChart();
+window.graphinaGoogleDonutChart = new DonutChart();

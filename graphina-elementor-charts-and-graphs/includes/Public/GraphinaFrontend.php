@@ -46,6 +46,10 @@ if ( ! class_exists( 'GraphinaFrontend' ) ) {
 			// AJAX for retrieving dynamic chart data (logged-in and non-logged-in users).
 			add_action( 'wp_ajax_graphina_get_dynamic_data', array( $this, 'graphina_get_dynamic_data' ) );
 			add_action( 'wp_ajax_nopriv_graphina_get_dynamic_data', array( $this, 'graphina_get_dynamic_data' ) );
+			
+			// AJAX for retrieving tree dynamic chart data (logged-in and non-logged-in users).
+			add_action( 'wp_ajax_graphina_get_dynamic_tree_data', array( $this, 'graphina_get_dynamic_tree_data' ) );
+			add_action( 'wp_ajax_nopriv_graphina_get_dynamic_tree_data', array( $this, 'graphina_get_dynamic_tree_data' ) );
 
 			// AJAX for retrieving dynamic Table data (logged-in and non-logged-in users).
 			add_action( 'wp_ajax_get_jquery_datatable_data', array( $this, 'get_jquery_datatable_data' ) );
@@ -93,12 +97,16 @@ if ( ! class_exists( 'GraphinaFrontend' ) ) {
 				array(
 					'ajaxurl'               		=> admin_url( 'admin-ajax.php' ),
 					'nonce'                 		=> wp_create_nonce( 'graphina_get_dynamic_data' ),
+					'tree_nonce'					=> wp_create_nonce('graphina_get_dynamic_tree_data'),
 					'table_nonce'           		=> wp_create_nonce( 'get_jquery_datatable_data' ),
 					'locale_with_hyphen'    		=> graphina_common_setting_get('thousand_seperator_local'),
 					'graphinaChartSettings' 		=> array(), // Placeholder for chart settings.
 					'view_port'             		=> graphina_common_setting_get( 'view_port' ),
+					'enable_chart_filter'           => graphina_common_setting_get( 'enable_chart_filter' ),
 					'no_data_available'     		=> esc_html__( 'No Data Available', 'graphina-charts-for-elementor' ),
-					'provinceSupportedCountries' 	=> array('US', 'CA', 'MX', 'BR', 'AR', 'DE', 'IT', 'ES', 'GB', 'AU', 'IN', 'CN', 'JP', 'RU', 'FR')
+					'provinceSupportedCountries' 	=> array('US', 'CA', 'MX', 'BR', 'AR', 'DE', 'IT', 'ES', 'GB', 'AU', 'IN', 'CN', 'JP', 'RU', 'FR'),
+					'loading_btn'          	 		=> esc_html__( 'Loading...', 'graphina-charts-for-elementor' ),
+
 				)
 			);
 		}
@@ -166,7 +174,7 @@ if ( ! class_exists( 'GraphinaFrontend' ) ) {
 				$post_id    = $request_data['post_id'] ?? get_queried_object_id();
 
 				// Initialize the Graphina Elementor Widget Settings class.
-				$widget_settings = new GraphinaElementorWidgetSettings( $post_id, $element_id, $settings );
+				$widget_settings = new GraphinaElementorWidgetSettings( $post_id, $element_id, $settings);
 
 				// Retrieve settings from the Elementor widget.
 				$settings = $widget_settings->get_settings();
@@ -395,7 +403,7 @@ if ( ! class_exists( 'GraphinaFrontend' ) ) {
 				$response['data']   = $data;
 				wp_send_json( $response );
 
-			} catch ( Exception $exception ) {
+			}  catch ( Exception $exception ) {
 				// Handle errors gracefully
 				wp_send_json(
 					array(
@@ -559,6 +567,69 @@ if ( ! class_exists( 'GraphinaFrontend' ) ) {
 				$response['error_exception'] = $exception->getMessage();
 				wp_send_json( $response );
 			}
+		}
+
+		public function graphina_get_dynamic_tree_data(){
+
+			$response = array(
+				'status'            => false,  // Indicates whether the request was successful.
+				'instant_init'      => false,  // Reserved for any instant initialization flag.
+				'fail'              => false,  // Indicates if the request failed.
+				'fail_message'      => '',     // Message describing the failure reason.
+				'chart_id'          => -1,     // Default chart ID (overwritten if valid data is found).
+				'chart_option'      => array(  // Default chart options.
+					'chart' => array(
+						'dropShadow' => array(
+							'enabledOnSeries' => array(), // Placeholder for enabled series shadow.
+						),
+					),
+				),
+				'filter_enable'     => false,  // Indicates if filtering is enabled for the chart.
+				'google_chart_data' => array( // Placeholder for Google Chart-specific data.
+					'count'       => 0,
+					'title_array' => array(),
+					'data'        => array(),
+					'title'       => '',
+				),
+				'category_count'    => 0,     // Count of categories in the chart.
+				'data'              => array( // Placeholder for Apex chart-specific data.
+					'series'       => array(),
+					'category'     => array(),
+					'fail_message' => '',
+					'fail'         => false,
+				),
+			);
+			
+
+			// Sanitize and fetch request data
+			$request_data = graphina_recursive_sanitize_textfield( $_POST );
+			$id           = ! empty( $request_data['element_id'] ) ? sanitize_text_field( $request_data['element_id'] ) : '';
+			$chart_type   = ! empty( $request_data['chartType'] ) ? sanitize_text_field( $request_data['chartType'] ) : '';	
+			// Fetch widget settings
+			$settings = $this->get_widget_setting( $request_data );
+
+			$selected_item = array();
+			// Handle chart filter defaults if no field is selected in the request.
+			if ( empty( $request_data['selected_field'] ) && ! empty( $settings[ GRAPHINA_PREFIX . "{$chart_type}_chart_filter_list" ] ) ) {
+				foreach ( $settings[ GRAPHINA_PREFIX . "{$chart_type}_chart_filter_list" ] as $item ) {
+					if ( isset( $item[ GRAPHINA_PREFIX . "{$chart_type}_chart_filter_type" ] ) && $item[ GRAPHINA_PREFIX . "{$chart_type}_chart_filter_type" ] === 'date' ) {
+						list($first_value) = explode( ' ', $item[ GRAPHINA_PREFIX . "{$chart_type}_chart_filter_datetime_default" ] );
+					} else {
+						$first_value = explode( ',', $item[ GRAPHINA_PREFIX . "{$chart_type}_chart_filter_value" ] )[0];
+					}
+					$selected_item[] = $first_value;
+				}
+			} else {
+				$selected_item = $request_data['selected_field'] ?? array();
+			}
+			$series_count = isset($settings[ GRAPHINA_PREFIX . $chart_type . '_chart_data_series_count' ]) ? $settings[ GRAPHINA_PREFIX . $chart_type . '_chart_data_series_count' ] : 0;
+			$response['chart_data'] = apply_filters( 'graphina_pro_dynamic_tree_chart_content', $settings, $id, $chart_type, $series_count, $selected_item );
+		
+			$response['status']   = true;
+			$response['chart_id'] = $id;
+			
+			// Send the JSON response.
+			wp_send_json( $response );
 		}
 		/**
 		 * Summary of graphina_apex_chart_data_format
@@ -997,11 +1068,6 @@ if ( ! class_exists( 'GraphinaFrontend' ) ) {
 				'title'           => ! empty( $settings[ GRAPHINA_PREFIX . "{$chart_type}_chart_haxis_title" ] ) ? $settings[ GRAPHINA_PREFIX . "{$chart_type}_chart_haxis_title" ] : '',
 			);
 
-			// Ensure valid series and category data
-			if ( empty( $data['series'] ) || empty( $data['category'] ) ) {
-				return $google_chart_data;
-			}
-
 			// Handle specific chart types
 			if ( in_array( $chart_type, array( 'pie_google', 'donut_google', 'gauge_google' ), true ) ) {
 				// Pie, Donut, Gauge, and Geo Charts: Map category to series data
@@ -1020,7 +1086,7 @@ if ( ! class_exists( 'GraphinaFrontend' ) ) {
 					);
 					$i++;
 				}
-			} elseif ( $chart_type === 'org_google' ) {
+			} elseif ( $chart_type === 'org_google') {
 				// Organizational Chart: Prepare hierarchical data
 				$series_count = $settings[ GRAPHINA_PREFIX . "{$chart_type}_chart_data_series_count" ] ?? count( $data['series'][0]['data'] );
 				foreach ( $data['category'] as $key => $category ) {
@@ -1040,35 +1106,34 @@ if ( ! class_exists( 'GraphinaFrontend' ) ) {
 					$google_chart_data['data'][] = $temp;
 				}
 			} else {
-				// Other Chart Types: Prepare complex data structures
-				$google_chart_data['count'] = count( $data['series'] );
+				$google_chart_data['count'] = isset($data['series']) ? count($data['series']) : 0;
 				$series_names               = array();
 				$x_prefix                   = $settings[ GRAPHINA_PREFIX . "{$chart_type}_chart_haxis_label_prefix" ] ?? '';
 				$x_postfix                  = $settings[ GRAPHINA_PREFIX . "{$chart_type}_chart_haxis_label_postfix" ] ?? '';
+				if (isset($data['category']) && is_array($data['category'])) {
+					foreach ($data['category'] as $key => $category) {
+						$row_data = array($x_prefix . $category . $x_postfix);
 
-				foreach ( $data['category'] as $key => $category ) {
-					$row_data = array( $x_prefix . $category . $x_postfix );
+						foreach ($data['series'] as $series) {
+							$series_names[] = $series['name'] ?? '';
+							$row_data[] = (float) ($series['data'][$key] ?? 0);
 
-					foreach ( $data['series'] as $series ) {
-						$series_names[] = $series['name'] ?? '';
-						$row_data[]     = (float) ( $series['data'][ $key ] ?? 0 );
+							// Add annotation if enabled
+							if ($google_chart_data['annotation_show'] === true) {
+								$annotation_prefix = $settings[GRAPHINA_PREFIX . "{$chart_type}_chart_annotation_prefix"] ?? '';
+								$annotation_postfix = $settings[GRAPHINA_PREFIX . "{$chart_type}_chart_annotation_postfix"] ?? '';
+								$annotation_value = (float) ($series['data'][$key] ?? 0);
 
-						// Add annotation if enabled
-						if ( $google_chart_data['annotation_show'] === true ) {
-							$annotation_prefix  = $settings[ GRAPHINA_PREFIX . "{$chart_type}_chart_annotation_prefix" ] ?? '';
-							$annotation_postfix = $settings[ GRAPHINA_PREFIX . "{$chart_type}_chart_annotation_postfix" ] ?? '';
-							$annotation_value   = (float) ( $series['data'][ $key ] ?? 0 );
-
-							$row_data[] = $annotation_prefix . $annotation_value . $annotation_postfix;
+								$row_data[] = $annotation_prefix . $annotation_value . $annotation_postfix;
+							}
 						}
+
+						$google_chart_data['data'][] = $row_data;
 					}
 
-					$google_chart_data['data'][] = $row_data;
+					$google_chart_data['title_array'] = array_unique($series_names);
 				}
-
-				$google_chart_data['title_array'] = array_unique( $series_names );
 			}
-
 			return $google_chart_data;
 		}
 	}

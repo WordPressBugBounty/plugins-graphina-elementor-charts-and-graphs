@@ -19,18 +19,22 @@ export default class DataTable {
     // Bind event listeners
     bindEventHandlers() {
         jQuery(window).on('elementor/frontend/init', this.handleElementorWidgetInit.bind(this));
-        jQuery(window).on('elementor/editor/init', this.handleElementorWidgetInit.bind(this));
+        jQuery(window).on('load', () => {
+            jQuery('.graphina-advance-data-table').each((i, el) => {
+                this.initializeTables(jQuery(el));
+            });
+        });
     }
 
-
     handleElementorWidgetInit() {
-        elementorFrontend.hooks.addAction('frontend/element_ready/widget', ($scope) => {
+        elementorFrontend.hooks.addAction('frontend/element_ready/advance-datatable.default', ($scope) => {
             const chartElement = $scope.find('.graphina-advance-data-table');
             if (chartElement.length > 0) {
                 this.initializeTables(chartElement);
             }
         });
     }
+
 
     initializeTables(chartElement) {
         this.observeTableElement(chartElement, 'advance-datatable')
@@ -98,14 +102,14 @@ export default class DataTable {
         const is_editor_mode = jQuery("body").hasClass("elementor-editor-active");
         const tableElement = document.createElement("table"); 
         tableElement.classList.add('graphina-table-base', 'table-bordered', 'table-padding-left', `datatable-${element_id}`)
-        let totalColumns = this.extraData.columns || table_data.header.length; // Use extraData.columns if set, else default
-        let totalRows = this.extraData.rows || table_data.body.length; // Use extraData.rows if set, else default
-        if(this.extraData.header_in_body){
+        let totalColumns = this.extraData[element_id].columns || table_data.header.length; // Use extraData.columns if set, else default
+        let totalRows = this.extraData[element_id].rows || table_data.body.length; // Use extraData.rows if set, else default
+        if(this.extraData[element_id].header_in_body){
             totalRows++;
         } 
 
-        if(this.extraData.is_index && !is_editor_mode){
-            totalColumns++;
+        if(this.extraData[element_id].is_index && !is_editor_mode && !this.extraData[element_id].is_dynamic_table ){
+            totalColumns++;            
         }
 
         if(is_search){
@@ -116,7 +120,7 @@ export default class DataTable {
         const end = start + this.rowsPerPage;
 
         let paginatedRows = []
-        if(this.extraData.is_pagination && (this.extraData.is_dynamic_table || !is_editor_mode)){
+        if(this.extraData[element_id].is_pagination && (this.extraData[element_id].is_dynamic_table || !is_editor_mode)){
             paginatedRows   = table_data.body.slice(start, end);
             totalRows       = paginatedRows.length
         }else{
@@ -129,12 +133,11 @@ export default class DataTable {
         const thead = document.createElement("thead");
         thead.classList.add("graphina-table-header");
         const headerRow = document.createElement("tr");
-        
-        if(this.extraData.is_header && table_data.header.length > 0){
+        if(this.extraData[element_id].is_header && table_data.header.length > 0){
             for (let i = 0; i < totalColumns; i++) {
                 const th = document.createElement("th");
                 th.classList.add("graphina-table-cell");
-                if (is_editor_mode && !this.extraData.is_dynamic_table) {
+                if (is_editor_mode && !this.extraData[element_id].is_dynamic_table) {
                     const inputEle = document.createElement("input");
                     inputEle.type = "text";
                     inputEle.setAttribute("placeholder", `Header ${i + 1}`);
@@ -160,7 +163,7 @@ export default class DataTable {
                 for (let colIndex = 0; colIndex < totalColumns; colIndex++) {
                     const td = document.createElement("td");
                     td.classList.add("graphina-table-cell");
-                    if (is_editor_mode && !this.extraData.is_dynamic_table) {
+                    if (is_editor_mode && !this.extraData[element_id].is_dynamic_table) {
                         const inputEle = document.createElement("input");
                         inputEle.type = "text";
                         inputEle.setAttribute("placeholder", `Value ${colIndex + 1}`);
@@ -188,12 +191,13 @@ export default class DataTable {
         tableElement.appendChild(tbody);
         mainElement.append(tableElement);
 
-        if(this.extraData.is_pagination && (this.extraData.is_dynamic_table || !is_editor_mode)){
-            if(this.extraData.pagination_type === 'numbers'){
+        if(this.extraData[element_id].is_pagination && (this.extraData[element_id].is_dynamic_table || !is_editor_mode)){
+            
+            if(this.extraData[element_id].pagination_type === 'numbers'){
                 this.generatePaginationControlsNumber(table_data, element_id);
-            }else if(this.extraData.pagination_type === 'simple'){
+            }else if(this.extraData[element_id].pagination_type === 'simple'){
                 this.generatePaginationControlsSimple(table_data, element_id);
-            }else if(this.extraData.pagination_type === 'simple_numbers'){
+            }else if(this.extraData[element_id].pagination_type === 'simple_numbers'){
                 this.generatePaginationControlsSimpleNumbers(table_data, element_id);
             }else{
                 this.generatePaginationControlsFistLast(table_data,element_id)
@@ -212,15 +216,15 @@ export default class DataTable {
         return svgContainer;
     }
 
-    createPaginationInfo(paginationContainer,totalRows){
-        if(this.extraData.pagination_info) {
+    createPaginationInfo(paginationContainer,totalRows,element_id){
+        if(this.extraData[element_id].pagination_info) {
             const paginationInfo = document.createElement('div');
             paginationInfo.classList.add('pagination-info');
             const currentStartRow = (this.currentPage - 1) * this.rowsPerPage + 1;
             const currentEndRow = Math.min(totalRows, this.currentPage * this.rowsPerPage);
             paginationInfo.innerText = `Showing ${currentStartRow} to ${currentEndRow} of ${totalRows} entries`;
             paginationContainer.append(paginationInfo);
-            this.paginationStyle(paginationContainer,paginationInfo)
+            this.paginationStyle(paginationContainer,paginationInfo[element_id],element_id)
         }
     }
     
@@ -228,23 +232,21 @@ export default class DataTable {
     generatePaginationControlsFistLast(table_data,element_id){
         const mainElement = document.querySelector(`.graphina-table-${element_id}`);
         let totalPages = Math.ceil(table_data.body.length / this.rowsPerPage);
-
         const paginationSection = document.createElement('section');
         paginationSection.classList.add('pagination-section');
         const paginationContainer = document.createElement('div');
-        paginationContainer.classList.add('pagination');
+        paginationContainer.classList.add('graphina-pagination');
 
         let totalRows  = table_data.body.length
-        this.createPaginationInfo(paginationContainer,totalRows)
+        this.createPaginationInfo(paginationContainer,totalRows,element_id)
   
         if (totalPages > 1) {
             const pagewrapper = document.createElement('div');
             pagewrapper.classList.add('page-links-wrapper');
             pagewrapper.style.display = 'flex';
 
-
             if (this.currentPage > 1) {
-                const svgContainer = this.createButton(this.extraData.pagination_button_height,this.extraData.pagination_text_color,true)        
+                const svgContainer = this.createButton(this.extraData[element_id].pagination_button_height,this.extraData[element_id].pagination_text_color,true)        
                 svgContainer.addEventListener("click", () => {
                     this.currentPage--;
                     this.generateTable(table_data, element_id);
@@ -269,7 +271,7 @@ export default class DataTable {
             }
             
             if (this.currentPage < totalPages) {
-                const svgContainerNext = this.createButton(this.extraData.pagination_button_height,this.extraData.pagination_text_color,false)        
+                const svgContainerNext = this.createButton(this.extraData[element_id].pagination_button_height,this.extraData[element_id].pagination_text_color,false)        
                 svgContainerNext.addEventListener("click", () => {
                     this.currentPage++;
                     this.generateTable(table_data, element_id);
@@ -289,9 +291,9 @@ export default class DataTable {
         const paginationSection = document.createElement('section');
         paginationSection.classList.add('pagination-section');
         const paginationContainer = document.createElement('div');
-        paginationContainer.classList.add('pagination');
+        paginationContainer.classList.add('graphina-pagination');
         
-        this.createPaginationInfo(paginationContainer,totalRows)
+        this.createPaginationInfo(paginationContainer,totalRows,element_id)
        
         if (totalPages > 1) {
 
@@ -300,7 +302,7 @@ export default class DataTable {
             pagewrapper.style.display = 'flex';
 
             if (this.currentPage > 1) {
-                const svgContainer = this.createButton(this.extraData.pagination_button_height,this.extraData.pagination_text_color,true)        
+                const svgContainer = this.createButton(this.extraData[element_id].pagination_button_height,this.extraData[element_id].pagination_text_color,true)        
                 svgContainer.addEventListener("click", () => {
                     this.currentPage--;
                     this.generateTable(table_data, element_id);
@@ -323,7 +325,7 @@ export default class DataTable {
             }
             
             if (this.currentPage < totalPages) {
-                const svgContainer = this.createButton(this.extraData.pagination_button_height,this.extraData.pagination_text_color,false)                  
+                const svgContainer = this.createButton(this.extraData[element_id].pagination_button_height,this.extraData[element_id].pagination_text_color,false)                  
 
                 svgContainer.addEventListener("click", () => {
                     this.currentPage++;
@@ -338,15 +340,15 @@ export default class DataTable {
         mainElement.appendChild(paginationSection);
     }
 
-    paginationStyle(paginationContainer,paginationInfo){
-        const align = this.extraData.pagination_align
+    paginationStyle(paginationContainer, paginationInfo, element_id) {
+        const align = this.extraData[element_id]?.pagination_align ?? '';
         if (align === 'right') {
             paginationContainer.classList.add('rightLeft');
         } else if (align === 'left') {
             paginationContainer.classList.add('leftRight');
         } else if (align === 'center') {
             paginationContainer.classList.add('centerPagination');
-            if (this.extraData.pagination_info === 'yes'){
+            if (this.extraData[element_id].pagination_info === 'yes') {
                 paginationInfo.style.margin = '20px 0';
             }
         }
@@ -358,18 +360,18 @@ export default class DataTable {
         const paginationSection = document.createElement('section');
         paginationSection.classList.add('pagination-section');
         const paginationContainer = document.createElement('div');
-        paginationContainer.classList.add('pagination');
-        
-        let totalRows  = table_data.body.length
-        this.createPaginationInfo(paginationContainer,totalRows)
-        
+        paginationContainer.classList.add('graphina-pagination');
+
+        let totalRows = table_data.body.length
+        this.createPaginationInfo(paginationContainer, totalRows, element_id)
+
         if (totalPages > 1) {
 
             const pagewrapper = document.createElement('div');
             pagewrapper.classList.add('page-links-wrapper');
             pagewrapper.style.display = 'flex';
 
-            const svgContainer = this.createButton(this.extraData.pagination_button_height,this.extraData.pagination_text_color,true)      
+            const svgContainer = this.createButton(this.extraData[element_id].pagination_button_height,this.extraData[element_id].pagination_text_color,true)      
             svgContainer.disabled = this.currentPage === 1;
             svgContainer.addEventListener("click", () => {
                 if (this.currentPage > 1) {
@@ -379,7 +381,7 @@ export default class DataTable {
             });
             pagewrapper.appendChild(svgContainer);
 
-            const svgContainerNext = this.createButton(this.extraData.pagination_button_height,this.extraData.pagination_text_color,false)      
+            const svgContainerNext = this.createButton(this.extraData[element_id].pagination_button_height,this.extraData[element_id].pagination_text_color,false)      
             svgContainerNext.disabled = this.currentPage === totalPages;
             svgContainerNext.addEventListener("click", () => {
                 if (this.currentPage < totalPages) {
@@ -401,13 +403,17 @@ export default class DataTable {
         
         const paginationSection = document.createElement('section');
         paginationSection.classList.add('pagination-section');
-        const paginationContainer = document.createElement('div');
-        paginationContainer.classList.add('pagination');
+        const paginationContainer = document.createElement('div');        
+        paginationContainer.classList.add('graphina-pagination');
+
 
         let totalRows  = table_data.body.length
-        this.createPaginationInfo(paginationContainer,totalRows)
+        this.createPaginationInfo(paginationContainer,totalRows,element_id)
 
         if (totalPages > 1) {
+            const pagewrapper = document.createElement('div');
+            pagewrapper.classList.add('page-links-wrapper');
+            pagewrapper.style.display = 'flex';
             for(let i = Math.max(1, this.currentPage - this.pageRange);i<= Math.min( totalPages, this.currentPage+ this.pageRange );i++){
                 const pageButton = document.createElement("button");
                 pageButton.textContent = i;
@@ -419,8 +425,9 @@ export default class DataTable {
                     this.currentPage = i;
                     this.generateTable(table_data, element_id);
                 });
-                paginationContainer.appendChild(pageButton);
+                pagewrapper.appendChild(pageButton);
             }
+            paginationContainer.appendChild(pagewrapper)
             paginationSection.appendChild(paginationContainer)
             mainElement.appendChild(paginationSection);
         }
@@ -457,13 +464,13 @@ export default class DataTable {
     
     async setupTable(element,dataTableType){
         const element_id    = element.data('element_id')
-        this.extraData      = element.data('extra_data');
+        this.extraData[element_id]      = element.data('extra_data');
         const table_data    = element.data('table_data');
         const settings      = element.data('settings');
-        this.rowsPerPage    = this.extraData.pagination_row
-        this.pageRange      = this.extraData.page_range
+        this.rowsPerPage    = this.extraData[element_id].pagination_row
+        this.pageRange      = this.extraData[element_id].page_range
 
-        if(this.extraData.is_dynamic_table){
+        if(this.extraData[element_id].is_dynamic_table){
             const dynamicData = await this.getDynamicData(element_id,settings);
             this.generateTable(dynamicData.data,element_id)
             this.setupSearchFilter(element_id,dynamicData.data)
@@ -473,12 +480,12 @@ export default class DataTable {
         }
         
         // For update elementor controller
-        if(!this.extraData.is_dynamic_table){
+        if(!this.extraData[element_id].is_dynamic_table){
             if (document.querySelector(`.graphina-table-${element_id} table`)) {
                 document.querySelector(`.graphina-table-${element_id} table`).addEventListener("change", () => {
                     let info = this.getJson(`.graphina-table-${element_id}`);
-                    let jsonDataElement = parent.document.querySelector(`input[data-setting="${this.extraData.prefix}advance-datatable_element_data_json"]`);
-                    document.querySelector(`input[data-setting="${this.extraData.prefix}advance-datatable_element_data_json"]`)
+                    let jsonDataElement = parent.document.querySelector(`input[data-setting="${this.extraData[element_id].prefix}advance-datatable_element_data_json"]`);
+                    document.querySelector(`input[data-setting="${this.extraData[element_id].prefix}advance-datatable_element_data_json"]`)
                     if (jsonDataElement) {
                         jsonDataElement.value = info;
                         let event = new Event("input", { bubbles: true });
@@ -517,4 +524,4 @@ export default class DataTable {
 
 }
 
-new DataTable();
+window.graphinaDataTable = new DataTable();

@@ -1,6 +1,7 @@
 // Parent class to manage shared functionalities for Graphina charts
 export default class GraphinaApexChartBase {
     constructor() {
+        
         this.chartHandlers = {};
         this.init();
         this.mainChart = {}
@@ -13,11 +14,13 @@ export default class GraphinaApexChartBase {
         this.bindElementorInit(); // Bind Elementor hooks separately
     }
 
+   
     // Bind event listeners
     bindEventHandlers() {
         jQuery(document.body).on('change', '.graphina-select-apex-chart-type', this.debounce(this.handleChartTypeChange.bind(this), 300));    
         jQuery(document.body).off('click','.graphina-filter-div-button.apex')
         jQuery(document.body).on('click','.graphina-filter-div-button.apex', this.debounce(this.handleChartFilter.bind(this), 300));
+        jQuery(document.body).off('click','.graphina-filter-div-button.common')
     }
 
     bindElementorInit() {
@@ -25,31 +28,42 @@ export default class GraphinaApexChartBase {
         let elementorHookCalled = false;
         
         const runOnElementorReady = () => {
-            // Prevent duplicate registrations
             if (elementorHookCalled) return;
-            elementorHookCalled = true;
             
-            // Elementor hook: fires after widget DOM is rendered
-            elementorFrontend.hooks.addAction('frontend/element_ready/global', ($scope) => {
-                const chartElement = $scope.find('.graphina-elementor-chart');
-                if (chartElement.length > 0) {
-                    this.initializeCharts(chartElement);
-                }
-            });
+            // Wait for Elementor modules to be ready
+            if (window.elementorFrontend && window.elementorFrontend.elementsHandler) {
+                elementorHookCalled = true;
+                
+                // Register the widget handler
+                window.elementorFrontend.hooks.addAction('frontend/element_ready/widget', ($scope) => {
+                    const chartElement = $scope.find('.graphina-elementor-chart');
+                    if (chartElement.length > 0) {
+                        this.initializeCharts(chartElement);
+                    }
+                });
+            }
         };
-        
-        // Case 1: Elementor is already loaded
-        if (typeof elementorFrontend !== 'undefined' && elementorFrontend.hooks) {
+
+        // Case 1: Check if Elementor is already initialized
+        if (window.elementorFrontend && window.elementorFrontend.elementsHandler) {
             runOnElementorReady();
         }
-        
-        // Case 2: Elementor hasn't loaded yet - listen for init event
-        jQuery(window).on('elementor/frontend/init', runOnElementorReady);
-        
-        // Case 3: Fallback - check again when document is ready
+
+        // Case 2: Wait for Elementor to initialize
+        jQuery(window).on('elementor/frontend/init', () => {
+            // Add a small delay to ensure modules are loaded
+            setTimeout(runOnElementorReady, 50);
+        });
+
+        // Case 3: Fallback for non-Elementor pages
         jQuery(document).ready(() => {
-            if (!elementorHookCalled && typeof elementorFrontend !== 'undefined' && elementorFrontend.hooks) {
-                runOnElementorReady();
+            if (!elementorHookCalled) {
+                const chartElements = jQuery('.graphina-elementor-chart');
+                if (chartElements.length > 0) {
+                    chartElements.each((index, element) => {
+                        this.initializeCharts(jQuery(element));
+                    });
+                }
             }
         });
     }
@@ -114,7 +128,6 @@ export default class GraphinaApexChartBase {
             
         // Destroy existing chart (if any)
             ApexCharts.exec(elementId, 'destroy');
-            console.log(jQuery(document).find(`.graphina-${elementId}-loader`));
 
             jQuery(document).find(`.graphina-${elementId}-loader`).show()
             this.updateChartType(chartElement, chartType,true);
@@ -154,7 +167,8 @@ export default class GraphinaApexChartBase {
             chartOptions.legend.tooltipHoverFormatter = (seriesName, opts) => {
                 let value = opts.w.globals.series[opts.seriesIndex][opts.dataPointIndex];
                 seriesName = decodeURIComponent(seriesName);
-                if(['polar','column','line','scatter','pie','donut','radial'].includes(chart_type)){
+                
+                if(['polar','scatter','pie','donut','radial'].includes(chart_type)){
                     value = opts.w.globals.series[opts.seriesIndex];
                 }
                 return `<div class="legend-info"><span>${seriesName}</span>:<strong>${value}</strong></div>`;
@@ -171,16 +185,13 @@ export default class GraphinaApexChartBase {
     }
 
     // Apply Y-axis label formatting
-    applyYAxisFormatter(chartOptions, extraData, axisIndex = false) {
-        const formatAxisLabels = (val, prefix, postfix, decimal, axisIndex) => {
+
+    applyYAxisFormatter(chartOptions, extraData, axisIndex = false, chart_type) {
+        
+        const formatAxisLabels = (val, prefix, postfix, decimal) => {
             if (extraData.chart_yaxis_label_pointer) {
                 return prefix + this.formatNumber(val, decimal) + postfix;
-            } else if (extraData.yaxis_label_format && (axisIndex === 0 || axisIndex === false)) {
-                return prefix + new Intl.NumberFormat(window.gcfe_public_localize.locale_with_hyphen, {
-                    minimumFractionDigits: decimal,
-                    maximumFractionDigits: decimal,
-                }).format(val) + postfix;
-            } else if (extraData.chart_opposite_yaxis_format_number && axisIndex === 1) {
+            } else if (typeof decimal === 'number' && decimal > 0) {
                 return prefix + new Intl.NumberFormat(window.gcfe_public_localize.locale_with_hyphen, {
                     minimumFractionDigits: decimal,
                     maximumFractionDigits: decimal,
@@ -189,41 +200,103 @@ export default class GraphinaApexChartBase {
             return prefix + val + postfix;
         };
 
-        const updateYAxisLabels = (yaxis, prefix, postfix, decimal, axisIndex) => {
+        const updateYAxisLabels = (yaxis, prefix, postfix, decimal) => {
             if (!yaxis.labels) {
-                yaxis.labels = {}; // Initialize yaxis.labels if it doesn't exist
+                yaxis.labels = {};
             }
-            yaxis.labels.formatter = (val) => formatAxisLabels(val, prefix, postfix, decimal, axisIndex);
+            yaxis.labels.formatter = (val) => formatAxisLabels(val, prefix, postfix, decimal);
         };
+
+        // Default to single y-axis
         if (axisIndex === false) {
-            updateYAxisLabels(chartOptions.yaxis, extraData.yaxis_label_prefix, extraData.yaxis_label_postfix, extraData.decimal_in_float,axisIndex);
-        } else if (axisIndex === 0 || axisIndex === 1) {
-            let yaxis = chartOptions.yaxis[axisIndex];
-            let prefix = axisIndex === 0 ? extraData.yaxis_label_prefix : extraData.chart_opposite_yaxis_label_prefix;
-            let postfix = axisIndex === 0 ? extraData.yaxis_label_postfix : extraData.chart_opposite_yaxis_label_postfix;
-            let decimal = extraData.decimal_in_float;
-            updateYAxisLabels(yaxis, prefix, postfix, decimal, axisIndex);
+            const prefix = extraData.yaxis_label_prefix || '';
+            const postfix = extraData.yaxis_label_postfix || '';
+            let decimal = 0;
+            if (extraData.chart_yaxis_label_pointer) {
+                decimal = typeof extraData.chart_yaxis_label_pointer_number === 'number' ? extraData.chart_yaxis_label_pointer_number : 0;
+            } else {
+                decimal = typeof extraData.decimal_in_float === 'number' ? extraData.decimal_in_float : 0;
+            }
+            updateYAxisLabels(chartOptions.yaxis, prefix, postfix, decimal);
+        }
+        // Multiple y-axes: axisIndex 0 or 1
+        else if (axisIndex === 0 || axisIndex === 1) {
+            const yaxis = chartOptions.yaxis[axisIndex];
+            const prefix = axisIndex === 0
+                ? (extraData.yaxis_label_prefix || '')
+                : (extraData.chart_opposite_yaxis_label_prefix || '');
+
+            const postfix = axisIndex === 0
+                ? (extraData.yaxis_label_postfix || '')
+                : (extraData.chart_opposite_yaxis_label_postfix || '');
+
+            let decimal = 0;
+            if (axisIndex === 0) {
+                if (extraData.chart_yaxis_label_pointer) {
+                    decimal = typeof extraData.chart_yaxis_label_pointer_number === 'number' ? extraData.chart_yaxis_label_pointer_number : 0;
+                } else {
+                    decimal = typeof extraData.decimal_in_float === 'number' ? extraData.decimal_in_float : 0;
+                }
+            } else if (axisIndex === 1 && extraData.chart_opposite_yaxis_format_number === true) {
+                if (extraData.chart_yaxis_label_pointer) {
+                    decimal = typeof extraData.chart_yaxis_label_pointer_number === 'number' ? extraData.chart_yaxis_label_pointer_number : 0;
+                } else {
+                    decimal = typeof extraData.decimal_in_float === 'number' ? extraData.decimal_in_float : 0;
+                }
+            }
+            updateYAxisLabels(yaxis, prefix, postfix, decimal);
         }
     }
 
-    applyDataLabelFormatter(chartOptions,extraData){
+    applyDataLabelFormatter(chartOptions, extraData, chart_type) {
         let datalabelPreFix = extraData.chart_datalabel_prefix ?? '';
         let datalabelPostFix = extraData.chart_datalabel_postfix ?? '';
+
         if (!chartOptions.dataLabels) {
-            chartOptions.dataLabels = {}; // Initialize dataLabels if it doesn't exist
-        } 
-        chartOptions.dataLabels.formatter = function (val) {
-            if(extraData.chart_number_format_commas){
-                val = new Intl.NumberFormat(window.gcfe_public_localize.locale_with_hyphen, {
-                    minimumFractionDigits: extraData.chart_datalabel_decimals_in_float,
-                    maximumFractionDigits: extraData.chart_datalabel_decimals_in_float,
-                }).format(val);
-            }
-            return datalabelPreFix + val + datalabelPostFix
+            chartOptions.dataLabels = {};
         }
+
+        // Arrow function to retain `this`
+        chartOptions.dataLabels.formatter = (val) => {
+            if (extraData.chart_number_format_commas) {
+                val = new Intl.NumberFormat(window.gcfe_public_localize.locale_with_hyphen, {
+                    minimumFractionDigits: extraData.chart_datalabel_decimals_in_float ?? 0,
+                    maximumFractionDigits: extraData.chart_datalabel_decimals_in_float ?? 0,
+                }).format(val);
+            } else if (extraData.string_format) {
+                const pointerDecimal = extraData.chart_label_pointer_number_for_label ?? 0;
+                val = this.formatNumber(val, pointerDecimal); // uses `this` correctly
+            }
+            return datalabelPreFix + val + datalabelPostFix;
+        };
     }
 
-    async updateChartType(chartElement, newChartType,filter=false) {
+
+    applyTooltipFormatter(chartOptions, extraData, chartType) {
+        const datalabelPreFix = extraData.chart_datalabel_prefix ?? '';
+        const datalabelPostFix = extraData.chart_datalabel_postfix ?? '';
+        const decimal = extraData.chart_datalabel_decimals_in_float ?? 0;
+
+        if (!chartOptions.tooltip) {
+            chartOptions.tooltip = {};
+        }
+
+        chartOptions.tooltip.y = {
+            formatter: function (val) {
+                let value = val;
+                if (extraData.chart_number_format_commas) {
+                    value = new Intl.NumberFormat(window.gcfe_public_localize.locale_with_hyphen, {
+                        minimumFractionDigits: decimal,
+                        maximumFractionDigits: decimal,
+                    }).format(val);
+                }
+                return datalabelPreFix + value + datalabelPostFix;
+            }
+        };
+    }
+
+
+    async updateChartType(chartElement, newChartType, filter = false) {
         const elementId = chartElement.data('element_id');
         const chartOptions = chartElement.data('chart_options');
         const extraData = chartElement.data('extra_data');
@@ -234,7 +307,7 @@ export default class GraphinaApexChartBase {
         }
 
         // remove tooltip.shared if selected is column chart.
-        if(newChartType === 'bar' && chartOptions.chart.type !== 'bar'){
+        if (newChartType === 'bar' && chartOptions.chart.type !== 'bar') {
             chartOptions.tooltip.shared = false
         }
 
@@ -249,22 +322,41 @@ export default class GraphinaApexChartBase {
                     filterValue[index] = jQuery(`#graphina-start-date_${index}${elementId}`).val() ?? jQuery(`#graphina-drop_down_filter_${index}${elementId}`).val()
             }
             const dynamicData = await this.getDynamicData(settings, extraData, newChartType, elementId,filterValue);
-            if(dynamicData.extra !== undefined){
-                chartOptions.series = dynamicData.extra.series
-                chartOptions.xaxis.categories = dynamicData.extra.category
-            }else{
-                chartOptions.series = []
-                chartOptions.xaxis.categories = []
+            
+            if (dynamicData.extra !== undefined) {
+                const seriesData = dynamicData.extra.series || [];
+                const categories = dynamicData.extra.category || [];
+                if ( seriesData.length <= 0 ){
+                    chartOptions.noData.text = extraData.no_data_text
+                }                
+                chartOptions.series = seriesData;
+
+                // Handle chart types that use `labels` instead of `xaxis.categories`
+                if (['polar', 'radialBar', 'radial','pie','donut'].includes(newChartType)) {
+                    chartOptions.labels = categories;
+                } else {
+                    chartOptions.xaxis.categories = categories;
+                }
+
+            } else {                
+                chartOptions.series = [];
+                chartOptions.xaxis.categories = [];
             }
+
         }
-        if( newChartType === 'column'){
+        if (newChartType === 'column'||newChartType === 'distributed_column') {
             chartOptions.chart.type = 'bar'
+        } else if (chartOptions.chart.type == 'polar') {
+            chartOptions.chart.type = 'polarArea'
+        }
+        else if (chartOptions.chart.type == 'radial') {
+            chartOptions.chart.type = 'radialBar'
         }
         // Create and render the new chart
         const chart = new ApexCharts(chartElement[0], chartOptions);
-
+        jQuery(chartElement).show()
         chart.render()
-            .then(() => console.log(`Chart updated to ${newChartType}.`))
+            .then(() => console.log(`Chart updated to ${newChartType}.`+JSON.stringify(chartOptions)))
             .catch((error) => console.error('Error updating chart:', error));
         jQuery(document).find(`.graphina-${elementId}-loader`).hide()
 
@@ -427,6 +519,36 @@ export default class GraphinaApexChartBase {
                 return;
             }
 
+            // Apply formatting to chart options
+            this.applyLegendTooltip(chartOptions, extraData,chart_type);
+            this.applyXAxisFormatter(chartOptions, extraData);
+            this.applyDataLabelFormatter(chartOptions, extraData, chart_type);
+            this.applyTooltipFormatter(chartOptions, extraData, chart_type);
+            this.applyTooltipFormatter(chartOptions, extraData);
+
+
+            if (!extraData.chart_opposite_yaxis_title_enable) {
+                this.applyYAxisFormatter(chartOptions, extraData, false, chart_type);
+            } else {
+                this.applyYAxisFormatter(chartOptions, extraData, 0, chart_type);
+                this.applyYAxisFormatter(chartOptions, extraData, 1, chart_type);
+            }
+
+            // Finalize and render the chart
+            const finalChartOptions = this.getChartOptions(chartOptions, chartType,extraData,responsive_options,elementId);
+            if(this.mainChart[elementId]){
+                this.mainChart[elementId].destroy()
+            }
+            
+            const chart = new ApexCharts(jQuery(element)[0], finalChartOptions);
+            try {
+                jQuery(document).find(`.graphina-${elementId}-loader`).hide()
+                await chart.render();
+            } catch (error) {
+                console.warn(error);
+            }
+
+
             if(extraData.chart_data_option === true) {
                 try {
                     let filterValue      = []
@@ -437,15 +559,41 @@ export default class GraphinaApexChartBase {
                     const dynamicData = await this.getDynamicData(settings, extraData, chartType, elementId,filterValue);
                     this.processDynamicData(dynamicData,elementId,extraData);
                     if(dynamicData.extra !== undefined){
-                        if('nested_column' === chart_type){
-                            chartOptions.series = [{data:dynamicData.extra.series}]
+                        if('nested_column' === chart_type){    
+                            chart.updateSeries(
+                                [{data:dynamicData.extra.series}],
+                                true
+                            );
                         }else{
-                            chartOptions.series = dynamicData.extra.series
-                            chartOptions.xaxis.categories = dynamicData.extra.category
+                            chart.updateOptions({
+                                series: dynamicData.extra.series,
+                                labels: dynamicData.extra.category
+                            });
+                            chart.updateSeries(
+                                dynamicData.extra.series,
+                                true
+                            );
+                            
+                            if(dynamicData.extra.series.length <= 0){
+                                chart.destroy()
+                                jQuery(element).hide()
+                                jQuery(`.graphina-${elementId}-notext`).show()
+                            }
                         }
                     }else{
-                        chartOptions.series = []
-                        chartOptions.xaxis.categories = []
+                        if(dynamicData.extra.series.length <= 0){
+                            chart.destroy()
+                            jQuery(element).hide()
+                            jQuery(`.graphina-${elementId}-notext`).show()
+                        }
+                        chart.updateOptions({
+                            series: [],
+                            labels: []
+                        });
+                        chart.updateSeries(
+                            [],
+                            true
+                        );
                     }
                     this.afterDynamicLoad(dynamicData,elementId,extraData);
                 } catch (error) {
@@ -456,32 +604,9 @@ export default class GraphinaApexChartBase {
                 this.afterManualLoad([],elementId,extraData);
             }
 
-            // Apply formatting to chart options
-            this.applyLegendTooltip(chartOptions, extraData,chart_type);
-            this.applyXAxisFormatter(chartOptions, extraData);
-            this.applyDataLabelFormatter(chartOptions, extraData);
-
-            if (!extraData.chart_opposite_yaxis_title_enable) {
-                this.applyYAxisFormatter(chartOptions, extraData, false);
-            } else {
-                this.applyYAxisFormatter(chartOptions, extraData, 0);
-                this.applyYAxisFormatter(chartOptions, extraData, 1);
-            }
-
-            // Finalize and render the chart
-            const finalChartOptions = this.getChartOptions(chartOptions, chartType,extraData,responsive_options,elementId);
-            if(this.mainChart[elementId]){
-                this.mainChart[elementId].destroy()
-            }
-            const chart = new ApexCharts(jQuery(element)[0], finalChartOptions);
-            try {
-                await chart.render();
-            } catch (error) {
-                console.warn(error);
-            }
             this.mainChart[elementId] = chart
             this.afterRenderChart(chart,elementId,extraData)
-            if (extraData.can_chart_reload_ajax) {
+            if (extraData.can_chart_reload_ajax && !jQuery('body').hasClass('elementor-editor-active')) {
                 // Set up periodic data fetching using intervals
                 setInterval(async () => {
                     try {

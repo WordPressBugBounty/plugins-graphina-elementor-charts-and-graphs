@@ -254,6 +254,11 @@ if ( ! defined( 'ABSPATH' ) ) {
 				<td class="graphina-icon graphina-cross">✘</td>
 				<td class="graphina-icon graphina-check">✔</td>
 			</tr>
+			<tr>
+				<td><?php echo esc_html__( 'Tree Apex Chart', 'graphina-charts-for-elementor' ); ?></td>
+				<td class="graphina-icon graphina-check">✔</td>
+				<td class="graphina-icon graphina-check">✔</td>
+			</tr>
 		</table>
 	</div>
 </div>

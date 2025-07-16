@@ -9,6 +9,6 @@ if ( ! defined( 'ABSPATH' ) ) {
 *   @package graphina
 **/
 ?>
-<div class="graphina-chart-loader graphina-<?php echo esc_attr( $element_id ); ?>-loader">
+<div class="graphina-chart-loader graphina-<?php echo esc_attr( $element_id ); ?>-loader" style="height:<?php echo esc_attr($height); ?>px">
 	<img src="<?php echo esc_url( $loader ); ?>"></img>
 </div>
