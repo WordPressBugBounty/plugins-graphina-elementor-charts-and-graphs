@@ -2584,6 +2584,7 @@ if ( ! function_exists( 'graphina_get_chart_name' ) ) {
      */	
 	function graphina_prepare_tree_chart_data($settings,$chart_type){
 		$treeData = array();
+		$chart_options = array();
 		if ( $settings[ GRAPHINA_PREFIX . $chart_type . '_chart_data_option' ] === 'manual' ) {
 			for ( $j = 0; $j < $settings[ GRAPHINA_PREFIX . $chart_type . '_chart_data_series_count' ]; $j++ ) {
 				

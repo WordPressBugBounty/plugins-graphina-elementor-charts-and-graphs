@@ -21,7 +21,6 @@ if ( ! defined( 'ABSPATH' ) ) {
 		data-chart_data='<?php echo esc_attr(wp_json_encode( $chart_data )); ?>'
 		data-extra_data='<?php echo esc_attr(wp_json_encode( $extra_data )); ?>'
 		data-settings='<?php echo esc_attr(wp_json_encode($element_settings)); ?>'
-        style="height: <?php echo isset( $settings[ GRAPHINA_PREFIX . $chart_type . '_chart_height' ] ) ? esc_attr( $settings[ GRAPHINA_PREFIX . $chart_type . '_chart_height' ] ) : '350'; ?>px"
 		>
 	</div>
 </div>

@@ -1,0 +1,2 @@
+import{G as n}from"./GraphinaApexChartBase.js";class h extends n{constructor(){super(),this.observer={}}setUpChartsHandler(){this.chartHandlers={area:e=>this.observeChartElement(e,"area")}}getChartOptions(e,t,c,a,s){return t==="area"&&(e.responsive=a,e.chart.events={mounted:(i,d)=>{const r=document.querySelector(`.graphina-elementor-chart[data-element_id="${s}"]`);r&&(r.style.height="")}}),e}}window.graphinaAreaChart=new h;
+//# sourceMappingURL=area.js.map

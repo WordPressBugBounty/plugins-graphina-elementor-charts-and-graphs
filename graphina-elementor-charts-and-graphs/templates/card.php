@@ -72,7 +72,7 @@ do_action('graphina_before_chart_template');
 			array(
 				'element_id' => $chart_data['element_id'],
 				'loader'     => $chart_data['loader'],
-				'height'	 => $settings[GRAPHINA_PREFIX . $chart_type . '_chart_height'],
+				'height'	 => isset($settings[GRAPHINA_PREFIX . $chart_type . '_chart_height']) ? $settings[GRAPHINA_PREFIX . $chart_type . '_chart_height'] : '',
 			)
 		);
 	}

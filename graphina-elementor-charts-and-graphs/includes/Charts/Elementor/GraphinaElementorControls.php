@@ -9532,182 +9532,143 @@ class GraphinaElementorControls {
 				'tab'   => Controls_Manager::TAB_STYLE,
 			)
 		);
-
-		$widget->add_control(
-			GRAPHINA_PREFIX . $chart_type . '_chart_style_title',
-			array(
-				'label' => esc_html__( 'Chart', 'graphina-charts-for-elementor' ),
-				'type'  => Controls_Manager::HEADING,
-			)
-		);
-
-		if(! in_array( $chart_type, ['geo_google', 'gauge_google', 'org_google', 'gantt_google'] )){
-			$widget->add_control(
-				GRAPHINA_PREFIX . $chart_type . '_chart_background_color1',
-				array(
-					'label' => esc_html__( 'Chart Background Color', 'graphina-charts-for-elementor' ),
-					'type'  => Controls_Manager::COLOR,
-				)
-			);
-		}
-
-		$responsive = 'add_responsive_control';
-
-		if ( 'gantt_google' !== $chart_type ){
-			$widget->$responsive(
-				GRAPHINA_PREFIX . $chart_type . '_chart_height',
-				array(
-					'label'           => esc_html__( 'Height (px)', 'graphina-charts-for-elementor' ),
-					'type'            => Controls_Manager::NUMBER,
-					'default'         => $chart_type === 'brush' ? 175 : 350,
-					'step'            => 5,
-					'min'             => 10,
-					'desktop_default' => $chart_type === 'brush' ? 175 : 350,
-					'tablet_default'  => $chart_type === 'brush' ? 175 : 350,
-					'mobile_default'  => $chart_type === 'brush' ? 175 : 350,
-				)
-			);
-		}
-
-		if(! in_array( $chart_type, graphina_google_chart_lists() )){
-			$widget->$responsive(
-				GRAPHINA_PREFIX . $chart_type . '_chart_font_size',
-				array(
-					'label'      => esc_html__( 'Font Size', 'graphina-charts-for-elementor' ),
-					'type'       => Controls_Manager::SLIDER,
-					'size_units' => array( 'px', 'em', 'rem', 'vw' ),
-					'range'      => array(
-						'px'  => array(
-							'min' => 1,
-							'max' => 200,
-						),
-						'em'  => array(
-							'min' => 1,
-							'max' => 200,
-						),
-						'rem' => array(
-							'min' => 1,
-							'max' => 200,
-						),
-						'vw'  => array(
-							'min'  => 0.1,
-							'max'  => 10,
-							'step' => 0.1,
-						),
-					),
-					'default'    => array(
-						'unit' => 'px',
-						'size' => 12,
-					),
-				)
-			);
-		}
-
-		$widget->add_control(
-			GRAPHINA_PREFIX . $chart_type . '_chart_font_family',
-			array(
-				'label'       => esc_html__( 'Font Family', 'graphina-charts-for-elementor' ),
-				'type'        => Controls_Manager::FONT,
-				'description' => esc_html__( 'Notice:If possible use same font as Chart Title & Description, Otherwise it may not show the actual font you selected.', 'graphina-charts-for-elementor' ),
-				'default'     => 'Poppins',
-			)
-		);
-
-		foreach ( array_merge( array( 'normal', 'bold' ), range( 100, 900, 100 ) ) as $weight ) {
-			$typo_weight_options[ $weight ] = ucfirst( $weight );
-		}
-
-		if(! in_array( $chart_type, graphina_google_chart_lists() )){
-			$widget->$responsive(
-				GRAPHINA_PREFIX . $chart_type . '_chart_font_weight',
-				array(
-					'label'     => esc_html__( 'Font Weight', 'graphina-charts-for-elementor' ),
-					'type'      => Controls_Manager::SELECT,
-					'default'   => '',
-					'options'   => $typo_weight_options,
-				)
-			);
-	
-			$widget->$responsive(
-				GRAPHINA_PREFIX . $chart_type . '_chart_font_color',
-				array(
-					'label'     => esc_html__( 'Font Color', 'graphina-charts-for-elementor' ),
-					'type'      => Controls_Manager::COLOR,
-					'default'   => '#000000',
-				)
-			);
-		}
-
-		if(  ! in_array( $chart_type, array( 'geo_google', 'gauge_google' ), true )  ){
-			$widget->add_control(
-				GRAPHINA_PREFIX . $chart_type . '_chart_hr_animation_setting',
-				array(
-					'type' => Controls_Manager::DIVIDER,
-				)
-			);
+		
+		if ( $chart_type !== 'tree' ) {
 
 			$widget->add_control(
-				GRAPHINA_PREFIX . $chart_type . '_chart_animation_setting_title',
+				GRAPHINA_PREFIX . $chart_type . '_chart_style_title',
 				array(
-					'label' => esc_html__( 'Animation Settings', 'graphina-charts-for-elementor' ),
+					'label' => esc_html__( 'Chart', 'graphina-charts-for-elementor' ),
 					'type'  => Controls_Manager::HEADING,
 				)
 			);
-		}
-
-		if ( in_array( $chart_type, array( 'area_google', 'line_google', 'bar_google', 'column_google' ), true ) ) {
-
-			$widget->add_control(
-				GRAPHINA_PREFIX . $chart_type . '_chart_animation_show',
-				array(
-					'label'   => esc_html__( 'Show Animation', 'graphina-charts-for-elementor' ),
-					'type'    => Controls_Manager::SWITCHER,
-					'yes'     => esc_html__( 'Yes', 'graphina-charts-for-elementor' ),
-					'no'      => esc_html__( 'No', 'graphina-charts-for-elementor' ),
-					'default' => 'yes',
-				)
-			);
-			$widget->add_control(
-				GRAPHINA_PREFIX . $chart_type . '_chart_animation_speed',
-				array(
-					'label'     => esc_html__( 'Speed', 'graphina-charts-for-elementor' ),
-					'type'      => Controls_Manager::NUMBER,
-					'default'   => 800,
-					'condition' => array(
-						GRAPHINA_PREFIX . $chart_type . '_chart_animation_show' => 'yes',
-					),
-				)
-			);
-			$widget->add_control(
-				GRAPHINA_PREFIX . $chart_type . '_chart_animation_easing',
-				array(
-					'label'     => esc_html__( 'Easing', 'graphina-charts-for-elementor' ),
-					'type'      => Controls_Manager::SELECT,
-					'default'   => 'linear',
-					'options'   => array(
-						'linear'   => esc_html__( 'Linear', 'graphina-charts-for-elementor' ),
-						'in'       => esc_html__( 'In', 'graphina-charts-for-elementor' ),
-						'out'      => esc_html__( 'Out', 'graphina-charts-for-elementor' ),
-						'inAndout' => esc_html__( 'In And Out', 'graphina-charts-for-elementor' ),
-					),
-					'condition' => array(
-						GRAPHINA_PREFIX . $chart_type . '_chart_animation_show' => 'yes',
-					),
-				)
-			);
-		} else {
-			if( ! in_array( $chart_type, array( 'geo_google', 'gauge_google' ), true )  ){
+	
+			if(! in_array( $chart_type, ['geo_google', 'gauge_google', 'org_google', 'gantt_google'] )){
 				$widget->add_control(
-					GRAPHINA_PREFIX . $chart_type . '_chart_animation',
+					GRAPHINA_PREFIX . $chart_type . '_chart_background_color1',
 					array(
-						'label'     => esc_html__( 'Custom', 'graphina-charts-for-elementor' ),
-						'type'      => Controls_Manager::SWITCHER,
-						'label_on'  => esc_html__( 'Yes', 'graphina-charts-for-elementor' ),
-						'label_off' => esc_html__( 'No', 'graphina-charts-for-elementor' ),
-						'default'   => 'yes',
+						'label' => esc_html__( 'Chart Background Color', 'graphina-charts-for-elementor' ),
+						'type'  => Controls_Manager::COLOR,
 					)
 				);
-
+			}
+	
+			$responsive = 'add_responsive_control';
+	
+			if ( 'gantt_google' !== $chart_type ){
+				$widget->$responsive(
+					GRAPHINA_PREFIX . $chart_type . '_chart_height',
+					array(
+						'label'           => esc_html__( 'Height (px)', 'graphina-charts-for-elementor' ),
+						'type'            => Controls_Manager::NUMBER,
+						'default'         => $chart_type === 'brush' ? 175 : 350,
+						'step'            => 5,
+						'min'             => 10,
+						'desktop_default' => $chart_type === 'brush' ? 175 : 350,
+						'tablet_default'  => $chart_type === 'brush' ? 175 : 350,
+						'mobile_default'  => $chart_type === 'brush' ? 175 : 350,
+					)
+				);
+			}
+	
+			if(! in_array( $chart_type, graphina_google_chart_lists() )){
+				$widget->$responsive(
+					GRAPHINA_PREFIX . $chart_type . '_chart_font_size',
+					array(
+						'label'      => esc_html__( 'Font Size', 'graphina-charts-for-elementor' ),
+						'type'       => Controls_Manager::SLIDER,
+						'size_units' => array( 'px', 'em', 'rem', 'vw' ),
+						'range'      => array(
+							'px'  => array(
+								'min' => 1,
+								'max' => 200,
+							),
+							'em'  => array(
+								'min' => 1,
+								'max' => 200,
+							),
+							'rem' => array(
+								'min' => 1,
+								'max' => 200,
+							),
+							'vw'  => array(
+								'min'  => 0.1,
+								'max'  => 10,
+								'step' => 0.1,
+							),
+						),
+						'default'    => array(
+							'unit' => 'px',
+							'size' => 12,
+						),
+					)
+				);
+			}
+	
+			$widget->add_control(
+				GRAPHINA_PREFIX . $chart_type . '_chart_font_family',
+				array(
+					'label'       => esc_html__( 'Font Family', 'graphina-charts-for-elementor' ),
+					'type'        => Controls_Manager::FONT,
+					'description' => esc_html__( 'Notice:If possible use same font as Chart Title & Description, Otherwise it may not show the actual font you selected.', 'graphina-charts-for-elementor' ),
+					'default'     => 'Poppins',
+				)
+			);
+	
+			foreach ( array_merge( array( 'normal', 'bold' ), range( 100, 900, 100 ) ) as $weight ) {
+				$typo_weight_options[ $weight ] = ucfirst( $weight );
+			}
+	
+			if(! in_array( $chart_type, graphina_google_chart_lists() )){
+				$widget->$responsive(
+					GRAPHINA_PREFIX . $chart_type . '_chart_font_weight',
+					array(
+						'label'     => esc_html__( 'Font Weight', 'graphina-charts-for-elementor' ),
+						'type'      => Controls_Manager::SELECT,
+						'default'   => '',
+						'options'   => $typo_weight_options,
+					)
+				);
+		
+				$widget->$responsive(
+					GRAPHINA_PREFIX . $chart_type . '_chart_font_color',
+					array(
+						'label'     => esc_html__( 'Font Color', 'graphina-charts-for-elementor' ),
+						'type'      => Controls_Manager::COLOR,
+						'default'   => '#000000',
+					)
+				);
+			}
+	
+			if(  ! in_array( $chart_type, array( 'geo_google', 'gauge_google' ), true )  ){
+				$widget->add_control(
+					GRAPHINA_PREFIX . $chart_type . '_chart_hr_animation_setting',
+					array(
+						'type' => Controls_Manager::DIVIDER,
+					)
+				);
+	
+				$widget->add_control(
+					GRAPHINA_PREFIX . $chart_type . '_chart_animation_setting_title',
+					array(
+						'label' => esc_html__( 'Animation Settings', 'graphina-charts-for-elementor' ),
+						'type'  => Controls_Manager::HEADING,
+					)
+				);
+			}
+	
+			if ( in_array( $chart_type, array( 'area_google', 'line_google', 'bar_google', 'column_google' ), true ) ) {
+	
+				$widget->add_control(
+					GRAPHINA_PREFIX . $chart_type . '_chart_animation_show',
+					array(
+						'label'   => esc_html__( 'Show Animation', 'graphina-charts-for-elementor' ),
+						'type'    => Controls_Manager::SWITCHER,
+						'yes'     => esc_html__( 'Yes', 'graphina-charts-for-elementor' ),
+						'no'      => esc_html__( 'No', 'graphina-charts-for-elementor' ),
+						'default' => 'yes',
+					)
+				);
 				$widget->add_control(
 					GRAPHINA_PREFIX . $chart_type . '_chart_animation_speed',
 					array(
@@ -9715,31 +9676,73 @@ class GraphinaElementorControls {
 						'type'      => Controls_Manager::NUMBER,
 						'default'   => 800,
 						'condition' => array(
-							GRAPHINA_PREFIX . $chart_type . '_chart_animation' => 'yes',
+							GRAPHINA_PREFIX . $chart_type . '_chart_animation_show' => 'yes',
 						),
 					)
 				);
-
 				$widget->add_control(
-					GRAPHINA_PREFIX . $chart_type . '_chart_animation_delay',
+					GRAPHINA_PREFIX . $chart_type . '_chart_animation_easing',
 					array(
-						'label'     => esc_html__( 'Delay', 'graphina-charts-for-elementor' ),
-						'type'      => Controls_Manager::NUMBER,
-						'default'   => 150,
+						'label'     => esc_html__( 'Easing', 'graphina-charts-for-elementor' ),
+						'type'      => Controls_Manager::SELECT,
+						'default'   => 'linear',
+						'options'   => array(
+							'linear'   => esc_html__( 'Linear', 'graphina-charts-for-elementor' ),
+							'in'       => esc_html__( 'In', 'graphina-charts-for-elementor' ),
+							'out'      => esc_html__( 'Out', 'graphina-charts-for-elementor' ),
+							'inAndout' => esc_html__( 'In And Out', 'graphina-charts-for-elementor' ),
+						),
 						'condition' => array(
-							GRAPHINA_PREFIX . $chart_type . '_chart_animation' => 'yes',
+							GRAPHINA_PREFIX . $chart_type . '_chart_animation_show' => 'yes',
 						),
 					)
 				);
+			} else {
+				if( ! in_array( $chart_type, array( 'geo_google', 'gauge_google' ), true )  ){
+					$widget->add_control(
+						GRAPHINA_PREFIX . $chart_type . '_chart_animation',
+						array(
+							'label'     => esc_html__( 'Custom', 'graphina-charts-for-elementor' ),
+							'type'      => Controls_Manager::SWITCHER,
+							'label_on'  => esc_html__( 'Yes', 'graphina-charts-for-elementor' ),
+							'label_off' => esc_html__( 'No', 'graphina-charts-for-elementor' ),
+							'default'   => 'yes',
+						)
+					);
+	
+					$widget->add_control(
+						GRAPHINA_PREFIX . $chart_type . '_chart_animation_speed',
+						array(
+							'label'     => esc_html__( 'Speed', 'graphina-charts-for-elementor' ),
+							'type'      => Controls_Manager::NUMBER,
+							'default'   => 800,
+							'condition' => array(
+								GRAPHINA_PREFIX . $chart_type . '_chart_animation' => 'yes',
+							),
+						)
+					);
+	
+					$widget->add_control(
+						GRAPHINA_PREFIX . $chart_type . '_chart_animation_delay',
+						array(
+							'label'     => esc_html__( 'Delay', 'graphina-charts-for-elementor' ),
+							'type'      => Controls_Manager::NUMBER,
+							'default'   => 150,
+							'condition' => array(
+								GRAPHINA_PREFIX . $chart_type . '_chart_animation' => 'yes',
+							),
+						)
+					);
+				}
 			}
+	
+			$widget->add_control(
+				GRAPHINA_PREFIX . $chart_type . '_chart_style_box_divider',
+				array(
+					'type' => Controls_Manager::DIVIDER,
+				)
+			);
 		}
-
-		$widget->add_control(
-			GRAPHINA_PREFIX . $chart_type . '_chart_style_box_divider',
-			array(
-				'type' => Controls_Manager::DIVIDER,
-			)
-		);
 
 		$widget->add_control(
 			GRAPHINA_PREFIX . $chart_type . '_chart_box_settings_heading',

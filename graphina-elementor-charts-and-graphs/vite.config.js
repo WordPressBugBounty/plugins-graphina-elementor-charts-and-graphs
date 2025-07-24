@@ -50,10 +50,14 @@ export default {
                     sourcemap: true,
                     rollupOptions: {
                         output: {
+                            // ✅ Fix output filenames
+                            entryFileNames: `[name].js`,
+                            chunkFileNames: `[name].js`,
+                            assetFileNames: `[name].[ext]`,
                             manualChunks: {
-                                'vendor': ['jquery'],
-                            }
-                        }
+                                vendor: ['jquery'],
+                            },
+                        },
                     }
                 },
             }),

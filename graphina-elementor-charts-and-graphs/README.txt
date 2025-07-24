@@ -4,13 +4,15 @@ Tags: data visualization wordpress plugin, wordpress charts, wordpress charts an
 Requires PHP: 8.0.0
 Requires at least: 5.9
 Tested up to: 6.8.2
-Stable tag: 3.1.0
+Stable tag: 3.1.1
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
 Most Powerful Data visualization plugin for WordPress Elementor. The easiest way to build gorgeous Charts & Graphs on your Elementor website.
 
 == Description ==
+
+**Flat 50% OFF** on [Graphina Pro](https://graphina.iqonic.design/?utm_source=iqonic_anniversary_sale&utm_medium=wp.org&utm_campaign=sale) – Celebrate Iqonic Anniversary with Big Savings! 🎉
 
 # Its like WordPress Elementor Charts on STEROIDS* 💊
 Creating WordPress Charts and Graphs is hard and boring. We make it a whole lot EASIER, QUICKER, more POWERFUL, and more FUN.
@@ -226,6 +228,9 @@ Yes, we'd love to hear from you at <a href="mailto:hello@iqonic.design">hello@iq
 
 
 == Changelog ==
+
+= 3.1.1 - 24/07/2025 =  
+- [Fixed] Various minor bugs.  
 
 = 3.1.0 - 16/07/2025 =  
 - [Added] Tree Chart.  

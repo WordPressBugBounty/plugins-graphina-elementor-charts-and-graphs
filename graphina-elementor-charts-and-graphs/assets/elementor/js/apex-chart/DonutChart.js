@@ -72,14 +72,10 @@ export default class DonutChart extends GraphinaApexChartBase {
         if(chartOptions.dataLabels){
             chartOptions.dataLabels.formatter = (val,opts) => {
                 if(forminatorPercentage){
-                    let totals = opts.w.globals.seriesTotals.reduce((a, b) => {
-                        console.log(totals);
-                        return  a + b;
-                    }, 0)
                     val =  new Intl.NumberFormat(window.gcfe_public_localize.locale_with_hyphen, {
                         minimumFractionDigits: extraData.chart_datalabel_decimals_in_float,
                         maximumFractionDigits: extraData.chart_datalabel_decimals_in_float,
-                    }).format(val/totals * 100)
+                    }).format(val)
                 }
                 if(extraData.chart_datalabels_format_showlabel){
                     let label = opts.w.globals.labels[opts.seriesIndex];

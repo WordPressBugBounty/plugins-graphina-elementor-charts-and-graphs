@@ -1,0 +1,2 @@
+import{G as s}from"./GraphinaApexChartBase.js";class h extends s{constructor(){super(),this.observer={}}setUpChartsHandler(){this.chartHandlers={line:e=>this.observeChartElement(e,"line")}}getChartOptions(e,r,o,a,n){return r==="line"&&(e.responsive=a,e.chart.events={mounted:(c,l)=>{const t=document.querySelector(`.graphina-elementor-chart[data-element_id="${n}"]`);t&&(t.style.height="")}}),e}}window.graphinaLineChart=new h;
+//# sourceMappingURL=line.js.map
