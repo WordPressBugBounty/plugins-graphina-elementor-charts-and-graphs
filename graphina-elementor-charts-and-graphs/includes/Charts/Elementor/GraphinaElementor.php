@@ -218,6 +218,7 @@ class GraphinaElementor {
 				'dependencies'     => array( 'apextree-js' ),
 				'css-dependencies' => array( 'apexchart-css' ),
 				'in-footer'        => true,
+				'version'          => GRAPHINA_VERSION,
 			)
 		);
 
@@ -229,6 +230,7 @@ class GraphinaElementor {
 				'handle'           => 'area-chart',
 				'dependencies'     => array( 'apexchart-js' ),
 				'css-dependencies' => array( 'apexchart-css' ),
+				'version'          => GRAPHINA_VERSION,
 				'in-footer'        => true,
 			)
 		);
@@ -240,6 +242,7 @@ class GraphinaElementor {
 				'handle'           => 'line-chart',
 				'dependencies'     => array( 'apexchart-js' ),
 				'css-dependencies' => array( 'apexchart-css' ),
+				'version'          => GRAPHINA_VERSION,
 				'in-footer'        => true,
 			)
 		);
@@ -251,6 +254,7 @@ class GraphinaElementor {
 				'handle'           => 'heatmap-chart',
 				'dependencies'     => array( 'apexchart-js' ),
 				'css-dependencies' => array( 'apexchart-css' ),
+				'version'          => GRAPHINA_VERSION,
 				'in-footer'        => true,
 			)
 		);
@@ -262,6 +266,7 @@ class GraphinaElementor {
 				'handle'           => 'column-chart',
 				'dependencies'     => array( 'apexchart-js' ),
 				'css-dependencies' => array( 'apexchart-css' ),
+				'version'          => GRAPHINA_VERSION,
 				'in-footer'        => true,
 			)
 		);
@@ -273,6 +278,7 @@ class GraphinaElementor {
 				'handle'           => 'bubble-chart',
 				'dependencies'     => array( 'apexchart-js' ),
 				'css-dependencies' => array( 'apexchart-css' ),
+				'version'          => GRAPHINA_VERSION,
 				'in-footer'        => true,
 			)
 		);
@@ -284,6 +290,7 @@ class GraphinaElementor {
 				'handle'           => 'timeline-chart',
 				'dependencies'     => array( 'apexchart-js' ),
 				'css-dependencies' => array( 'apexchart-css' ),
+				'version'          => GRAPHINA_VERSION,
 				'in-footer'        => true,
 			)
 		);
@@ -295,6 +302,7 @@ class GraphinaElementor {
 				'handle'           => 'nestedcolumn-chart',
 				'dependencies'     => array( 'apexchart-js' ),
 				'css-dependencies' => array( 'apexchart-css' ),
+				'version'          => GRAPHINA_VERSION,
 				'in-footer'        => true,
 			)
 		);
@@ -306,6 +314,7 @@ class GraphinaElementor {
 				'handle'           => 'donut-chart',
 				'dependencies'     => array( 'apexchart-js' ),
 				'css-dependencies' => array( 'apexchart-css' ),
+				'version'          => GRAPHINA_VERSION,
 				'in-footer'        => true,
 			)
 		);
@@ -317,6 +326,7 @@ class GraphinaElementor {
 				'handle'           => 'radar-chart',
 				'dependencies'     => array( 'apexchart-js' ),
 				'css-dependencies' => array( 'apexchart-css' ),
+				'version'          => GRAPHINA_VERSION,
 				'in-footer'        => true,
 			)
 		);
@@ -328,6 +338,7 @@ class GraphinaElementor {
 				'handle'           => 'radial-chart',
 				'dependencies'     => array( 'apexchart-js' ),
 				'css-dependencies' => array( 'apexchart-css' ),
+				'version'          => GRAPHINA_VERSION,
 				'in-footer'        => true,
 			)
 		);
@@ -339,6 +350,7 @@ class GraphinaElementor {
 				'handle'           => 'polar-chart',
 				'dependencies'     => array( 'apexchart-js' ),
 				'css-dependencies' => array( 'apexchart-css' ),
+				'version'          => GRAPHINA_VERSION,
 				'in-footer'        => true,
 			)
 		);
@@ -349,6 +361,7 @@ class GraphinaElementor {
 			array(
 				'handle'           => 'pie-chart',
 				'dependencies'     => array( 'apexchart-js' ),
+				'version'          => GRAPHINA_VERSION,
 				'css-dependencies' => array( 'apexchart-css' ),
 				'in-footer'        => true,
 			)
@@ -361,6 +374,7 @@ class GraphinaElementor {
 				'handle'           => 'scatter-chart',
 				'dependencies'     => array( 'apexchart-js' ),
 				'css-dependencies' => array( 'apexchart-css' ),
+				'version'          => GRAPHINA_VERSION,
 				'in-footer'        => true,
 			)
 		);
@@ -372,6 +386,7 @@ class GraphinaElementor {
 				'handle'           => 'distributed_column-chart',
 				'dependencies'     => array( 'apexchart-js' ),
 				'css-dependencies' => array( 'apexchart-css' ),
+				'version'          => GRAPHINA_VERSION,
 				'in-footer'        => true,
 			)
 		);
@@ -383,6 +398,7 @@ class GraphinaElementor {
 				'handle'           => 'candle-chart',
 				'dependencies'     => array( 'apexchart-js' ),
 				'css-dependencies' => array( 'apexchart-css' ),
+				'version'          => GRAPHINA_VERSION,
 				'in-footer'        => true,
 			)
 		);
@@ -394,6 +410,7 @@ class GraphinaElementor {
 				'handle'           => 'data-table-chart',
 				'dependencies'     => array( 'apexchart-js' ),
 				'css-dependencies' => array( 'apexchart-css' ),
+				'version'          => GRAPHINA_VERSION,
 				'in-footer'        => true,
 			)
 		);
@@ -405,6 +422,7 @@ class GraphinaElementor {
 				'handle'           => 'mixed-chart',
 				'dependencies'     => array( 'apexchart-js' ),
 				'css-dependencies' => array( 'apexchart-css' ),
+				'version'          => GRAPHINA_VERSION,
 				'in-footer'        => true,
 			)
 		);
@@ -416,6 +434,7 @@ class GraphinaElementor {
 				'handle'           => 'brush-chart',
 				'dependencies'     => array( 'apexchart-js' ),
 				'css-dependencies' => array( 'apexchart-css' ),
+				'version'          => GRAPHINA_VERSION,
 				'in-footer'        => true,
 			)
 		);
@@ -426,6 +445,7 @@ class GraphinaElementor {
 				'handle'           => 'counter-chart',
 				'dependencies'     => array( 'apexchart-js' ),
 				'css-dependencies' => array( 'apexchart-css' ),
+				'version'          => GRAPHINA_VERSION,
 				'in-footer'        => true,
 			)
 		);
@@ -438,6 +458,7 @@ class GraphinaElementor {
 				'handle'           => 'area-google-chart',
 				'dependencies'     => array( 'googlechart-js' ),
 				'css-dependencies' => array( 'graphina_chart-css' ),
+				'version'          => GRAPHINA_VERSION,
 				'in-footer'        => true,
 			)
 		);
@@ -449,6 +470,7 @@ class GraphinaElementor {
 				'handle'           => 'bar-google-chart',
 				'dependencies'     => array( 'googlechart-js' ),
 				'css-dependencies' => array( 'graphina_chart-css' ),
+				'version'          => GRAPHINA_VERSION,
 				'in-footer'        => true,
 			)
 		);
@@ -460,6 +482,7 @@ class GraphinaElementor {
 				'handle'           => 'geo-google-chart',
 				'dependencies'     => array( 'googlechart-js' ),
 				'css-dependencies' => array( 'graphina_chart-css' ),
+				'version'          => GRAPHINA_VERSION,
 				'in-footer'        => true,
 			)
 		);
@@ -471,6 +494,7 @@ class GraphinaElementor {
 				'handle'           => 'gauge-google-chart',
 				'dependencies'     => array( 'googlechart-js' ),
 				'css-dependencies' => array( 'graphina_chart-css' ),
+				'version'          => GRAPHINA_VERSION,
 				'in-footer'        => true,
 			)
 		);
@@ -482,6 +506,7 @@ class GraphinaElementor {
 				'handle'           => 'line-google-chart',
 				'dependencies'     => array( 'googlechart-js' ),
 				'css-dependencies' => array( 'graphina_chart-css' ),
+				'version'          => GRAPHINA_VERSION,
 				'in-footer'        => true,
 			)
 		);
@@ -493,6 +518,7 @@ class GraphinaElementor {
 				'handle'           => 'column-google-chart',
 				'dependencies'     => array( 'googlechart-js' ),
 				'css-dependencies' => array( 'graphina_chart-css' ),
+				'version'          => GRAPHINA_VERSION,
 				'in-footer'        => true,
 			)
 		);
@@ -504,6 +530,7 @@ class GraphinaElementor {
 				'handle'           => 'gantt-google-chart',
 				'dependencies'     => array( 'googlechart-js' ),
 				'css-dependencies' => array( 'graphina_chart-css' ),
+				'version'          => GRAPHINA_VERSION,
 				'in-footer'        => true,
 			)
 		);
@@ -515,6 +542,7 @@ class GraphinaElementor {
 				'handle'           => 'org-google-chart',
 				'dependencies'     => array( 'googlechart-js' ),
 				'css-dependencies' => array( 'graphina_chart-css' ),
+				'version'          => GRAPHINA_VERSION,
 				'in-footer'        => true,
 			)
 		);
@@ -526,6 +554,7 @@ class GraphinaElementor {
 				'handle'           => 'donut-google-chart',
 				'dependencies'     => array( 'googlechart-js' ),
 				'css-dependencies' => array( 'graphina_chart-css' ),
+				'version'          => GRAPHINA_VERSION,
 				'in-footer'        => true,
 			)
 		);
@@ -537,6 +566,7 @@ class GraphinaElementor {
 				'handle'           => 'pie-google-chart',
 				'dependencies'     => array( 'googlechart-js' ),
 				'css-dependencies' => array( 'graphina_chart-css' ),
+				'version'          => GRAPHINA_VERSION,
 				'in-footer'        => true,
 			)
 		);

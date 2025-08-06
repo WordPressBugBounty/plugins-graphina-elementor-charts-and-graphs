@@ -281,10 +281,11 @@ function load_production_asset( object $manifest, string $entry, array $options 
 
 	if ( ! $options['css-only'] ) {
 		filter_script_tag( $options['handle'] );
+		$version = isset($options['version']) ? $options['version'] : null;
 
 		// Don't worry about browser caching as the version is embedded in the file name.
 		// phpcs:ignore WordPress.WP.EnqueuedResourceParameters.MissingVersion
-		if ( wp_register_script( $options['handle'], $src, $options['dependencies'], null, $options['in-footer'] ) ) {
+		if ( wp_register_script( $options['handle'], $src, $options['dependencies'], $version , $options['in-footer'] ) ) {
 			$assets['scripts'][] = $options['handle'];
 		}
 	}

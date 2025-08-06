@@ -125,8 +125,9 @@ export default class GraphinaApexChartBase {
         const chartElement   = jQuery(`.graphina-elementor-chart[data-element_id="${elementId}"]`);
         let chartType        = jQuery(chartElement).data('chart_type');
         if(chartElement.length > 0){
-            
-        // Destroy existing chart (if any)
+            // Hide the no-data text right away before updating the chart
+            jQuery(`.graphina-${elementId}-notext`).hide();
+            // Destroy existing chart (if any)
             ApexCharts.exec(elementId, 'destroy');
 
             jQuery(document).find(`.graphina-${elementId}-loader`).show()
@@ -565,14 +566,23 @@ export default class GraphinaApexChartBase {
                                 true
                             );
                         }else{
-                            chart.updateOptions({
+                            // FIX: Properly update both series and xaxis categories
+                            const updateOptions = {
                                 series: dynamicData.extra.series,
-                                labels: dynamicData.extra.category
-                            });
-                            chart.updateSeries(
-                                dynamicData.extra.series,
-                                true
-                            );
+                            };
+
+                            // Handle different chart types for categories/labels
+                            if (['polar', 'radialBar', 'radial', 'pie', 'donut'].includes(chart_type)) {
+                                updateOptions.labels = dynamicData.extra.category;
+                            } else {
+                                updateOptions.xaxis = {
+                                    ...chartOptions.xaxis,
+                                    categories: dynamicData.extra.category
+                                };
+                            }
+
+                            chart.updateOptions(updateOptions, true);
+                            chart.updateSeries(dynamicData.extra.series, true);
                             
                             if(dynamicData.extra.series.length <= 0){
                                 chart.destroy()
@@ -588,7 +598,7 @@ export default class GraphinaApexChartBase {
                         }
                         chart.updateOptions({
                             series: [],
-                            labels: []
+                            categories: []
                         });
                         chart.updateSeries(
                             [],

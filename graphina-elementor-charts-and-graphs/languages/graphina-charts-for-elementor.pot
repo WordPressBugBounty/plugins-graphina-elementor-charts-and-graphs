@@ -2,14 +2,14 @@
 # This file is distributed under the same license as the Graphina - Elementor Charts and Graphs plugin.
 msgid ""
 msgstr ""
-"Project-Id-Version: Graphina - Elementor Charts and Graphs 3.1.1\n"
+"Project-Id-Version: Graphina - Elementor Charts and Graphs 3.1.2\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/graphina-elementor-charts-and-graphs\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2025-07-24T04:15:40+00:00\n"
+"POT-Creation-Date: 2025-08-06T08:40:53+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: WP-CLI 2.10.0\n"
 "X-Domain: graphina-charts-for-elementor\n"
@@ -85,188 +85,188 @@ msgid "Activate Now"
 msgstr ""
 
 #: includes/Admin/GraphinaAdmin.php:87
-#: includes/Admin/GraphinaAdmin.php:231
-#: includes/Admin/GraphinaAdmin.php:260
-#: includes/Admin/GraphinaAdmin.php:325
-#: includes/Admin/GraphinaAdmin.php:552
-msgid "Permission Denied"
-msgstr ""
-
-#: includes/Admin/GraphinaAdmin.php:88
 #: includes/Admin/GraphinaAdmin.php:232
 #: includes/Admin/GraphinaAdmin.php:261
 #: includes/Admin/GraphinaAdmin.php:326
 #: includes/Admin/GraphinaAdmin.php:553
+msgid "Permission Denied"
+msgstr ""
+
+#: includes/Admin/GraphinaAdmin.php:88
+#: includes/Admin/GraphinaAdmin.php:233
+#: includes/Admin/GraphinaAdmin.php:262
+#: includes/Admin/GraphinaAdmin.php:327
+#: includes/Admin/GraphinaAdmin.php:554
 msgid "You do not have sufficient permissions to perform this action."
 msgstr ""
 
-#: includes/Admin/GraphinaAdmin.php:278
-#: includes/Admin/GraphinaAdmin.php:343
+#: includes/Admin/GraphinaAdmin.php:279
+#: includes/Admin/GraphinaAdmin.php:344
 msgid "Invalid data format."
 msgstr ""
 
-#: includes/Admin/GraphinaAdmin.php:295
+#: includes/Admin/GraphinaAdmin.php:296
 msgid "Widgets enabled successfully."
 msgstr ""
 
-#: includes/Admin/GraphinaAdmin.php:296
-#: includes/Admin/GraphinaAdmin.php:357
+#: includes/Admin/GraphinaAdmin.php:297
+#: includes/Admin/GraphinaAdmin.php:358
 msgid "Success"
 msgstr ""
 
-#: includes/Admin/GraphinaAdmin.php:356
+#: includes/Admin/GraphinaAdmin.php:357
 msgid "Widgets disabled successfully."
-msgstr ""
-
-#: includes/Admin/GraphinaAdmin.php:379
-#: includes/Admin/GraphinaAdmin.php:594
-msgid "Error"
 msgstr ""
 
 #: includes/Admin/GraphinaAdmin.php:380
 #: includes/Admin/GraphinaAdmin.php:595
+msgid "Error"
+msgstr ""
+
+#: includes/Admin/GraphinaAdmin.php:381
+#: includes/Admin/GraphinaAdmin.php:596
 msgid "Action not found"
 msgstr ""
 
-#: includes/Admin/GraphinaAdmin.php:384
-#: includes/Admin/GraphinaAdmin.php:599
+#: includes/Admin/GraphinaAdmin.php:385
+#: includes/Admin/GraphinaAdmin.php:600
 msgid "You don't have required permission or security error."
 msgstr ""
 
-#: includes/Admin/GraphinaAdmin.php:414
+#: includes/Admin/GraphinaAdmin.php:415
 msgid "Connection Name is required"
 msgstr ""
 
-#: includes/Admin/GraphinaAdmin.php:415
+#: includes/Admin/GraphinaAdmin.php:416
 msgid "Vendor is required"
 msgstr ""
 
-#: includes/Admin/GraphinaAdmin.php:416
+#: includes/Admin/GraphinaAdmin.php:417
 msgid "Database Name is required"
 msgstr ""
 
-#: includes/Admin/GraphinaAdmin.php:417
+#: includes/Admin/GraphinaAdmin.php:418
 msgid "Host is required"
 msgstr ""
 
-#: includes/Admin/GraphinaAdmin.php:418
+#: includes/Admin/GraphinaAdmin.php:419
 msgid "User Name is required"
 msgstr ""
 
-#: includes/Admin/GraphinaAdmin.php:419
+#: includes/Admin/GraphinaAdmin.php:420
 msgid "Password is required"
 msgstr ""
 
-#: includes/Admin/GraphinaAdmin.php:430
+#: includes/Admin/GraphinaAdmin.php:431
 msgid "Missing Field"
 msgstr ""
 
-#: includes/Admin/GraphinaAdmin.php:487
+#: includes/Admin/GraphinaAdmin.php:488
 msgid "Deleted!"
 msgstr ""
 
-#: includes/Admin/GraphinaAdmin.php:488
+#: includes/Admin/GraphinaAdmin.php:489
 msgid "Connection name deleted"
 msgstr ""
 
-#: includes/Admin/GraphinaAdmin.php:490
+#: includes/Admin/GraphinaAdmin.php:491
 msgid "Error!"
 msgstr ""
 
-#: includes/Admin/GraphinaAdmin.php:491
+#: includes/Admin/GraphinaAdmin.php:492
 msgid "Connection Name not found"
 msgstr ""
 
-#: includes/Admin/GraphinaAdmin.php:501
+#: includes/Admin/GraphinaAdmin.php:502
 msgid "Connection updated"
 msgstr ""
 
-#: includes/Admin/GraphinaAdmin.php:502
+#: includes/Admin/GraphinaAdmin.php:503
 msgid "Database connection details updated"
-msgstr ""
-
-#: includes/Admin/GraphinaAdmin.php:513
-#: includes/Admin/GraphinaAdmin.php:519
-msgid "Database Saved!"
 msgstr ""
 
 #: includes/Admin/GraphinaAdmin.php:514
 #: includes/Admin/GraphinaAdmin.php:520
+msgid "Database Saved!"
+msgstr ""
+
+#: includes/Admin/GraphinaAdmin.php:515
+#: includes/Admin/GraphinaAdmin.php:521
 msgid "Connection details saved!"
 msgstr ""
 
-#: includes/Admin/GraphinaAdmin.php:546
+#: includes/Admin/GraphinaAdmin.php:547
 msgid "Connection details not found"
 msgstr ""
 
-#: includes/Admin/GraphinaAdmin.php:572
+#: includes/Admin/GraphinaAdmin.php:573
 msgid "Connected"
 msgstr ""
 
-#: includes/Admin/GraphinaAdmin.php:573
+#: includes/Admin/GraphinaAdmin.php:574
 msgid "Database successfully Connected!"
 msgstr ""
 
-#: includes/Admin/GraphinaAdmin.php:620
+#: includes/Admin/GraphinaAdmin.php:621
 msgid "Setting saved"
 msgstr ""
 
-#: includes/Admin/GraphinaAdmin.php:621
+#: includes/Admin/GraphinaAdmin.php:622
 msgid "Your setting has been saved!"
 msgstr ""
 
-#: includes/Admin/GraphinaAdmin.php:623
+#: includes/Admin/GraphinaAdmin.php:624
 msgid "Setting not saved"
 msgstr ""
 
-#: includes/Admin/GraphinaAdmin.php:650
+#: includes/Admin/GraphinaAdmin.php:651
 msgid "Graphina Charts"
 msgstr ""
 
-#: includes/Admin/GraphinaAdmin.php:651
+#: includes/Admin/GraphinaAdmin.php:652
 msgid "Graphina"
 msgstr ""
 
-#: includes/Admin/GraphinaAdmin.php:668
+#: includes/Admin/GraphinaAdmin.php:669
 msgid "Graphina Charts Setting"
 msgstr ""
 
-#: includes/Admin/GraphinaAdmin.php:669
+#: includes/Admin/GraphinaAdmin.php:670
 msgid "Settings"
 msgstr ""
 
-#: includes/Admin/GraphinaAdmin.php:674
+#: includes/Admin/GraphinaAdmin.php:675
 msgid "Graphina Charts Documentation"
 msgstr ""
 
-#: includes/Admin/GraphinaAdmin.php:675
+#: includes/Admin/GraphinaAdmin.php:676
 #: includes/Admin/Menu/views/html-general.php:20
 #: includes/Admin/Menu/views/html-general.php:22
 msgid "Documentation"
 msgstr ""
 
-#: includes/Admin/GraphinaAdmin.php:679
+#: includes/Admin/GraphinaAdmin.php:680
 msgid "Graphina Charts Request Feature"
 msgstr ""
 
-#: includes/Admin/GraphinaAdmin.php:680
+#: includes/Admin/GraphinaAdmin.php:681
 msgid "Request Feature"
 msgstr ""
 
-#: includes/Admin/GraphinaAdmin.php:689
 #: includes/Admin/GraphinaAdmin.php:690
+#: includes/Admin/GraphinaAdmin.php:691
 msgid "Upgrade To Pro"
 msgstr ""
 
-#: includes/Admin/Menu/views/html-admin-menu.php:51
+#: includes/Admin/Menu/views/html-admin-menu.php:58
 msgid "General"
 msgstr ""
 
-#: includes/Admin/Menu/views/html-admin-menu.php:57
+#: includes/Admin/Menu/views/html-admin-menu.php:64
 msgid "Elements"
 msgstr ""
 
-#: includes/Admin/Menu/views/html-admin-menu.php:64
+#: includes/Admin/Menu/views/html-admin-menu.php:71
 #: includes/Admin/Menu/views/html-elements.php:313
 #: includes/Admin/Menu/views/html-elements.php:345
 #: includes/Admin/Menu/views/html-elements.php:377
@@ -279,11 +279,11 @@ msgstr ""
 msgid "Pro"
 msgstr ""
 
-#: includes/Admin/Menu/views/html-admin-menu.php:66
+#: includes/Admin/Menu/views/html-admin-menu.php:73
 msgid "External Database"
 msgstr ""
 
-#: includes/Admin/Menu/views/html-admin-menu.php:72
+#: includes/Admin/Menu/views/html-admin-menu.php:79
 msgid "Free Vs Pro"
 msgstr ""
 
@@ -445,7 +445,7 @@ msgstr ""
 
 #: includes/Admin/Menu/views/html-elements.php:175
 #: includes/Charts/Elementor/Elements/ApexTree/TreeChart.php:42
-#: includes/Charts/Elementor/GraphinaElementor.php:570
+#: includes/Charts/Elementor/GraphinaElementor.php:600
 msgid "Tree Chart"
 msgstr ""
 
@@ -814,7 +814,7 @@ msgstr ""
 #: includes/Charts/Elementor/Elements/ApexCharts/ScatterChart.php:210
 #: includes/Charts/Elementor/Elements/ApexCharts/TimelineChart.php:204
 #: includes/Charts/Elementor/GraphinaElementorControls.php:7063
-#: includes/Public/GraphinaFrontend.php:108
+#: includes/Public/GraphinaFrontend.php:109
 #: static/gcfe-i18n.php:29
 msgid "Loading..."
 msgstr ""
@@ -865,39 +865,39 @@ msgstr ""
 msgid "Graphina GoogleCharts"
 msgstr ""
 
-#: includes/Charts/Elementor/GraphinaElementor.php:564
+#: includes/Charts/Elementor/GraphinaElementor.php:594
 msgid "Nested Column"
 msgstr ""
 
-#: includes/Charts/Elementor/GraphinaElementor.php:576
+#: includes/Charts/Elementor/GraphinaElementor.php:606
 msgid "Mixed"
 msgstr ""
 
-#: includes/Charts/Elementor/GraphinaElementor.php:582
+#: includes/Charts/Elementor/GraphinaElementor.php:612
 msgid "Counter"
 msgstr ""
 
-#: includes/Charts/Elementor/GraphinaElementor.php:588
+#: includes/Charts/Elementor/GraphinaElementor.php:618
 msgid "Advance DataTable"
 msgstr ""
 
-#: includes/Charts/Elementor/GraphinaElementor.php:594
+#: includes/Charts/Elementor/GraphinaElementor.php:624
 msgid "Brush Charts"
 msgstr ""
 
-#: includes/Charts/Elementor/GraphinaElementor.php:600
+#: includes/Charts/Elementor/GraphinaElementor.php:630
 msgid "Gauge"
 msgstr ""
 
-#: includes/Charts/Elementor/GraphinaElementor.php:606
+#: includes/Charts/Elementor/GraphinaElementor.php:636
 msgid "Geo"
 msgstr ""
 
-#: includes/Charts/Elementor/GraphinaElementor.php:612
+#: includes/Charts/Elementor/GraphinaElementor.php:642
 msgid "Org"
 msgstr ""
 
-#: includes/Charts/Elementor/GraphinaElementor.php:619
+#: includes/Charts/Elementor/GraphinaElementor.php:649
 msgid "Gantt"
 msgstr ""
 
@@ -4296,27 +4296,27 @@ msgstr ""
 msgid "Coming Soon..."
 msgstr ""
 
-#: includes/Public/GraphinaFrontend.php:106
+#: includes/Public/GraphinaFrontend.php:107
 msgid "No Data Available"
 msgstr ""
 
-#: includes/Public/GraphinaFrontend.php:128
+#: includes/Public/GraphinaFrontend.php:129
 msgid "Security error"
 msgstr ""
 
-#: includes/Public/GraphinaFrontend.php:144
+#: includes/Public/GraphinaFrontend.php:145
 msgid "Invalid password"
 msgstr ""
 
-#: includes/Public/GraphinaFrontend.php:202
+#: includes/Public/GraphinaFrontend.php:203
 msgid "Invalid nonce."
 msgstr ""
 
-#: includes/Public/GraphinaFrontend.php:333
+#: includes/Public/GraphinaFrontend.php:334
 msgid "Select Column"
 msgstr ""
 
-#: includes/Public/GraphinaFrontend.php:335
+#: includes/Public/GraphinaFrontend.php:336
 msgid "Empty"
 msgstr ""
 

@@ -85,6 +85,7 @@ if ( ! class_exists( 'GraphinaFrontend' ) ) {
 					'dependencies'     => array(),
 					'css-dependencies' => array(),
 					'css-media'        => 'all',
+					'version'          => GRAPHINA_VERSION,
 					'css-only'         => false,
 					'in-footer'        => true,
 				)
@@ -307,7 +308,7 @@ if ( ! class_exists( 'GraphinaFrontend' ) ) {
 					foreach ( $data as $key => $value ) {
 						$data_title    = strtolower( str_replace( ' ', '', $data[ $key ]['title'] ) );
 						$columns[ $j ] = $data_title;
-						if (empty($value['multi']) && count($value['multi']) === 0){
+						if (empty($value['multi']) || (is_array($value['multi']) && count($value['multi']) === 0)) {
 							continue;
 						}
 						if ( $data_title === strtolower( str_replace( ' ', '', $title ) ) ) {
@@ -336,7 +337,7 @@ if ( ! class_exists( 'GraphinaFrontend' ) ) {
 					}
 					$response['extra'] = array(
 						'series'  => $series,
-						'end'     => intval( $end ),
+						'end'     => floatval( $end ),
 						'columns' => $columns,
 						'title'	  => $chart_title
 					);

@@ -205,6 +205,7 @@ if ( ! class_exists( 'GraphinaAdmin' ) ) :
 					'css-dependencies' => array( 'graphina-settings-css' ),
 					'css-media'        => 'all',
 					'css-only'         => false,
+					'version'          => GRAPHINA_VERSION,
 					'in-footer'        => true,
 				)
 			);

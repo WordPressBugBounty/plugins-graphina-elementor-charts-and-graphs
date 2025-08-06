@@ -46,7 +46,12 @@ if ( ! class_exists( 'GraphinaAdminMenu' ) ) {
 		 * @return string Active tab slug. Defaults to 'setting' if not set.
 		 */
 		private static function get_current_tab() {
-			return isset( $_GET['activetab'] ) ? sanitize_text_field( $_GET['activetab'] ) : 'setting';
+			$current_tab = isset( $_GET['activetab'] ) ? sanitize_text_field( $_GET['activetab'] ) : 'setting';
+			$allowed_tabs = array( 'setting', 'elements', 'database', 'free-vs-pro' );
+			if ( ! in_array( $current_tab, $allowed_tabs, true ) ) {
+				$current_tab = 'setting';
+			}
+			return $current_tab;
 		}
 
 		/**

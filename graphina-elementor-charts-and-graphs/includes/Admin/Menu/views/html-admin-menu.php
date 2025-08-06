@@ -18,8 +18,15 @@ if ( ! current_user_can( 'manage_options' ) ) {
 
 $active_tab = 'setting';
 if ( isset( $_GET['activetab'] ) ) {
-		$active_tab = sanitize_text_field( wp_unslash( $_GET['activetab'] ) );
+	$active_tab = sanitize_text_field( wp_unslash( $_GET['activetab'] ) );
 }
+
+$allowed_tabs = array( 'setting', 'elements', 'database', 'free-vs-pro' );
+
+if ( ! in_array( $active_tab, $allowed_tabs, true ) ) {
+	return;
+}
+
 $tab_file_name = GRAPHINA_PATH . "includes/Admin/Menu/views/html-{$active_tab}.php";
 if ( ! file_exists( $tab_file_name ) ) {
 	return;
