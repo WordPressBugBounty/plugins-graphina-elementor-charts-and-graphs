@@ -153,11 +153,9 @@ class AreaChart extends GraphinaApexChartBase {
 				$category_list = $settings[GRAPHINA_PREFIX . $chart_type . '_category_list'] ?? array();
 				$categories = array_map(
 					function ($v) use ($chart_type) {
-						$value = htmlspecialchars_decode(esc_html(graphina_get_dynamic_tag_data($v, GRAPHINA_PREFIX . $chart_type . '_chart_category')));
-						if ($chart_type === 'brush') {
-							$value = intval($value);
-						}
-
+						$value = htmlspecialchars_decode(graphina_get_dynamic_tag_data($v, GRAPHINA_PREFIX . $chart_type . '_chart_category'));
+						$allowed_tags = graphina_allowed_html_tags();
+						$value = wp_kses($value, $allowed_tags);
 						// Check for comma and split into array if present
 						if (strpos($value, ',') !== false) {
 							// Split by comma and trim spaces
@@ -562,7 +560,7 @@ class AreaChart extends GraphinaApexChartBase {
 		if ($yaxis_title_show && ! empty($settings[GRAPHINA_PREFIX . $chart_type . '_chart_yaxis_title'])) {
 
 			$chart_options['yaxis']['title'] = array(
-				'text'  => $settings[GRAPHINA_PREFIX . $chart_type . '_chart_yaxis_title'],
+				'text'  => sanitize_text_field($settings[GRAPHINA_PREFIX . $chart_type . '_chart_yaxis_title']),
 				'style' => array(
 					'color'      => $settings[GRAPHINA_PREFIX . $chart_type . '_card_yaxis_title_font_color'],
 					'fontSize'   => ! empty($settings[GRAPHINA_PREFIX . $chart_type . '_chart_font_size']['size']) ? $settings[GRAPHINA_PREFIX . $chart_type . '_chart_font_size']['size'] . $settings[GRAPHINA_PREFIX . $chart_type . '_chart_font_size']['unit'] : '12px',
@@ -622,7 +620,7 @@ class AreaChart extends GraphinaApexChartBase {
 			$yaxis_opposite_options = array(
 				'opposite'        => $yaxis_position_is_opposite ? false : true,
 				'title'           => array(
-					'text'  => $settings[ GRAPHINA_PREFIX . $chart_type . '_chart_opposite_yaxis_title' ],
+					'text'  => sanitize_text_field($settings[ GRAPHINA_PREFIX . $chart_type . '_chart_opposite_yaxis_title' ]),
 					'style' => array(
 						'color' => $settings[ GRAPHINA_PREFIX . $chart_type . '_card_opposite_yaxis_title_font_color' ],
 						'fontSize'   => ! empty($settings[GRAPHINA_PREFIX . $chart_type . '_chart_font_size']['size']) ? $settings[GRAPHINA_PREFIX . $chart_type . '_chart_font_size']['size'] . $settings[GRAPHINA_PREFIX . $chart_type . '_chart_font_size']['unit'] : '12px',

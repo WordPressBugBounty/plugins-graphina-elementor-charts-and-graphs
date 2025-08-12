@@ -180,6 +180,8 @@ class RadarChart extends GraphinaApexChartBase {
 		$categories = array_map(
 			function ($v) use ($chart_type) {
 				$value = htmlspecialchars_decode(esc_html(graphina_get_dynamic_tag_data($v, GRAPHINA_PREFIX . $chart_type . '_chart_category')));
+				$allowed_tags  = graphina_allowed_html_tags();
+				$value 		   = wp_kses($value, $allowed_tags);
 				if ($chart_type === 'brush') {
 					$value = intval($value);
 				}

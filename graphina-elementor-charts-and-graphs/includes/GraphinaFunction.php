@@ -3032,3 +3032,46 @@ function graphina_get_teaser_template( array $texts ): string {
 
 	return ob_get_clean();
 }
+
+if ( ! function_exists( 'graphina_allowed_html_tags' ) ) {
+	/**
+	 * Get allowed HTML tags for plugin output.
+	 *
+	 * @since 1.0.0
+	 * @return array Allowed HTML tags with attributes.
+	 */
+	function graphina_allowed_html_tags() {
+		$allowed_tags = array(
+			'br'     => array(
+				'class' => array(),
+				'style' => array(),
+			),
+			'em'     => array(
+				'class' => array(),
+				'style' => array(),
+			),
+			'strong' => array(
+				'class' => array(),
+				'style' => array(),
+			),
+			'b'      => array(
+				'class' => array(),
+				'style' => array(),
+			),
+			'i'      => array(
+				'class' => array(),
+				'style' => array(),
+			),
+		);
+
+		/**
+		 * Filter: graphina_allowed_html_tags
+		 * 
+		 * Allow developers to modify the list of allowed HTML tags.
+		 * 
+		 * @since 1.0.0
+		 * @param array $allowed_tags Allowed HTML tags.
+		 */
+		return apply_filters( 'graphina_allowed_html_tags', $allowed_tags );
+	}
+}

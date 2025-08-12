@@ -179,8 +179,10 @@ class ColumnChart extends GraphinaApexChartBase {
 		$category_list = $settings[GRAPHINA_PREFIX . $chart_type . '_category_list'] ?? array();
 
 		$categories = array_map(
-			function ($v) use ($chart_type) {
+			function ($v) use ($chart_type) {		
 				$value = htmlspecialchars_decode(esc_html(graphina_get_dynamic_tag_data($v, GRAPHINA_PREFIX . $chart_type . '_chart_category')));
+				$allowed_tags = graphina_allowed_html_tags();
+				$value = wp_kses($value, $allowed_tags);
 
 				// Check for comma and split into array if present
 				if (strpos($value, ',') !== false) {
