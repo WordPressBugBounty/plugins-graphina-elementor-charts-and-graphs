@@ -370,31 +370,37 @@ if ( ! class_exists( 'GraphinaFrontend' ) ) {
 								return apply_filters('graphina_jquery_row_value',$row_value);
 							},$row);
 						}
-
 						// Sanitize and format each row item
 						return array_map(
 							function ( $item ) use ( $class ) {
-								// Convert markdown-style links to anchor tags
-								if ( preg_match( '/\[(.*?)\]\((.*?)\)/', $item, $matches ) ) {
-									$url  = esc_url( filter_var( $matches[2], FILTER_VALIDATE_URL ) ? $matches[2] : 'http://' . $matches[2] );
-									$text = esc_html( $matches[1] );
-									return "<a href='{$url}' target='_blank' class='{$class}'>{$text}</a>";
-								}
-								// Define allowed HTML tags
-								$allowed_html = array(
-									'div' => array(
-										'class' => array(),
-										'style' => array()
-									),
-									'span' => array(
-										'class' => array(),
-										'style' => array()
-									)
+						
+								// Replace markdown links inline while keeping other text
+								$item = preg_replace_callback(
+									'/\[(.*?)\]\((.*?)\)/',
+									function ( $match ) use ( $class ) {
+										$url  = esc_url( filter_var( $match[2], FILTER_VALIDATE_URL ) ? $match[2] : 'http://' . $match[2] );
+										$text = esc_html( $match[1] );
+										return "<a href='{$url}' target='_blank' class='{$class}'>{$text}</a>";
+									},
+									$item
 								);
+						
+								// Allowed HTML tags
+								$allowed_html = array(
+									'a'    => array(
+										'href'   => array(),
+										'target' => array(),
+										'class'  => array()
+									),
+									'div'  => array( 'class' => array(), 'style' => array() ),
+									'span' => array( 'class' => array(), 'style' => array() )
+								);
+						
 								return wp_kses( $item, $allowed_html );
 							},
 							$row
 						);
+						
 					},
 					$data['body']
 				);

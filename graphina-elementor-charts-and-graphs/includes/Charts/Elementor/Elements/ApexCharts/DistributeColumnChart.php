@@ -147,7 +147,7 @@ class DistributeColumnChart extends GraphinaApexChartBase {
 				}
 			}
 			$series_temp[] = array(
-				'name' => ! empty( $settings[ GRAPHINA_PREFIX . $chart_type . '_chart_title_3_' ] ) ? $settings[ GRAPHINA_PREFIX . $chart_type . '_chart_title_3_' ] : '',
+				'name' => ! empty( $settings[ GRAPHINA_PREFIX . $chart_type . '_chart_title_3_' ] ) ?  wp_kses(htmlspecialchars_decode($settings[ GRAPHINA_PREFIX . $chart_type . '_chart_title_3_' ]),graphina_allowed_html_tags()) : '',
 				'data' => $chart_data,
 			);
 		}

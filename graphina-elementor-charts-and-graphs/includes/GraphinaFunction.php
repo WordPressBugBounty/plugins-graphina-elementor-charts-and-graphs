@@ -1362,6 +1362,7 @@ if ( ! function_exists( 'graphina_prepare_jqeury_table_data' ) ) {
 		for ( $i = 0; $i < $column_count; $i++ ) {
 			$title_key     = GRAPHINA_PREFIX . $chart_type . '_chart_header_title_' . $i;
 			$title         = isset( $settings[ $title_key ] ) ? esc_html( $settings[ $title_key ] ) : '';
+			$title		   = wp_kses( htmlspecialchars_decode($title), graphina_allowed_html_tags() );
 			if( ! empty( $settings[ GRAPHINA_PREFIX . $chart_type . 'has_column_width' . $i ] ) && $settings[ GRAPHINA_PREFIX . $chart_type . 'has_column_width' . $i ] === 'yes') {
 				$col_width     = GRAPHINA_PREFIX . $chart_type . '_table_column_width_' . $i; 
 				$width         = isset( $settings[ $col_width ] ) ? esc_html( $settings[ $col_width ] ) : ''; 
@@ -1414,7 +1415,7 @@ if ( ! function_exists( 'graphina_prepare_jqeury_table_data' ) ) {
 				// Ensure 'row_value' key exists.
 				$row_value_key = GRAPHINA_PREFIX . $chart_type . '_row_value';
 				$row_value     = isset( $row[ $row_value_key ] ) ? esc_html( $row[ $row_value_key ] ) : '';
-
+				$row_value 	   = wp_kses( htmlspecialchars_decode($row_value), graphina_allowed_html_tags() );
 				// Handle row URL if conditions match.
 				$row_url_key       = GRAPHINA_PREFIX . $chart_type . '_row_url';
 				$row_link_text_key = GRAPHINA_PREFIX . $chart_type . '_row_link_text';
@@ -1529,14 +1530,14 @@ if ( ! function_exists( 'graphina_prepare_extra_data' ) ) {
 			'no_data_text'						 => $loading_text,
 			'legend_show_series_value'           => ! empty( $settings[ GRAPHINA_PREFIX . $chart_type . '_chart_legend_show_series_value' ] ) && $settings[ GRAPHINA_PREFIX . $chart_type . '_chart_legend_show_series_value' ] === 'yes' ? true : false,
 			'xaxis_label_prefix_show'            => ! empty( $settings[ GRAPHINA_PREFIX . $chart_type . '_chart_xaxis_label_show' ] ) && $settings[ GRAPHINA_PREFIX . $chart_type . '_chart_xaxis_label_show' ] === 'yes' ? true : false,
-			'xaxis_label_prefix'                 => ! empty( $settings[ GRAPHINA_PREFIX . $chart_type . '_chart_xaxis_label_prefix' ] ) ? $settings[ GRAPHINA_PREFIX . $chart_type . '_chart_xaxis_label_prefix' ] : '',
-			'xaxis_label_postfix'                => ! empty( $settings[ GRAPHINA_PREFIX . $chart_type . '_chart_xaxis_label_postfix' ] ) ? $settings[ GRAPHINA_PREFIX . $chart_type . '_chart_xaxis_label_postfix' ] : '',
+			'xaxis_label_prefix'                 => ! empty( $settings[ GRAPHINA_PREFIX . $chart_type . '_chart_xaxis_label_prefix' ] ) ? wp_kses(htmlspecialchars_decode($settings[ GRAPHINA_PREFIX . $chart_type . '_chart_xaxis_label_prefix' ]),graphina_allowed_html_tags()) : '',
+			'xaxis_label_postfix'                => ! empty( $settings[ GRAPHINA_PREFIX . $chart_type . '_chart_xaxis_label_postfix' ] ) ? wp_kses(htmlspecialchars_decode($settings[ GRAPHINA_PREFIX . $chart_type . '_chart_xaxis_label_postfix' ]), graphina_allowed_html_tags()) : '',
 			'xaxis_show_time'                    => ! empty( $settings[ GRAPHINA_PREFIX . $chart_type . '_chart_xaxis_show_time' ] ) && $settings[ GRAPHINA_PREFIX . $chart_type . '_chart_xaxis_show_time' ] === 'yes' ? true : false,
 			'xaxis_show_date'                    => ! empty( $settings[ GRAPHINA_PREFIX . $chart_type . '_chart_xaxis_show_date' ] ) && $settings[ GRAPHINA_PREFIX . $chart_type . '_chart_xaxis_show_date' ] === 'yes' ? true : false,
 			'yaxis_label_prefix_show'            => ! empty( $settings[ GRAPHINA_PREFIX . $chart_type . '_chart_yaxis_label_show' ] ) && $settings[ GRAPHINA_PREFIX . $chart_type . '_chart_yaxis_label_show' ] === 'yes' ? true : false,
 			'yaxis_label_format'                 => ! empty( $settings[ GRAPHINA_PREFIX . $chart_type . '_chart_yaxis_number_format' ] ) && $settings[ GRAPHINA_PREFIX . $chart_type . '_chart_yaxis_number_format' ] === 'yes' ? true : false,
-			'yaxis_label_prefix'                 => ! empty( $settings[ GRAPHINA_PREFIX . $chart_type . '_chart_yaxis_label_prefix' ] ) ? $settings[ GRAPHINA_PREFIX . $chart_type . '_chart_yaxis_label_prefix' ] : '',
-			'yaxis_label_postfix'                => ! empty( $settings[ GRAPHINA_PREFIX . $chart_type . '_chart_yaxis_label_postfix' ] ) ? $settings[ GRAPHINA_PREFIX . $chart_type . '_chart_yaxis_label_postfix' ] : '',
+			'yaxis_label_prefix'                 => ! empty( $settings[ GRAPHINA_PREFIX . $chart_type . '_chart_yaxis_label_prefix' ] ) ? wp_kses(htmlspecialchars_decode($settings[ GRAPHINA_PREFIX . $chart_type . '_chart_yaxis_label_prefix' ]), graphina_allowed_html_tags()) : '',
+			'yaxis_label_postfix'                => ! empty( $settings[ GRAPHINA_PREFIX . $chart_type . '_chart_yaxis_label_postfix' ] ) ? wp_kses(htmlspecialchars_decode($settings[ GRAPHINA_PREFIX . $chart_type . '_chart_yaxis_label_postfix' ]), graphina_allowed_html_tags()) : '',
 			'decimal_in_float'                   => ! empty( $settings[ GRAPHINA_PREFIX . $chart_type . '_chart_yaxis_datalabel_decimals_in_float' ] ) ? intval( $settings[ GRAPHINA_PREFIX . $chart_type . '_chart_yaxis_datalabel_decimals_in_float' ] ) : 0,
 			'chart_datalabel_decimals_in_float'  => ! empty( $settings[ GRAPHINA_PREFIX . $chart_type . '_chart_datalabel_decimals_in_float' ] ) ? intval( $settings[ GRAPHINA_PREFIX . $chart_type . '_chart_datalabel_decimals_in_float' ] ) : 0,
 			'chart_number_format_commas'         => ! empty( $settings[ GRAPHINA_PREFIX . $chart_type . '_chart_number_format_commas' ] ) && $settings[ GRAPHINA_PREFIX . $chart_type . '_chart_number_format_commas' ] === 'yes' ? true : false,
@@ -1545,11 +1546,11 @@ if ( ! function_exists( 'graphina_prepare_extra_data' ) ) {
 			'chart_opposite_yaxis_title_enable'  => ! empty( $settings[ GRAPHINA_PREFIX . $chart_type . '_chart_opposite_yaxis_title_enable' ] ) && $settings[ GRAPHINA_PREFIX . $chart_type . '_chart_opposite_yaxis_title_enable' ] === 'yes' ? true : false,
 			'chart_opposite_yaxis_format_number' => ! empty( $settings[ GRAPHINA_PREFIX . $chart_type . '_chart_opposite_yaxis_format_number' ] ) && $settings[ GRAPHINA_PREFIX . $chart_type . '_chart_opposite_yaxis_format_number' ] === 'yes' ? true : false,
 			'chart_opposite_yaxis_label_show'    => ! empty( $settings[ GRAPHINA_PREFIX . $chart_type . '_chart_opposite_yaxis_label_show' ] ) && $settings[ GRAPHINA_PREFIX . $chart_type . '_chart_opposite_yaxis_label_show' ] === 'yes' ? true : false,
-			'chart_opposite_yaxis_label_prefix'  => ! empty( $settings[ GRAPHINA_PREFIX . $chart_type . '_chart_opposite_yaxis_label_prefix' ] ) ? $settings[ GRAPHINA_PREFIX . $chart_type . '_chart_opposite_yaxis_label_prefix' ] : '',
-			'chart_opposite_yaxis_label_postfix' => ! empty( $settings[ GRAPHINA_PREFIX . $chart_type . '_chart_opposite_yaxis_label_postfix' ] ) ? $settings[ GRAPHINA_PREFIX . $chart_type . '_chart_opposite_yaxis_label_postfix' ] : '',
-			'chart_datalabel_prefix'             => ! empty( $settings[ GRAPHINA_PREFIX . $chart_type . '_chart_datalabel_prefix' ] ) ? $settings[ GRAPHINA_PREFIX . $chart_type . '_chart_datalabel_prefix' ] : '',
+			'chart_opposite_yaxis_label_prefix'  => ! empty( $settings[ GRAPHINA_PREFIX . $chart_type . '_chart_opposite_yaxis_label_prefix' ] ) ? wp_kses(htmlspecialchars_decode($settings[ GRAPHINA_PREFIX . $chart_type . '_chart_opposite_yaxis_label_prefix' ]), graphina_allowed_html_tags()) : '',
+			'chart_opposite_yaxis_label_postfix' => ! empty( $settings[ GRAPHINA_PREFIX . $chart_type . '_chart_opposite_yaxis_label_postfix' ] ) ? wp_kses(htmlspecialchars_decode($settings[ GRAPHINA_PREFIX . $chart_type . '_chart_opposite_yaxis_label_postfix' ]), graphina_allowed_html_tags()) : '',
+			'chart_datalabel_prefix'             => ! empty( $settings[ GRAPHINA_PREFIX . $chart_type . '_chart_datalabel_prefix' ] ) ? wp_kses(htmlspecialchars_decode($settings[ GRAPHINA_PREFIX . $chart_type . '_chart_datalabel_prefix' ]), graphina_allowed_html_tags()) : '',
 			'chart_tooltip_prefix_val'           => ! empty( $settings[ GRAPHINA_PREFIX . $chart_type . '_chart_tooltip_prefix_val' ] ) ? $settings[ GRAPHINA_PREFIX . $chart_type . '_chart_tooltip_prefix_val' ] : '',
-			'chart_datalabel_postfix'            => ! empty( $settings[ GRAPHINA_PREFIX . $chart_type . '_chart_datalabel_postfix' ] ) ? $settings[ GRAPHINA_PREFIX . $chart_type . '_chart_datalabel_postfix' ] : '',
+			'chart_datalabel_postfix'            => ! empty( $settings[ GRAPHINA_PREFIX . $chart_type . '_chart_datalabel_postfix' ] ) ? wp_kses(htmlspecialchars_decode($settings[ GRAPHINA_PREFIX . $chart_type . '_chart_datalabel_postfix' ]), graphina_allowed_html_tags()) : '',
 			'chart_tooltip_postfix_val'          => ! empty( $settings[ GRAPHINA_PREFIX . $chart_type . '_chart_tooltip_postfix_val' ] ) ? $settings[ GRAPHINA_PREFIX . $chart_type . '_chart_tooltip_postfix_val' ] : '',
 			'chart_data_option'                  => ! empty( $settings[ GRAPHINA_PREFIX . $chart_type . '_chart_data_option' ] ) && $settings[ GRAPHINA_PREFIX . $chart_type . '_chart_data_option' ] === 'dynamic' ? true : false,
 			'dynamic_type'                       => ! empty( $settings[ GRAPHINA_PREFIX . $chart_type . '_chart_data_option' ] ) ? $settings[ GRAPHINA_PREFIX . $chart_type . '_chart_data_option' ] : ',manual',
@@ -1610,10 +1611,10 @@ if ( ! function_exists( 'graphina_prepare_extra_data' ) ) {
 			$extra_data['chart_datalabel_decimals_in_float']  	= ! empty( $settings[ GRAPHINA_PREFIX . $chart_type . '_chart_label_pointer_number' ] ) ? intval( $settings[ GRAPHINA_PREFIX . $chart_type . '_chart_label_pointer_number' ] ) : 0;
 			$extra_data['chart_number_format_commas']         	= ! empty( $settings[ GRAPHINA_PREFIX . $chart_type . '_chart_datalabels_format' ] ) && $settings[ GRAPHINA_PREFIX . $chart_type . '_chart_datalabels_format' ] === 'yes' ? true : false;
 			$extra_data['chart_data_label_pointer']				= ! empty( $settings[ GRAPHINA_PREFIX . $chart_type . '_chart_label_pointer' ] ) && $settings[ GRAPHINA_PREFIX . $chart_type . '_chart_label_pointer' ] === 'yes' ? true : false;
-			$extra_data['chart_datalabel_prefix']				= ! empty( $settings[ GRAPHINA_PREFIX . $chart_type . '_chart_datalabel_format_prefix' ] ) ? $settings[ GRAPHINA_PREFIX . $chart_type . '_chart_datalabel_format_prefix' ] : '';
-			$extra_data['chart_datalabel_postfix']				= ! empty( $settings[ GRAPHINA_PREFIX . $chart_type . '_chart_datalabel_format_postfix' ] ) ? $settings[ GRAPHINA_PREFIX . $chart_type . '_chart_datalabel_format_postfix' ] : '';
-			$extra_data['chart_legend_show_series_postfix']				= ! empty( $settings[ GRAPHINA_PREFIX . $chart_type . '_chart_legend_show_series_postfix' ] ) ? $settings[ GRAPHINA_PREFIX . $chart_type . '_chart_legend_show_series_postfix' ] : '';
-			$extra_data['chart_legend_show_series_prefix']				= ! empty( $settings[ GRAPHINA_PREFIX . $chart_type . '_chart_legend_show_series_prefix' ] ) ? $settings[ GRAPHINA_PREFIX . $chart_type . '_chart_legend_show_series_prefix' ] : '';
+			$extra_data['chart_datalabel_prefix']				= ! empty( $settings[ GRAPHINA_PREFIX . $chart_type . '_chart_datalabel_format_prefix' ] ) ? wp_kses(htmlspecialchars_decode($settings[ GRAPHINA_PREFIX . $chart_type . '_chart_datalabel_format_prefix' ]), graphina_allowed_html_tags()) : '';
+			$extra_data['chart_datalabel_postfix']				= ! empty( $settings[ GRAPHINA_PREFIX . $chart_type . '_chart_datalabel_format_postfix' ] ) ? wp_kses(htmlspecialchars_decode($settings[ GRAPHINA_PREFIX . $chart_type . '_chart_datalabel_format_postfix' ]),graphina_allowed_html_tags()) : '';
+			$extra_data['chart_legend_show_series_postfix']				= ! empty( $settings[ GRAPHINA_PREFIX . $chart_type . '_chart_legend_show_series_postfix' ] ) ? wp_kses(htmlspecialchars_decode($settings[ GRAPHINA_PREFIX . $chart_type . '_chart_legend_show_series_postfix' ]), graphina_allowed_html_tags()) : '';
+			$extra_data['chart_legend_show_series_prefix']				= ! empty( $settings[ GRAPHINA_PREFIX . $chart_type . '_chart_legend_show_series_prefix' ] ) ? wp_kses(htmlspecialchars_decode($settings[ GRAPHINA_PREFIX . $chart_type . '_chart_legend_show_series_prefix' ]), graphina_allowed_html_tags()) : '';
 			$extra_data['chart_datalabels_format_showValue']     = ! empty( $settings[ GRAPHINA_PREFIX . $chart_type . '_chart_datalabels_format_showValue' ] ) && $settings[ GRAPHINA_PREFIX . $chart_type . '_chart_datalabels_format_showValue' ] === 'yes' ? true : false;
             $extra_data['chart_datalabels_format_showlabel']     = ! empty( $settings[ GRAPHINA_PREFIX . $chart_type . '_chart_datalabels_format_showlabel' ] ) && $settings[ GRAPHINA_PREFIX . $chart_type . '_chart_datalabels_format_showlabel' ] === 'yes' ? true : false;    
 		}
@@ -1622,8 +1623,8 @@ if ( ! function_exists( 'graphina_prepare_extra_data' ) ) {
 		{
 			$extra_data['yaxis_label_format']	= ! empty( $settings[ GRAPHINA_PREFIX . $chart_type . '_yaxis_chart_number_format_commas' ] ) && $settings[ GRAPHINA_PREFIX . $chart_type . '_yaxis_chart_number_format_commas' ] === 'yes' ? true : false;
 			$extra_data['decimal_in_float']		= ! empty( $settings[ GRAPHINA_PREFIX . $chart_type . '_chart_yaxis_prefix_postfix_decimal_point' ] ) ? intval( $settings[ GRAPHINA_PREFIX . $chart_type . '_chart_yaxis_prefix_postfix_decimal_point' ] ) : 0;
-			$extra_data['yaxis_label_prefix']  	= ! empty( $settings[ GRAPHINA_PREFIX . $chart_type . '_chart_yaxis_format_prefix' ] ) ? $settings[ GRAPHINA_PREFIX . $chart_type . '_chart_yaxis_format_prefix' ] : '';
-			$extra_data['yaxis_label_postfix']  = ! empty( $settings[ GRAPHINA_PREFIX . $chart_type . '_chart_yaxis_format_postfix' ] ) ? $settings[ GRAPHINA_PREFIX . $chart_type . '_chart_yaxis_format_postfix' ] : '';
+			$extra_data['yaxis_label_prefix']  	= ! empty( $settings[ GRAPHINA_PREFIX . $chart_type . '_chart_yaxis_format_prefix' ] ) ? wp_kses(htmlspecialchars_decode($settings[ GRAPHINA_PREFIX . $chart_type . '_chart_yaxis_format_prefix' ]), graphina_allowed_html_tags()) : '';
+			$extra_data['yaxis_label_postfix']  = ! empty( $settings[ GRAPHINA_PREFIX . $chart_type . '_chart_yaxis_format_postfix' ] ) ? wp_kses(htmlspecialchars_decode($settings[ GRAPHINA_PREFIX . $chart_type . '_chart_yaxis_format_postfix' ]), graphina_allowed_html_tags()) : '';
 		}
 		
 		if( in_array( $chart_type , ['heatmap', 'radial','radar','brush','distributed_column'])) {

@@ -153,7 +153,7 @@ class ColumnChart extends GraphinaApexChartBase {
 					$value_list
 				);
 				$series_temp[] = array(
-					'name'  => esc_html( graphina_get_dynamic_tag_data( $settings, GRAPHINA_PREFIX . $chart_type . '_chart_title_4_' . $i ) ),
+					'name'  => wp_kses(htmlspecialchars_decode(graphina_get_dynamic_tag_data( $settings, GRAPHINA_PREFIX . $chart_type . '_chart_title_4_' . $i )),graphina_allowed_html_tags()),
 					'data'  => $values,
 					'yaxis' => graphina_get_dynamic_tag_data( $settings, GRAPHINA_PREFIX . $chart_type . '_chart_depends_3_' . $i ) === 'yes' ? 1 : 0,
 				);

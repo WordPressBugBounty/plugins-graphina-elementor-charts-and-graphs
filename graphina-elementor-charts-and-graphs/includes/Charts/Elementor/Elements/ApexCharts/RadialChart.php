@@ -135,9 +135,9 @@ class RadialChart extends GraphinaApexChartBase {
 
 		// Prepare series data
 		for ($i = 0; $i < $series_count; $i++) {
-			$temp          = esc_html(graphina_get_dynamic_tag_data($settings, GRAPHINA_PREFIX . $chart_type . '_chart_label' . $i));
+			$temp          = htmlspecialchars_decode(graphina_get_dynamic_tag_data($settings, GRAPHINA_PREFIX . $chart_type . '_chart_label' . $i));
 			if('manual' === $settings[GRAPHINA_PREFIX . $chart_type . '_chart_data_option']){
-				$categories[]  = htmlspecialchars_decode($temp);
+				$categories[]  = wp_kses($temp, graphina_allowed_html_tags());
 				$series_temp[] = (float) graphina_get_dynamic_tag_data($settings, GRAPHINA_PREFIX . $chart_type . '_chart_value' . $i);
 			}
 			// for Pie Chart Element Settings
