@@ -17,10 +17,9 @@ export default class BubbleChart extends GraphinaApexChartBase {
 
   
    
-    getChartOptions(finalChartOptions, chartType,extraData,responsive_options,elementId) {
+    getChartOptions(finalChartOptions, chartType,extraData,elementId) {
         if (chartType === 'bubble') {
             finalChartOptions.xaxis.categories = [] 
-            finalChartOptions.responsive = responsive_options
              // Add loaded event to remove fixed height
              finalChartOptions.chart.events = {
                 mounted: (chartContext, config) => {

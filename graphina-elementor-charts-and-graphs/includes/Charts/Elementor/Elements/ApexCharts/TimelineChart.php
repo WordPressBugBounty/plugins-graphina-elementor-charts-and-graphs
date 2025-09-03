@@ -247,6 +247,7 @@ class TimelineChart extends GraphinaApexChartBase {
 			),
 			'colors'   => $gradient,
 			'xaxis'      => array(
+				'type'          => 'datetime',
 				'tickAmount'    => ! empty($settings[GRAPHINA_PREFIX . $chart_type . '_chart_xaxis_datalabel_tick_amount']) ? intval($settings[GRAPHINA_PREFIX . $chart_type . '_chart_xaxis_datalabel_tick_amount']) : 6,
 				'tickPlacement' => ! empty($settings[GRAPHINA_PREFIX . $chart_type . '_chart_xaxis_datalabel_tick_placement']) ? $settings[GRAPHINA_PREFIX . $chart_type . '_chart_xaxis_datalabel_tick_placement'] : '',
 				'position'      => ! empty($settings[GRAPHINA_PREFIX . $chart_type . '_chart_xaxis_datalabel_position']) ? $settings[GRAPHINA_PREFIX . $chart_type . '_chart_xaxis_datalabel_position'] : 'buttom',
@@ -272,12 +273,14 @@ class TimelineChart extends GraphinaApexChartBase {
 				),
 			),
 			'yaxis'      => array(
+				'opposite'  => ! empty($settings[GRAPHINA_PREFIX . $chart_type . '_chart_yaxis_datalabel_position']) ? $settings[GRAPHINA_PREFIX . $chart_type . '_chart_yaxis_datalabel_position'] : '',
 				'tickAmount'      => ! empty($settings[GRAPHINA_PREFIX . $chart_type . '_chart_yaxis_datalabel_tick_amount']) ? intval($settings[GRAPHINA_PREFIX . $chart_type . '_chart_yaxis_datalabel_tick_amount']) : 6,
 				'decimalsInFloat' => ! empty($settings[GRAPHINA_PREFIX . $chart_type . '_chart_yaxis_datalabel_decimals_in_float']) ? intval($settings[GRAPHINA_PREFIX . $chart_type . '_chart_yaxis_datalabel_decimals_in_float']) : 1,
 				'labels'          => array(
 					'show'    => ! empty($settings[GRAPHINA_PREFIX . $chart_type . '_chart_yaxis_datalabel_show']) && $settings[GRAPHINA_PREFIX . $chart_type . '_chart_yaxis_datalabel_show'] === 'yes' ? true : false,
 					'offsetX' => ! empty($settings[GRAPHINA_PREFIX . $chart_type . '_chart_yaxis_datalabel_offset_x']) ? intval($settings[GRAPHINA_PREFIX . $chart_type . '_chart_yaxis_datalabel_offset_x']) : 0,
 					'offsetY' => ! empty($settings[GRAPHINA_PREFIX . $chart_type . '_chart_yaxis_datalabel_offset_y']) ? intval($settings[GRAPHINA_PREFIX . $chart_type . '_chart_yaxis_datalabel_offset_y']) : 0,
+					'rotate'  => ! empty($settings[GRAPHINA_PREFIX . $chart_type . '_chart_yaxis_datalabel_rotate']) ? intval($settings[GRAPHINA_PREFIX . $chart_type . '_chart_yaxis_datalabel_rotate']) : 0,
 					'style'        => array(
 						'colors'     => ! empty($settings[GRAPHINA_PREFIX . $chart_type . '_chart_font_color']) ? strval($settings[GRAPHINA_PREFIX . $chart_type . '_chart_font_color']) : '#000000',
 						'fontSize'   => ! empty($settings[GRAPHINA_PREFIX . $chart_type . '_chart_font_size']['size']) ? $settings[GRAPHINA_PREFIX . $chart_type . '_chart_font_size']['size'] . $settings[GRAPHINA_PREFIX . $chart_type . '_chart_font_size']['unit'] : '12px',
@@ -335,6 +338,115 @@ class TimelineChart extends GraphinaApexChartBase {
 				'enabled' => ! empty($settings[GRAPHINA_PREFIX . $chart_type . '_chart_tooltip']) && $settings[GRAPHINA_PREFIX . $chart_type . '_chart_tooltip'] === 'yes' ? true : false,
 				'theme'   => ! empty($settings[GRAPHINA_PREFIX . $chart_type . '_chart_tooltip_theme']) ? $settings[GRAPHINA_PREFIX . $chart_type . '_chart_tooltip_theme'] : 'light',
 			),
+			'plotOptions' => array(
+				'bar' => [
+					'horizontal' => 'true'
+				]
+			),
+			'responsive' => array(
+				[
+					'breakpoint' => 1024,
+					'options'    => array(
+						'chart'  => array(
+							'height' => ! empty($settings[GRAPHINA_PREFIX . $chart_type . '_chart_height_tablet']) ? $settings[GRAPHINA_PREFIX . $chart_type . '_chart_height_tablet'] : 350,
+						),
+						'dataLabels' => array(
+							'enabled'    => ! empty($settings[GRAPHINA_PREFIX . $chart_type . '_chart_datalabel_show_tablet']) && $settings[GRAPHINA_PREFIX . $chart_type . '_chart_datalabel_show_tablet'] === 'yes' ? true : false,
+							'style'      => array(
+								'fontSize'   => ! empty($settings[GRAPHINA_PREFIX . $chart_type . '_chart_font_size_tablet']['size']) ? $settings[GRAPHINA_PREFIX . $chart_type . '_chart_font_size_tablet']['size'] . $settings[GRAPHINA_PREFIX . $chart_type . '_chart_font_size_tablet']['unit'] : '12px',
+								'fontWeight' => ! empty($settings[GRAPHINA_PREFIX . $chart_type . '_chart_font_weight_tablet']) ? $settings[GRAPHINA_PREFIX . $chart_type . '_chart_font_weight_tablet'] : '',
+								'colors'     => [! empty($settings[GRAPHINA_PREFIX . $chart_type . '_chart_datalabel_background_show_tablet']) && $settings[GRAPHINA_PREFIX . $chart_type . '_chart_datalabel_background_show_tablet'] === 'yes' ? $settings[GRAPHINA_PREFIX . $chart_type .  '_chart_datalabel_font_color_1_tablet'] : $settings[GRAPHINA_PREFIX . $chart_type . '_chart_datalabel_font_color_tablet'] ?? '']
+							),
+							'background' => array(
+								'enabled'      => ! empty($settings[GRAPHINA_PREFIX . $chart_type . '_chart_datalabel_background_show_tablet']) && $settings[GRAPHINA_PREFIX . $chart_type . '_chart_datalabel_background_show_tablet'] === 'yes' ? true : false,
+								'borderRadius' => intval(! empty($settings[GRAPHINA_PREFIX . $chart_type . '_chart_datalabel_border_radius_tablet']) ? esc_js($settings[GRAPHINA_PREFIX . $chart_type . '_chart_datalabel_border_radius_tablet']) : 0),
+								'foreColor'    => ! empty($settings[GRAPHINA_PREFIX . $chart_type . '_chart_datalabel_background_color_tablet']) ? array(esc_js($settings[GRAPHINA_PREFIX . $chart_type . '_chart_datalabel_background_color_tablet'])) : '#ffffff',
+								'borderWidth'  => ! empty($settings[GRAPHINA_PREFIX . $chart_type . '_chart_datalabel_border_width_tablet']) ? intval(esc_js($settings[GRAPHINA_PREFIX . $chart_type . '_chart_datalabel_border_width_tablet'])) : 1,
+								'borderColor'  => ! empty($settings[GRAPHINA_PREFIX . $chart_type . '_chart_datalabel_border_color_tablet']) ? esc_js($settings[GRAPHINA_PREFIX . $chart_type . '_chart_datalabel_border_color_tablet']) : '#ffffff',
+							),
+						),
+						'yaxis'      => array(
+							'labels'      => array(
+								'style'        => array(
+									'colors'     => ! empty($settings[GRAPHINA_PREFIX . $chart_type . '_chart_font_color_tablet']) ? strval($settings[GRAPHINA_PREFIX . $chart_type . '_chart_font_color_tablet']) : '#000000',
+									'fontSize'   => ! empty($settings[GRAPHINA_PREFIX . $chart_type . '_chart_font_size_tablet']['size']) ? $settings[GRAPHINA_PREFIX . $chart_type . '_chart_font_size_tablet']['size'] . $settings[GRAPHINA_PREFIX . $chart_type . '_chart_font_size_tablet']['unit'] : '12px',
+									'fontWeight' => ! empty($settings[GRAPHINA_PREFIX . $chart_type . '_chart_font_weight_tablet']) ? $settings[GRAPHINA_PREFIX . $chart_type . '_chart_font_weight_tablet'] : '',
+								),
+							)
+						),
+						'xaxis'  => array(
+							'labels'        => array(
+								'style'        => array(
+									'colors'     => ! empty($settings[GRAPHINA_PREFIX . $chart_type . '_chart_font_color_tablet']) ? strval($settings[GRAPHINA_PREFIX . $chart_type . '_chart_font_color_tablet']) : '#000000',
+									'fontSize'   => ! empty($settings[GRAPHINA_PREFIX . $chart_type . '_chart_font_size_tablet']['size']) ? $settings[GRAPHINA_PREFIX . $chart_type . '_chart_font_size_tablet']['size'] . $settings[GRAPHINA_PREFIX . $chart_type . '_chart_font_size_tablet']['unit'] : '12px',
+									'fontWeight' => ! empty($settings[GRAPHINA_PREFIX . $chart_type . '_chart_font_weight_tablet']) ? $settings[GRAPHINA_PREFIX . $chart_type . '_chart_font_weight_tablet'] : '',
+								),
+							)
+						),
+						'legend'     => array(
+							'showForSingleSeries' => true,
+							'fontSize'   => ! empty($settings[GRAPHINA_PREFIX . $chart_type . '_chart_font_size_tablet']['size']) ? $settings[GRAPHINA_PREFIX . $chart_type . '_chart_font_size_tablet']['size'] . $settings[GRAPHINA_PREFIX . $chart_type . '_chart_font_size_tablet']['unit'] : '12px',
+							'fontWeight' => ! empty($settings[GRAPHINA_PREFIX . $chart_type . '_chart_font_weight_tablet']) ? $settings[GRAPHINA_PREFIX . $chart_type . '_chart_font_weight_tablet'] : '',
+							'labels'	 => [
+								'colors'	=> ! empty($settings[GRAPHINA_PREFIX . $chart_type . '_chart_font_color_tablet']) ? $settings[GRAPHINA_PREFIX . $chart_type . '_chart_font_color_tablet'] : '',
+							],
+						),
+					)
+				],
+				[
+
+					'breakpoint' => 767,
+					'options'    => array(
+						'chart'  => array(
+							'height' => ! empty($settings[GRAPHINA_PREFIX . $chart_type . '_chart_height_mobile']) ? $settings[GRAPHINA_PREFIX . $chart_type . '_chart_height_mobile'] : 350,
+						),
+						'dataLabels' => array(
+							'enabled'    => ! empty($settings[GRAPHINA_PREFIX . $chart_type . '_chart_datalabel_show_mobile']) && $settings[GRAPHINA_PREFIX . $chart_type . '_chart_datalabel_show_mobile'] === 'yes' ? true : false,
+							'style'      => array(
+								'fontSize'   => ! empty($settings[GRAPHINA_PREFIX . $chart_type . '_chart_font_size_mobile']['size']) ? $settings[GRAPHINA_PREFIX . $chart_type . '_chart_font_size_mobile']['size'] . $settings[GRAPHINA_PREFIX . $chart_type . '_chart_font_size_mobile']['unit'] : '12px',
+								'fontFamily' => ! empty($settings[GRAPHINA_PREFIX . $chart_type . '_chart_font_family_mobile']) ? $settings[GRAPHINA_PREFIX . $chart_type . '_chart_font_family_mobile'] : 'poppins',
+								'fontWeight' => ! empty($settings[GRAPHINA_PREFIX . $chart_type . '_chart_font_weight_mobile']) ? $settings[GRAPHINA_PREFIX . $chart_type . '_chart_font_weight_mobile'] : '',
+								'colors'     => [! empty($settings[GRAPHINA_PREFIX . $chart_type . '_chart_datalabel_background_show_mobile']) && $settings[GRAPHINA_PREFIX . $chart_type . '_chart_datalabel_background_show_mobile'] === 'yes' ? $settings[GRAPHINA_PREFIX . $chart_type .  '_chart_datalabel_font_color_1_mobile'] : $settings[GRAPHINA_PREFIX . $chart_type . '_chart_datalabel_font_color_mobile'] ?? '']
+							),
+							'background' => array(
+								'enabled'      => ! empty($settings[GRAPHINA_PREFIX . $chart_type . '_chart_datalabel_background_show_mobile']) && $settings[GRAPHINA_PREFIX . $chart_type . '_chart_datalabel_background_show_mobile'] === 'yes' ? true : false,
+								'borderRadius' => intval(! empty($settings[GRAPHINA_PREFIX . $chart_type . '_chart_datalabel_border_radius_mobile']) ? esc_js($settings[GRAPHINA_PREFIX . $chart_type . '_chart_datalabel_border_radius_mobile']) : 0),
+								'foreColor'    => ! empty($settings[GRAPHINA_PREFIX . $chart_type . '_chart_datalabel_background_color_mobile']) ? array(esc_js($settings[GRAPHINA_PREFIX . $chart_type . '_chart_datalabel_background_color_mobile'])) : '#ffffff',
+								'borderWidth'  => ! empty($settings[GRAPHINA_PREFIX . $chart_type . '_chart_datalabel_border_width_mobile']) ? intval(esc_js($settings[GRAPHINA_PREFIX . $chart_type . '_chart_datalabel_border_width_mobile'])) : 1,
+								'borderColor'  => ! empty($settings[GRAPHINA_PREFIX . $chart_type . '_chart_datalabel_border_color_mobile']) ? esc_js($settings[GRAPHINA_PREFIX . $chart_type . '_chart_datalabel_border_color_mobile']) : '#ffffff',
+							),
+						),
+						'yaxis'      => array(
+							'labels'      => array(
+								'style'        => array(
+									'colors'     => ! empty($settings[GRAPHINA_PREFIX . $chart_type . '_chart_font_color_mobile']) ? strval($settings[GRAPHINA_PREFIX . $chart_type . '_chart_font_color_mobile']) : '#000000',
+									'fontSize'   => ! empty($settings[GRAPHINA_PREFIX . $chart_type . '_chart_font_size_mobile']['size']) ? $settings[GRAPHINA_PREFIX . $chart_type . '_chart_font_size_mobile']['size'] . $settings[GRAPHINA_PREFIX . $chart_type . '_chart_font_size_mobile']['unit'] : '12px',
+									'fontFamily' => ! empty($settings[GRAPHINA_PREFIX . $chart_type . '_chart_font_family_mobile']) ? $settings[GRAPHINA_PREFIX . $chart_type . '_chart_font_family_mobile'] : 'poppins',
+									'fontWeight' => ! empty($settings[GRAPHINA_PREFIX . $chart_type . '_chart_font_weight_mobile']) ? $settings[GRAPHINA_PREFIX . $chart_type . '_chart_font_weight_mobile'] : '',
+								),
+							)
+						),
+						'xaxis'  => array(
+							'labels'        => array(
+								'style'        => array(
+									'colors'     => ! empty($settings[GRAPHINA_PREFIX . $chart_type . '_chart_font_color_mobile']) ? strval($settings[GRAPHINA_PREFIX . $chart_type . '_chart_font_color_mobile']) : '#000000',
+									'fontSize'   => ! empty($settings[GRAPHINA_PREFIX . $chart_type . '_chart_font_size_mobile']['size']) ? $settings[GRAPHINA_PREFIX . $chart_type . '_chart_font_size_mobile']['size'] . $settings[GRAPHINA_PREFIX . $chart_type . '_chart_font_size_mobile']['unit'] : '12px',
+									'fontFamily' => ! empty($settings[GRAPHINA_PREFIX . $chart_type . '_chart_font_family_mobile']) ? $settings[GRAPHINA_PREFIX . $chart_type . '_chart_font_family_mobile'] : 'poppins',
+									'fontWeight' => ! empty($settings[GRAPHINA_PREFIX . $chart_type . '_chart_font_weight_mobile']) ? $settings[GRAPHINA_PREFIX . $chart_type . '_chart_font_weight_mobile'] : '',
+								),
+							)
+						),
+						'legend'     => array(
+							'showForSingleSeries' => true,
+							'fontSize'   => ! empty($settings[GRAPHINA_PREFIX . $chart_type . '_chart_font_size_mobile']['size']) ? $settings[GRAPHINA_PREFIX . $chart_type . '_chart_font_size_mobile']['size'] . $settings[GRAPHINA_PREFIX . $chart_type . '_chart_font_size_mobile']['unit'] : '12px',
+							'fontWeight' => ! empty($settings[GRAPHINA_PREFIX . $chart_type . '_chart_font_weight_mobile']) ? $settings[GRAPHINA_PREFIX . $chart_type . '_chart_font_weight_mobile'] : '',
+							'labels'	 => [
+								'colors'	=> ! empty($settings[GRAPHINA_PREFIX . $chart_type . '_chart_font_color_mobile']) ? $settings[GRAPHINA_PREFIX . $chart_type . '_chart_font_color_mobile'] : '',
+							],
+						),
+					),
+				]
+			),
 		);
 
 		$chart_options['grid'] = array(
@@ -371,7 +483,6 @@ class TimelineChart extends GraphinaApexChartBase {
 			),
 		);
 		$chart_options['legend']['position'] = ! empty($settings[GRAPHINA_PREFIX . $chart_type . '_chart_legend_position']) ? $settings[GRAPHINA_PREFIX . $chart_type . '_chart_legend_position'] : 'bottom';
-		$chart_options['yaxis']['opposite']  = $settings[GRAPHINA_PREFIX . $chart_type . '_chart_yaxis_datalabel_position'];
 		$chart_options['xaxis']['categories'] = $categories;
 
 		if (! empty($settings[GRAPHINA_PREFIX . $chart_type . '_chart_area_curve'])) {

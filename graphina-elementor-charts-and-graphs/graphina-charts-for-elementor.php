@@ -5,11 +5,11 @@
  * Description:         Your ultimate charts and graphs solution to enhance visual effects. Create versatile, advanced and interactive charts on your website.
  * Author:              Iqonic Design
  * Author URI:          https://iqonic.design/
- * Version:             3.1.4
- * Elementor tested up to: 3.31.2
+ * Version:             3.1.5
+ * Elementor tested up to: 3.31.3
  * Elementor Pro tested up to: 3.20.2
  * Requires PHP:        8.0
- * Requires Plugins     elementor
+ * Requires Plugins:     elementor
  * License URI:         http://www.gnu.org/licenses/gpl-2.0.txt
  * Text Domain:         graphina-charts-for-elementor
  * Domain Path:         /languages
@@ -31,7 +31,7 @@ endif;
 
 // Plugin Version.
 if ( ! defined( 'GRAPHINA_VERSION' ) ) :
-	define( 'GRAPHINA_VERSION', '3.1.4' );
+	define( 'GRAPHINA_VERSION', '3.1.5' );
 endif;
 
 // Plugin Prefix.
@@ -56,12 +56,12 @@ endif;
 
 // Plugin Version.
 if ( ! defined( 'GRAPHINA_CHARTS_FOR_ELEMENTOR_VERSION' ) ) :
-	define( 'GRAPHINA_CHARTS_FOR_ELEMENTOR_VERSION', '3.1.4' );
+	define( 'GRAPHINA_CHARTS_FOR_ELEMENTOR_VERSION', '3.1.5' );
 endif;
 
 // Pro Version.
 if ( ! defined( 'GRAPHINA_CHARTS_DEPENDENT_PRO_VERSION' ) ) :
-	define( 'GRAPHINA_CHARTS_DEPENDENT_PRO_VERSION', '3.1.0' );
+	define( 'GRAPHINA_CHARTS_DEPENDENT_PRO_VERSION', '3.1.1' );
 endif;
 
 
@@ -128,7 +128,6 @@ if ( ! function_exists( 'graphina_load_plugin' ) ) {
                 // Version is incompatible, deactivate Graphina Pro
                 deactivate_plugins( 'graphina-pro/graphina-charts-for-elementor.php' );
 				add_action( 'admin_notices', 'graphina_fail_load_out_of_date_pro' );
-				return;
 			endif;
 		endif;
 

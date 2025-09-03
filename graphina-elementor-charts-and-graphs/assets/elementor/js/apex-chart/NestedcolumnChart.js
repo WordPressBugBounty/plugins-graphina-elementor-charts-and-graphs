@@ -17,7 +17,7 @@ export default class NestedcolumnChart extends GraphinaApexChartBase {
     }
    
 
-    getChartOptions(finalChartOptions, chartType, extraData, responsive_options, elementId) {
+    getChartOptions(finalChartOptions, chartType, extraData, elementId) {
         if (chartType === 'nested_column') {
             finalChartOptions.plotOptions = {
                 bar: {
@@ -54,8 +54,8 @@ export default class NestedcolumnChart extends GraphinaApexChartBase {
                         }
                     }
                 }
-            },
-            finalChartOptions.responsive = responsive_options
+            }
+           
         }
         this.initSChart(elementId,finalChartOptions)
         return finalChartOptions;

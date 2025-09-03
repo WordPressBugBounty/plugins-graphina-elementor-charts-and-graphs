@@ -73,13 +73,10 @@ export default class PieChart extends GraphinaApexChartBase {
         if(chartOptions.dataLabels){
             chartOptions.dataLabels.formatter = (val,opts) => {
                 if(forminatorPercentage){
-                    let totals = opts.w.globals.seriesTotals.reduce((a, b) => {
-                        return  a + b;
-                    }, 0)
                     val = new Intl.NumberFormat(window.gcfe_public_localize.locale_with_hyphen, {
                         minimumFractionDigits: extraData.chart_datalabel_decimals_in_float,
                         maximumFractionDigits: extraData.chart_datalabel_decimals_in_float,
-                    }).format(val/totals * 100)
+                    }).format(val)
                 }
                 if(extraData.chart_datalabels_format_showlabel){
                 let label = opts.w.globals.labels[opts.seriesIndex];
@@ -138,7 +135,7 @@ export default class PieChart extends GraphinaApexChartBase {
 }
 
     
-    getChartOptions(finalChartOptions, chartType, extraData, responsive_options, elementId) {
+    getChartOptions(finalChartOptions, chartType, extraData, elementId) {
         if (chartType === 'pie') {
             finalChartOptions.labels = finalChartOptions.xaxis.categories
              // Add loaded event to remove fixed height

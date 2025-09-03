@@ -3,14 +3,16 @@ Contributors: iqonicdesign
 Tags: data visualization wordpress plugin, wordpress charts, wordpress charts and graphs, wordpress charts and graphs plugin, wordpress chart plugin
 Requires PHP: 8.0.0
 Requires at least: 5.9
-Tested up to: 6.8.2
-Stable tag: 3.1.4
+Tested up to: 6.8
+Stable tag: 3.1.5
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
 Most Powerful Data visualization plugin for WordPress Elementor. The easiest way to build gorgeous Charts & Graphs on your Elementor website.
 
 == Description ==
+
+☀️ [Graphina DIVI Flat 20% OFF – Summer Sale is Here!](https://iqonic.design/product/wordpress-plugins/graphina-divi-dynamic-charts-and-graphs-wordpress-plugin/) 🌴✨
 
 # Its like WordPress Elementor Charts on STEROIDS* 💊
 Creating WordPress Charts and Graphs is hard and boring. We make it a whole lot EASIER, QUICKER, more POWERFUL, and more FUN.
@@ -226,6 +228,10 @@ Yes, we'd love to hear from you at <a href="mailto:hello@iqonic.design">hello@iq
 
 
 == Changelog ==
+
+= 3.1.5 - 03/09/2025 =  
+- [Fixed] Various minor bugs.  
+- [Fixed] Responsive chart options. 
 
 = 3.1.4 - 12/08/2025 =  
 - [Fixed] Security fixes.  

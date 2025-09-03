@@ -91,11 +91,7 @@ if ( ! class_exists( 'GraphinaFrontend' ) ) {
 				)
 			);
 
-			// Prepare localized data for the public script.
-			wp_localize_script(
-				'graphina-public',
-				'gcfe_public_localize',
-				array(
+			$localize_data = array(
 					'ajaxurl'               		=> admin_url( 'admin-ajax.php' ),
 					'nonce'                 		=> wp_create_nonce( 'graphina_get_dynamic_data' ),
 					'tree_nonce'					=> wp_create_nonce('graphina_get_dynamic_tree_data'),
@@ -107,8 +103,16 @@ if ( ! class_exists( 'GraphinaFrontend' ) ) {
 					'no_data_available'     		=> esc_html__( 'No Data Available', 'graphina-charts-for-elementor' ),
 					'provinceSupportedCountries' 	=> array('US', 'CA', 'MX', 'BR', 'AR', 'DE', 'IT', 'ES', 'GB', 'AU', 'IN', 'CN', 'JP', 'RU', 'FR'),
 					'loading_btn'          	 		=> esc_html__( 'Loading...', 'graphina-charts-for-elementor' ),
+			);
 
-				)
+			// Apply the hook to allow modifications
+			$localize_data = apply_filters( 'gcfe_localize_graphina_settings', $localize_data );
+
+			// Prepare localized data for the public script.
+			wp_localize_script(
+				'graphina-public',
+				'gcfe_public_localize',
+				$localize_data
 			);
 		}
 

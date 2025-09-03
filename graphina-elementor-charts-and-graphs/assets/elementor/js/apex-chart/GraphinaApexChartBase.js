@@ -5,6 +5,7 @@ export default class GraphinaApexChartBase {
         this.chartHandlers = {};
         this.init();
         this.mainChart = {}
+        this.chartIntervals = {};
     }
 
     // Initialize the class by setting up handlers and events
@@ -192,7 +193,7 @@ export default class GraphinaApexChartBase {
         const formatAxisLabels = (val, prefix, postfix, decimal) => {
             if (extraData.chart_yaxis_label_pointer) {
                 return prefix + this.formatNumber(val, decimal) + postfix;
-            } else if (typeof decimal === 'number' && decimal > 0) {
+            } else if (typeof decimal === 'number' && decimal >= 0) {
                 return prefix + new Intl.NumberFormat(window.gcfe_public_localize.locale_with_hyphen, {
                     minimumFractionDigits: decimal,
                     maximumFractionDigits: decimal,
@@ -357,7 +358,7 @@ export default class GraphinaApexChartBase {
         const chart = new ApexCharts(chartElement[0], chartOptions);
         jQuery(chartElement).show()
         chart.render()
-            .then(() => console.log(`Chart updated to ${newChartType}.`+JSON.stringify(chartOptions)))
+            .then(() => console.log(`Chart updated to ${newChartType}.`))
             .catch((error) => console.error('Error updating chart:', error));
         jQuery(document).find(`.graphina-${elementId}-loader`).hide()
 
@@ -478,7 +479,7 @@ export default class GraphinaApexChartBase {
         });
     }
     
-    getChartOptions(finalChartOptions,chartType,extraData,responsive_options,elementId){
+    getChartOptions(finalChartOptions,chartType,extraData,elementId){
         return finalChartOptions;
     }
 
@@ -525,7 +526,6 @@ export default class GraphinaApexChartBase {
             this.applyXAxisFormatter(chartOptions, extraData);
             this.applyDataLabelFormatter(chartOptions, extraData, chart_type);
             this.applyTooltipFormatter(chartOptions, extraData, chart_type);
-            this.applyTooltipFormatter(chartOptions, extraData);
 
 
             if (!extraData.chart_opposite_yaxis_title_enable) {
@@ -536,7 +536,7 @@ export default class GraphinaApexChartBase {
             }
 
             // Finalize and render the chart
-            const finalChartOptions = this.getChartOptions(chartOptions, chartType,extraData,responsive_options,elementId);
+            const finalChartOptions = this.getChartOptions(chartOptions, chartType,extraData,elementId);
             if(this.mainChart[elementId]){
                 this.mainChart[elementId].destroy()
             }
@@ -616,19 +616,40 @@ export default class GraphinaApexChartBase {
 
             this.mainChart[elementId] = chart
             this.afterRenderChart(chart,elementId,extraData)
+            // Clear previous interval
+            if (this.chartIntervals[elementId]) {
+                clearInterval(this.chartIntervals[elementId]);
+            }
+
             if (extraData.can_chart_reload_ajax && !jQuery('body').hasClass('elementor-editor-active')) {
-                // Set up periodic data fetching using intervals
-                setInterval(async () => {
+                this.chartIntervals[elementId] = setInterval(async () => {
                     try {
                         const dynamicDataLoad = await this.getDynamicData(settings, extraData, chartType, elementId);
+                        const currentChart = this.mainChart[elementId];
+
+                        if (!currentChart || currentChart.destroyed) {
+                            clearInterval(this.chartIntervals[elementId]);
+                            delete this.chartIntervals[elementId];
+                            return;
+                        }
+
                         if (dynamicDataLoad?.extra) {
-                            chart.updateSeries(dynamicDataLoad.extra.series);
-                            chart.updateOptions(dynamicDataLoad.chart_option);
-                        } else {
-                            console.warn(`No data returned for ${chartType} chart with ID ${elementId}.`);
+                            const updateOptions = {
+                                series: dynamicDataLoad.extra.series
+                            };
+
+                            if (['polar', 'radialBar', 'radial', 'pie', 'donut'].includes(chart_type)) {
+                                updateOptions.labels = dynamicDataLoad.extra.category || [];
+                            } else {
+                                updateOptions.xaxis = {
+                                    categories: dynamicDataLoad.extra.category || []
+                                };
+                            }
+
+                            currentChart.updateOptions(updateOptions, true);
                         }
                     } catch (error) {
-                        console.warn(`Error fetching dynamic data for ${chartType} chart with ID ${elementId}:`);
+                        console.warn(`Error in auto-refresh for chart ${elementId}:`, error);
                     }
                 }, extraData.interval_data_refresh * 1000);
             }

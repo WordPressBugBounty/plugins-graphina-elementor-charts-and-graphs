@@ -67,9 +67,8 @@ export default class HeatmapChart extends GraphinaApexChartBase {
     }
 
 
-    getChartOptions(finalChartOptions, chartType,extraData,responsive_options,elementId) {
+    getChartOptions(finalChartOptions, chartType,extraData,elementId) {
         if (chartType === 'heatmap') {
-            finalChartOptions.responsive = responsive_options
             // Add loaded event to remove fixed height
             finalChartOptions.chart.events = {
                 mounted: (chartContext, config) => {

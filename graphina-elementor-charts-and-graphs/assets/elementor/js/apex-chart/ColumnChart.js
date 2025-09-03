@@ -77,8 +77,7 @@ export default class ColumnChart extends GraphinaApexChartBase {
     }
 
 
-    getChartOptions(finalChartOptions, chartType,extraData,responsive_options,elementId) {
-        finalChartOptions.responsive = responsive_options
+    getChartOptions(finalChartOptions, chartType,extraData,elementId) {
          // Add loaded event to remove fixed height
          finalChartOptions.chart.events = {
             mounted: (chartContext, config) => {

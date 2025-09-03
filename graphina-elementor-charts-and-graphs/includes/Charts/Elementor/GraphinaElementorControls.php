@@ -7431,7 +7431,7 @@ class GraphinaElementorControls {
 					);
 				}
 
-				$widget->add_control(
+				$widget->add_responsive_control(
 					GRAPHINA_PREFIX . $chart_type . '_chart_datalabel_font_color',
 					array(
 						'label'      => esc_html__( 'Label Font Color', 'graphina-charts-for-elementor' ),
@@ -9601,6 +9601,14 @@ class GraphinaElementorControls {
 							'unit' => 'px',
 							'size' => 12,
 						),
+						'tablet_default' => array(
+							'unit' => 'px',
+							'size' => 12,
+						),
+						'mobile_default' => array(
+							'unit' => 'px',
+							'size' => 12,
+						),
 					)
 				);
 			}
@@ -10428,7 +10436,7 @@ class GraphinaElementorControls {
 			)
 		);
 
-		$widget->add_responsive_control(
+		$widget->add_control(
 			GRAPHINA_PREFIX . $chart_type . '_chart_legend_show',
 			array(
 				'label'     => esc_html__( 'Legend', 'graphina-charts-for-elementor' ),
@@ -10933,7 +10941,7 @@ class GraphinaElementorControls {
 			}
 		}
 
-		$widget->add_responsive_control(
+		$widget->add_control(
 			GRAPHINA_PREFIX . $chart_type . '_chart_xaxis_datalabel_show',
 			array(
 				'label'     => esc_html__( 'Labels', 'graphina-charts-for-elementor' ),
@@ -12228,7 +12236,7 @@ class GraphinaElementorControls {
 			}
 		}
 
-		$widget->add_responsive_control(
+		$widget->add_control(
 			GRAPHINA_PREFIX . $chart_type . '_chart_yaxis_datalabel_show',
 			array(
 				'label'     => esc_html__( 'Labels', 'graphina-charts-for-elementor' ),
@@ -12275,7 +12283,19 @@ class GraphinaElementorControls {
 				),
 			)
 		);
-
+		$widget->add_control(
+			GRAPHINA_PREFIX . $chart_type . '_chart_yaxis_datalabel_rotate',
+			array(
+				'label'     => esc_html__( 'Rotate', 'graphina-charts-for-elementor' ),
+				'type'      => Controls_Manager::NUMBER,
+				'default'   => 0,
+				'max'       => 360,
+				'min'       => -360,
+				'condition' => array(
+					GRAPHINA_PREFIX . $chart_type . '_chart_yaxis_datalabel_show' => 'yes',
+				),
+			)
+		);
 		if ( in_array( $chart_type,[ 'mixed', 'heatmap' ] ) ) {
 			$widget->add_control(
 				GRAPHINA_PREFIX . $chart_type . '_chart_yaxis_datalabel_rotate',

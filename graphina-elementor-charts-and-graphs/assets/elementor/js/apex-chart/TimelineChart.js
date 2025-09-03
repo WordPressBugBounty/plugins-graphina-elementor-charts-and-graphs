@@ -87,7 +87,8 @@ export default class TimelineChart extends GraphinaApexChartBase {
     }
 
 
-    getChartOptions(finalChartOptions, chartType, extraData, responsive_options,elementId) {
+    getChartOptions(finalChartOptions, chartType, extraData,elementId) {
+        finalChartOptions.yaxis = JSON.stringify(finalChartOptions.yaxis, null, 2)
         if (chartType === 'timeline') {
             finalChartOptions.chart = finalChartOptions.chart || {};
             finalChartOptions.xaxis = finalChartOptions.xaxis || {};
@@ -97,8 +98,6 @@ export default class TimelineChart extends GraphinaApexChartBase {
                     rangeBarGroupRows: true,
                 },
             };
-            finalChartOptions.xaxis.type = 'datetime';
-            finalChartOptions.responsive = responsive_options;
             finalChartOptions.chart.events = {
                 mounted: (chartContext, config) => {
                     const chartElement = document.querySelector(`.graphina-elementor-chart[data-element_id="${elementId}"]`);

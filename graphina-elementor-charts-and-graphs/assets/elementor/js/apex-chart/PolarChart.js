@@ -81,7 +81,7 @@ export default class PolarChart extends GraphinaApexChartBase {
         }
     
     }
-    getChartOptions(finalChartOptions, chartType, extraData, responsive_options, elementId) {
+    getChartOptions(finalChartOptions, chartType, extraData, elementId) {
         if (chartType === 'polar') {
             finalChartOptions.labels = finalChartOptions.xaxis.categories
              // Add loaded event to remove fixed height

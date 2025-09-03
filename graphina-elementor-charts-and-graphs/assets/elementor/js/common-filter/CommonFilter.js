@@ -77,7 +77,6 @@ class FilterBase {
                 } else {
                     ApexCharts.exec(elementId, 'destroy');
                 }
-                console.log(elementId);
                 
                 jQuery(document).find(`.graphina-${elementId}-loader`).show();
                 this.updateChartWithCommonFilter(chartElement, chartType, filterValue);

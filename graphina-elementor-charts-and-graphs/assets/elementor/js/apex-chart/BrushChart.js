@@ -54,7 +54,7 @@ export default class BrushChart extends GraphinaApexChartBase {
     }
 
 
-    getChartOptions(finalChartOptions, chartType, extraData, responsive_options, elementId) {
+    getChartOptions(finalChartOptions, chartType, extraData, elementId) {
         if (chartType === 'brush') {
         }
         return finalChartOptions;

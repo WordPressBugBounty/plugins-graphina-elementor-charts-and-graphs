@@ -56,7 +56,7 @@ export default class CounterChart extends GraphinaApexChartBase {
             this.applyXAxisFormatter(chartOptions, extraData);
             this.applyDataLabelFormatter(chartOptions, extraData);
 
-            const finalChartOptions = this.getChartOptions(chartOptions, chartType, extraData, responsive_options, elementId);
+            const finalChartOptions = this.getChartOptions(chartOptions, chartType, extraData, elementId);
 
             // Only create and render chart if show_counter_chart is true
             if (extraData?.show_counter_chart) {
@@ -169,7 +169,7 @@ export default class CounterChart extends GraphinaApexChartBase {
         dynamicData.extra.category = ['element1']
     }
     // Get chart options, including Counter chart configuration
-    getChartOptions(finalChartOptions, chartType, extraData, responsive_options, elementId) {
+    getChartOptions(finalChartOptions, chartType, extraData, elementId) {
         if (chartType === 'counter') {
             
         }
@@ -207,7 +207,7 @@ export default class CounterChart extends GraphinaApexChartBase {
             this.applyXAxisFormatter(chartOptions, extraData);
             this.applyDataLabelFormatter(chartOptions, extraData);
 
-            const finalChartOptions = this.getChartOptions(chartOptions, chartType, extraData, responsive_options, elementId);
+            const finalChartOptions = this.getChartOptions(chartOptions, chartType, extraData, elementId);
 
             // Only create and render chart if show_counter_chart is true
             const chart = new ApexCharts(jQuery(element)[0], finalChartOptions);

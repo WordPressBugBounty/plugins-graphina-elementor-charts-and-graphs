@@ -41,10 +41,9 @@ export default class CandleChart extends GraphinaApexChartBase {
             return val
         }
     }
-    getChartOptions(finalChartOptions, chartType,extraData,responsive_options,elementId) {
+    getChartOptions(finalChartOptions, chartType,extraData,elementId) {
         if (chartType === 'candle') {
             finalChartOptions.xaxis.type = 'datetime';
-            finalChartOptions.responsive = responsive_options
              // Add loaded event to remove fixed height
              finalChartOptions.chart.events = {
                 mounted: (chartContext, config) => {

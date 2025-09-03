@@ -149,7 +149,9 @@ class PolarChart extends GraphinaApexChartBase {
 
 		$export_file_name = $settings[GRAPHINA_PREFIX . $chart_type . '_export_filename'] ?? '';
 		$legend_show      = ! empty($settings[GRAPHINA_PREFIX . $chart_type . '_chart_legend_show']) && $settings[GRAPHINA_PREFIX . $chart_type . '_chart_legend_show'] === 'yes' ? true : false;
-
+		$legend_show_tablet = !empty($settings[GRAPHINA_PREFIX . $chart_type . '_chart_legend_show_tablet']) && $settings[GRAPHINA_PREFIX . $chart_type . '_chart_legend_show_tablet'] === 'yes' ? true : false;
+		$legend_show_mobile = !empty($settings[GRAPHINA_PREFIX . $chart_type . '_chart_legend_show_mobile']) && $settings[GRAPHINA_PREFIX . $chart_type . '_chart_legend_show_mobile'] === 'yes' ? true : false;
+		
 		$locales = array(
 			generate_chart_locales(get_locale()),
 		);
@@ -321,7 +323,6 @@ class PolarChart extends GraphinaApexChartBase {
 						),
 						'yaxis'      => array(
 							'labels'      => array(
-								'show'    => ! empty($settings[GRAPHINA_PREFIX . $chart_type . '_chart_yaxis_datalabel_show_tablet']) && $settings[GRAPHINA_PREFIX . $chart_type . '_chart_yaxis_datalabel_show_tablet'] === 'yes' ? true : false,
 								'style'        => array(
 									'colors'     => ! empty($settings[GRAPHINA_PREFIX . $chart_type . '_chart_font_color_tablet']) ? strval($settings[GRAPHINA_PREFIX . $chart_type . '_chart_font_color_tablet']) : '#000000',
 									'fontSize'   => ! empty($settings[GRAPHINA_PREFIX . $chart_type . '_chart_font_size_tablet']['size']) ? $settings[GRAPHINA_PREFIX . $chart_type . '_chart_font_size_tablet']['size'] . $settings[GRAPHINA_PREFIX . $chart_type . '_chart_font_size_tablet']['unit'] : '12px',
@@ -331,7 +332,6 @@ class PolarChart extends GraphinaApexChartBase {
 						),
 						'legend'     => array(
 							'showForSingleSeries' => true,
-							'show'		 => $legend_show,
 							'fontSize'   => ! empty( $settings[ GRAPHINA_PREFIX . $chart_type . '_chart_font_size_tablet' ]['size'] ) ? $settings[ GRAPHINA_PREFIX . $chart_type . '_chart_font_size_tablet' ]['size'] . $settings[ GRAPHINA_PREFIX . $chart_type . '_chart_font_size_tablet' ]['unit'] : '12px',
 							'fontWeight' => ! empty( $settings[ GRAPHINA_PREFIX . $chart_type . '_chart_font_weight_tablet' ] ) ? $settings[ GRAPHINA_PREFIX . $chart_type . '_chart_font_weight_tablet' ] : '',
 							'labels'	 => [
@@ -365,7 +365,6 @@ class PolarChart extends GraphinaApexChartBase {
 						),
 						'yaxis'      => array(
 							'labels'      => array(
-								'show'    => ! empty($settings[GRAPHINA_PREFIX . $chart_type . '_chart_yaxis_datalabel_show_mobile']) && $settings[GRAPHINA_PREFIX . $chart_type . '_chart_yaxis_datalabel_show_mobile'] === 'yes' ? true : false,
 								'style'        => array(
 									'colors'     => ! empty($settings[GRAPHINA_PREFIX . $chart_type . '_chart_font_color_mobile']) ? strval($settings[GRAPHINA_PREFIX . $chart_type . '_chart_font_color_mobile']) : '#000000',
 									'fontSize'   => ! empty($settings[GRAPHINA_PREFIX . $chart_type . '_chart_font_size_mobile']['size']) ? $settings[GRAPHINA_PREFIX . $chart_type . '_chart_font_size_mobile']['size'] . $settings[GRAPHINA_PREFIX . $chart_type . '_chart_font_size_mobile']['unit'] : '12px',
@@ -376,7 +375,6 @@ class PolarChart extends GraphinaApexChartBase {
 						),
 						'legend'     => array(
 							'showForSingleSeries' => true,
-							'show'		 => $legend_show,
 							'fontSize'   => ! empty( $settings[ GRAPHINA_PREFIX . $chart_type . '_chart_font_size_mobile' ]['size'] ) ? $settings[ GRAPHINA_PREFIX . $chart_type . '_chart_font_size_mobile' ]['size'] . $settings[ GRAPHINA_PREFIX . $chart_type . '_chart_font_size_mobile' ]['unit'] : '12px',
 							'fontWeight' => ! empty( $settings[ GRAPHINA_PREFIX . $chart_type . '_chart_font_weight_mobile' ] ) ? $settings[ GRAPHINA_PREFIX . $chart_type . '_chart_font_weight_mobile' ] : '',
 							'labels'	 => [
