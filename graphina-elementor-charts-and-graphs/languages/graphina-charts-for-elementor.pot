@@ -2,14 +2,14 @@
 # This file is distributed under the same license as the Graphina - Elementor Charts and Graphs plugin.
 msgid ""
 msgstr ""
-"Project-Id-Version: Graphina - Elementor Charts and Graphs 3.1.5\n"
+"Project-Id-Version: Graphina - Elementor Charts and Graphs 3.1.6\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/graphina-elementor-charts-and-graphs\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2025-09-03T04:47:37+00:00\n"
+"POT-Creation-Date: 2025-09-05T06:43:20+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: WP-CLI 2.10.0\n"
 "X-Domain: graphina-charts-for-elementor\n"
@@ -802,13 +802,13 @@ msgstr ""
 #: includes/Charts/Elementor/Elements/ApexCharts/AreaChart.php:214
 #: includes/Charts/Elementor/Elements/ApexCharts/BubbleChart.php:179
 #: includes/Charts/Elementor/Elements/ApexCharts/CandleChart.php:176
-#: includes/Charts/Elementor/Elements/ApexCharts/ColumnChart.php:212
+#: includes/Charts/Elementor/Elements/ApexCharts/ColumnChart.php:213
 #: includes/Charts/Elementor/Elements/ApexCharts/DistributeColumnChart.php:210
 #: includes/Charts/Elementor/Elements/ApexCharts/DonutChart.php:163
 #: includes/Charts/Elementor/Elements/ApexCharts/HeatmapChart.php:214
 #: includes/Charts/Elementor/Elements/ApexCharts/LineChart.php:214
-#: includes/Charts/Elementor/Elements/ApexCharts/PieChart.php:161
-#: includes/Charts/Elementor/Elements/ApexCharts/PolarChart.php:164
+#: includes/Charts/Elementor/Elements/ApexCharts/PieChart.php:158
+#: includes/Charts/Elementor/Elements/ApexCharts/PolarChart.php:161
 #: includes/Charts/Elementor/Elements/ApexCharts/RadarChart.php:215
 #: includes/Charts/Elementor/Elements/ApexCharts/RadialChart.php:167
 #: includes/Charts/Elementor/Elements/ApexCharts/ScatterChart.php:208
@@ -827,8 +827,8 @@ msgstr ""
 msgid "DistributeColumn Chart"
 msgstr ""
 
-#: includes/Charts/Elementor/Elements/ApexCharts/DonutChart.php:395
-#: includes/Charts/Elementor/Elements/ApexCharts/PieChart.php:402
+#: includes/Charts/Elementor/Elements/ApexCharts/DonutChart.php:398
+#: includes/Charts/Elementor/Elements/ApexCharts/PieChart.php:401
 #: includes/Charts/Elementor/GraphinaElementorControls.php:7210
 msgid "Total"
 msgstr ""

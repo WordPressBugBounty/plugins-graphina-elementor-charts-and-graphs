@@ -88,7 +88,8 @@ export default class TimelineChart extends GraphinaApexChartBase {
 
 
     getChartOptions(finalChartOptions, chartType, extraData,elementId) {
-        finalChartOptions.yaxis = JSON.stringify(finalChartOptions.yaxis, null, 2)
+        finalChartOptions.yaxis.labels.formatter = function (vl){return vl}
+        
         if (chartType === 'timeline') {
             finalChartOptions.chart = finalChartOptions.chart || {};
             finalChartOptions.xaxis = finalChartOptions.xaxis || {};
