@@ -196,7 +196,7 @@ if ( ! class_exists( 'GraphinaAdmin' ) ) :
 		 * Enqueue assets using the Kucrut helper library.
 		 */
 		public function enqueue_kucrut() {
-			\Kucrut\Vite\enqueue_asset(
+			\Kucrut\Vite\graphina_enqueue_asset(
 				GRAPHINA_PATH . 'dist',
 				'assets/admin/js/main.js',
 				array(

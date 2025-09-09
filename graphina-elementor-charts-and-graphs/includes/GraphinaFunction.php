@@ -2878,7 +2878,7 @@ function graphina_get_fill_patterns( bool $first = false ): array|string {
  * @return bool True if Graphina Pro plugin is active, false otherwise.
  */
 function graphina_pro_active(): bool {
-	return graphina_get_plugin_value( 'graphina-charts-for-elementor', 'active' );
+	return graphina_get_plugin_value( 'graphina-pro-charts-for-elementor', 'active' );
 }
 
 

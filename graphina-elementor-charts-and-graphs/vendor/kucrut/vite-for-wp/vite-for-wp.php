@@ -26,7 +26,7 @@ const VITE_CLIENT_SCRIPT_HANDLE = 'vite-client';
  *
  * @return object Object containing manifest type and data.
  */
-function get_manifest( string $manifest_dir ): object {
+function graphina_get_manifest( string $manifest_dir ): object {
 	$dev_manifest = 'vite-dev-server';
 	// Avoid repeatedly opening & decoding the same file.
 	static $manifests = [];
@@ -89,8 +89,8 @@ function get_manifest( string $manifest_dir ): object {
  *
  * @return void
  */
-function filter_script_tag( string $handle ): void {
-	add_filter( 'script_loader_tag', fn ( ...$args ) => set_script_type_attribute( $handle, ...$args ), 10, 3 );
+function graphina_filter_script_tag( string $handle ): void {
+	add_filter( 'script_loader_tag', fn ( ...$args ) => graphina_set_script_type_attribute( $handle, ...$args ), 10, 3 );
 }
 
 /**
@@ -105,7 +105,7 @@ function filter_script_tag( string $handle ): void {
  *
  * @return string Script tag with attribute `type="module"` added.
  */
-function set_script_type_attribute( string $target_handle, string $tag, string $handle ): string {
+function graphina_set_script_type_attribute( string $target_handle, string $tag, string $handle ): string {
 	if ( $target_handle !== $handle ) {
 		return $tag;
 	}
@@ -129,7 +129,7 @@ function set_script_type_attribute( string $target_handle, string $tag, string $
  *
  * @return string
  */
-function generate_development_asset_src( object $manifest, string $entry ): string {
+function graphina_generate_development_asset_src( object $manifest, string $entry ): string {
 	return sprintf(
 		'%s/%s',
 		untrailingslashit( $manifest->data->origin ),
@@ -146,16 +146,16 @@ function generate_development_asset_src( object $manifest, string $entry ): stri
  *
  * @return void
  */
-function register_vite_client_script( object $manifest ): void {
+function graphina_register_vite_client_script( object $manifest ): void {
 	if ( wp_script_is( VITE_CLIENT_SCRIPT_HANDLE ) ) {
 		return;
 	}
 
-	$src = generate_development_asset_src( $manifest, '@vite/client' );
+	$src = graphina_generate_development_asset_src( $manifest, '@vite/client' );
 
 	// phpcs:ignore WordPress.WP.EnqueuedResourceParameters.MissingVersion
 	wp_register_script( VITE_CLIENT_SCRIPT_HANDLE, $src, [], null, false );
-	filter_script_tag( VITE_CLIENT_SCRIPT_HANDLE );
+	graphina_filter_script_tag( VITE_CLIENT_SCRIPT_HANDLE );
 }
 
 /**
@@ -166,7 +166,7 @@ function register_vite_client_script( object $manifest ): void {
  * @param object $manifest Asset manifest.
  * @return void
  */
-function inject_react_refresh_preamble_script( object $manifest ): void {
+function graphina_inject_react_refresh_preamble_script( object $manifest ): void {
 	static $is_react_refresh_preamble_printed = false;
 
 	if ( $is_react_refresh_preamble_printed ) {
@@ -177,7 +177,7 @@ function inject_react_refresh_preamble_script( object $manifest ): void {
 		return;
 	}
 
-	$react_refresh_script_src = generate_development_asset_src( $manifest, '@react-refresh' );
+	$react_refresh_script_src = graphina_generate_development_asset_src( $manifest, '@react-refresh' );
 	$script_position = 'after';
 	$script = <<< EOS
 import RefreshRuntime from "{$react_refresh_script_src}";
@@ -213,18 +213,18 @@ EOS;
  *
  * @return array|null Array containing registered scripts or NULL if the none was registered.
  */
-function load_development_asset( object $manifest, string $entry, array $options ): ?array {
-	register_vite_client_script( $manifest );
-	inject_react_refresh_preamble_script( $manifest );
+function graphina_load_development_asset( object $manifest, string $entry, array $options ): ?array {
+	graphina_register_vite_client_script( $manifest );
+	graphina_inject_react_refresh_preamble_script( $manifest );
 
 	$dependencies = array_merge(
 		[ VITE_CLIENT_SCRIPT_HANDLE ],
 		$options['dependencies']
 	);
 
-	$src = generate_development_asset_src( $manifest, $entry );
+	$src = graphina_generate_development_asset_src( $manifest, $entry );
 
-	filter_script_tag( $options['handle'] );
+	graphina_filter_script_tag( $options['handle'] );
 
 	// This is a development script, browsers shouldn't cache it.
 	// phpcs:ignore WordPress.WP.EnqueuedResourceParameters.MissingVersion
@@ -261,8 +261,8 @@ function load_development_asset( object $manifest, string $entry, array $options
  *
  * @return array|null Array containing registered scripts & styles or NULL if there was an error.
  */
-function load_production_asset( object $manifest, string $entry, array $options ): ?array {
-	$url = prepare_asset_url( $manifest->dir );
+function graphina_load_production_asset( object $manifest, string $entry, array $options ): ?array {
+	$url = graphina_prepare_asset_url( $manifest->dir );
 
 	if ( ! isset( $manifest->data->{$entry} ) ) {
 		if ( defined( 'WP_DEBUG' ) && WP_DEBUG ) {
@@ -280,7 +280,7 @@ function load_production_asset( object $manifest, string $entry, array $options 
 	$src = "{$url}/{$item->file}";
 
 	if ( ! $options['css-only'] ) {
-		filter_script_tag( $options['handle'] );
+		graphina_filter_script_tag( $options['handle'] );
 		$version = isset($options['version']) ? $options['version'] : null;
 
 		// Don't worry about browser caching as the version is embedded in the file name.
@@ -324,7 +324,7 @@ function load_production_asset( object $manifest, string $entry, array $options 
  *
  * @return array Array of options merged with defaults.
  */
-function parse_options( array $options ): array {
+function graphina_parse_options( array $options ): array {
 	$defaults = [
 		'css-dependencies' => [],
 		'css-media' => 'all',
@@ -348,7 +348,7 @@ function parse_options( array $options ): array {
  *
  * @return string
  */
-function prepare_asset_url( string $dir ) {
+function graphina_prepare_asset_url( string $dir ) {
 	$content_dir = wp_normalize_path( WP_CONTENT_DIR );
 	$manifest_dir = wp_normalize_path( $dir );
 	$url = content_url( str_replace( $content_dir, '', $manifest_dir ) );
@@ -377,9 +377,9 @@ function prepare_asset_url( string $dir ) {
  *
  * @return array
  */
-function register_asset( string $manifest_dir, string $entry, array $options ): ?array {
+function graphina_register_asset( string $manifest_dir, string $entry, array $options ): ?array {
 	try {
-		$manifest = get_manifest( $manifest_dir );
+		$manifest = graphina_get_manifest( $manifest_dir );
 	} catch ( Exception $e ) {
 		if ( defined( 'WP_DEBUG' ) && WP_DEBUG ) {
 			wp_die( esc_html( $e->getMessage() ) );
@@ -388,10 +388,10 @@ function register_asset( string $manifest_dir, string $entry, array $options ): 
 		return null;
 	}
 
-	$options = parse_options( $options );
+	$options = graphina_parse_options( $options );
 	$assets = $manifest->is_dev
-		? load_development_asset( $manifest, $entry, $options )
-		: load_production_asset( $manifest, $entry, $options );
+		? graphina_load_development_asset( $manifest, $entry, $options )
+		: graphina_load_production_asset( $manifest, $entry, $options );
 
 	return $assets;
 }
@@ -409,8 +409,8 @@ function register_asset( string $manifest_dir, string $entry, array $options ): 
  *
  * @return bool
  */
-function enqueue_asset( string $manifest_dir, string $entry, array $options ): bool {
-	$assets = register_asset( $manifest_dir, $entry, $options );
+function graphina_enqueue_asset( string $manifest_dir, string $entry, array $options ): bool {
+	$assets = graphina_register_asset( $manifest_dir, $entry, $options );
 
 	if ( is_null( $assets ) ) {
 		return false;

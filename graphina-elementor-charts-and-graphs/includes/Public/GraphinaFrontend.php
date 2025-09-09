@@ -77,7 +77,7 @@ if ( ! class_exists( 'GraphinaFrontend' ) ) {
 		 */
 		public function enqueue_scripts() {
 			// Register and enqueue the main public-facing script using Kucrut Vite.
-			\Kucrut\Vite\enqueue_asset(
+			\Kucrut\Vite\graphina_enqueue_asset(
 				GRAPHINA_PATH . 'dist',
 				'assets/js/public-main.js',
 				array(

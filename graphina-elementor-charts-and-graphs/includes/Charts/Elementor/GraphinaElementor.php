@@ -210,7 +210,7 @@ class GraphinaElementor {
 
 
 		//Apex Tree Charts
-		\Kucrut\Vite\register_asset(
+		\Kucrut\Vite\graphina_register_asset(
 			GRAPHINA_PATH . 'dist',
 			'assets/elementor/js/apex-tree/TreeChart.js',
 			array(
@@ -223,7 +223,7 @@ class GraphinaElementor {
 		);
 
 		// Apex Charts Assets
-		\Kucrut\Vite\register_asset(
+		\Kucrut\Vite\graphina_register_asset(
 			GRAPHINA_PATH . 'dist',
 			'assets/elementor/js/apex-chart/AreaChart.js',
 			array(
@@ -235,7 +235,7 @@ class GraphinaElementor {
 			)
 		);
 
-		\Kucrut\Vite\register_asset(
+		\Kucrut\Vite\graphina_register_asset(
 			GRAPHINA_PATH . 'dist',
 			'assets/elementor/js/apex-chart/LineChart.js',
 			array(
@@ -247,7 +247,7 @@ class GraphinaElementor {
 			)
 		);
 
-		\Kucrut\Vite\register_asset(
+		\Kucrut\Vite\graphina_register_asset(
 			GRAPHINA_PATH . 'dist',
 			'assets/elementor/js/apex-chart/HeatmapChart.js',
 			array(
@@ -259,7 +259,7 @@ class GraphinaElementor {
 			)
 		);
 
-		\Kucrut\Vite\register_asset(
+		\Kucrut\Vite\graphina_register_asset(
 			GRAPHINA_PATH . 'dist',
 			'assets/elementor/js/apex-chart/ColumnChart.js',
 			array(
@@ -271,7 +271,7 @@ class GraphinaElementor {
 			)
 		);
 
-		\Kucrut\Vite\register_asset(
+		\Kucrut\Vite\graphina_register_asset(
 			GRAPHINA_PATH . 'dist',
 			'assets/elementor/js/apex-chart/BubbleChart.js',
 			array(
@@ -283,7 +283,7 @@ class GraphinaElementor {
 			)
 		);
 
-		\Kucrut\Vite\register_asset(
+		\Kucrut\Vite\graphina_register_asset(
 			GRAPHINA_PATH . 'dist',
 			'assets/elementor/js/apex-chart/TimelineChart.js',
 			array(
@@ -295,7 +295,7 @@ class GraphinaElementor {
 			)
 		);
 
-		\Kucrut\Vite\register_asset(
+		\Kucrut\Vite\graphina_register_asset(
 			GRAPHINA_PATH . 'dist',
 			'assets/elementor/js/apex-chart/NestedcolumnChart.js',
 			array(
@@ -307,7 +307,7 @@ class GraphinaElementor {
 			)
 		);
 
-		\Kucrut\Vite\register_asset(
+		\Kucrut\Vite\graphina_register_asset(
 			GRAPHINA_PATH . 'dist',
 			'assets/elementor/js/apex-chart/DonutChart.js',
 			array(
@@ -319,7 +319,7 @@ class GraphinaElementor {
 			)
 		);
 
-		\Kucrut\Vite\register_asset(
+		\Kucrut\Vite\graphina_register_asset(
 			GRAPHINA_PATH . 'dist',
 			'assets/elementor/js/apex-chart/RadarChart.js',
 			array(
@@ -331,7 +331,7 @@ class GraphinaElementor {
 			)
 		);
 
-		\Kucrut\Vite\register_asset(
+		\Kucrut\Vite\graphina_register_asset(
 			GRAPHINA_PATH . 'dist',
 			'assets/elementor/js/apex-chart/RadialChart.js',
 			array(
@@ -343,7 +343,7 @@ class GraphinaElementor {
 			)
 		);
 
-		\Kucrut\Vite\register_asset(
+		\Kucrut\Vite\graphina_register_asset(
 			GRAPHINA_PATH . 'dist',
 			'assets/elementor/js/apex-chart/PolarChart.js',
 			array(
@@ -355,7 +355,7 @@ class GraphinaElementor {
 			)
 		);
 
-		\Kucrut\Vite\register_asset(
+		\Kucrut\Vite\graphina_register_asset(
 			GRAPHINA_PATH . 'dist',
 			'assets/elementor/js/apex-chart/PieChart.js',
 			array(
@@ -367,7 +367,7 @@ class GraphinaElementor {
 			)
 		);
 
-		\Kucrut\Vite\register_asset(
+		\Kucrut\Vite\graphina_register_asset(
 			GRAPHINA_PATH . 'dist',
 			'assets/elementor/js/apex-chart/ScatterChart.js',
 			array(
@@ -379,7 +379,7 @@ class GraphinaElementor {
 			)
 		);
 
-		\Kucrut\Vite\register_asset(
+		\Kucrut\Vite\graphina_register_asset(
 			GRAPHINA_PATH . 'dist',
 			'assets/elementor/js/apex-chart/DistributeColumnChart.js',
 			array(
@@ -391,7 +391,7 @@ class GraphinaElementor {
 			)
 		);
 
-		\Kucrut\Vite\register_asset(
+		\Kucrut\Vite\graphina_register_asset(
 			GRAPHINA_PATH . 'dist',
 			'assets/elementor/js/apex-chart/CandleChart.js',
 			array(
@@ -403,7 +403,7 @@ class GraphinaElementor {
 			)
 		);
 
-		\Kucrut\Vite\register_asset(
+		\Kucrut\Vite\graphina_register_asset(
 			GRAPHINA_PATH . 'dist',
 			'assets/elementor/js/apex-chart/DataTable.js',
 			array(
@@ -415,7 +415,7 @@ class GraphinaElementor {
 			)
 		);
 
-		\Kucrut\Vite\register_asset(
+		\Kucrut\Vite\graphina_register_asset(
 			GRAPHINA_PATH . 'dist',
 			'assets/elementor/js/apex-chart/MixedChart.js',
 			array(
@@ -427,7 +427,7 @@ class GraphinaElementor {
 			)
 		);
 
-		\Kucrut\Vite\register_asset(
+		\Kucrut\Vite\graphina_register_asset(
 			GRAPHINA_PATH . 'dist',
 			'assets/elementor/js/apex-chart/BrushChart.js',
 			array(
@@ -438,7 +438,7 @@ class GraphinaElementor {
 				'in-footer'        => true,
 			)
 		);
-		\Kucrut\Vite\register_asset(
+		\Kucrut\Vite\graphina_register_asset(
 			GRAPHINA_PATH . 'dist',
 			'assets/elementor/js/apex-chart/CounterChart.js',
 			array(
@@ -451,7 +451,7 @@ class GraphinaElementor {
 		);
 
 		// Google Charts Assets
-		\Kucrut\Vite\register_asset(
+		\Kucrut\Vite\graphina_register_asset(
 			GRAPHINA_PATH . 'dist',
 			'assets/elementor/js/google-chart/AreaGoogleChart.js',
 			array(
@@ -463,7 +463,7 @@ class GraphinaElementor {
 			)
 		);
 
-		\Kucrut\Vite\register_asset(
+		\Kucrut\Vite\graphina_register_asset(
 			GRAPHINA_PATH . 'dist',
 			'assets/elementor/js/google-chart/BarGoogleChart.js',
 			array(
@@ -475,7 +475,7 @@ class GraphinaElementor {
 			)
 		);
 
-		\Kucrut\Vite\register_asset(
+		\Kucrut\Vite\graphina_register_asset(
 			GRAPHINA_PATH . 'dist',
 			'assets/elementor/js/google-chart/GeoGoogleChart.js',
 			array(
@@ -487,7 +487,7 @@ class GraphinaElementor {
 			)
 		);
 
-		\Kucrut\Vite\register_asset(
+		\Kucrut\Vite\graphina_register_asset(
 			GRAPHINA_PATH . 'dist',
 			'assets/elementor/js/google-chart/GaugeGoogleChart.js',
 			array(
@@ -499,7 +499,7 @@ class GraphinaElementor {
 			)
 		);
 
-		\Kucrut\Vite\register_asset(
+		\Kucrut\Vite\graphina_register_asset(
 			GRAPHINA_PATH . 'dist',
 			'assets/elementor/js/google-chart/LineGoogleChart.js',
 			array(
@@ -511,7 +511,7 @@ class GraphinaElementor {
 			)
 		);
 
-		\Kucrut\Vite\register_asset(
+		\Kucrut\Vite\graphina_register_asset(
 			GRAPHINA_PATH . 'dist',
 			'assets/elementor/js/google-chart/ColumnGoogleChart.js',
 			array(
@@ -523,7 +523,7 @@ class GraphinaElementor {
 			)
 		);
 
-		\Kucrut\Vite\register_asset(
+		\Kucrut\Vite\graphina_register_asset(
 			GRAPHINA_PATH . 'dist',
 			'assets/elementor/js/google-chart/GanttGoogleChart.js',
 			array(
@@ -535,7 +535,7 @@ class GraphinaElementor {
 			)
 		);
 
-		\Kucrut\Vite\register_asset(
+		\Kucrut\Vite\graphina_register_asset(
 			GRAPHINA_PATH . 'dist',
 			'assets/elementor/js/google-chart/OrgGoogleChart.js',
 			array(
@@ -547,7 +547,7 @@ class GraphinaElementor {
 			)
 		);
 
-		\Kucrut\Vite\register_asset(
+		\Kucrut\Vite\graphina_register_asset(
 			GRAPHINA_PATH . 'dist',
 			'assets/elementor/js/google-chart/DonutGoogleChart.js',
 			array(
@@ -559,7 +559,7 @@ class GraphinaElementor {
 			)
 		);
 
-		\Kucrut\Vite\register_asset(
+		\Kucrut\Vite\graphina_register_asset(
 			GRAPHINA_PATH . 'dist',
 			'assets/elementor/js/google-chart/PieGoogleChart.js',
 			array(

@@ -9601,14 +9601,6 @@ class GraphinaElementorControls {
 							'unit' => 'px',
 							'size' => 12,
 						),
-						'tablet_default' => array(
-							'unit' => 'px',
-							'size' => 12,
-						),
-						'mobile_default' => array(
-							'unit' => 'px',
-							'size' => 12,
-						),
 					)
 				);
 			}
@@ -12283,20 +12275,23 @@ class GraphinaElementorControls {
 				),
 			)
 		);
-		$widget->add_control(
-			GRAPHINA_PREFIX . $chart_type . '_chart_yaxis_datalabel_rotate',
-			array(
-				'label'     => esc_html__( 'Rotate', 'graphina-charts-for-elementor' ),
-				'type'      => Controls_Manager::NUMBER,
-				'default'   => 0,
-				'max'       => 360,
-				'min'       => -360,
-				'condition' => array(
-					GRAPHINA_PREFIX . $chart_type . '_chart_yaxis_datalabel_show' => 'yes',
-				),
-			)
-		);
+		
 		if ( in_array( $chart_type,[ 'mixed', 'heatmap' ] ) ) {
+			$widget->add_control(
+				GRAPHINA_PREFIX . $chart_type . '_chart_yaxis_datalabel_rotate',
+				array(
+					'label'     => esc_html__( 'Rotate', 'graphina-charts-for-elementor' ),
+					'type'      => Controls_Manager::NUMBER,
+					'default'   => 0,
+					'max'       => 360,
+					'min'       => -360,
+					'condition' => array(
+						GRAPHINA_PREFIX . $chart_type . '_chart_yaxis_datalabel_show' => 'yes',
+						GRAPHINA_PREFIX . $chart_type . '_chart_show_multiple_yaxis!' => 'yes',
+					),
+				)
+			);
+		}else{
 			$widget->add_control(
 				GRAPHINA_PREFIX . $chart_type . '_chart_yaxis_datalabel_rotate',
 				array(
