@@ -461,12 +461,28 @@ export default class DataTable {
             });
         });
     }
+
+    sanitizeTableOptions(options) {
+        const sanitize = (obj) => {
+            if (typeof obj === 'string') {
+                return obj.replace(/<[^>]*>/g, '').replace(/javascript:/gi, '');
+            } else if (Array.isArray(obj)) {
+                return obj.map(sanitize);
+            } else if (typeof obj === 'object' && obj !== null) {
+                const sanitized = {};
+                for (const key in obj) sanitized[key] = sanitize(obj[key]);
+                return sanitized;
+            }
+            return obj;
+        };
+        return sanitize(options);
+    }
     
     async setupTable(element,dataTableType){
         const element_id    = element.data('element_id')
         this.extraData[element_id]      = element.data('extra_data');
-        const table_data    = element.data('table_data');
-        const settings      = element.data('settings');
+        const table_data    = this.sanitizeTableOptions(element.data('table_data'));
+        const settings      = this.sanitizeTableOptions(element.data('settings'));
         this.rowsPerPage    = this.extraData[element_id].pagination_row
         this.pageRange      = this.extraData[element_id].page_range
 

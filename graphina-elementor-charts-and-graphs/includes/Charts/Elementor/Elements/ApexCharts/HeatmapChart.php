@@ -280,7 +280,7 @@ class HeatmapChart extends GraphinaApexChartBase {
 					'fontSize'   => ! empty($settings[GRAPHINA_PREFIX . $chart_type . '_chart_font_size']['size']) ? $settings[GRAPHINA_PREFIX . $chart_type . '_chart_font_size']['size'] . $settings[GRAPHINA_PREFIX . $chart_type . '_chart_font_size']['unit'] : '12px',
 					'fontFamily' => ! empty($settings[GRAPHINA_PREFIX . $chart_type . '_chart_font_family']) ? $settings[GRAPHINA_PREFIX . $chart_type . '_chart_font_family'] : 'poppins',
 					'fontWeight' => ! empty($settings[GRAPHINA_PREFIX . $chart_type . '_chart_font_weight']) ? $settings[GRAPHINA_PREFIX . $chart_type . '_chart_font_weight'] : '',
-					'colors' => [$settings[GRAPHINA_PREFIX . $chart_type .'_chart_datalabel_color']],
+					'colors' => [$settings[GRAPHINA_PREFIX . $chart_type .'_chart_datalabel_font_color']],
 				],
 				'offsetY' => intval(isset($settings[GRAPHINA_PREFIX . $chart_type .'_chart_datalabel_offsety']) ? $settings[GRAPHINA_PREFIX . $chart_type .'_chart_datalabel_offsety'] : 0),
 				'offsetX' => intval(isset($settings[GRAPHINA_PREFIX . $chart_type .'_chart_datalabel_offsetx']) ? $settings[GRAPHINA_PREFIX . $chart_type .'_chart_datalabel_offsetx'] : 0),
@@ -410,6 +410,7 @@ class HeatmapChart extends GraphinaApexChartBase {
 						),
 						'xaxis'  => array(
 							'labels'        => array(
+								'show'	=> ! empty($settings[GRAPHINA_PREFIX . $chart_type . '_chart_yaxis_datalabel_tablet_show']) && $settings[GRAPHINA_PREFIX . $chart_type . '_chart_yaxis_datalabel_tablet_show'] === 'yes' ? true : false,	
 								'style'        => array(
 									'colors'     => ! empty($settings[GRAPHINA_PREFIX . $chart_type . '_chart_font_color_tablet']) ? strval($settings[GRAPHINA_PREFIX . $chart_type . '_chart_font_color_tablet']) : $font_color,
 									'fontSize'   => ! empty($settings[GRAPHINA_PREFIX . $chart_type . '_chart_font_size_tablet']['size']) ? $settings[GRAPHINA_PREFIX . $chart_type . '_chart_font_size_tablet']['size'] . $settings[GRAPHINA_PREFIX . $chart_type . '_chart_font_size_tablet']['unit'] : ( ! empty( $settings[ GRAPHINA_PREFIX . $chart_type . '_chart_font_size' ]['size'] ) ? $settings[ GRAPHINA_PREFIX . $chart_type . '_chart_font_size' ]['size'] . $settings[ GRAPHINA_PREFIX . $chart_type . '_chart_font_size' ]['unit'] : '12px'),
@@ -475,6 +476,7 @@ class HeatmapChart extends GraphinaApexChartBase {
 						),
 						'yaxis'      => array(
 							'labels'      => array(
+								'show'	=> ! empty($settings[GRAPHINA_PREFIX . $chart_type . '_chart_yaxis_datalabel_mobile_show']) && $settings[GRAPHINA_PREFIX . $chart_type . '_chart_yaxis_datalabel_mobile_show'] === 'yes' ? true : false,	
 								'style'        => array(
 									'colors'     => ! empty($settings[GRAPHINA_PREFIX . $chart_type . '_chart_font_color_mobile']) ? strval($settings[GRAPHINA_PREFIX . $chart_type . '_chart_font_color_mobile']) : $font_color,
 									'fontSize'   => ! empty($settings[GRAPHINA_PREFIX . $chart_type . '_chart_font_size_mobile']['size']) ? $settings[GRAPHINA_PREFIX . $chart_type . '_chart_font_size_mobile']['size'] . $settings[GRAPHINA_PREFIX . $chart_type . '_chart_font_size_mobile']['unit'] : ( ! empty( $settings[ GRAPHINA_PREFIX . $chart_type . '_chart_font_size' ]['size'] ) ? $settings[ GRAPHINA_PREFIX . $chart_type . '_chart_font_size' ]['size'] . $settings[ GRAPHINA_PREFIX . $chart_type . '_chart_font_size' ]['unit'] : '12px'),

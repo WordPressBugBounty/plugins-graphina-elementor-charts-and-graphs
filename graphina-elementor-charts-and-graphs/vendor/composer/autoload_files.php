@@ -6,5 +6,5 @@ $vendorDir = dirname(__DIR__);
 $baseDir = dirname($vendorDir);
 
 return array(
-    'b7e1c4cbafbabee94a69519a450ea263' => $vendorDir . '/kucrut/vite-for-wp/vite-for-wp.php',
+    '3164b04d3d22f72503c38081b0f0d40d' => $vendorDir . '/iqonic/vite-for-wp/iqonic-vite-for-wp.php',
 );

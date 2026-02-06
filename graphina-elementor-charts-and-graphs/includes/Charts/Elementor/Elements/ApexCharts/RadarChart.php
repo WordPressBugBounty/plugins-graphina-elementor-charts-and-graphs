@@ -396,6 +396,7 @@ class RadarChart extends GraphinaApexChartBase {
 						),
 						'yaxis'      => array(
 							'labels'      => array(
+								'show'	=> ! empty($settings[GRAPHINA_PREFIX . $chart_type . '_chart_yaxis_datalabel_tablet_show']) && $settings[GRAPHINA_PREFIX . $chart_type . '_chart_yaxis_datalabel_tablet_show'] === 'yes' ? true : false,	
 								'style'        => array(
 									'colors'     => ! empty($settings[GRAPHINA_PREFIX . $chart_type . '_chart_font_color_tablet']) ? strval($settings[GRAPHINA_PREFIX . $chart_type . '_chart_font_color_tablet']) : $font_color,
 									'fontSize'   => ! empty($settings[GRAPHINA_PREFIX . $chart_type . '_chart_font_size_tablet']['size']) ? $settings[GRAPHINA_PREFIX . $chart_type . '_chart_font_size_tablet']['size'] . $settings[GRAPHINA_PREFIX . $chart_type . '_chart_font_size_tablet']['unit'] : ( ! empty( $settings[ GRAPHINA_PREFIX . $chart_type . '_chart_font_size' ]['size'] ) ? $settings[ GRAPHINA_PREFIX . $chart_type . '_chart_font_size' ]['size'] . $settings[ GRAPHINA_PREFIX . $chart_type . '_chart_font_size' ]['unit'] : '12px'),
@@ -470,6 +471,7 @@ class RadarChart extends GraphinaApexChartBase {
 						),
 						'yaxis'      => array(
 							'labels'      => array(
+								'show'	=> ! empty($settings[GRAPHINA_PREFIX . $chart_type . '_chart_yaxis_datalabel_mobile_show']) && $settings[GRAPHINA_PREFIX . $chart_type . '_chart_yaxis_datalabel_mobile_show'] === 'yes' ? true : false,	
 								'style'        => array(
 									'colors'     => ! empty($settings[GRAPHINA_PREFIX . $chart_type . '_chart_font_color_mobile']) ? strval($settings[GRAPHINA_PREFIX . $chart_type . '_chart_font_color_mobile']) : $font_color,
 									'fontSize'   => ! empty($settings[GRAPHINA_PREFIX . $chart_type . '_chart_font_size_mobile']['size']) ? $settings[GRAPHINA_PREFIX . $chart_type . '_chart_font_size_mobile']['size'] . $settings[GRAPHINA_PREFIX . $chart_type . '_chart_font_size_mobile']['unit'] : ( ! empty( $settings[ GRAPHINA_PREFIX . $chart_type . '_chart_font_size' ]['size'] ) ? $settings[ GRAPHINA_PREFIX . $chart_type . '_chart_font_size' ]['size'] . $settings[ GRAPHINA_PREFIX . $chart_type . '_chart_font_size' ]['unit'] : '12px'),

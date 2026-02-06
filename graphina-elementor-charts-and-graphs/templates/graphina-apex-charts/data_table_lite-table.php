@@ -12,8 +12,8 @@ if ( ! defined( 'ABSPATH' ) ) {
 <div class="<?php echo esc_attr( $show_card === 'yes' ? 'chart-card' : '' ); ?> graphina-jquery-data-table"
 	data-element_id="<?php echo esc_attr( $element_id ); ?>"
 	data-chart_type="<?php echo esc_html( $chart_type ); ?>"
-	data-chart_data='<?php echo wp_json_encode( $table_data ); ?>'
-	data-extra_data='<?php echo wp_json_encode( $extra_data ); ?>'
+	data-chart_data='<?php echo esc_attr(wp_json_encode( $table_data )); ?>'
+	data-extra_data='<?php echo esc_attr(wp_json_encode( $extra_data )); ?>'
 	data-settings='<?php echo esc_attr(wp_json_encode($element_settings)); ?>'>
 	<div class="">
 		<?php if ( $show_heading ) { ?>

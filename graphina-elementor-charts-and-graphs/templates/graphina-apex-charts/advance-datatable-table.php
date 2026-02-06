@@ -12,7 +12,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 <div class="graphina-element  graphina-advance-data-table <?php echo $show_card === 'yes' ? 'element-card' : ''; ?>"
 	data-element_id="<?php echo esc_attr( $element_id ); ?>"
 	data-chart_type="<?php echo esc_html( $chart_type ); ?>"
-	data-extra_data='<?php echo wp_json_encode( $extra_data ); ?>'
+	data-extra_data='<?php echo esc_attr(wp_json_encode( $extra_data )); ?>'
 	data-table_data='<?php echo esc_attr(wp_json_encode( $table_data )); ?>'
 	data-settings='<?php echo esc_attr(wp_json_encode($element_settings)); ?>'>
 	<?php if ( $filter === 'yes' ) { ?>

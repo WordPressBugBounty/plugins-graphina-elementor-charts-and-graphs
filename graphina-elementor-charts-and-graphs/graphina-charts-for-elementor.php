@@ -1,15 +1,14 @@
 <?php
 /**
- * Plugin Name:         Graphina - Elementor Charts and Graphs
+ * Plugin Name:         Graphina - Charts and Graphs For Elementor
  * Plugin URI:          https://graphina.iqonic.design
  * Description:         Your ultimate charts and graphs solution to enhance visual effects. Create versatile, advanced and interactive charts on your website.
  * Author:              Iqonic Design
  * Author URI:          https://iqonic.design/
- * Version:             3.1.7
- * Elementor tested up to: 3.31.4
+ * Version:             3.1.9
+ * Elementor tested up to: 3.32.5
  * Elementor Pro tested up to: 3.31.3
  * Requires PHP:        8.0
- * Requires Plugins:     elementor
  * License URI:         http://www.gnu.org/licenses/gpl-2.0.txt
  * Text Domain:         graphina-charts-for-elementor
  * Domain Path:         /languages
@@ -31,7 +30,7 @@ endif;
 
 // Plugin Version.
 if ( ! defined( 'GRAPHINA_VERSION' ) ) :
-	define( 'GRAPHINA_VERSION', '3.1.7' );
+	define( 'GRAPHINA_VERSION', '3.1.9' );
 endif;
 
 // Plugin Prefix.
@@ -56,12 +55,12 @@ endif;
 
 // Plugin Version.
 if ( ! defined( 'GRAPHINA_CHARTS_FOR_ELEMENTOR_VERSION' ) ) :
-	define( 'GRAPHINA_CHARTS_FOR_ELEMENTOR_VERSION', '3.1.7' );
+	define( 'GRAPHINA_CHARTS_FOR_ELEMENTOR_VERSION', '3.1.9' );
 endif;
 
 // Pro Version.
 if ( ! defined( 'GRAPHINA_CHARTS_DEPENDENT_PRO_VERSION' ) ) :
-	define( 'GRAPHINA_CHARTS_DEPENDENT_PRO_VERSION', '3.1.2' );
+	define( 'GRAPHINA_CHARTS_DEPENDENT_PRO_VERSION', '3.1.3' );
 endif;
 
 
@@ -75,7 +74,7 @@ if ( ! function_exists( 'gcfe_elementor_admin_notice' ) ) :
 	function gcfe_elementor_admin_notice() {
 		?>
 		<div class="error">
-			<p><?php esc_html_e( 'Graphina - Elementor Charts and Graphs is enabled but not effective. It requires Elementor to work.', 'graphina-charts-for-elementor' ); ?></p>
+			<p><?php esc_html_e( 'Graphina - Charts and Graphs For Elementor is enabled but not effective. It requires Elementor to work.', 'graphina-charts-for-elementor' ); ?></p>
 		</div>
 		<?php
 	}
@@ -225,7 +224,7 @@ if ( ! function_exists( 'graphina_fail_load_out_of_date' ) ) {
             'upgrade-plugin_' . $file_path 
         );
         
-        $message  = '<p>' . esc_html__( 'Graphina - Elementor Charts and Graphs is not working because you are using an old version of Elementor.', 'graphina-charts-for-elementor' ) . '</p>';
+        $message  = '<p>' . esc_html__( 'Graphina - Charts and Graphs For Elementor is not working because you are using an old version of Elementor.', 'graphina-charts-for-elementor' ) . '</p>';
         $message .= '<p>' . sprintf( '<a href="%s" class="button-primary">%s</a>', $upgrade_link, esc_html__( 'Update Elementor Now', 'graphina-charts-for-elementor' ) ) . '</p>';
         
         gcfe_print_error( $message );

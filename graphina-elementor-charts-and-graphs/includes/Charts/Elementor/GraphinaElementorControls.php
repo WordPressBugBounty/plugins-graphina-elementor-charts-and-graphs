@@ -3483,7 +3483,7 @@ class GraphinaElementorControls {
 			$widget->add_control(
 				GRAPHINA_PREFIX . $chart_type . '_jquery_manual_column_wise_alignment' . $i,
 				array(
-					'label'     => esc_html__( 'Column wise alighment', 'graphina-charts-for-elementor' ) . ' ' . $i+1,
+					'label'     => esc_html__( 'Column wise alighment', 'graphina-charts-for-elementor' ) . ' ' . ($i+1),
 					'type'      => Controls_Manager::SWITCHER,
 					'label_on'  => esc_html__( 'Yes', 'graphina-charts-for-elementor' ),
 					'label_off' => esc_html__( 'No', 'graphina-charts-for-elementor' ),
@@ -6966,9 +6966,6 @@ class GraphinaElementorControls {
 					'type'      => Controls_Manager::SWITCHER,
 					'label_on'  => esc_html__( 'Yes', 'graphina-charts-for-elementor' ),
 					'label_off' => esc_html__( 'No', 'graphina-charts-for-elementor' ),
-					// 'desktop_default' => false,
-					// 'tablet_default'  => false,
-					// 'mobile_default'  => false,
 				)
 			);
 		}
@@ -7418,7 +7415,7 @@ class GraphinaElementorControls {
 			if ( $show_label_color ) {
 				$data_label_font_setting = $data_label_font_color_condition;
 				$data_label_background   = $data_label_font_color_condition;
-				if ( $show_label_background ) {
+				if ( $show_label_background && $chart_type !== 'heatmap'  ) {
 					$data_label_font_setting['terms'][] = array(
 						'relation' => 'and',
 						'terms'    => array(
@@ -7520,18 +7517,6 @@ class GraphinaElementorControls {
 				);
 
 			}
-
-			if ( $chart_type === 'heatmap' ) {
-				$widget->add_control(
-					GRAPHINA_PREFIX . $chart_type . '_chart_datalabel_color',
-					array(
-						'label'   => esc_html__( 'Font Color', 'graphina-charts-for-elementor' ),
-						'type'    => Controls_Manager::COLOR,
-						'default' => '#FFFFFF',
-					)
-				);
-			}
-
 
 
 			if ( in_array( $chart_type, array( 'area', 'line', 'column', 'mixed','radial' ), true ) ) {
@@ -12087,6 +12072,16 @@ class GraphinaElementorControls {
 				'type' => Controls_Manager::DIVIDER,
 			)
 		);
+		$widget->add_control(
+			GRAPHINA_PREFIX . $chart_type . '_chart_yaxis_datalabel_mobile_showdddddd',
+			array(
+				'label'     => esc_html__( 'Tablet And Mobile Y-Axis Labels', 'graphina-charts-for-elementor' ),
+				'type'      => Controls_Manager::SWITCHER,
+				'label_on'  => esc_html__( 'Hide', 'graphina-charts-for-elementor' ),
+				'label_off' => esc_html__( 'Show', 'graphina-charts-for-elementor' ),
+				'default'   => 'yes',
+			)
+		);
 
 		$widget->add_control(
 			GRAPHINA_PREFIX . $chart_type . '_chart_y_axis_settings_heading',
@@ -12238,7 +12233,27 @@ class GraphinaElementorControls {
 				'default'   => 'yes',
 			)
 		);
-
+		$widget->add_control(
+			GRAPHINA_PREFIX . $chart_type . '_chart_yaxis_datalabel_tablet_show',
+			array(
+				'label'     => esc_html__( 'Tablet Y-Axis Labels', 'graphina-charts-for-elementor' ),
+				'type'      => Controls_Manager::SWITCHER,
+				'label_on'  => esc_html__( 'Hide', 'graphina-charts-for-elementor' ),
+				'label_off' => esc_html__( 'Show', 'graphina-charts-for-elementor' ),
+				'default'   => apply_filters('graphina_default_tablet_yaxis_labels_show', 'yes'),
+			)
+		);
+		$widget->add_control(
+			GRAPHINA_PREFIX . $chart_type . '_chart_yaxis_datalabel_mobile_show',
+			array(
+				'label'     => esc_html__( 'Mobile Y-Axis Labels', 'graphina-charts-for-elementor' ),
+				'type'      => Controls_Manager::SWITCHER,
+				'label_on'  => esc_html__( 'Hide', 'graphina-charts-for-elementor' ),
+				'label_off' => esc_html__( 'Show', 'graphina-charts-for-elementor' ),
+				'default'   => apply_filters('graphina_default_mobile_yaxis_labels_show', 'yes'),
+			)
+		);
+		
 		$widget->add_control(
 			GRAPHINA_PREFIX . $chart_type . '_chart_yaxis_datalabel_position',
 			array(

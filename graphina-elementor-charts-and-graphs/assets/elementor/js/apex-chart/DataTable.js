@@ -47,15 +47,15 @@ export default class DataTable {
     }
 
     handleElementorWidgetInit() {
-    elementorFrontend.hooks.addAction('frontend/element_ready/data_table_lite.default', ($scope) => {
-        console.log('Initializing jQuery Data Table...');
-        
-        const chartElement = $scope.find('.graphina-jquery-data-table');
-        if (chartElement.length > 0) {
-            this.initializeTables(chartElement);
-        }
-    });
-}
+        elementorFrontend.hooks.addAction('frontend/element_ready/data_table_lite.default', ($scope) => {
+            console.log('Initializing jQuery Data Table...');
+            
+            const chartElement = $scope.find('.graphina-jquery-data-table');
+            if (chartElement.length > 0) {
+                this.initializeTables(chartElement);
+            }
+        });
+    }
 
 
     initializeTables(chartElement) {
@@ -127,13 +127,29 @@ export default class DataTable {
         });
     }
 
+    sanitizeTableOptions(options) {
+        const sanitize = (obj) => {
+            if (typeof obj === 'string') {
+                return obj.replace(/<[^>]*>/g, '').replace(/javascript:/gi, '');
+            } else if (Array.isArray(obj)) {
+                return obj.map(sanitize);
+            } else if (typeof obj === 'object' && obj !== null) {
+                const sanitized = {};
+                for (const key in obj) sanitized[key] = sanitize(obj[key]);
+                return sanitized;
+            }
+            return obj;
+        };
+        return sanitize(options);
+    }
+
     async setupTable(element, dataTableType) {
         const element_id = element.data('element_id');
         this.tableId     = element_id;
 
-        let chart_data      = element.data('chart_data');
-        const extraData     = element.data('extra_data');
-        const settings      = element.data('settings');
+        let chart_data      = this.sanitizeTableOptions(element.data('chart_data'));
+        const extraData     = this.sanitizeTableOptions(element.data('extra_data'));
+        const settings      = this.sanitizeTableOptions(element.data('settings'));
         const tableSelector = '.data_table_lite_' + element_id;
     
         if ( extraData.hide_column_header ) {

@@ -1,4 +1,4 @@
-import { v4wp } from '@kucrut/vite-for-wp';
+import { v4wp } from '@iqonic/vite-for-wp';
 
 export default {
     plugins: [

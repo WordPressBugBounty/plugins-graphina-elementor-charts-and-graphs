@@ -1,6 +1,6 @@
 {
   "name": "graphina-charts-for-elementor",
-  "version": "3.1.7",
+  "version": "3.1.9",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
@@ -25,7 +25,7 @@
     "vite": "^5.4.8"
   },
   "devDependencies": {
-    "@kucrut/vite-for-wp": "^0.9.3"
+    "@iqonic/vite-for-wp": "git+https://gitlab.com/gmits/wp_plugins/vite-for-wp.git#dev"
   },
   "description": "",
   "type": "module"

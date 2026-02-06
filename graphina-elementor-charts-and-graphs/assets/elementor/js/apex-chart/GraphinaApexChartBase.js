@@ -498,15 +498,30 @@ export default class GraphinaApexChartBase {
         return true
     }
     
+    sanitizeChartOptions(options) {
+        const sanitize = (obj) => {
+            if (typeof obj === 'string') {
+                return obj.replace(/<[^>]*>/g, '').replace(/javascript:/gi, '');
+            } else if (Array.isArray(obj)) {
+                return obj.map(sanitize);
+            } else if (typeof obj === 'object' && obj !== null) {
+                const sanitized = {};
+                for (const key in obj) sanitized[key] = sanitize(obj[key]);
+                return sanitized;
+            }
+            return obj;
+        };
+        return sanitize(options);
+    }
+
     
     // Generic setup for any chart type
     async setupChart(element, chartType) {
         try {
             const elementId = element.data('element_id');
-            const chartOptions = element.data('chart_options');
-            const responsive_options = element.data('responsive_options');
-            const extraData = element.data('extra_data');
-            const settings = element.data('settings');
+            const chartOptions = this.sanitizeChartOptions(element.data('chart_options'));
+            const extraData = this.sanitizeChartOptions(element.data('extra_data'));
+            const settings = this.sanitizeChartOptions(element.data('settings'));
             const chart_type = element.data('chart_type')
     
             if('nested_column' === chart_type){

@@ -1,32 +1,36 @@
 {
     "packages": [
         {
-            "name": "kucrut/vite-for-wp",
-            "version": "v0.8.0",
-            "version_normalized": "0.8.0.0",
+            "name": "iqonic/vite-for-wp",
+            "version": "dev-dev",
+            "version_normalized": "dev-dev",
             "source": {
                 "type": "git",
-                "url": "https://github.com/kucrut/vite-for-wp.git",
-                "reference": "bce4607bb57f4892da93492908caeb75ce2782a2"
+                "url": "git@gitlab.com:gmits/wp_plugins/vite-for-wp.git",
+                "reference": "668499b09a4887700e35a213518105582c3da45c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/kucrut/vite-for-wp/zipball/bce4607bb57f4892da93492908caeb75ce2782a2",
-                "reference": "bce4607bb57f4892da93492908caeb75ce2782a2",
+                "url": "https://gitlab.com/api/v4/projects/gmits%2Fwp_plugins%2Fvite-for-wp/repository/archive.zip?sha=668499b09a4887700e35a213518105582c3da45c",
+                "reference": "668499b09a4887700e35a213518105582c3da45c",
                 "shasum": ""
             },
             "require-dev": {
                 "wp-coding-standards/wpcs": "^3.0"
             },
-            "time": "2023-11-15T04:30:52+00:00",
+            "time": "2025-09-27T16:39:33+05:30",
             "type": "library",
             "installation-source": "dist",
             "autoload": {
                 "files": [
-                    "vite-for-wp.php"
+                    "iqonic-vite-for-wp.php"
                 ]
             },
-            "notification-url": "https://packagist.org/downloads/",
+            "scripts": {
+                "lint": [
+                    "phpcs"
+                ]
+            },
             "license": [
                 "GPL-2.0-only"
             ],
@@ -35,12 +39,12 @@
                     "name": "Dzikri Aziz"
                 }
             ],
-            "description": "Vite integration for WordPress plugins and themes development.",
+            "description": "Private fork of Vite for WordPress",
             "support": {
-                "issues": "https://github.com/kucrut/vite-for-wp/issues",
-                "source": "https://github.com/kucrut/vite-for-wp/tree/v0.8.0"
+                "source": "https://gitlab.com/gmits/wp_plugins/vite-for-wp/-/tree/dev",
+                "issues": "https://gitlab.com/gmits/wp_plugins/vite-for-wp/-/issues"
             },
-            "install-path": "../kucrut/vite-for-wp"
+            "install-path": "../iqonic/vite-for-wp"
         }
     ],
     "dev": false,

@@ -9,7 +9,7 @@
     ],
     "require": {
         "php": "^8.0",
-        "kucrut/vite-for-wp": "^0.8.0"
+        "iqonic/vite-for-wp": "dev-dev"
     },
     "require-dev": {
         "dealerdirect/phpcodesniffer-composer-installer": "*",
@@ -19,7 +19,8 @@
     "config": {
         "allow-plugins": {
             "dealerdirect/phpcodesniffer-composer-installer": true
-        }
+        },
+        "autoloader-suffix": "Graphina"
     },
     "autoload": {
         "psr-4": {
@@ -32,5 +33,11 @@
             "./vendor/bin/phpcs --standard=phpcs.xml . --report-full=test-report/full-result.txt   --report-summary=test-report/summary.txt "
         ],
         "fix": "phpcbf --standard=phpcs.xml ."
-    }
+    },
+    "repositories": [
+        {
+            "type": "vcs",
+            "url": "https://gitlab.com/gmits/wp_plugins/vite-for-wp.git"
+        }
+    ]
 }

@@ -4,10 +4,10 @@
 
 namespace Composer\Autoload;
 
-class ComposerStaticInitbf153414e17a0d71d2d84d854de531b3
+class ComposerStaticInitGraphina
 {
     public static $files = array (
-        'b7e1c4cbafbabee94a69519a450ea263' => __DIR__ . '/..' . '/kucrut/vite-for-wp/vite-for-wp.php',
+        '3164b04d3d22f72503c38081b0f0d40d' => __DIR__ . '/..' . '/iqonic/vite-for-wp/iqonic-vite-for-wp.php',
     );
 
     public static $prefixLengthsPsr4 = array (
@@ -31,9 +31,9 @@ class ComposerStaticInitbf153414e17a0d71d2d84d854de531b3
     public static function getInitializer(ClassLoader $loader)
     {
         return \Closure::bind(function () use ($loader) {
-            $loader->prefixLengthsPsr4 = ComposerStaticInitbf153414e17a0d71d2d84d854de531b3::$prefixLengthsPsr4;
-            $loader->prefixDirsPsr4 = ComposerStaticInitbf153414e17a0d71d2d84d854de531b3::$prefixDirsPsr4;
-            $loader->classMap = ComposerStaticInitbf153414e17a0d71d2d84d854de531b3::$classMap;
+            $loader->prefixLengthsPsr4 = ComposerStaticInitGraphina::$prefixLengthsPsr4;
+            $loader->prefixDirsPsr4 = ComposerStaticInitGraphina::$prefixDirsPsr4;
+            $loader->classMap = ComposerStaticInitGraphina::$classMap;
 
         }, null, ClassLoader::class);
     }

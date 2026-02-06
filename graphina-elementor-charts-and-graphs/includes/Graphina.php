@@ -4,7 +4,7 @@ namespace Graphina;
 
 use Error;
 use Graphina\Admin\GraphinaAdmin;
-use Graphina\Public\GraphinaFrontend;
+use Graphina\Public\GraphinaPublic;
 use Graphina\Charts\Elementor\GraphinaElementor;
 
 // Exit if accessed directly.
@@ -76,7 +76,7 @@ if ( ! class_exists( 'Graphina' ) ) :
 			}
 
 			// Initialize frontend functionality.
-			new GraphinaFrontend();
+			new GraphinaPublic();
 
 			return self::$instance;
 		}
@@ -94,7 +94,7 @@ if ( ! class_exists( 'Graphina' ) ) :
 		public static function init_hooks() {
 			add_action( 'init', array( __CLASS__, 'load_textdomain' ) );
 			add_filter( 'graphina_is_pro_active', array( __CLASS__, 'is_graphina_pro_active' ) );
-			register_activation_hook( __FILE__, array( 'Graphina\\Graphina_Install', 'install' ) );
+			register_activation_hook( __FILE__, array( 'Graphina\Graphina_Install', 'install' ) );
 		}
 		/**
          * Check if the Graphina Pro plugin is active.
