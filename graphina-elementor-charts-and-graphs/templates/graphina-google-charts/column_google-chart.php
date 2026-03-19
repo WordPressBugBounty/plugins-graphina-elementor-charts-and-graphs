@@ -14,6 +14,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 		<p><?php echo esc_html__( 'No Data Found', 'graphina-charts-for-elementor' ); ?></p>
 	</div>
 	<div class="graphina-google-chart <?php echo esc_attr($common_filter_class); ?>"
+        data-common_filter_id="<?php echo esc_attr( $common_filter_id ); ?>"
 		data-chart_type="<?php echo esc_attr( $chart_type ); ?>"
 		data-chart_type_static="ColumnChart"
 		data-element_id="<?php echo esc_attr( $element_id ); ?>"

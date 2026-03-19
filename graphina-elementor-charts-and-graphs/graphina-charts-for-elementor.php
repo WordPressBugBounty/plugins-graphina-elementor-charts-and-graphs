@@ -5,8 +5,8 @@
  * Description:         Your ultimate charts and graphs solution to enhance visual effects. Create versatile, advanced and interactive charts on your website.
  * Author:              Iqonic Design
  * Author URI:          https://iqonic.design/
- * Version:             3.1.9
- * Elementor tested up to: 3.32.5
+ * Version:             3.1.10
+ * Elementor tested up to: 3.35.7
  * Elementor Pro tested up to: 3.31.3
  * Requires PHP:        8.0
  * License URI:         http://www.gnu.org/licenses/gpl-2.0.txt
@@ -30,7 +30,7 @@ endif;
 
 // Plugin Version.
 if ( ! defined( 'GRAPHINA_VERSION' ) ) :
-	define( 'GRAPHINA_VERSION', '3.1.9' );
+	define( 'GRAPHINA_VERSION', '3.1.10' );
 endif;
 
 // Plugin Prefix.
@@ -55,7 +55,7 @@ endif;
 
 // Plugin Version.
 if ( ! defined( 'GRAPHINA_CHARTS_FOR_ELEMENTOR_VERSION' ) ) :
-	define( 'GRAPHINA_CHARTS_FOR_ELEMENTOR_VERSION', '3.1.9' );
+	define( 'GRAPHINA_CHARTS_FOR_ELEMENTOR_VERSION', '3.1.10' );
 endif;
 
 // Pro Version.

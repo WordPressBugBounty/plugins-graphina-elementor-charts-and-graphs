@@ -10,8 +10,12 @@
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
+$read_aloud_attr = '';
+if ( ! empty( $settings[ GRAPHINA_PREFIX . $chart_type . '_read_aloud_text' ] ) ) {
+	$read_aloud_attr = ' aria-label="' . esc_attr( $settings[ GRAPHINA_PREFIX . $chart_type . '_read_aloud_text' ] ) . '"';
+}
 ?>
-<div class="graphina-card counter layout_4">
+<div class="graphina-card counter layout_4 <?php echo ! empty( $settings[ GRAPHINA_PREFIX . $chart_type . '_chart_common_filter_enable' ] ) && $settings[ GRAPHINA_PREFIX . $chart_type . '_chart_common_filter_enable' ] === 'yes' ? ' common-filter-counter' : ''; ?>"<?php echo $read_aloud_attr; ?>>
 	<?php if ( isset( $counter_description ) && ! empty( $counter_description ) ) : ?>
 		<p class="counter-description"><?php echo esc_html( $counter_description ); ?></p>
 	<?php endif; ?>

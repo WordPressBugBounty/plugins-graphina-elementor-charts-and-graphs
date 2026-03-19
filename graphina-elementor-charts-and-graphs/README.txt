@@ -3,8 +3,8 @@ Contributors: iqonicdesign
 Tags: data visualization wordpress plugin, wordpress charts, wordpress charts and graphs, wordpress charts and graphs plugin, wordpress chart plugin
 Requires PHP: 8.0.0
 Requires at least: 5.9
-Tested up to: 6.8.3
-Stable tag: 3.1.9
+Tested up to: 6.9.4
+Stable tag: 3.1.10
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -226,6 +226,11 @@ Yes, we'd love to hear from you at <a href="mailto:hello@iqonic.design">hello@iq
 
 
 == Changelog ==
+
+= 3.1.10 - 19/03/2026 =
+- [Added] Implemented initial screen reader accessibility support to improve usability for assistive technologies.
+- [Improvement] responsive legend position settings for: Deskto, Table and Mobile devices
+- [Enhancement] support for HTML tags in chart description, allowing use of: <br> for line breaks, <i> / <em> for italic text, <a> for anchor links
 
 = 3.1.9 - 03/11/2025 =  
 - [Fixed] Security fixes.  

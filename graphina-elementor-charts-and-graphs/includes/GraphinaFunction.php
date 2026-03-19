@@ -107,7 +107,7 @@ if ( ! function_exists( 'graphina_get_card' ) ) {
 
 		// Get the sanitized chart description if provided in the settings.
 		$chart_description = ! empty( $settings[ GRAPHINA_PREFIX . $chart_type . '_chart_content' ] )
-			? sanitize_text_field( $settings[ GRAPHINA_PREFIX . $chart_type . '_chart_content' ] )
+			? wp_kses_post( $settings[ GRAPHINA_PREFIX . $chart_type . '_chart_content' ] )
 			: '';
 
 		// Include the card.php template with the calculated data.
@@ -767,7 +767,8 @@ if ( ! function_exists( 'graphina_prepare_chart_responsive_options' ) ) {
 					),
 					'legend' => array(
 						'fontSize'   => ! empty($settings[GRAPHINA_PREFIX . $chart_type . '_chart_font_size_tablet']['size']) ? $settings[GRAPHINA_PREFIX . $chart_type . '_chart_font_size_tablet']['size'] . $settings[GRAPHINA_PREFIX . $chart_type . '_chart_font_size_tablet']['unit'] : '12px',
-
+						'position'   => ! empty($settings[GRAPHINA_PREFIX . $chart_type . '_chart_legend_position_tablet']) ? $settings[GRAPHINA_PREFIX . $chart_type . '_chart_legend_position_tablet'] : (! empty($settings[GRAPHINA_PREFIX . $chart_type . '_chart_legend_position']) ? $settings[GRAPHINA_PREFIX . $chart_type . '_chart_legend_position'] : 'bottom'),
+						'horizontalAlign' => ! empty($settings[GRAPHINA_PREFIX . $chart_type . '_chart_legend_horizontal_align_tablet']) ? $settings[GRAPHINA_PREFIX . $chart_type . '_chart_legend_horizontal_align_tablet'] : (! empty($settings[GRAPHINA_PREFIX . $chart_type . '_chart_legend_horizontal_align']) ? $settings[GRAPHINA_PREFIX . $chart_type . '_chart_legend_horizontal_align'] : 'center'),
 					),
 					'dataLabels' => array(
 						'style' => array(
@@ -814,7 +815,8 @@ if ( ! function_exists( 'graphina_prepare_chart_responsive_options' ) ) {
 					),
 					'legend' => array(
 						'fontSize'   => ! empty($settings[GRAPHINA_PREFIX . $chart_type . '_chart_font_size_mobile']['size']) ? $settings[GRAPHINA_PREFIX . $chart_type . '_chart_font_size_mobile']['size'] . $settings[GRAPHINA_PREFIX . $chart_type . '_chart_font_size_mobile']['unit'] : '12px',
-
+						'position'   => ! empty($settings[GRAPHINA_PREFIX . $chart_type . '_chart_legend_position_mobile']) ? $settings[GRAPHINA_PREFIX . $chart_type . '_chart_legend_position_mobile'] : (! empty($settings[GRAPHINA_PREFIX . $chart_type . '_chart_legend_position']) ? $settings[GRAPHINA_PREFIX . $chart_type . '_chart_legend_position'] : 'bottom'),
+						'horizontalAlign' => ! empty($settings[GRAPHINA_PREFIX . $chart_type . '_chart_legend_horizontal_align_mobile']) ? $settings[GRAPHINA_PREFIX . $chart_type . '_chart_legend_horizontal_align_mobile'] : (! empty($settings[GRAPHINA_PREFIX . $chart_type . '_chart_legend_horizontal_align']) ? $settings[GRAPHINA_PREFIX . $chart_type . '_chart_legend_horizontal_align'] : 'center'),
 					),
 					'dataLabels' => array(
 						'style' => array(

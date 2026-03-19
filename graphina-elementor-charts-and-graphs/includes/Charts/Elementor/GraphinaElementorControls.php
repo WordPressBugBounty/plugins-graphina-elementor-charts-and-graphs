@@ -1147,6 +1147,18 @@ class GraphinaElementorControls {
 		);
 
 		$widget->add_control(
+			GRAPHINA_PREFIX . $chart_type . '_read_aloud_text',
+			array(
+				'label'       => esc_html__( 'Read Aloud Text', 'graphina-charts-for-elementor' ),
+				'type'        => Controls_Manager::TEXTAREA,
+				'description' => esc_html__( 'Text to be read aloud by screen readers. This text will be hidden visually.', 'graphina-charts-for-elementor' ),
+				'dynamic'     => array(
+					'active' => true,
+				),
+			)
+		);
+
+		$widget->add_control(
 			GRAPHINA_PREFIX . $chart_type . '_element_counter_icon',
 			array(
 				'label'     => esc_html__( 'Icon', 'graphina-charts-for-elementor' ),
@@ -6649,6 +6661,15 @@ class GraphinaElementorControls {
 			)
 		);
 
+		$widget->add_control(
+			GRAPHINA_PREFIX . $chart_type . '_read_aloud_text',
+			array(
+				'label'       => esc_html__( 'Read Aloud Text', 'graphina-charts-for-elementor' ),
+				'type'        => Controls_Manager::TEXTAREA,
+				'description' => esc_html__( 'Text to be read aloud by screen readers. This text will be hidden visually.', 'graphina-charts-for-elementor' ),
+			)
+		);
+
 		if ( 'brush' === $chart_type ) {
 			$widget->add_control(
 				GRAPHINA_PREFIX . $chart_type . '_chart_type_1',
@@ -7441,7 +7462,7 @@ class GraphinaElementorControls {
 
 			if ( $show_label_background && $chart_type !== 'heatmap' ) {
 
-				$widget->add_control(
+				$widget->add_responsive_control(
 				GRAPHINA_PREFIX . $chart_type . '_chart_datalabel_background_show',
 				array(
 					'label'      => esc_html__( 'Show Background', 'graphina-charts-for-elementor' ),
@@ -7464,7 +7485,7 @@ class GraphinaElementorControls {
 					),
 				);
 
-				$widget->add_control(
+				$widget->add_responsive_control(
 					GRAPHINA_PREFIX . $chart_type . '_chart_datalabel_background_color',
 					array(
 						'label'      => esc_html__( 'Font Color', 'graphina-charts-for-elementor' ),
@@ -7474,7 +7495,7 @@ class GraphinaElementorControls {
 					)
 				);
 
-				$widget->add_control(
+				$widget->add_responsive_control(
 					GRAPHINA_PREFIX . $chart_type . '_chart_datalabel_font_color_1',
 					array(
 						'label'      => esc_html__( 'Background Color', 'graphina-charts-for-elementor' ),
@@ -7484,7 +7505,7 @@ class GraphinaElementorControls {
 					)
 				);
 
-				$widget->add_control(
+				$widget->add_responsive_control(
 					GRAPHINA_PREFIX . $chart_type . '_chart_datalabel_border_width',
 					array(
 						'label'      => esc_html__( 'Border Width', 'graphina-charts-for-elementor' ),
@@ -7496,7 +7517,7 @@ class GraphinaElementorControls {
 					)
 				);
 
-				$widget->add_control(
+				$widget->add_responsive_control(
 					GRAPHINA_PREFIX . $chart_type . '_chart_datalabel_border_radius',
 					array(
 						'label'      => esc_html__( 'Border radius', 'graphina-charts-for-elementor' ),
@@ -7506,7 +7527,7 @@ class GraphinaElementorControls {
 					)
 				);
 
-				$widget->add_control(
+				$widget->add_responsive_control(
 					GRAPHINA_PREFIX . $chart_type . '_chart_datalabel_border_color',
 					array(
 						'label'      => esc_html__( 'Border Color', 'graphina-charts-for-elementor' ),
@@ -10425,7 +10446,7 @@ class GraphinaElementorControls {
 		);
 
 		if ( in_array( $chart_type, array( 'area', 'column', 'line', 'bar', 'candle', 'bubble', 'polar', 'radar', 'donut', 'pie', 'radial', 'timeline', 'scatter', 'mixed', 'brush', 'distributed_column', 'nested_column' ) ) ) {
-			$widget->add_control(
+			$widget->add_responsive_control(
 				GRAPHINA_PREFIX . $chart_type . '_chart_legend_position',
 				array(
 					'label'     => esc_html__( 'Position', 'graphina-charts-for-elementor' ),
@@ -10455,7 +10476,7 @@ class GraphinaElementorControls {
 				)
 			);
 
-			$widget->add_control(
+			$widget->add_responsive_control(
 				GRAPHINA_PREFIX . $chart_type . '_chart_legend_horizontal_align',
 				array(
 					'label'     => esc_html__( 'Horizontal Align', 'graphina-charts-for-elementor' ),

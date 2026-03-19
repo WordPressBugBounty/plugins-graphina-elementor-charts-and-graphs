@@ -9,8 +9,9 @@ if ( ! defined( 'ABSPATH' ) ) {
 *   @package graphina
 **/
 ?>
-<div class="<?php echo esc_attr( $show_card === 'yes' ? 'chart-card' : '' ); ?> graphina-jquery-data-table"
+<div class="<?php echo esc_attr( $show_card === 'yes' ? 'chart-card' : '' ); ?> graphina-jquery-data-table<?php echo ! empty( $settings[ GRAPHINA_PREFIX . $chart_type . '_chart_common_filter_enable' ] ) && $settings[ GRAPHINA_PREFIX . $chart_type . '_chart_common_filter_enable' ] === 'yes' ? ' common-filter-datatable' : ''; ?>"
 	data-element_id="<?php echo esc_attr( $element_id ); ?>"
+	data-common_filter_id="<?php echo isset($settings[GRAPHINA_PREFIX . $chart_data['chart_type'] . '_common_filter_id']) ? esc_html($settings[GRAPHINA_PREFIX . $chart_data['chart_type'] . '_common_filter_id']) : ''; ?>"
 	data-chart_type="<?php echo esc_html( $chart_type ); ?>"
 	data-chart_data='<?php echo esc_attr(wp_json_encode( $table_data )); ?>'
 	data-extra_data='<?php echo esc_attr(wp_json_encode( $extra_data )); ?>'

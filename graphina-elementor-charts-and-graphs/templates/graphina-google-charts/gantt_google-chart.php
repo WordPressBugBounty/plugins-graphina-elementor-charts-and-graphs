@@ -14,7 +14,9 @@ if ( ! defined( 'ABSPATH' ) ) {
 		<p><?php echo esc_html__( 'No Data Found', 'graphina-charts-for-elementor' ); ?></p>
 	</div>
 	<div class="graphina-google-chart <?php echo esc_attr($common_filter_class); ?>"
+        data-common_filter_id="<?php echo esc_attr( $common_filter_id ); ?>"
 		data-chart_type="<?php echo esc_attr( $chart_type ); ?>"
+        data-common_filter_id="<?php echo esc_attr( $common_filter_id ); ?>"
 		data-chart_type_static="Gantt"
 		data-element_id="<?php echo esc_attr( $element_id ); ?>"
 		data-chart_options='<?php echo esc_attr(wp_json_encode( $chart_options )); ?>'

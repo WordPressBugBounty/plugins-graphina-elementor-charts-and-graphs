@@ -11,8 +11,20 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 use Elementor\Icons_Manager;
+$read_aloud_attr = '';
+if ( ! empty( $settings[ GRAPHINA_PREFIX . $chart_type . '_read_aloud_text' ] ) ) {
+	$read_aloud_attr = ' aria-label="' . esc_attr( $settings[ GRAPHINA_PREFIX . $chart_type . '_read_aloud_text' ] ) . '"';
+}
 ?>
-<div class="graphina-card counter layout_1">
+<div class="graphina-card counter layout_1 <?php echo ! empty( $settings[ GRAPHINA_PREFIX . $chart_type . '_chart_common_filter_enable' ] ) && $settings[ GRAPHINA_PREFIX . $chart_type . '_chart_common_filter_enable' ] === 'yes' ? ' common-filter-counter' : ''; ?>"<?php echo $read_aloud_attr; ?>
+	data-common_filter_id="<?php echo isset($settings[GRAPHINA_PREFIX . $chart_type . '_common_filter_id']) ? esc_html($settings[GRAPHINA_PREFIX . $chart_type . '_common_filter_id']) : ''; ?>"
+	data-element_id="<?php echo esc_attr( $element_id ); ?>"
+	data-chart_type="<?php echo esc_html( $chart_type ); ?>"
+	data-chart_options='<?php echo wp_json_encode( $chart_options ); ?>'
+	data-responsive_options='<?php echo wp_json_encode( $responsive_options ); ?>'
+	data-extra_data='<?php echo wp_json_encode( $extra_data ); ?>'
+	data-settings='<?php echo esc_attr(wp_json_encode($element_settings)); ?>'
+>
 	<?php if ( isset( $counter_icon ) && ! empty( $counter_icon ) ) : ?>
 		<h2 class="counter-icon part-1">
 			<?php Icons_Manager::render_icon( $settings[ GRAPHINA_PREFIX . $chart_type . '_element_counter_icon' ], array( 'aria-hidden' => 'true' ) ); ?>

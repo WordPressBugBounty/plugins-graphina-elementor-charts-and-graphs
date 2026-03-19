@@ -153,6 +153,7 @@ class GraphinaApexChartBase extends GraphinaElementorWidgetBase {
 		$chart_data['common_filter_class'] = ''; 
 		if ( isset($chart_data['settings'][GRAPHINA_PREFIX . $chart_data['chart_type'] . '_chart_common_filter_enable']) && $chart_data['settings'][GRAPHINA_PREFIX . $chart_data['chart_type'] . '_chart_common_filter_enable'] === 'yes' ) {
 			$chart_data['common_filter_class'] = 'common-filter-chart';
+			$chart_data['common_filter_id']    = isset($chart_data['settings'][GRAPHINA_PREFIX . $chart_data['chart_type'] . '_common_filter_id']) ? $chart_data['settings'][GRAPHINA_PREFIX . $chart_data['chart_type'] . '_common_filter_id'] : '';
 		}
 
 

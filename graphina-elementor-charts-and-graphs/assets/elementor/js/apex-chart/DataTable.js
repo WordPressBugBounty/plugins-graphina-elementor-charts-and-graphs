@@ -4,6 +4,7 @@ export default class DataTable {
         this.tableHandlers = {};
         this.tableId = '';
         this.dataTable = {}
+        this.initializedTables = {}; // Track initialized tables
         this.init();
         this.observer = {}; // For IntersectionObserver
     }
@@ -75,7 +76,17 @@ export default class DataTable {
 
     // Setup IntersectionObserver to call setupTable when the element is in the viewport
     observeTableElement(element, dataTableType) {
-        const elementID = element.data('element_id')
+        const elementID = element.data('element_id');
+        if (elementorFrontend.isEditMode()) {
+            this.setupTable(element, dataTableType);
+            return;
+        }
+        
+        // Prevent duplicate initialization
+        if (this.initializedTables[elementID]) {
+            return;
+        }
+        
         if (gcfe_public_localize.view_port === 'off') {
             if (!this.observer[elementID]) {
                 this.observer[elementID] = new IntersectionObserver((entries) => {
@@ -146,6 +157,9 @@ export default class DataTable {
     async setupTable(element, dataTableType) {
         const element_id = element.data('element_id');
         this.tableId     = element_id;
+        
+        // Mark as initialized
+        this.initializedTables[element_id] = true;
 
         let chart_data      = this.sanitizeTableOptions(element.data('chart_data'));
         const extraData     = this.sanitizeTableOptions(element.data('extra_data'));
@@ -212,34 +226,28 @@ export default class DataTable {
             }
         }
     
-        // Add thead before reinitializing
-        if (chart_data.columns && chart_data.columns.length > 0) {
-            const theadHTML = '<thead><tr>' +
-                chart_data.columns.map(col => `<th>${col.title}</th>`).join('') +
-                '</tr></thead>';
-            jQuery(tableSelector).append(theadHTML);
-        }
-
-        // Initialize DataTable
-        this.dataTable[element_id] = jQuery(tableSelector).DataTable(chart_data);
-    
-        // Add tfoot if required
-        if (extraData.table_footer) {
-            jQuery(`#data_table_lite_${element_id}`).append('<tfoot><tr>' +
-                chart_data.columns.map(column => `<th class="${extraData.header_class}">${column.title}</th>`).join('') +
+        // Add tfoot before initialization if required
+        if (extraData.table_footer && chart_data.columns && chart_data.columns.length > 0) {
+            jQuery(tableSelector).append('<tfoot><tr>' +
+                chart_data.columns.map(column => `<th class="${extraData.header_class}">${typeof column === 'object' && column.title ? column.title : column}</th>`).join('') +
                 '</tr></tfoot>');
         }
+        
+        // Initialize DataTable (it will create thead automatically from columns)
+        this.dataTable[element_id] = jQuery(tableSelector).DataTable(chart_data);
     
         // Re-init if direct data table override is enabled
         if (extraData.table_data_direct) {
             this.dataTable[element_id].destroy();
             jQuery(tableSelector).empty();
-    
-            const theadHTML = '<thead><tr>' +
-                chart_data.columns.map(col => `<th>${col.title}</th>`).join('') +
-                '</tr></thead>';
-            jQuery(tableSelector).append(theadHTML);
-    
+            
+            // Add tfoot before re-initialization if required
+            if (extraData.table_footer && chart_data.columns && chart_data.columns.length > 0) {
+                jQuery(tableSelector).append('<tfoot><tr>' +
+                    chart_data.columns.map(column => `<th class="${extraData.header_class}">${typeof column === 'object' && column.title ? column.title : column}</th>`).join('') +
+                    '</tr></tfoot>');
+            }
+            
             this.dataTable[element_id] = jQuery(tableSelector).DataTable(chart_data);
         }    
     }

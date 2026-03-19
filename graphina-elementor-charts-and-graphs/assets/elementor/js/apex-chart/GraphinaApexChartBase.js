@@ -128,6 +128,39 @@ export default class GraphinaApexChartBase {
         if(chartElement.length > 0){
             // Hide the no-data text right away before updating the chart
             jQuery(`.graphina-${elementId}-notext`).hide();
+
+            
+            if (chartType === 'counter') {
+                jQuery(document).find(`.graphina-${elementId}-loader`).show()
+                let filterValue = []
+                const totalFilter = jQuery(`#graphina_chart_filter_${elementId}`).data('total_filter');
+                for (let index = 0; index < totalFilter; index++) {
+                    filterValue[index] = jQuery(`#graphina-start-date_${index}${elementId}`).val() ?? jQuery(`#graphina-drop_down_filter_${index}${elementId}`).val()
+                }
+                const settings = chartElement.data('settings');
+                const extraData = chartElement.data('extra_data');
+
+                this.getDynamicData(settings, extraData, chartType, elementId, filterValue).then(dynamicData => {
+                    if (window.graphinaCounterChart) {
+                        window.graphinaCounterChart.startCounterAnimation(elementId, true, dynamicData, extraData);
+
+                        // Handle mini-chart update if needed
+                        if (extraData.show_counter_chart) {
+                            if (dynamicData.extra && dynamicData.extra.series) {
+                                ApexCharts.exec(elementId, 'updateSeries', dynamicData.extra.series);
+                                if (dynamicData.extra.category) {
+                                    ApexCharts.exec(elementId, 'updateOptions', {
+                                        labels: dynamicData.extra.category,
+                                        xaxis: { categories: dynamicData.extra.category }
+                                    });
+                                }
+                            }
+                        }
+                    }
+                    jQuery(document).find(`.graphina-${elementId}-loader`).hide();
+                });
+                return;
+            }
             // Destroy existing chart (if any)
             ApexCharts.exec(elementId, 'destroy');
 

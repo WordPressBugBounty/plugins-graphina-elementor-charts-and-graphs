@@ -11,8 +11,12 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 use Elementor\Icons_Manager;
+$read_aloud_attr = '';
+if ( ! empty( $settings[ GRAPHINA_PREFIX . $chart_type . '_read_aloud_text' ] ) ) {
+	$read_aloud_attr = ' aria-label="' . esc_attr( $settings[ GRAPHINA_PREFIX . $chart_type . '_read_aloud_text' ] ) . '"';
+}
 ?>
-<div class="graphina-card counter layout_6">
+<div class="graphina-card counter layout_6 <?php echo ! empty( $settings[ GRAPHINA_PREFIX . $chart_type . '_chart_common_filter_enable' ] ) && $settings[ GRAPHINA_PREFIX . $chart_type . '_chart_common_filter_enable' ] === 'yes' ? ' common-filter-counter' : ''; ?>"<?php echo $read_aloud_attr; ?>>
 	<div class="main-counter">
 		<h2 class="counter-icon part-1">
 			<?php if ( isset( $counter_icon ) && ! empty( $counter_icon ) ) : ?>

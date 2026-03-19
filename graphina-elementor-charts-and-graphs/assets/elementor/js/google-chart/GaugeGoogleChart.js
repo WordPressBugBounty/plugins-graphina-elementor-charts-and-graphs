@@ -53,8 +53,8 @@ export default class GaugeChart extends GraphinaGoogleChartBase {
 
     setupTableData(dynamicData, dataTable, googleChart, googleChartTexture, extraData) {
         if(dynamicData?.google_chart_data?.data.length > 0){
-            dataTable.addColumn('string', 'Month');
-            dataTable.addColumn('number', 'Sale');
+            dataTable.addColumn('string', 'Label');
+            dataTable.addColumn('number', 'Value');
             dynamicData.google_chart_data.data.forEach(row => dataTable.addRow(row));
             googleChart.show()
             googleChartTexture.hide()

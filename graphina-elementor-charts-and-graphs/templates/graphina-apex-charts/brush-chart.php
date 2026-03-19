@@ -11,6 +11,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 ?>
 <div class="chart-box">
 	<div class="graphina-elementor-chart <?php echo isset($common_filter_class) ? esc_attr($common_filter_class) : ''; ?> graphina-brush-chart-<?php echo esc_attr( $element_id ); ?>-1"
+        data-common_filter_id="<?php echo esc_attr( $common_filter_id ); ?>"
 		data-chart_type="<?php echo esc_html( $chart_type ); ?>"
 		data-element_id="<?php echo esc_html( $element_id ); ?>"
 		data-chart_options='<?php echo esc_attr(wp_json_encode( $chart_options )); ?>'

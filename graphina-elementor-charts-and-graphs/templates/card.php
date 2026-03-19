@@ -12,7 +12,13 @@ if (! defined('ABSPATH')) {
 // Fire action before chart template starts
 do_action('graphina_before_chart_template');
 
-?><div class="<?php echo esc_attr($chart_card_class); ?>">
+
+$read_aloud_attr = '';
+if ( ! empty( $settings[ GRAPHINA_PREFIX . $chart_type . '_read_aloud_text' ] ) ) {
+	$read_aloud_attr = ' aria-label="' . esc_attr( $settings[ GRAPHINA_PREFIX . $chart_type . '_read_aloud_text' ] ) . '"';
+}
+?>
+<div role="img" class="<?php echo esc_attr($chart_card_class); ?>"<?php echo $read_aloud_attr; ?>>
 	<div>
 		<?php if ($show_heading) : ?>
 			<h4 class="heading graphina-chart-heading">

@@ -36,7 +36,7 @@ class FilterBase {
     handleCommonChartUpdate(e) {
         e.preventDefault()
 
-        const currentElement = e.currentTarget;
+        const currentElement = e.target.closest('.graphina-filter-div-button.common');
 
         // Store the original button text
         const originalText = currentElement.textContent;
@@ -50,19 +50,39 @@ class FilterBase {
         currentElement.classList.add('loading_btn');
 
 
-        const elementId = jQuery(currentElement).data('element_id')
-        const totalFilter = jQuery(`#graphina_chart_filter_${elementId}`).data('total_filter');
+        const filterElementId = jQuery(currentElement).data('element_id')
+        const totalFilter = jQuery(`#graphina_chart_filter_${filterElementId}`).data('total_filter');
         let filterValue = []
 
         for (let index = 0; index < totalFilter; index++) {
-            filterValue[index] = jQuery(`#graphina-start-date_${index}${elementId}`).val() ??
-                jQuery(`#graphina-drop_down_filter_${index}${elementId}`).val();
+            filterValue[index] = jQuery(`#graphina-start-date_${index}${filterElementId}`).val() ??
+                jQuery(`#graphina-drop_down_filter_${index}${filterElementId}`).val();
         }
         // Find all chart elements on the page
 
         const apexChartElements = jQuery('.common-filter-chart');
         const googleChartElements = jQuery('.common-filter-google-chart');
-        
+        const dataTableElements = jQuery('.common-filter-datatable');
+        const dataCounterElements = jQuery('.common-filter-counter');
+
+        if (dataCounterElements.length > 0) {
+            jQuery(document).find('.graphina-loader').show();
+
+            dataCounterElements.each((index, element) => {
+                const counterElement = jQuery(element);
+                const elementId = counterElement.data('element_id');
+                const common_filter_id = counterElement.data('common_filter_id');
+
+                if (filterElementId !== common_filter_id) {
+                    return; // Skip if not the target chart
+                }
+                const chartType = counterElement.data('chart_type');
+
+                jQuery(document).find(`.graphina-${elementId}-loader`).show();
+                this.updateCounterWithCommonFilter(counterElement, chartType, filterValue);
+            });
+        }
+
         if (apexChartElements.length > 0) {
             jQuery(document).find('.graphina-loader').show();
 
@@ -70,18 +90,22 @@ class FilterBase {
             apexChartElements.each((index, element) => {
                 const chartElement = jQuery(element);
                 const elementId = chartElement.data('element_id');
+                const common_filter_id = chartElement.data('common_filter_id');
                 const chartType = chartElement.data('chart_type');
+                if (filterElementId !== common_filter_id) {
+                    return; // Skip if not the target chart
+                }
 
                 if (this.mainChart[elementId]) {
                     this.mainChart[elementId].destroy();
                 } else {
                     ApexCharts.exec(elementId, 'destroy');
                 }
-                
+
                 jQuery(document).find(`.graphina-${elementId}-loader`).show();
                 this.updateChartWithCommonFilter(chartElement, chartType, filterValue);
             });
-            
+
         }
 
         if (googleChartElements.length > 0) {
@@ -92,6 +116,10 @@ class FilterBase {
             googleChartElements.each((index, element) => {
                 const chartElement = jQuery(element);
                 const elementId = chartElement.data('element_id');
+                const common_filter_id = chartElement.data('common_filter_id');
+                if (filterElementId !== common_filter_id) {
+                    return; // Skip if not the target chart
+                }
                 const chartType = chartElement.data('chart_type_static');
 
                 // Show individual chart loader
@@ -102,6 +130,24 @@ class FilterBase {
             });
         }
 
+        if (dataTableElements.length > 0) {
+            jQuery(document).find('.graphina-loader').show();
+
+            dataTableElements.each((index, element) => {
+                const tableElement = jQuery(element);
+                const elementId = tableElement.data('element_id');
+                const common_filter_id = tableElement.data('common_filter_id');
+
+                if (filterElementId !== common_filter_id) {
+                    return; // Skip if not the target chart
+                }
+                const chartType = tableElement.data('chart_type');
+
+                jQuery(document).find(`.graphina-${elementId}-loader`).show();
+                this.updateDataTableWithCommonFilter(tableElement, chartType, filterValue);
+            });
+        }
+
 
     }
 
@@ -109,13 +155,13 @@ class FilterBase {
 
         let action = 'graphina_get_dynamic_data'
         let req_nonce = gcfe_public_localize.nonce
-        if (chartType === 'counter') {
+        if (chartType === 'counter' || chartType === 'data_table_lite') {
             action = 'get_jquery_datatable_data'
             req_nonce = gcfe_public_localize.table_nonce
         }
         let post_id = jQuery(`[data-element_id="${elementId}"]`).closest('[data-elementor-id]').data('elementor-id');
         let field_post_id = post_id;
-        if (extraData.is_same_acf_field_id) {
+        if (extraData?.is_same_acf_field_id) {
             field_post_id = extraData.custom_post_id_for_acf_field;
         }
 
@@ -221,6 +267,27 @@ class FilterBase {
                     googleChartTexture.hide();
                 }
 
+                // Handle gauge charts (simple format with no title_array)
+            } else if (dynamicData.google_chart_data?.data?.length > 0 &&
+                (!dynamicData.google_chart_data?.title_array || dynamicData.google_chart_data.title_array.length === 0)) {
+
+                // For gauge charts: use simple Label/Value structure
+                dataTable.addColumn('string', 'Label');
+                dataTable.addColumn('number', 'Value');
+
+                if (Array.isArray(dynamicData.google_chart_data.data)) {
+                    dynamicData.google_chart_data.data.forEach(row => {
+                        if (Array.isArray(row)) {
+                            dataTable.addRow(row);
+                        }
+                    });
+                }
+
+                if (googleChart && googleChartTexture) {
+                    googleChart.show();
+                    googleChartTexture.hide();
+                }
+
                 // Handle regular column/row format
             } else if (Array.isArray(dynamicData.columns) &&
                 Array.isArray(dynamicData.rows) &&
@@ -258,7 +325,7 @@ class FilterBase {
     getFinalChartOptions(finalChartOptions) {
         return finalChartOptions;
     }
-    
+
     // Method to update chart with common filter
     async updateChartWithCommonFilter(chartElement, chartType, commonFilterValue) {
         const elementId = chartElement.data('element_id');
@@ -307,11 +374,11 @@ class FilterBase {
                 chartOptions.chart.type = 'bar';
                 chartOptions.series = seriesData;
                 chartOptions.xaxis.categories = categoryData;
-            } else if (['polar', 'radialBar', 'radial', 'pie', 'donut'].includes(chartType)){
+            } else if (['polar', 'radialBar', 'radial', 'pie', 'donut'].includes(chartType)) {
 
                 chartOptions.series = seriesData;
                 chartOptions.labels = categoryData;
-            }else{
+            } else {
                 chartOptions.series = seriesData;
                 chartOptions.xaxis.categories = categoryData;
             }
@@ -399,7 +466,7 @@ class FilterBase {
                         googleChart.hide();
                         googleChartTexture.hide(); // optional if you want to hide grey bg too
                         noTextContainer.show();
-                        
+
                         jQuery(`.graphina-${elementId}-loader`).hide();
                         return;
                     } else {
@@ -442,7 +509,7 @@ class FilterBase {
             const chart = new google.visualization[chartType](element[0]);
             const finalChartOptions = this.getFinalChartOptions(chartOptions, elementId);
             chart.draw(dataTable, finalChartOptions);
-            
+
         } catch (error) {
             googleChart.hide();
             googleChartTexture.show();
@@ -468,6 +535,92 @@ class FilterBase {
                 console.error('Error loading Google Charts:', error);
                 reject(error);
             }
+        });
+    }
+
+    async updateDataTableWithCommonFilter(tableElement, chartType, filterValue) {
+        const elementId = tableElement.data('element_id');
+        const settings = tableElement.data('settings');
+        const extraData = tableElement.data('extra_data');
+
+        try {
+            const dynamicData = await this.getDynamicData(settings, extraData, chartType, elementId, filterValue);
+
+            if (dynamicData && dynamicData.status && dynamicData.data) {
+                const tableId = `#data_table_lite_${elementId}`;
+                const table = jQuery(tableId);
+
+                if (jQuery.fn.DataTable.isDataTable(tableId)) {
+                    jQuery(tableId).DataTable().destroy();
+                    table.empty();
+                }
+
+                const originalData = tableElement.data('chart_data');
+                const tableOptions = Object.assign({}, originalData, {
+                    data: dynamicData.data.body,
+                    columns: dynamicData.data.header.map(h => ({ title: typeof h === 'object' ? h.title : h }))
+                });
+
+                table.DataTable(tableOptions);
+            }
+
+            jQuery(`.graphina-${elementId}-loader`).hide();
+            jQuery('.graphina-filter-div-button.common').removeClass('loading_btn').prop('disabled', false).each(function () {
+                const originalText = jQuery(this).data('original-text');
+                if (originalText) jQuery(this).text(originalText);
+            });
+        } catch (error) {
+            console.error('Error updating DataTable:', error);
+            jQuery(`.graphina-${elementId}-loader`).hide();
+            jQuery('.graphina-filter-div-button.common').removeClass('loading_btn').prop('disabled', false);
+        }
+    }
+
+    async updateCounterWithCommonFilter(counterElement, chartType, filterValue) {
+        const elementId = counterElement.data('element_id');
+        const settings = counterElement.data('settings');
+        const extraData = counterElement.data('extra_data');
+
+        try {
+            const dynamicData = await this.getDynamicData(settings, extraData, chartType, elementId, filterValue);
+
+            if (dynamicData && dynamicData.status) {
+                if (window.graphinaCounterChart) {
+                    window.graphinaCounterChart.startCounterAnimation(elementId, true, dynamicData, extraData);
+                }
+            }
+            jQuery(document).find(`.graphina-${elementId}-loader`).hide();
+            jQuery('.graphina-filter-div-button.common').removeClass('loading_btn').prop('disabled', false).each(function () {
+                const originalText = jQuery(this).data('original-text');
+                if (originalText) jQuery(this).text(originalText);
+            });
+
+        } catch (error) {
+            console.error('Error updating Counter Chart:', error);
+            jQuery(document).find(`.graphina-${elementId}-loader`).hide();
+            jQuery('.graphina-filter-div-button.common').removeClass('loading_btn').prop('disabled', false);
+        }
+    }
+
+    setFieldsForCounter(settings, response, chartType, extraData) {
+        // Determine the type of data source and select appropriate fields
+        const FieldSelector = `[data-setting="${extraData.graphina_prefix}${chartType}_element_column_no"]`;
+
+        const element = parent.document.querySelector(FieldSelector);
+
+        // Exit if either element is not found
+        if (!element) return;
+
+        // Clear existing options in the dropdowns
+        element.innerHTML = '';
+
+        // Determine the data source for options and extra data keys
+        const options = response.extra.columns;
+        const xExtraKey = extraData.element_column_no;
+        // Populate the dropdown fields with options
+        options.forEach((option) => {
+            const isSelectedX = Array.isArray(xExtraKey) ? xExtraKey.includes(option) : xExtraKey === option;
+            element.append(new Option(option, option, isSelectedX, isSelectedX));
         });
     }
 }
