@@ -60,11 +60,7 @@ export default class PieChart extends GraphinaGoogleChartBase {
             googleChart.hide()
             googleChartTexture.show()
         }
-        var formatter = new google.visualization.NumberFormat({
-            prefix: extraData.prefix ?? '',
-            suffix: extraData.suffix ?? '',
-        });
-        formatter.format(dataTable, 1);
+        this.applyLocaleFormatting(dataTable, extraData);
     }
 }
 // Initialize PieChart

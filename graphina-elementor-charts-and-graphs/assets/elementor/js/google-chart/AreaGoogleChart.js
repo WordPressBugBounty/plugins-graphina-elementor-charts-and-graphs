@@ -65,6 +65,7 @@ export default class AreaChart extends GraphinaGoogleChartBase {
             googleChart.hide()
             googleChartTexture.show()
         }
+        this.applyLocaleFormatting(dataTable, extraData);
     }
 }
 window.graphinaGoogleAreaChart = new AreaChart();

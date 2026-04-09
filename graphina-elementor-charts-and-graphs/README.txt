@@ -4,7 +4,7 @@ Tags: data visualization wordpress plugin, wordpress charts, wordpress charts an
 Requires PHP: 8.0.0
 Requires at least: 5.9
 Tested up to: 6.9.4
-Stable tag: 3.1.10
+Stable tag: 3.1.11
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -227,10 +227,14 @@ Yes, we'd love to hear from you at <a href="mailto:hello@iqonic.design">hello@iq
 
 == Changelog ==
 
+= 3.1.11 - 09/04/2026 =
+- [Improvement] Thousand separator is now language dependent on Google Chart as well
+- [Compatibility] Elementor 4.0.1 version compatible
+
 = 3.1.10 - 19/03/2026 =
 - [Added] Implemented initial screen reader accessibility support to improve usability for assistive technologies.
-- [Improvement] responsive legend position settings for: Deskto, Table and Mobile devices
-- [Enhancement] support for HTML tags in chart description, allowing use of: <br> for line breaks, <i> / <em> for italic text, <a> for anchor links
+- [Improvement] responsive legend position settings for: Desktop, Table and Mobile devices
+- [Enhancement] support for HTML tags in chart description, allowing use of: br tag for line breaks, i tag / em tag for italic text, a tag for anchor links
 
 = 3.1.9 - 03/11/2025 =  
 - [Fixed] Security fixes.  

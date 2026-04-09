@@ -67,12 +67,7 @@ export default class GaugeChart extends GraphinaGoogleChartBase {
             googleChart.hide()
             googleChartTexture.show()
         }
-        var formatter = new google.visualization.NumberFormat({
-            prefix: extraData.prefix ?? '',
-            suffix: extraData.suffix ?? '',
-            fractionDigits: extraData.fractionDigits ?? 0
-        });
-        formatter.format(dataTable, 1);;
+        this.applyLocaleFormatting(dataTable, extraData);
     }
     
     afterSetupChart(element, extraData,chart,dataTable,finalChartOptions) {

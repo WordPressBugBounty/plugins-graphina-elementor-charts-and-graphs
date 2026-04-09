@@ -524,9 +524,14 @@ class FilterBase {
 
         if (this.isGoogleChartsLoaded) return; // Prevent loading multiple times
 
+        const locale = gcfe_public_localize.locale_with_hyphen ?? 'en-US';
+
         return new Promise((resolve, reject) => {
             try {
-                google.charts.load('current', { packages: ['corechart', 'geochart', 'gauge', 'gantt', 'orgchart'] });
+                google.charts.load('current', {
+                    packages: ['corechart', 'geochart', 'gauge', 'gantt', 'orgchart'],
+                    language: locale
+                });
                 google.charts.setOnLoadCallback(() => {
                     this.isGoogleChartsLoaded = true;
                     resolve();

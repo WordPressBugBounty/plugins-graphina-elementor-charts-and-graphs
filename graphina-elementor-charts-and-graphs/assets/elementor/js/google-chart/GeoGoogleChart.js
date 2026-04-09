@@ -92,6 +92,7 @@ export default class GeoChart extends GraphinaGoogleChartBase {
             googleChart.hide()
             googleChartTexture.show()
         }
+        this.applyLocaleFormatting(dataTable, extraData);
     }
     
     afterSetupChart(element, extraData,chart,dataTable,finalChartOptions) {

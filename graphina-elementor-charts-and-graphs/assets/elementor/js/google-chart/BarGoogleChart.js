@@ -74,6 +74,7 @@ export default class BarChart extends GraphinaGoogleChartBase {
         googleChart.hide();
         googleChartTexture.show();
     }
+    this.applyLocaleFormatting(dataTable, extraData);
 }
 
 }

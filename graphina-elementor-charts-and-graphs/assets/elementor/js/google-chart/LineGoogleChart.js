@@ -61,6 +61,7 @@ export default class LineChart extends GraphinaGoogleChartBase {
             googleChart.hide()
             googleChartTexture.show()
         }
+        this.applyLocaleFormatting(dataTable, extraData);
     }
 }
 // Initialize Line Chart

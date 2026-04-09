@@ -383,14 +383,54 @@ export default class GraphinaGoogleChartBase {
     }
 
 
+    // Get locale-specific number format symbols
+    getNumberFormatSymbols() {
+        const locale = gcfe_public_localize.locale_with_hyphen ?? 'en-US';
+        try {
+            const formatter = new Intl.NumberFormat(locale);
+            const parts = formatter.formatToParts(1234567.89);
+            const groupingSymbol = parts.find(part => part.type === 'group')?.value ?? ',';
+            const decimalSymbol = parts.find(part => part.type === 'decimal')?.value ?? '.';
+            return { groupingSymbol, decimalSymbol };
+        } catch (e) {
+            return { groupingSymbol: ',', decimalSymbol: '.' };
+        }
+    }
+
+    // Apply locale-specific number formatting to all numeric columns
+    applyLocaleFormatting(dataTable, extraData) {
+        const symbols = this.getNumberFormatSymbols();
+        const formatter = new google.visualization.NumberFormat({
+            prefix: extraData.prefix ?? '',
+            suffix: extraData.suffix ?? '',
+            fractionDigits: extraData.fractionDigits ?? extraData.decimal_in_float ?? 0,
+            groupingSymbol: symbols.groupingSymbol,
+            decimalSymbol: symbols.decimalSymbol
+        });
+
+        // Loop through all columns and apply formatting to numeric ones (usually skip column 0)
+        const colCount = dataTable.getNumberOfColumns();
+        for (let i = 0; i < colCount; i++) {
+            if (dataTable.getColumnType(i) === 'number') {
+                formatter.format(dataTable, i);
+            }
+        }
+    }
+
+
     // Dynamically load the Google Charts library
     async loadGoogleCharts() {
 
         if (this.isGoogleChartsLoaded) return; // Prevent loading multiple times
 
+        const locale = gcfe_public_localize.locale_with_hyphen ?? 'en-US';
+
         return new Promise((resolve, reject) => {
             try {
-                google.charts.load('current', { packages: ['corechart','geochart','gauge','gantt','orgchart'] });
+                google.charts.load('current', {
+                    packages: ['corechart', 'geochart', 'gauge', 'gantt', 'orgchart'],
+                    language: locale
+                });
                 google.charts.setOnLoadCallback(() => {
                     this.isGoogleChartsLoaded = true;
                     resolve();

@@ -105,6 +105,7 @@ export default class GanttChart extends GraphinaGoogleChartBase {
             googleChart.hide()
             googleChartTexture.show()
         }
+        this.applyLocaleFormatting(dataTable, extraData);
     }
 }
 // Initialize Gantt Chart
