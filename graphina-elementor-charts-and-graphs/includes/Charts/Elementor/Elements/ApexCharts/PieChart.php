@@ -481,6 +481,7 @@ class PieChart extends GraphinaApexChartBase {
 		);
 		$chart_options['stroke']             = array(
 			'show'  => $settings[GRAPHINA_PREFIX . $chart_type . '_chart_stroke_show'] === 'yes' ? true : false,
+			'colors' => $settings[GRAPHINA_PREFIX . $chart_type . '_chart_stroke_color'] ?? ['#fff'],
 			'width' => $settings[GRAPHINA_PREFIX . $chart_type . '_chart_stroke_show'] === 'yes' ? $settings[GRAPHINA_PREFIX . $chart_type . '_chart_stroke_width'] : 0,
 		);
 		$chart_options['labels'] = $categories;

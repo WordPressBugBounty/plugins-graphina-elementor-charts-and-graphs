@@ -26,6 +26,18 @@ class ComposerStaticInitGraphina
 
     public static $classMap = array (
         'Composer\\InstalledVersions' => __DIR__ . '/..' . '/composer/InstalledVersions.php',
+        'Graphina\\Admin\\GraphinaAdmin' => __DIR__ . '/../..' . '/includes/Admin/GraphinaAdmin.php',
+        'Graphina\\Admin\\GraphinaAdminMenu' => __DIR__ . '/../..' . '/includes/Admin/GraphinaAdminMenu.php',
+        'Graphina\\Charts\\Elementor\\GraphinaApexChartBase' => __DIR__ . '/../..' . '/includes/Charts/Elementor/GraphinaApexChartBase.php',
+        'Graphina\\Charts\\Elementor\\GraphinaApexTreeBase' => __DIR__ . '/../..' . '/includes/Charts/Elementor/GraphinaApexTreeBase.php',
+        'Graphina\\Charts\\Elementor\\GraphinaDataTableBase' => __DIR__ . '/../..' . '/includes/Charts/Elementor/GraphinaDataTableBase.php',
+        'Graphina\\Charts\\Elementor\\GraphinaElementor' => __DIR__ . '/../..' . '/includes/Charts/Elementor/GraphinaElementor.php',
+        'Graphina\\Charts\\Elementor\\GraphinaElementorControls' => __DIR__ . '/../..' . '/includes/Charts/Elementor/GraphinaElementorControls.php',
+        'Graphina\\Charts\\Elementor\\GraphinaElementorWidgetBase' => __DIR__ . '/../..' . '/includes/Charts/Elementor/GraphinaElementorWidgetBase.php',
+        'Graphina\\Charts\\Elementor\\GraphinaElementorWidgetSettings' => __DIR__ . '/../..' . '/includes/Charts/Elementor/GraphinaElementorWidgetSettings.php',
+        'Graphina\\Charts\\Elementor\\GraphinaGoogleChartBase' => __DIR__ . '/../..' . '/includes/Charts/Elementor/GraphinaGoogleChartBase.php',
+        'Graphina\\Graphina' => __DIR__ . '/../..' . '/includes/Graphina.php',
+        'Graphina\\Public\\GraphinaPublic' => __DIR__ . '/../..' . '/includes/Public/GraphinaPublic.php',
     );
 
     public static function getInitializer(ClassLoader $loader)

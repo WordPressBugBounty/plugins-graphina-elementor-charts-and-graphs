@@ -1,0 +1,54 @@
+name: Release
+
+on:
+  push:
+    branches:
+      - main
+
+concurrency: ${{ github.workflow }}-${{ github.ref }}
+
+jobs:
+  release:
+    # Prevent this action from running on forks.
+    if: github.repository == 'gmits/wp_plugins/vite-for-wp'
+    name: Release
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+        with:
+          # This makes Actions fetch all Git history so that Changesets can generate changelogs with the correct commits.
+          fetch-depth: 0
+
+      - name: Setup PNPM
+        uses: pnpm/action-setup@v4
+
+      - name: Setup Nodejs
+        uses: actions/setup-node@v4
+        with:
+          cache: "pnpm"
+          node-version: "20"
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile --recursive --silent --strict-peer-dependencies
+
+      - id: get_version
+        shell: bash
+        run: |
+          echo package_version=$(cat package.json | grep version | head -1 | awk -F: '{ print $2 }' | sed 's/[", ]//g') >> $GITHUB_OUTPUT
+
+      - name: Create release pull request or publish to NPM
+        id: changesets
+        uses: changesets/action@v1
+        with:
+          publish: pnpm release
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+
+      - name: Create tag
+        uses: EndBug/add-and-commit@v9
+        if: steps.changesets.outputs.published == 'true'
+        with:
+          tag: ${{ steps.get_version.outputs.package_version }}
+          push: "--tags"

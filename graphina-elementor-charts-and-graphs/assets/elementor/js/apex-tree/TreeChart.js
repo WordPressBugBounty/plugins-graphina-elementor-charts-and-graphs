@@ -132,6 +132,67 @@ export default class TreeChart {
         }
     }
 
+    escapeHtml(value) {
+        return String(value ?? '').replace(/[&<>"]/g, (character) => ({
+            '&': '&amp;',
+            '<': '&lt;',
+            '>': '&gt;',
+            '"': '&quot;',
+        }[character]));
+    }
+
+    escapeAttribute(value) {
+        return this.escapeHtml(value).replace(/'/g, '&#039;');
+    }
+
+    sanitizeTemplateHtml(html) {
+        const template = document.createElement('template');
+        template.innerHTML = html;
+
+        template.content.querySelectorAll('script, iframe, object, embed, svg, math, link, meta').forEach((node) => node.remove());
+        template.content.querySelectorAll('*').forEach((node) => {
+            Array.from(node.attributes).forEach((attribute) => {
+                const attributeName = attribute.name.toLowerCase();
+                const attributeValue = attribute.value.trim().toLowerCase();
+
+                if (attributeName.startsWith('on')) {
+                    node.removeAttribute(attribute.name);
+                    return;
+                }
+
+                if (['href', 'src', 'xlink:href'].includes(attributeName) && /^(javascript|data):/.test(attributeValue)) {
+                    node.removeAttribute(attribute.name);
+                }
+            });
+        });
+
+        return template.innerHTML;
+    }
+
+    renderNodeTemplate(template, content) {
+        let renderedTemplate = String(template ?? '');
+        const replacements = {
+            name: this.escapeHtml(content?.name),
+            category: this.escapeHtml(content?.category),
+            imageURL: this.escapeAttribute(content?.imageURL),
+        };
+
+        const imageMarkup = content?.imageURL
+            ? `<img style='width: 50px;height: 50px;border-radius: 50%;' src='${replacements.imageURL}' alt='' />`
+            : '';
+
+        renderedTemplate = renderedTemplate.replace(/\$\{\s*content\.imageURL\s*\?\s*`[^`]*`\s*:\s*''\s*\}/g, imageMarkup);
+        renderedTemplate = renderedTemplate.replace(/{{\s*image\s*}}/g, imageMarkup);
+        Object.entries(replacements).forEach(([key, value]) => {
+            renderedTemplate = renderedTemplate
+                .replace(new RegExp(`{{\\s*${key}\\s*}}`, 'g'), value)
+                .replace(new RegExp(`\\$\\{\\s*content\\.${key}\\s*\\}`, 'g'), value);
+        });
+
+        renderedTemplate = renderedTemplate.replace(/\$\{[^}]*\}/g, '');
+        return this.sanitizeTemplateHtml(renderedTemplate);
+    }
+
     async setupTree(element, chartType) {
 
         const element_id = element.data('element_id')
@@ -143,7 +204,7 @@ export default class TreeChart {
 
         chartOptions.nodeTemplate = (content) => {
             const template = extraData.tree_template;
-            return new Function('content', `return \`${template}\`;`)(content);
+            return this.renderNodeTemplate(template, content);
         };
         
 

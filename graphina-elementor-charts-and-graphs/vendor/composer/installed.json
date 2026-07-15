@@ -20,7 +20,7 @@
             },
             "time": "2025-09-27T16:39:33+05:30",
             "type": "library",
-            "installation-source": "dist",
+            "installation-source": "source",
             "autoload": {
                 "files": [
                     "iqonic-vite-for-wp.php"

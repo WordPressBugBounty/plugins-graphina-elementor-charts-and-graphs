@@ -16,6 +16,7 @@ if ( ! empty( $settings[ GRAPHINA_PREFIX . $chart_type . '_read_aloud_text' ] ) 
 }
 ?>
 <div class="graphina-card counter layout_3 <?php echo ! empty( $settings[ GRAPHINA_PREFIX . $chart_type . '_chart_common_filter_enable' ] ) && $settings[ GRAPHINA_PREFIX . $chart_type . '_chart_common_filter_enable' ] === 'yes' ? ' common-filter-counter' : ''; ?>"<?php echo $read_aloud_attr; ?>>
+	<div class="layout_3-counter-row">
 	<?php if (!empty($counter_title)): ?>
 		<h2 class="counter-title title <?php echo esc_attr( 'counter-title-' . $element_id ); ?>"><?php echo esc_html( $counter_title ); ?></h2>
 	<?php endif; ?>
@@ -41,6 +42,7 @@ if ( ! empty( $settings[ GRAPHINA_PREFIX . $chart_type . '_read_aloud_text' ] ) 
 		<?php endif; ?>
 	</div>
 
+	</div>
 	<?php if ( isset( $counter_description ) && ! empty( $counter_description ) ) : ?>
 		<p class="counter-description text-center description"><?php echo esc_html( $counter_description ); ?></p>
 	<?php endif; ?>

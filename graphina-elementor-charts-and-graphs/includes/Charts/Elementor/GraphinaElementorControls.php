@@ -1138,7 +1138,7 @@ class GraphinaElementorControls {
 				'label_block' => true,
 				'default'     => 'Description',
 				'condition' => [
-                    GRAPHINA_PREFIX . $chart_type . '_element_data_option' => 'manual'
+                    GRAPHINA_PREFIX . $chart_type . '_element_data_option' => ['manual', 'dynamic']
                 ],
 				'dynamic'     => array(
 					'active' => true,
@@ -3757,6 +3757,20 @@ class GraphinaElementorControls {
 						'default'   => false,
 						'condition' => array(
 							GRAPHINA_PREFIX . $chart_type . '_chart_data_option' => 'manual',
+							GRAPHINA_PREFIX . $chart_type . '_chart_data_series_count' => range( 1 + $i, graphina_default_setting( 'max_series_value' ) ),
+						),
+					)
+				);
+
+				$widget->add_control(
+					GRAPHINA_PREFIX . $chart_type . '_chart_opposite_yaxis_series_4_' . $i,
+					array(
+						'label'     => esc_html__( 'Element', 'graphina-charts-for-elementor' ) . ' ' . ( $i + 1 ) . ' ' . esc_html__( 'Depends On Opposite Yaxis', 'graphina-charts-for-elementor' ),
+						'type'      => Controls_Manager::SWITCHER,
+						'label_on'  => esc_html__( 'Yes', 'graphina-charts-for-elementor' ),
+						'label_off' => esc_html__( 'No', 'graphina-charts-for-elementor' ),
+						'default'   => false,
+						'condition' => array(
 							GRAPHINA_PREFIX . $chart_type . '_chart_data_series_count' => range( 1 + $i, graphina_default_setting( 'max_series_value' ) ),
 						),
 					)
@@ -7750,7 +7764,7 @@ class GraphinaElementorControls {
 		}
 		if ( in_array( $chart_type, array( 'gauge_google' ), true ) ) {
 
-			$widget->add_control(
+			$widget->add_responsive_control(
 				GRAPHINA_PREFIX . $chart_type . '_google_chart_meter_width',
 				array(
 					'label' => esc_html__( 'Width', 'graphina-charts-for-elementor' ),
@@ -7760,7 +7774,7 @@ class GraphinaElementorControls {
 				)
 			);
 
-			$widget->add_control(
+			$widget->add_responsive_control(
 				GRAPHINA_PREFIX . $chart_type . '_google_chart_meter_height',
 				array(
 					'label'   => esc_html__( 'Height', 'graphina-charts-for-elementor' ),
@@ -9240,7 +9254,7 @@ class GraphinaElementorControls {
 					)
 				);
 
-				if ( in_array( $chart_type, array( 'column_google'), true ) ){
+				if ( in_array( $chart_type, array( 'column_google', 'bar_google' ), true ) ){
 					$widget->add_control(
 						GRAPHINA_PREFIX . $chart_type . '_chart_stacked',
 						array(
@@ -9506,7 +9520,7 @@ class GraphinaElementorControls {
 				),
 			)
 		);
-		if ( in_array( $chart_type, array( 'timeline' ) ) ) {
+		if ( in_array( $chart_type, array( 'timeline','pie' ) ) ) {
 			$widget->add_control(
 				GRAPHINA_PREFIX . $chart_type . '_chart_stroke_color',
 				array(
@@ -9850,7 +9864,7 @@ class GraphinaElementorControls {
 				)
 			);
 
-			$widget->add_control(
+			$widget->add_responsive_control(
 				GRAPHINA_PREFIX . $chart_type . '_element_counter_icon_size',
 				array(
 					'label'      => esc_html__( 'Size', 'graphina-charts-for-elementor' ),
@@ -9873,7 +9887,7 @@ class GraphinaElementorControls {
 				)
 			);
 
-			$widget->add_control(
+			$widget->add_responsive_control(
 				GRAPHINA_PREFIX . $chart_type . '_count_icon_horizontal_alignment',
 				array(
 					'label'     => esc_html__( 'Alignment', 'graphina-charts-for-elementor' ),
@@ -9902,7 +9916,7 @@ class GraphinaElementorControls {
 				)
 			);
 
-			$widget->add_control(
+			$widget->add_responsive_control(
 				GRAPHINA_PREFIX . $chart_type . '_count_icon_horizontal_position',
 				array(
 					'label'     => esc_html__( 'Alignment', 'graphina-charts-for-elementor' ),
@@ -12566,6 +12580,56 @@ class GraphinaElementorControls {
 					)
 				);
 			}
+			if($chart_type === 'mixed'){
+					$widget->add_control(
+					GRAPHINA_PREFIX . $chart_type . '_chart_opposite_yaxis_enable',
+					array(
+						'label'     => esc_html__( 'Enable Opposite Yaxis', 'graphina-charts-for-elementor' ),
+						'type'      => Controls_Manager::SWITCHER,
+						'label_on'  => esc_html__( 'Hide', 'graphina-charts-for-elementor' ),
+						'label_off' => esc_html__( 'Show', 'graphina-charts-for-elementor' ),
+						'default'   => 'no',
+					)
+				);
+				$widget->add_control(
+				GRAPHINA_PREFIX . $chart_type . '_chart_yaxis_opposite_enable_min_max',
+				array(
+					'label'       => esc_html__( 'Enable Min/Max', 'graphina-charts-for-elementor' ),
+					'type'        => Controls_Manager::SWITCHER,
+					'label_on'    => esc_html__( 'Hide', 'graphina-charts-for-elementor' ),
+					'label_off'   => esc_html__( 'Show', 'graphina-charts-for-elementor' ),
+					'default'     => false,
+					'description' => esc_html__( 'Note: If chart having multi series, Enable Min/Max value will be applicable to all series and xaxis Tickamount must be according to min - max value', 'graphina-charts-for-elementor' ),
+				)
+			);
+			$widget->add_control(
+				GRAPHINA_PREFIX . $chart_type . '_chart_yaxis_opposite_min_value',
+				array(
+					'label'       => esc_html__( 'Min Value', 'graphina-charts-for-elementor' ),
+					'type'        => Controls_Manager::NUMBER,
+					'default'     => 0,
+					'condition'   => array(
+						GRAPHINA_PREFIX . $chart_type . '_chart_yaxis_opposite_enable_min_max' => 'yes',
+					),
+					'description' => esc_html__( 'Note: Lowest number to be set for the y-axis. The graph drawing beyond this number will be clipped off', 'graphina-charts-for-elementor' ),
+				)
+			);
+
+			$widget->add_control(
+				GRAPHINA_PREFIX . $chart_type . '_chart_yaxis_opposite_max_value',
+				array(
+					'label'       => esc_html__( 'Max Value', 'graphina-charts-for-elementor' ),
+					'type'        => Controls_Manager::NUMBER,
+					'default'     => 250,
+					'condition'   => array(
+						GRAPHINA_PREFIX . $chart_type . '_chart_yaxis_opposite_enable_min_max' => 'yes',
+					),
+					'description' => esc_html__( 'Note: Highest number to be set for the y-axis. The graph drawing beyond this number will be clipped off.', 'graphina-charts-for-elementor' ),
+				)
+			);
+			}
+			
+			$opposite_yaxis_condition = ( $chart_type === 'mixed' ) ? GRAPHINA_PREFIX . $chart_type . '_chart_opposite_yaxis_enable' : GRAPHINA_PREFIX . $chart_type . '_chart_opposite_yaxis_title_enable';
 
 			$widget->add_control(
 				GRAPHINA_PREFIX . $chart_type . '_chart_opposite_yaxis_tick_amount',
@@ -12576,7 +12640,7 @@ class GraphinaElementorControls {
 					'max'       => 30,
 					'min'       => 0,
 					'condition' => array(
-						GRAPHINA_PREFIX . $chart_type . '_chart_opposite_yaxis_title_enable' => 'yes',
+						$opposite_yaxis_condition => 'yes',
 						GRAPHINA_PREFIX . $chart_type . '_chart_data_series_count!' => 1,
 					),
 				)
@@ -12591,7 +12655,7 @@ class GraphinaElementorControls {
 					'label_off' => esc_html__( 'Show', 'graphina-charts-for-elementor' ),
 					'default'   => false,
 					'condition' => array(
-						GRAPHINA_PREFIX . $chart_type . '_chart_opposite_yaxis_title_enable' => 'yes',
+						$opposite_yaxis_condition => 'yes',
 						GRAPHINA_PREFIX . $chart_type . '_chart_data_series_count!' => 1,
 					),
 				)
@@ -12694,7 +12758,7 @@ class GraphinaElementorControls {
 					'label_off' => esc_html__( 'Show', 'graphina-charts-for-elementor' ),
 					'default'   => 'no',
 					'condition' => array(
-						GRAPHINA_PREFIX . $chart_type . '_chart_opposite_yaxis_title_enable' => 'yes',
+						GRAPHINA_PREFIX . $chart_type . '_chart_opposite_yaxis_enable' => 'yes',
 						GRAPHINA_PREFIX . $chart_type . '_chart_data_series_count!' => 1,
 					),
 				)

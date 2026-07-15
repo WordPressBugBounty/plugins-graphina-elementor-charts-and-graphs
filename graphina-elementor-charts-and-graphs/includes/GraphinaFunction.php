@@ -1568,6 +1568,7 @@ if ( ! function_exists( 'graphina_prepare_extra_data' ) ) {
 			'is_chart_horizontal'                => ! empty( $settings[ GRAPHINA_PREFIX . $chart_type . '_is_chart_horizontal' ] ) && $settings[ GRAPHINA_PREFIX . $chart_type . '_is_chart_horizontal' ] === 'yes' ? true : false,
 			'current_post_id'                    => get_the_ID(),
 			'graphina_prefix'                    => GRAPHINA_PREFIX,
+			'chart_opposite_yaxis_enable' 		 => ! empty( $settings[GRAPHINA_PREFIX . $chart_type . '_chart_opposite_yaxis_enable'] ) && $settings[GRAPHINA_PREFIX . $chart_type . '_chart_opposite_yaxis_enable'] === 'yes' ? true : false,
 		);
 		if ( $extra_data['dynamic_type'] === 'forminator' ) {
 			$extra_data['section_chart_forminator_x_axis_columns']   = ! empty( $settings[ GRAPHINA_PREFIX . $chart_type . '_section_chart_forminator_x_axis_columns' ] ) ? $settings[ GRAPHINA_PREFIX . $chart_type . '_section_chart_forminator_x_axis_columns' ] : '';
@@ -1650,9 +1651,26 @@ if ( ! function_exists( 'graphina_prepare_extra_data' ) ) {
 		}
 
 		if( 'tree' === $chart_type ){
-			$extra_data['tree_template']	=	$settings[ GRAPHINA_PREFIX . $chart_type . '_tree_chart_template' ];
+			$extra_data['tree_template']	=	graphina_sanitize_tree_chart_template( $settings[ GRAPHINA_PREFIX . $chart_type . '_tree_chart_template' ] ?? '' );
 		}
 		return $extra_data;
+	}
+}
+
+if ( ! function_exists( 'graphina_sanitize_tree_chart_template' ) ) {
+	/**
+	 * Sanitize the user-editable tree node template before exposing it to frontend JS.
+	 *
+	 * @param string $template Tree chart template markup.
+	 * @return string Sanitized template markup.
+	 */
+	function graphina_sanitize_tree_chart_template( $template ) {
+		$template = is_string( $template ) ? $template : '';
+		$template = preg_replace( '/\$\{\s*content\.imageURL\s*\?\s*`[^`]*`\s*:\s*\'\'\s*\}/', '{{image}}', $template );
+		$template = preg_replace( '/\$\{\s*content\.(name|category|imageURL)\s*\}/', '{{$1}}', $template );
+		$template = wp_kses_post( $template );
+
+		return preg_replace( '/\$\{[^}]*\}/', '', $template );
 	}
 }
 

@@ -7,6 +7,11 @@ export default class GaugeChart extends GraphinaGoogleChartBase {
         this.chart = null;
         this.data = null;
         this.options = {};
+        window.addEventListener('resize', this.debounce(() => {
+            jQuery('.graphina-google-chart[data-chart_type="gauge_google"]').each((index, element) => {
+                this.setupChart(jQuery(element), 'Gauge');
+            });
+        }, 250));
     }
 
     /**
@@ -46,9 +51,18 @@ export default class GaugeChart extends GraphinaGoogleChartBase {
 
     // Customize chart options for Gantt Charts (if needed)
     getFinalChartOptions(chartOptions,elementId){
-        // Customize options here if needed
-        return chartOptions;
+        const width = window.innerWidth;
+        let finalOptions = { ...chartOptions };
 
+        if (width <= 767) { // Mobile
+            if (chartOptions.width_mobile) finalOptions.width = chartOptions.width_mobile;
+            if (chartOptions.height_mobile) finalOptions.height = chartOptions.height_mobile;
+        } else if (width <= 1024) { // Tablet
+            if (chartOptions.width_tablet) finalOptions.width = chartOptions.width_tablet;
+            if (chartOptions.height_tablet) finalOptions.height = chartOptions.height_tablet;
+        }
+
+        return finalOptions;
     }
 
     setupTableData(dynamicData, dataTable, googleChart, googleChartTexture, extraData) {

@@ -552,12 +552,16 @@ class ColumnChart extends GraphinaApexChartBase {
 				);
 			}
 
+			$is_horizontal = ! empty( $settings[ GRAPHINA_PREFIX . $chart_type . '_is_chart_horizontal' ] ) && $settings[ GRAPHINA_PREFIX . $chart_type . '_is_chart_horizontal' ] === 'yes' ? true : false;
+			$stroke_width  = ! empty( $settings[ GRAPHINA_PREFIX . $chart_type . '_is_chart_stroke_width' ] ) ? $settings[ GRAPHINA_PREFIX . $chart_type . '_is_chart_stroke_width' ] . '%' : '12%';
+
 			$chart_options['plotOptions'] = [
 				'bar' => [
-					'horizontal' => ! empty( $settings[ GRAPHINA_PREFIX . $chart_type . '_is_chart_horizontal' ] ) && $settings[ GRAPHINA_PREFIX . $chart_type . '_is_chart_horizontal' ] === 'yes' ? true : false,
-					'columnWidth' => ! empty( $settings[ GRAPHINA_PREFIX . $chart_type . '_is_chart_stroke_width' ] ) ? $settings[ GRAPHINA_PREFIX . $chart_type . '_is_chart_stroke_width' ].'%' : '12%',
-					'borderRadius' => ! empty( $settings[ GRAPHINA_PREFIX . $chart_type . '_chart_plot_border_radius' ] ) ? intval($settings[ GRAPHINA_PREFIX . $chart_type . '_chart_plot_border_radius' ]) : 0,
-					'dataLabels' => [
+					'horizontal'   => $is_horizontal,
+					'columnWidth'  => ! $is_horizontal ? $stroke_width : '12%',
+					'barHeight'    => $is_horizontal ? $stroke_width : '12%',
+					'borderRadius' => ! empty( $settings[ GRAPHINA_PREFIX . $chart_type . '_chart_plot_border_radius' ] ) ? intval( $settings[ GRAPHINA_PREFIX . $chart_type . '_chart_plot_border_radius' ] ) : 0,
+					'dataLabels'   => [
 						'position' => ! empty( $settings[ GRAPHINA_PREFIX . $chart_type . '_chart_datalabel_position_show' ] ) ? $settings[ GRAPHINA_PREFIX . $chart_type . '_chart_datalabel_position_show' ] : '',
 						'orientation' => ! empty( $settings[ GRAPHINA_PREFIX . $chart_type . '_chart_datalabel_orientation' ] ) ? $settings[ GRAPHINA_PREFIX . $chart_type . '_chart_datalabel_orientation' ] : '',
 						'total' => [

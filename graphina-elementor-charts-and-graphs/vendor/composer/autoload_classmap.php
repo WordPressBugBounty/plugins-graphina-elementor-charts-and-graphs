@@ -7,4 +7,16 @@ $baseDir = dirname($vendorDir);
 
 return array(
     'Composer\\InstalledVersions' => $vendorDir . '/composer/InstalledVersions.php',
+    'Graphina\\Admin\\GraphinaAdmin' => $baseDir . '/includes/Admin/GraphinaAdmin.php',
+    'Graphina\\Admin\\GraphinaAdminMenu' => $baseDir . '/includes/Admin/GraphinaAdminMenu.php',
+    'Graphina\\Charts\\Elementor\\GraphinaApexChartBase' => $baseDir . '/includes/Charts/Elementor/GraphinaApexChartBase.php',
+    'Graphina\\Charts\\Elementor\\GraphinaApexTreeBase' => $baseDir . '/includes/Charts/Elementor/GraphinaApexTreeBase.php',
+    'Graphina\\Charts\\Elementor\\GraphinaDataTableBase' => $baseDir . '/includes/Charts/Elementor/GraphinaDataTableBase.php',
+    'Graphina\\Charts\\Elementor\\GraphinaElementor' => $baseDir . '/includes/Charts/Elementor/GraphinaElementor.php',
+    'Graphina\\Charts\\Elementor\\GraphinaElementorControls' => $baseDir . '/includes/Charts/Elementor/GraphinaElementorControls.php',
+    'Graphina\\Charts\\Elementor\\GraphinaElementorWidgetBase' => $baseDir . '/includes/Charts/Elementor/GraphinaElementorWidgetBase.php',
+    'Graphina\\Charts\\Elementor\\GraphinaElementorWidgetSettings' => $baseDir . '/includes/Charts/Elementor/GraphinaElementorWidgetSettings.php',
+    'Graphina\\Charts\\Elementor\\GraphinaGoogleChartBase' => $baseDir . '/includes/Charts/Elementor/GraphinaGoogleChartBase.php',
+    'Graphina\\Graphina' => $baseDir . '/includes/Graphina.php',
+    'Graphina\\Public\\GraphinaPublic' => $baseDir . '/includes/Public/GraphinaPublic.php',
 );

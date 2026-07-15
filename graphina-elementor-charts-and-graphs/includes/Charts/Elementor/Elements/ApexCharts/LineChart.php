@@ -603,8 +603,10 @@ class LineChart extends GraphinaApexChartBase {
 			);
 			$chart_options['markers']         = array(
 				'size'               => $marker_size,
+				'colors'             => $gradient,
 				'strokeColors'       => $marker_stroke_color,
 				'strokeWidth'        => $marker_stoke_width,
+				'radius'             => 0,
 				'shape'              => $marker_shape,
 				'showNullDataPoints' => true,
 				'hover'              => array(

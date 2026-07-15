@@ -576,7 +576,12 @@ export default class GraphinaApexChartBase {
             this.applyTooltipFormatter(chartOptions, extraData, chart_type);
 
 
-            if (!extraData.chart_opposite_yaxis_title_enable) {
+            const isMixedChart = chartType === 'mixed' || chart_type === 'mixed';
+            const isOppositeYAxis = isMixedChart
+                ? extraData.chart_opposite_yaxis_enable
+                : extraData.chart_opposite_yaxis_title_enable;
+
+            if (!isOppositeYAxis) {
                 this.applyYAxisFormatter(chartOptions, extraData, false, chart_type);
             } else {
                 this.applyYAxisFormatter(chartOptions, extraData, 0, chart_type);

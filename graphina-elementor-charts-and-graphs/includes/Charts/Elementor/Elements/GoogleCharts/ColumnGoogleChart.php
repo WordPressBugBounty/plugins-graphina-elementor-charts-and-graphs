@@ -232,7 +232,7 @@ class ColumnGoogleChart extends GraphinaGoogleChartBase {
 				'opacity'   => ! empty($settings[GRAPHINA_PREFIX . $chart_type . '_chart_annotation_opacity']) ? $settings[GRAPHINA_PREFIX . $chart_type . '_chart_annotation_opacity'] : '',
 			),
 		);
-		$response['isStacked']   = ! empty($settings[GRAPHINA_PREFIX . $chart_type . '_chart_area_stacked']) && $settings[GRAPHINA_PREFIX . $chart_type . '_chart_area_stacked'] === 'yes' ? true : false;
+		$response['isStacked']   = ! empty($settings[GRAPHINA_PREFIX . $chart_type . '_chart_stacked']) && $settings[GRAPHINA_PREFIX . $chart_type . '_chart_stacked'] === 'yes' ? true : false;
 		$response['animation']   = array(
 			'startup'  => ! empty($settings[GRAPHINA_PREFIX . $chart_type . '_chart_animation_show']) && $settings[GRAPHINA_PREFIX . $chart_type . '_chart_animation_show'] === 'yes' ? true : false,
 			'duration' => ! empty($settings[GRAPHINA_PREFIX . $chart_type . '_chart_animation_speed']) ? $settings[GRAPHINA_PREFIX . $chart_type . '_chart_animation_speed'] : '',
@@ -284,7 +284,9 @@ class ColumnGoogleChart extends GraphinaGoogleChartBase {
 				'count' => ! empty($settings[GRAPHINA_PREFIX . $chart_type . '_chart_gridline_count']) ? $settings[GRAPHINA_PREFIX . $chart_type . '_chart_gridline_count'] : '',
 			),
 		);
-		$response['isStacked'] = ! empty($settings[GRAPHINA_PREFIX . $chart_type . '_chart_stack_type']) ? $settings[GRAPHINA_PREFIX . $chart_type . '_chart_stack_type'] : 'absolute';
+		if ( $response['isStacked'] ) {
+			$response['isStacked'] = ! empty( $settings[ GRAPHINA_PREFIX . $chart_type . '_chart_stack_type' ] ) ? $settings[ GRAPHINA_PREFIX . $chart_type . '_chart_stack_type' ] : 'absolute';
+		}
 		$response['bar'] = [
 			'groupWidth' => ! empty($settings[GRAPHINA_PREFIX . $chart_type . '_chart_element_width']) ? $settings[GRAPHINA_PREFIX . $chart_type . '_chart_element_width'] : '20',
 		];
