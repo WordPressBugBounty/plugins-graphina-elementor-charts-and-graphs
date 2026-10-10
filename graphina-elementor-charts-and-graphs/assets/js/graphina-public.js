@@ -41,24 +41,23 @@ export default class GraphinaPublic {
     
         // Prepare data for the AJAX request in a more structured way
         const ajaxData = {
-            chart_password: jsonData.chart_password,
             chart_type: jsonData.chart_type,
             chart_id: jsonData.chart_id,
+            post_id: jsonData.post_id,
             nonce: jsonData.nonce,
             action: jsonData.action,
             graphina_password: jsonData.graphina_password
         };
 
-        // Send the Ajax request using jQuery
+        // Send the Ajax request using jQuery. POST keeps the password out of URLs and server logs.
         jQuery.ajax({
-            type: 'GET',
+            type: 'POST',
             url: gcfe_public_localize.ajaxurl,
             data: ajaxData, // Use the structured ajaxData
             dataType: "json",
-            contentType: "application/json",
             success: function(response) {
                 if (response.status === true) {
-                    this.graphinasetCookie(response.chart, true, 1);
+                    // The server sets the signed access cookie; reload to render the chart.
                     location.reload();
                 }else{
                     jQuery(e.currentTarget).find('.elementor-alert-danger').show()
@@ -69,13 +68,5 @@ export default class GraphinaPublic {
                 console.error('Ajax Request Failed:', status, error);
             }
         });
-    }
-
-
-    graphinasetCookie(cname, cvalue, exdays) {
-        var d = new Date();
-        d.setTime(d.getTime() + (exdays * 24 * 60 * 60 * 1000));
-        var expires = "expires=" + d.toUTCString();
-        document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
     }
 }

@@ -80,13 +80,15 @@ class GraphinaElementorWidgetSettings {
 	/**
 	 * Fetch widget data for the specified post and widget ID.
 	 *
-	 * Uses Elementor's document API to retrieve widget data.
+	 * Uses Elementor's document API to retrieve widget data. Unsaved autosave data is only
+	 * used for users who can edit the post; everyone else gets the published version.
 	 */
 	private function set_widget_data(): void {
 		$document = $this->elementor()->documents->get( $this->post_id );
 		if ( $document ) {
+			$status      = current_user_can( 'edit_post', $this->post_id ) ? 'draft' : 'publish';
 			$widget_data = Utils::find_element_recursive(
-				$document->get_elements_data( 'draft' ),
+				$document->get_elements_data( $status ),
 				$this->widget_id
 			);
 			if ( $widget_data ) {

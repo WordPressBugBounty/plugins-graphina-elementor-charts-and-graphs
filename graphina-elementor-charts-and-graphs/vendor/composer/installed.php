@@ -3,7 +3,7 @@
         'name' => 'iqonic/graphina',
         'pretty_version' => 'dev-main',
         'version' => 'dev-main',
-        'reference' => 'cd3077febfb0916fcacb1e43dd4da5d169cc7d10',
+        'reference' => '29c9dc544bb088a014d31c089576ee7d86641df1',
         'type' => 'library',
         'install_path' => __DIR__ . '/../../',
         'aliases' => array(),
@@ -13,7 +13,7 @@
         'iqonic/graphina' => array(
             'pretty_version' => 'dev-main',
             'version' => 'dev-main',
-            'reference' => 'cd3077febfb0916fcacb1e43dd4da5d169cc7d10',
+            'reference' => '29c9dc544bb088a014d31c089576ee7d86641df1',
             'type' => 'library',
             'install_path' => __DIR__ . '/../../',
             'aliases' => array(),

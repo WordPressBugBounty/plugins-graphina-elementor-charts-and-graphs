@@ -15,10 +15,9 @@ if ( ! defined( 'ABSPATH' ) ) {
 		<h4 class="graphina-password-heading"><?php echo esc_html( $heading ); ?></h4>
 		<p class="graphina-password-message"><?php echo esc_html( $instructions ); ?></p>
 		<div class="graphina-input-wrapper">
-			<input type="hidden" name="chart_password"
-				value="<?php echo esc_html( wp_hash_password( $hash_pass ) ); ?>">
-			<input type="hidden" name="chart_type" value="<?php echo esc_html( $chart_type ); ?>">
-			<input type="hidden" name="chart_id" value="<?php echo esc_html( $chart_id ); ?>">
+			<input type="hidden" name="chart_type" value="<?php echo esc_attr( $chart_type ); ?>">
+			<input type="hidden" name="chart_id" value="<?php echo esc_attr( $chart_id ); ?>">
+			<input type="hidden" name="post_id" value="<?php echo esc_attr( absint( $post_id ) ); ?>">
 			<input type="hidden" name="nonce" value="<?php echo sanitize_key( wp_create_nonce( 'graphina_restrict_password' ) ); ?>">
 			<input type="hidden" name="action" value="graphina_restrict_password">
 			<input class="form-control graphina-input " type="password" name="graphina_password"

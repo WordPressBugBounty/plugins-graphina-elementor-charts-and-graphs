@@ -119,30 +119,33 @@ if ( ! class_exists( 'GraphinaFrontend' ) ) {
 		/**
 		 * Restrict Password
 		 *
-		 * Handles password protection for charts. Validates requests using nonces
-		 * and ensures passwords match before granting access.
+		 * Handles password protection for charts. Validates requests using nonces,
+		 * checks the submitted password against the one saved in the chart's published
+		 * Elementor data and, on success, sets a signed access cookie.
 		 *
 		 * AJAX Action: `graphina_restrict_password`
 		 */
 		public function graphina_restrict_password() {
 			// Verify nonce for security.
-			if ( ! isset( $_GET['nonce'] ) || ! wp_verify_nonce( sanitize_key( $_GET['nonce'] ), 'graphina_restrict_password' ) ) {
+			if ( empty( $_POST['nonce'] ) || ! wp_verify_nonce( sanitize_key( wp_unslash( $_POST['nonce'] ) ), 'graphina_restrict_password' ) ) {
 				wp_send_json(
 					array(
-						'status'  => array( $_GET['nonce'] ),
+						'status'  => false,
 						'message' => esc_html__( 'Security error', 'graphina-charts-for-elementor' ),
 					)
 				);
 			}
 
-			// Sanitize request data.
-			$request_data = graphina_recursive_sanitize_textfield( $_GET );
+			$chart_type = isset( $_POST['chart_type'] ) ? sanitize_key( wp_unslash( $_POST['chart_type'] ) ) : '';
+			$chart_id   = isset( $_POST['chart_id'] ) ? sanitize_key( wp_unslash( $_POST['chart_id'] ) ) : '';
+			$post_id    = isset( $_POST['post_id'] ) ? absint( $_POST['post_id'] ) : 0;
+			// The password is only compared, never stored or output, so it is kept as typed.
+			$password = isset( $_POST['graphina_password'] ) && is_string( $_POST['graphina_password'] ) ? wp_unslash( $_POST['graphina_password'] ) : ''; // phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotSanitized
 
-			// Validate action and password.
-			if (
-				! isset( $request_data['action'] ) || $request_data['action'] !== 'graphina_restrict_password' ||
-				! wp_check_password( $request_data['graphina_password'], $request_data['chart_password'] )
-			) {
+			$chart_password = $this->get_chart_restriction_password( $post_id, $chart_type, $chart_id );
+
+			// Validate the password against the value configured for the chart.
+			if ( $chart_password === '' || ! hash_equals( $chart_password, $password ) ) {
 				wp_send_json(
 					array(
 						'status'  => false,
@@ -151,42 +154,132 @@ if ( ! class_exists( 'GraphinaFrontend' ) ) {
 				);
 			}
 
-			// Send a success response with the chart identifier.
+			// Issue the access cookie; graphina_restricted_access() verifies its value on render.
+			setcookie(
+				graphina_password_cookie_name( $chart_type, $chart_id ),
+				graphina_password_access_token( $chart_type, $chart_id, $chart_password ),
+				array(
+					'expires'  => time() + DAY_IN_SECONDS,
+					'path'     => COOKIEPATH ? COOKIEPATH : '/',
+					'domain'   => COOKIE_DOMAIN ? COOKIE_DOMAIN : '',
+					'secure'   => is_ssl(),
+					'httponly' => true,
+					'samesite' => 'Lax',
+				)
+			);
+
 			wp_send_json(
 				array(
 					'status' => true,
-					'chart'  => 'graphina_' . $request_data['chart_type'] . '_' . $request_data['chart_id'],
 				)
 			);
 		}
 
 		/**
+		 * Retrieve the password configured for a password-restricted chart.
+		 *
+		 * Reads the widget from the published Elementor data of the given post so the
+		 * password never has to be sent to the browser.
+		 *
+		 * @param int    $post_id    The ID of the Elementor document containing the chart.
+		 * @param string $chart_type The chart type.
+		 * @param string $chart_id   The Elementor element ID of the chart.
+		 * @return string The configured password, or an empty string if the chart is not password protected.
+		 */
+		private function get_chart_restriction_password( int $post_id, string $chart_type, string $chart_id ): string {
+			if ( ! $post_id || $chart_type === '' || $chart_id === '' ) {
+				return '';
+			}
+
+			$document = \Elementor\Plugin::$instance->documents->get( $post_id );
+			if ( ! $document ) {
+				return '';
+			}
+
+			$element  = \Elementor\Utils::find_element_recursive( $document->get_elements_data(), $chart_id );
+			$settings = ! empty( $element['settings'] ) && is_array( $element['settings'] ) ? $element['settings'] : array();
+
+			if (
+				empty( $settings[ GRAPHINA_PREFIX . $chart_type . '_restriction_content_type' ] )
+				|| $settings[ GRAPHINA_PREFIX . $chart_type . '_restriction_content_type' ] !== 'password'
+				|| empty( $settings[ GRAPHINA_PREFIX . $chart_type . '_restriction_content_password' ] )
+			) {
+				return '';
+			}
+
+			return (string) $settings[ GRAPHINA_PREFIX . $chart_type . '_restriction_content_password' ];
+		}
+
+		/**
 		 * Retrieve Elementor widget settings.
 		 *
-		 * This method fetches the widget settings from the provided request data. If the settings
-		 * are missing or insufficient, it retrieves them from the Elementor widget data.
+		 * Settings posted by the browser are only honoured for users who can edit the post, so the
+		 * Elementor editor can preview unsaved changes. Everyone else gets the settings saved in the
+		 * post, because the settings decide which data sources (SQL, remote URLs, ...) are queried.
 		 *
 		 * @param array $request_data An associative array containing request data, including widget settings and IDs.
 		 * @return array|null The widget settings if available; null otherwise.
 		 */
 		public function get_widget_setting( array $request_data ): array|null {
-			// Extract settings from the request data if present, or default to an empty array.
-			$settings = isset($_POST['settings']) ? json_decode(stripslashes($_POST['settings']), true) :  array();
-			
-			// If settings are missing or insufficient, fetch them using the Elementor data.
-			if ( empty( $settings ) || count( $settings ) <= 2 ) {
-				$element_id = $request_data['element_id'];
-				$post_id    = $request_data['post_id'] ?? get_queried_object_id();
+			$element_id = isset( $request_data['element_id'] ) ? sanitize_key( $request_data['element_id'] ) : '';
+			$post_id    = isset( $request_data['post_id'] ) ? absint( $request_data['post_id'] ) : 0;
 
-				// Initialize the Graphina Elementor Widget Settings class.
-				$widget_settings = new GraphinaElementorWidgetSettings( $post_id, $element_id, $settings);
-
-				// Retrieve settings from the Elementor widget.
-				$settings = $widget_settings->get_settings();
+			if ( ! $post_id || $element_id === '' ) {
+				return array();
 			}
 
-			// Return the resolved settings.
-			return $settings;
+			if ( $this->can_edit_chart( $post_id ) ) {
+				// Extract settings from the request data if present, or default to an empty array.
+				$settings = isset( $_POST['settings'] ) && is_string( $_POST['settings'] ) ? json_decode( wp_unslash( $_POST['settings'] ), true ) : array(); // phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotSanitized
+				$settings = is_array( $settings ) ? $settings : array();
+
+				if ( ! empty( $settings ) && count( $settings ) > 2 ) {
+					return $settings;
+				}
+
+				return ( new GraphinaElementorWidgetSettings( $post_id, $element_id, $settings ) )->get_settings();
+			}
+
+			// Visitors may only read charts on posts they are allowed to view, and only the published version.
+			if ( ! is_post_publicly_viewable( $post_id ) && ! current_user_can( 'read_post', $post_id ) ) {
+				return array();
+			}
+
+			return ( new GraphinaElementorWidgetSettings( $post_id, $element_id, array() ) )->get_settings();
+		}
+
+		/**
+		 * Whether the current user can edit the Elementor document that holds a chart.
+		 *
+		 * @param int $post_id The ID of the Elementor document containing the chart.
+		 * @return bool
+		 */
+		private function can_edit_chart( int $post_id ): bool {
+			return $post_id > 0 && current_user_can( 'edit_post', $post_id );
+		}
+
+		/**
+		 * Whether the current visitor may receive a chart's data.
+		 *
+		 * Applies the same role, user name and password restrictions that graphina_restricted_access()
+		 * enforces when the chart is rendered.
+		 *
+		 * @param array  $settings   The resolved widget settings.
+		 * @param string $chart_type The chart type.
+		 * @param string $element_id The Elementor element ID of the chart.
+		 * @param int    $post_id    The ID of the Elementor document containing the chart.
+		 * @return bool
+		 */
+		private function can_access_chart_data( array $settings, string $chart_type, string $element_id, int $post_id ): bool {
+			if ( empty( $settings ) || $chart_type === '' ) {
+				return false;
+			}
+
+			if ( $this->can_edit_chart( $post_id ) ) {
+				return true;
+			}
+
+			return ! graphina_restricted_access( $chart_type, $element_id, $settings );
 		}
 
 		/**
@@ -229,6 +322,10 @@ if ( ! class_exists( 'GraphinaFrontend' ) ) {
 
 				// Determine table type and data source
 				$table_type  = $request_data['chartType'] ?? '';
+
+				if ( ! $this->can_access_chart_data( $settings, $table_type, $id, absint( $request_data['post_id'] ?? 0 ) ) ) {
+					wp_send_json( $response );
+				}
 
 				$data_option = ! empty( $settings[ GRAPHINA_PREFIX . $table_type . '_element_data_option' ] ) ? $settings[ GRAPHINA_PREFIX . $table_type . '_element_data_option' ] : '';
 				if( empty( $data_option ) ) {
@@ -490,6 +587,10 @@ if ( ! class_exists( 'GraphinaFrontend' ) ) {
 				$chart_type = $request_data['chartType'];
 				$id         = $request_data['element_id'];
 
+				if ( ! $this->can_access_chart_data( $settings, $chart_type, $id, absint( $request_data['post_id'] ?? 0 ) ) ) {
+					wp_send_json( $response );
+				}
+
 				// Handle chart filter defaults if no field is selected in the request.
 				$selected_item = array();
 				if ( empty( $request_data['selected_field'] ) && ! empty( $settings[ GRAPHINA_PREFIX . "{$chart_type}_chart_filter_list" ] ) ) {
@@ -610,14 +711,22 @@ if ( ! class_exists( 'GraphinaFrontend' ) ) {
 					'fail'         => false,
 				),
 			);
-			
+
+			// Verify the nonce for security.
+			if ( ! isset( $_POST['nonce'] ) || ! wp_verify_nonce( sanitize_key( $_POST['nonce'] ), 'graphina_get_dynamic_tree_data' ) ) {
+				wp_send_json( $response );
+			}
 
 			// Sanitize and fetch request data
 			$request_data = graphina_recursive_sanitize_textfield( $_POST );
 			$id           = ! empty( $request_data['element_id'] ) ? sanitize_text_field( $request_data['element_id'] ) : '';
-			$chart_type   = ! empty( $request_data['chartType'] ) ? sanitize_text_field( $request_data['chartType'] ) : '';	
+			$chart_type   = ! empty( $request_data['chartType'] ) ? sanitize_text_field( $request_data['chartType'] ) : '';
 			// Fetch widget settings
 			$settings = $this->get_widget_setting( $request_data );
+
+			if ( ! $this->can_access_chart_data( $settings, $chart_type, $id, absint( $request_data['post_id'] ?? 0 ) ) ) {
+				wp_send_json( $response );
+			}
 
 			$selected_item = array();
 			// Handle chart filter defaults if no field is selected in the request.

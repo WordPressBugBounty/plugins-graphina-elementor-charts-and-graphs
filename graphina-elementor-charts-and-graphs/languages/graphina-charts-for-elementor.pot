@@ -2,14 +2,14 @@
 # This file is distributed under the same license as the Graphina - Charts and Graphs For Elementor plugin.
 msgid ""
 msgstr ""
-"Project-Id-Version: Graphina - Charts and Graphs For Elementor 3.1.12\n"
+"Project-Id-Version: Graphina - Charts and Graphs For Elementor 3.1.13\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/graphina-elementor-charts-and-graphs\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2026-07-15T06:50:26+00:00\n"
+"POT-Creation-Date: 2026-10-10T05:23:34+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: WP-CLI 2.7.1\n"
 "X-Domain: graphina-charts-for-elementor\n"
@@ -1291,9 +1291,9 @@ msgstr ""
 #: includes/Charts/Elementor/GraphinaElementorControls.php:10067
 #: includes/Charts/Elementor/GraphinaElementorControls.php:10483
 #: includes/Charts/Elementor/GraphinaElementorControls.php:10501
-#: includes/GraphinaFunction.php:613
-#: includes/GraphinaFunction.php:639
-#: includes/GraphinaFunction.php:648
+#: includes/GraphinaFunction.php:664
+#: includes/GraphinaFunction.php:690
+#: includes/GraphinaFunction.php:699
 msgid "Left"
 msgstr ""
 
@@ -1310,7 +1310,7 @@ msgstr ""
 #: includes/Charts/Elementor/GraphinaElementorControls.php:10505
 #: includes/Charts/Elementor/GraphinaElementorControls.php:10560
 #: includes/Charts/Elementor/GraphinaElementorControls.php:10721
-#: includes/GraphinaFunction.php:606
+#: includes/GraphinaFunction.php:657
 msgid "Center"
 msgstr ""
 
@@ -1327,9 +1327,9 @@ msgstr ""
 #: includes/Charts/Elementor/GraphinaElementorControls.php:10075
 #: includes/Charts/Elementor/GraphinaElementorControls.php:10475
 #: includes/Charts/Elementor/GraphinaElementorControls.php:10509
-#: includes/GraphinaFunction.php:617
-#: includes/GraphinaFunction.php:640
-#: includes/GraphinaFunction.php:649
+#: includes/GraphinaFunction.php:668
+#: includes/GraphinaFunction.php:691
+#: includes/GraphinaFunction.php:700
 msgid "Right"
 msgstr ""
 
@@ -1552,7 +1552,7 @@ msgstr ""
 #: includes/Charts/Elementor/GraphinaElementorControls.php:1422
 #: includes/Charts/Elementor/GraphinaElementorControls.php:3268
 #: includes/Charts/Elementor/GraphinaElementorControls.php:5366
-#: includes/GraphinaFunction.php:2859
+#: includes/GraphinaFunction.php:2910
 msgid "Classic"
 msgstr ""
 
@@ -1562,7 +1562,7 @@ msgstr ""
 
 #: includes/Charts/Elementor/GraphinaElementorControls.php:1068
 #: includes/Charts/Elementor/GraphinaElementorControls.php:5280
-#: includes/GraphinaFunction.php:2822
+#: includes/GraphinaFunction.php:2873
 #: templates/apex-chart-options.php:26
 #: templates/google-chart-options.php:26
 msgid "Column"
@@ -1654,18 +1654,18 @@ msgstr ""
 #: includes/Charts/Elementor/GraphinaElementorControls.php:1266
 #: includes/Charts/Elementor/GraphinaElementorControls.php:10471
 #: includes/Charts/Elementor/GraphinaElementorControls.php:10975
-#: includes/GraphinaFunction.php:605
-#: includes/GraphinaFunction.php:637
-#: includes/GraphinaFunction.php:646
+#: includes/GraphinaFunction.php:656
+#: includes/GraphinaFunction.php:688
+#: includes/GraphinaFunction.php:697
 msgid "Top"
 msgstr ""
 
 #: includes/Charts/Elementor/GraphinaElementorControls.php:1274
 #: includes/Charts/Elementor/GraphinaElementorControls.php:10479
 #: includes/Charts/Elementor/GraphinaElementorControls.php:10979
-#: includes/GraphinaFunction.php:607
-#: includes/GraphinaFunction.php:638
-#: includes/GraphinaFunction.php:647
+#: includes/GraphinaFunction.php:658
+#: includes/GraphinaFunction.php:689
+#: includes/GraphinaFunction.php:698
 msgid "Bottom"
 msgstr ""
 
@@ -2006,7 +2006,7 @@ msgstr ""
 #: includes/Charts/Elementor/GraphinaElementorControls.php:2349
 #: includes/Charts/Elementor/GraphinaElementorControls.php:5203
 #: includes/Charts/Elementor/GraphinaElementorControls.php:8598
-#: includes/GraphinaFunction.php:2840
+#: includes/GraphinaFunction.php:2891
 msgid "Square"
 msgstr ""
 
@@ -2430,14 +2430,14 @@ msgstr ""
 
 #: includes/Charts/Elementor/GraphinaElementorControls.php:5077
 #: includes/Charts/Elementor/GraphinaElementorControls.php:8196
-#: includes/GraphinaFunction.php:656
+#: includes/GraphinaFunction.php:707
 msgid "Vertical"
 msgstr ""
 
 #: includes/Charts/Elementor/GraphinaElementorControls.php:5078
 #: includes/Charts/Elementor/GraphinaElementorControls.php:7000
 #: includes/Charts/Elementor/GraphinaElementorControls.php:8195
-#: includes/GraphinaFunction.php:655
+#: includes/GraphinaFunction.php:706
 msgid "Horizontal"
 msgstr ""
 
@@ -2483,41 +2483,41 @@ msgid "Note: Hover will Not work in Square"
 msgstr ""
 
 #: includes/Charts/Elementor/GraphinaElementorControls.php:5224
-#: includes/GraphinaFunction.php:2886
+#: includes/GraphinaFunction.php:2937
 msgid "VerticalLines"
 msgstr ""
 
 #: includes/Charts/Elementor/GraphinaElementorControls.php:5225
-#: includes/GraphinaFunction.php:2887
+#: includes/GraphinaFunction.php:2938
 msgid "Squares"
 msgstr ""
 
 #: includes/Charts/Elementor/GraphinaElementorControls.php:5226
-#: includes/GraphinaFunction.php:2888
+#: includes/GraphinaFunction.php:2939
 msgid "HorizontalLines"
 msgstr ""
 
 #: includes/Charts/Elementor/GraphinaElementorControls.php:5227
-#: includes/GraphinaFunction.php:2889
+#: includes/GraphinaFunction.php:2940
 msgid "Circles"
 msgstr ""
 
 #: includes/Charts/Elementor/GraphinaElementorControls.php:5228
-#: includes/GraphinaFunction.php:2890
+#: includes/GraphinaFunction.php:2941
 msgid "SlantedLines"
 msgstr ""
 
 #: includes/Charts/Elementor/GraphinaElementorControls.php:5281
 #: includes/Charts/Elementor/GraphinaElementorControls.php:5602
 #: includes/Charts/Elementor/GraphinaElementorControls.php:12173
-#: includes/GraphinaFunction.php:2823
+#: includes/GraphinaFunction.php:2874
 #: templates/apex-chart-options.php:27
 #: templates/google-chart-options.php:24
 msgid "Line"
 msgstr ""
 
 #: includes/Charts/Elementor/GraphinaElementorControls.php:5282
-#: includes/GraphinaFunction.php:2824
+#: includes/GraphinaFunction.php:2875
 #: templates/apex-chart-options.php:25
 #: templates/google-chart-options.php:23
 msgid "Area"
@@ -2533,12 +2533,12 @@ msgid "Pattern will not eligible for the line chart. So if you select it, it wil
 msgstr ""
 
 #: includes/Charts/Elementor/GraphinaElementorControls.php:5372
-#: includes/GraphinaFunction.php:2865
+#: includes/GraphinaFunction.php:2916
 msgid "Gradient"
 msgstr ""
 
 #: includes/Charts/Elementor/GraphinaElementorControls.php:5379
-#: includes/GraphinaFunction.php:2871
+#: includes/GraphinaFunction.php:2922
 msgid "Pattern"
 msgstr ""
 
@@ -2936,13 +2936,13 @@ msgstr ""
 
 #: includes/Charts/Elementor/GraphinaElementorControls.php:6928
 #: includes/Charts/Elementor/GraphinaElementorControls.php:9711
-#: includes/GraphinaFunction.php:631
+#: includes/GraphinaFunction.php:682
 msgid "In"
 msgstr ""
 
 #: includes/Charts/Elementor/GraphinaElementorControls.php:6929
 #: includes/Charts/Elementor/GraphinaElementorControls.php:9712
-#: includes/GraphinaFunction.php:632
+#: includes/GraphinaFunction.php:683
 msgid "Out"
 msgstr ""
 
@@ -3289,12 +3289,12 @@ msgid "Notice:This will not work in column chart"
 msgstr ""
 
 #: includes/Charts/Elementor/GraphinaElementorControls.php:8599
-#: includes/GraphinaFunction.php:2841
+#: includes/GraphinaFunction.php:2892
 msgid "Butt"
 msgstr ""
 
 #: includes/Charts/Elementor/GraphinaElementorControls.php:8600
-#: includes/GraphinaFunction.php:2842
+#: includes/GraphinaFunction.php:2893
 msgid "Round"
 msgstr ""
 
@@ -3418,22 +3418,22 @@ msgid "Column Visibilty"
 msgstr ""
 
 #: includes/Charts/Elementor/GraphinaElementorControls.php:8902
-#: includes/GraphinaFunction.php:1501
+#: includes/GraphinaFunction.php:1552
 msgid "Copy"
 msgstr ""
 
 #: includes/Charts/Elementor/GraphinaElementorControls.php:8903
-#: includes/GraphinaFunction.php:1504
+#: includes/GraphinaFunction.php:1555
 msgid "Excel"
 msgstr ""
 
 #: includes/Charts/Elementor/GraphinaElementorControls.php:8904
-#: includes/GraphinaFunction.php:1502
+#: includes/GraphinaFunction.php:1553
 msgid "PDF"
 msgstr ""
 
 #: includes/Charts/Elementor/GraphinaElementorControls.php:8905
-#: includes/GraphinaFunction.php:1503
+#: includes/GraphinaFunction.php:1554
 msgid "Print"
 msgstr ""
 
@@ -4142,25 +4142,25 @@ msgstr ""
 
 #: includes/Charts/Elementor/GraphinaElementorControls.php:12783
 #: includes/Charts/Elementor/GraphinaElementorControls.php:12819
-#: includes/GraphinaFunction.php:1689
+#: includes/GraphinaFunction.php:1740
 msgid "CSV"
 msgstr ""
 
 #: includes/Charts/Elementor/GraphinaElementorControls.php:12784
 #: includes/Charts/Elementor/GraphinaElementorControls.php:12820
-#: includes/GraphinaFunction.php:1690
+#: includes/GraphinaFunction.php:1741
 msgid "Remote CSV"
 msgstr ""
 
 #: includes/Charts/Elementor/GraphinaElementorControls.php:12785
 #: includes/Charts/Elementor/GraphinaElementorControls.php:12821
-#: includes/GraphinaFunction.php:1691
+#: includes/GraphinaFunction.php:1742
 msgid "Google Sheet"
 msgstr ""
 
 #: includes/Charts/Elementor/GraphinaElementorControls.php:12786
 #: includes/Charts/Elementor/GraphinaElementorControls.php:12823
-#: includes/GraphinaFunction.php:1692
+#: includes/GraphinaFunction.php:1743
 msgid "API"
 msgstr ""
 
@@ -4171,7 +4171,7 @@ msgstr ""
 
 #: includes/Charts/Elementor/GraphinaElementorControls.php:12790
 #: includes/Charts/Elementor/GraphinaElementorControls.php:12826
-#: includes/GraphinaFunction.php:1696
+#: includes/GraphinaFunction.php:1747
 msgid "Data From Filter"
 msgstr ""
 
@@ -4219,128 +4219,128 @@ msgstr ""
 msgid "Graphina Google Chart"
 msgstr ""
 
-#: includes/GraphinaFunction.php:563
+#: includes/GraphinaFunction.php:614
 msgid "This field is required"
 msgstr ""
 
-#: includes/GraphinaFunction.php:582
+#: includes/GraphinaFunction.php:633
 msgid "All fields are valid"
 msgstr ""
 
-#: includes/GraphinaFunction.php:625
+#: includes/GraphinaFunction.php:676
 msgid "On"
 msgstr ""
 
-#: includes/GraphinaFunction.php:626
+#: includes/GraphinaFunction.php:677
 msgid "Between"
 msgstr ""
 
-#: includes/GraphinaFunction.php:641
+#: includes/GraphinaFunction.php:692
 msgid "Inside"
 msgstr ""
 
-#: includes/GraphinaFunction.php:650
+#: includes/GraphinaFunction.php:701
 msgid "Labeled"
 msgstr ""
 
-#: includes/GraphinaFunction.php:679
+#: includes/GraphinaFunction.php:730
 msgid "Smooth"
 msgstr ""
 
-#: includes/GraphinaFunction.php:680
+#: includes/GraphinaFunction.php:731
 msgid "Straight"
 msgstr ""
 
-#: includes/GraphinaFunction.php:681
+#: includes/GraphinaFunction.php:732
 msgid "Stepline"
 msgstr ""
 
-#: includes/GraphinaFunction.php:1487
+#: includes/GraphinaFunction.php:1538
 msgid "Showing"
 msgstr ""
 
-#: includes/GraphinaFunction.php:1488
+#: includes/GraphinaFunction.php:1539
 msgid "to"
 msgstr ""
 
-#: includes/GraphinaFunction.php:1489
+#: includes/GraphinaFunction.php:1540
 msgid "of"
 msgstr ""
 
-#: includes/GraphinaFunction.php:1490
+#: includes/GraphinaFunction.php:1541
 msgid "entries"
 msgstr ""
 
-#: includes/GraphinaFunction.php:1491
+#: includes/GraphinaFunction.php:1542
 msgid "Search...."
 msgstr ""
 
-#: includes/GraphinaFunction.php:1492
+#: includes/GraphinaFunction.php:1543
 msgid "No data available in table"
 msgstr ""
 
-#: includes/GraphinaFunction.php:1493
+#: includes/GraphinaFunction.php:1544
 msgid "No matching records found"
 msgstr ""
 
-#: includes/GraphinaFunction.php:1495
+#: includes/GraphinaFunction.php:1546
 msgid "First"
 msgstr ""
 
-#: includes/GraphinaFunction.php:1496
+#: includes/GraphinaFunction.php:1547
 msgid "Last"
 msgstr ""
 
-#: includes/GraphinaFunction.php:1497
+#: includes/GraphinaFunction.php:1548
 msgid "Next"
 msgstr ""
 
-#: includes/GraphinaFunction.php:1498
+#: includes/GraphinaFunction.php:1549
 msgid "Previous"
 msgstr ""
 
-#: includes/GraphinaFunction.php:1506
+#: includes/GraphinaFunction.php:1557
 msgid "Show all rows"
 msgstr ""
 
-#: includes/GraphinaFunction.php:1507
+#: includes/GraphinaFunction.php:1558
 msgid "Show "
 msgstr ""
 
-#: includes/GraphinaFunction.php:1507
+#: includes/GraphinaFunction.php:1558
 msgid " rows"
 msgstr ""
 
-#: includes/GraphinaFunction.php:1701
-#: includes/GraphinaFunction.php:1704
+#: includes/GraphinaFunction.php:1752
+#: includes/GraphinaFunction.php:1755
 msgid "SQL Builder"
 msgstr ""
 
-#: includes/GraphinaFunction.php:1755
+#: includes/GraphinaFunction.php:1806
 msgid "Manual"
 msgstr ""
 
-#: includes/GraphinaFunction.php:1756
+#: includes/GraphinaFunction.php:1807
 msgid "Dynamic"
 msgstr ""
 
-#: includes/GraphinaFunction.php:2769
+#: includes/GraphinaFunction.php:2820
 msgid "Table"
 msgstr ""
 
-#: includes/GraphinaFunction.php:2770
+#: includes/GraphinaFunction.php:2821
 msgid "MySQL Query"
 msgstr ""
 
-#: includes/GraphinaFunction.php:2773
+#: includes/GraphinaFunction.php:2824
 msgid "External"
 msgstr ""
 
-#: includes/GraphinaFunction.php:3044
+#: includes/GraphinaFunction.php:3095
 msgid "Get Pro"
 msgstr ""
 
-#: includes/GraphinaFunction.php:3048
+#: includes/GraphinaFunction.php:3099
 msgid "Coming Soon..."
 msgstr ""
 
@@ -4348,23 +4348,23 @@ msgstr ""
 msgid "No Data Available"
 msgstr ""
 
-#: includes/Public/GraphinaPublic.php:133
+#: includes/Public/GraphinaPublic.php:134
 msgid "Security error"
 msgstr ""
 
-#: includes/Public/GraphinaPublic.php:149
+#: includes/Public/GraphinaPublic.php:152
 msgid "Invalid password"
 msgstr ""
 
-#: includes/Public/GraphinaPublic.php:207
+#: includes/Public/GraphinaPublic.php:300
 msgid "Invalid nonce."
 msgstr ""
 
-#: includes/Public/GraphinaPublic.php:338
+#: includes/Public/GraphinaPublic.php:435
 msgid "Select Column"
 msgstr ""
 
-#: includes/Public/GraphinaPublic.php:340
+#: includes/Public/GraphinaPublic.php:437
 msgid "Empty"
 msgstr ""
 

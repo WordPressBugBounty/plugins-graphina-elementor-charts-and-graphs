@@ -77,7 +77,8 @@ export default class NestedcolumnChart extends GraphinaApexChartBase {
 
     initSChart(elementId,finalChartOptions){
         const chartEle = jQuery(`.nested_column-chart-two-${elementId}`)
-        this.secondaryChart[elementId] = new ApexCharts(chartEle[0], chartEle.data('second_chart_options'));
+        const secondChartOptions = this.normalizeChartOptions(chartEle.data('second_chart_options'));
+        this.secondaryChart[elementId] = new ApexCharts(chartEle[0], secondChartOptions);
         this.secondaryChart[elementId].render();
         jQuery(`.nested_column-chart-two-${elementId}`).hide()
     }

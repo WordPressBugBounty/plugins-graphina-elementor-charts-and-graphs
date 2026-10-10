@@ -110,6 +110,15 @@ if ( ! function_exists( 'graphina_get_card' ) ) {
 			? wp_kses_post( $settings[ GRAPHINA_PREFIX . $chart_type . '_chart_content' ] )
 			: '';
 
+		// Chart templates always echo these, but they are only set when the common filter is enabled.
+		$chart_data = wp_parse_args(
+			$chart_data,
+			array(
+				'common_filter_id'    => '',
+				'common_filter_class' => '',
+			)
+		);
+
 		// Include the card.php template with the calculated data.
 		graphina_get_template(
 			'card.php',
@@ -445,18 +454,32 @@ if ( ! function_exists( 'graphina_restricted_access' ) ) {
 			}
 
 			// Handle access based on password restriction.
-			if (
-				$settings[ GRAPHINA_PREFIX . $type . '_restriction_content_type' ] === 'password'
-				&& ( empty( $_COOKIE[ 'graphina_' . $type . '_' . $chart_id ] ) || ! sanitize_text_field( wp_unslash( $_COOKIE[ 'graphina_' . $type . '_' . $chart_id ] ) ) )
-			) {
+			if ( $settings[ GRAPHINA_PREFIX . $type . '_restriction_content_type' ] === 'password' ) {
+				$chart_password = isset( $settings[ GRAPHINA_PREFIX . $type . '_restriction_content_password' ] ) ? (string) $settings[ GRAPHINA_PREFIX . $type . '_restriction_content_password' ] : '';
+				$cookie_name    = graphina_password_cookie_name( $type, $chart_id );
+				$cookie_value   = isset( $_COOKIE[ $cookie_name ] ) && is_string( $_COOKIE[ $cookie_name ] ) ? sanitize_text_field( wp_unslash( $_COOKIE[ $cookie_name ] ) ) : '';
+
+				// The cookie must hold the server-issued token for this chart and its current password.
+				$has_password_access = $chart_password !== ''
+					&& $cookie_value !== ''
+					&& hash_equals( graphina_password_access_token( $type, $chart_id, $chart_password ), $cookie_value );
+
+				// If the password protection is satisfied, remove restriction.
+				$restricted_template = ! $has_password_access;
+			}
+
+			if ( $restricted_template && $settings[ GRAPHINA_PREFIX . $type . '_restriction_content_type' ] === 'password' ) {
 				// If password protection is enabled and the user has not entered the password yet.
 				if ( $flag ) {
+					// Resolve the document that holds this widget so the AJAX handler can look up the password.
+					$current_document = \Elementor\Plugin::$instance->documents->get_current();
+
 					// Prepare data to display the password entry form.
 					$temp_data['heading']         = $settings[ GRAPHINA_PREFIX . $type . '_password_content_headline' ];
 					$temp_data['chart_id']        = $chart_id;
 					$temp_data['chart_type']      = $type;
+					$temp_data['post_id']         = $current_document ? $current_document->get_main_id() : get_the_ID();
 					$temp_data['instructions']    = ! empty( $settings[ GRAPHINA_PREFIX . $type . '_password_instructions_text' ] ) ? $settings[ GRAPHINA_PREFIX . $type . '_password_instructions_text' ] : '';
-					$temp_data['hash_pass']       = ! empty( $settings[ GRAPHINA_PREFIX . $type . '_restriction_content_password' ] ) ? $settings[ GRAPHINA_PREFIX . $type . '_restriction_content_password' ] : '';
 					$temp_data['button_lbl']      = ! empty( $settings[ GRAPHINA_PREFIX . $type . '_password_button_label' ] ) ? $settings[ GRAPHINA_PREFIX . $type . '_password_button_label' ] : '';
 					$temp_data['error_msg_show']  = ! empty( $settings[ GRAPHINA_PREFIX . $type . '_password_error_message_show' ] ) ? $settings[ GRAPHINA_PREFIX . $type . '_password_error_message_show' ] : '';
 					$temp_data['error_msg']       = ! empty( $settings[ GRAPHINA_PREFIX . $type . '_password_error_message' ] ) ? $settings[ GRAPHINA_PREFIX . $type . '_password_error_message' ] : '';
@@ -465,17 +488,45 @@ if ( ! function_exists( 'graphina_restricted_access' ) ) {
 					// Load the template for password protection form.
 					graphina_get_template( 'restrict-content-access.php', $temp_data );
 				}
-
-				// Set the template as restricted due to password requirement.
-				$restricted_template = true;
-			} elseif ( $settings[ GRAPHINA_PREFIX . $type . '_restriction_content_type' ] === 'password' ) {
-				// If the password protection is satisfied, remove restriction.
-				$restricted_template = false;
 			}
 		}
 
 		// Return the final restriction status.
 		return $restricted_template;
+	}
+}
+
+// Check if the function graphina_password_cookie_name already exists to avoid redeclaration.
+if ( ! function_exists( 'graphina_password_cookie_name' ) ) {
+	/**
+	 * Builds the name of the cookie that grants access to a password-protected chart.
+	 *
+	 * @param string $type The type of the chart (e.g., 'line', 'bar').
+	 * @param string $chart_id The unique identifier for the chart.
+	 *
+	 * @return string The cookie name.
+	 */
+	function graphina_password_cookie_name( string $type, string $chart_id ): string {
+		return 'graphina_' . $type . '_' . $chart_id;
+	}
+}
+
+// Check if the function graphina_password_access_token already exists to avoid redeclaration.
+if ( ! function_exists( 'graphina_password_access_token' ) ) {
+	/**
+	 * Generates the access token stored in the cookie once a chart password has been verified.
+	 *
+	 * The token is an HMAC keyed with the site's auth salt, so it cannot be forged by visitors,
+	 * and it covers the configured password, so changing the password invalidates issued cookies.
+	 *
+	 * @param string $type The type of the chart (e.g., 'line', 'bar').
+	 * @param string $chart_id The unique identifier for the chart.
+	 * @param string $password The password configured for the chart.
+	 *
+	 * @return string The access token.
+	 */
+	function graphina_password_access_token( string $type, string $chart_id, string $password ): string {
+		return hash_hmac( 'sha256', $type . '|' . $chart_id . '|' . $password, wp_salt( 'auth' ) );
 	}
 }
 

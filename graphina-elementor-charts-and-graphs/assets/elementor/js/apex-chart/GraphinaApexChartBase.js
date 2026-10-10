@@ -388,6 +388,7 @@ export default class GraphinaApexChartBase {
             chartOptions.chart.type = 'radialBar'
         }
         // Create and render the new chart
+        this.normalizeChartOptions(chartOptions);
         const chart = new ApexCharts(chartElement[0], chartOptions);
         jQuery(chartElement).show()
         chart.render()
@@ -547,6 +548,57 @@ export default class GraphinaApexChartBase {
         return sanitize(options);
     }
 
+    normalizeColorArray(colors) {
+        if (Array.isArray(colors)) {
+            const normalizedColors = colors
+                .map((color) => {
+                    if (typeof color === 'string') {
+                        return color;
+                    }
+
+                    if (color && typeof color.color === 'string') {
+                        return color.color;
+                    }
+
+                    return '';
+                })
+                .filter(Boolean);
+
+            return normalizedColors.length ? normalizedColors : ['#008FFB'];
+        }
+
+        if (typeof colors === 'string' && colors) {
+            return [colors];
+        }
+
+        if (colors && typeof colors.color === 'string') {
+            return [colors.color];
+        }
+
+        return ['#008FFB'];
+    }
+
+    normalizeChartOptions(chartOptions) {
+        chartOptions.colors = this.normalizeColorArray(chartOptions.colors);
+
+        if (chartOptions.fill) {
+            chartOptions.fill.colors = this.normalizeColorArray(chartOptions.fill.colors || chartOptions.colors);
+
+            if (chartOptions.fill.gradient) {
+                chartOptions.fill.gradient.gradientToColors = this.normalizeColorArray(
+                    chartOptions.fill.gradient.gradientToColors || chartOptions.colors
+                );
+            }
+        }
+
+        if (chartOptions.markers) {
+            chartOptions.markers.colors = this.normalizeColorArray(chartOptions.markers.colors || chartOptions.colors);
+            chartOptions.markers.strokeColors = this.normalizeColorArray(chartOptions.markers.strokeColors || chartOptions.colors);
+        }
+
+        return chartOptions;
+    }
+
     
     // Generic setup for any chart type
     async setupChart(element, chartType) {
@@ -570,6 +622,7 @@ export default class GraphinaApexChartBase {
             }
 
             // Apply formatting to chart options
+            this.normalizeChartOptions(chartOptions);
             this.applyLegendTooltip(chartOptions, extraData,chart_type);
             this.applyXAxisFormatter(chartOptions, extraData);
             this.applyDataLabelFormatter(chartOptions, extraData, chart_type);

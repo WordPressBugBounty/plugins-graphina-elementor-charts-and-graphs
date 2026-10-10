@@ -55,6 +55,7 @@ export default class CounterChart extends GraphinaApexChartBase {
             this.applyLegendTooltip(chartOptions, extraData, chartType);
             this.applyXAxisFormatter(chartOptions, extraData);
             this.applyDataLabelFormatter(chartOptions, extraData);
+            this.normalizeChartOptions(chartOptions);
 
             const finalChartOptions = this.getChartOptions(chartOptions, chartType, extraData, elementId);
 
@@ -206,6 +207,7 @@ export default class CounterChart extends GraphinaApexChartBase {
             this.applyLegendTooltip(chartOptions, extraData, chartType);
             this.applyXAxisFormatter(chartOptions, extraData);
             this.applyDataLabelFormatter(chartOptions, extraData);
+            this.normalizeChartOptions(chartOptions);
 
             const finalChartOptions = this.getChartOptions(chartOptions, chartType, extraData, elementId);
 

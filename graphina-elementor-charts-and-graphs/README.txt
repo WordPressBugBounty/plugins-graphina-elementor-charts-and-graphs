@@ -4,7 +4,7 @@ Tags: data visualization wordpress plugin, wordpress charts, wordpress charts an
 Requires PHP: 8.0.0
 Requires at least: 5.9
 Tested up to: 7.0.1
-Stable tag: 3.1.12
+Stable tag: 3.1.13
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -226,6 +226,11 @@ Yes, we'd love to hear from you at <a href="mailto:hello@iqonic.design">hello@iq
 
 
 == Changelog ==
+
+= 3.1.13 - 10/10/2026 =
+- [Fixed] Security fixes.
+- [Fixed] "Undefined variable $common_filter_id" PHP warnings logged on every chart load.
+- [Improvement] More reliable handling of color settings in Apex charts, including Brush, Counter and Nested Column charts.
 
 = 3.1.12 - 15/07/2026 =
 - [Security] Hardened custom Tree Chart node templates to prevent unsafe content from being rendered.

@@ -82,6 +82,7 @@ export default class BrushChart extends GraphinaApexChartBase {
 
         this.applyYAxisFormatter(primarychartOption,extra_data)
         this.applyXAxisFormatter(primarychartOption, extra_data);
+        this.normalizeChartOptions(primarychartOption);
 
         try {
             this.secondaryChart[elementId] = new ApexCharts(chartEle[0], primarychartOption);
