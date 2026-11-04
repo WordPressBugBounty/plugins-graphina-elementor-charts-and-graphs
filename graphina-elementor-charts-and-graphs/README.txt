@@ -3,8 +3,8 @@ Contributors: iqonicdesign
 Tags: data visualization wordpress plugin, wordpress charts, wordpress charts and graphs, wordpress charts and graphs plugin, wordpress chart plugin
 Requires PHP: 8.0.0
 Requires at least: 5.9
-Tested up to: 7.1.3
-Stable tag: 3.1.13
+Tested up to: 7.0.1
+Stable tag: 3.1.14
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -226,6 +226,9 @@ Yes, we'd love to hear from you at <a href="mailto:hello@iqonic.design">hello@iq
 
 
 == Changelog ==
+
+= 3.1.14 - 03/11/2026 =
+- [Fixed] Security fixes.
 
 = 3.1.13 - 10/10/2026 =
 - [Fixed] Security fixes.
